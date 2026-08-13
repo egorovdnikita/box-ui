@@ -1,0 +1,76 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction" />
+
+# Box UI
+
+Design tokens and icons generated directly from three Figma libraries, with every
+**Variable mode** wired to a switch in the toolbar above.
+
+| Figma file | Collection | Modes | Switch |
+| --- | --- | --- | --- |
+| Box UI \| Primitives | Color Palette, Spacing, Rounding, Size, Opacity, Typography | *Value* only | — |
+| Box UI \| Tokens | **Color** | Blue, Sky, Teal, Emerald, Orange, Amber, Violet, Purple, Cyan, Yellow | `data-accent` |
+| Box UI \| Tokens | **Mode** | Light, Dark | `data-theme` |
+| Box UI \| Tokens | **Rounding** | Low, Medium, High | `data-radius` |
+| Box UI \| Tokens | **Typography** | Inter, Inter Display, Inter Tight, Inter Variable | `data-font` |
+| Box UI \| Tokens | **Grid** | Desktop, Mobile | `data-device` |
+| Box UI \| Icons | **Icon** | Bold, Bold Duotone, Broken, Line Duotone, Linear, Outline | `<IconStyleProvider>` |
+
+## How a token resolves
+
+Nothing is duplicated per theme. Each Figma alias becomes a `var()` hop, so a mode
+switch on `<html>` re-resolves the whole chain — exactly like flipping the mode in Figma.
+
+```
+--box-background-sentiment-primary   [data-theme]    Mode
+  └─ var(--box-colors-brand-primary) [data-accent]   Color
+       └─ var(--box-color-blue-solid-500)            Color Palette (fixed)
+            └─ #3b82f6
+```
+
+Sizing works the same way, one level deeper on the rounding side:
+
+```
+--box-rounding-base-xl   [data-device]  Grid     Desktop → base/xl, Mobile → base/l
+  └─ var(--box-radius-base-xl)  [data-radius]  Rounding  Low 20 · Medium 24 · High 32
+       └─ var(--box-rounding-24)                          Rounding (primitive)
+            └─ 24px
+```
+
+## Using it
+
+```tsx
+import '@box-ui/tokens/css';
+import { Button, Card, Text } from '@box-ui/react';
+import { Icon } from '@box-ui/icons';
+
+<html data-theme="dark" data-accent="violet" data-radius="high" data-device="mobile">
+  <Card>
+    <Text variant="h4">Ready</Text>
+    <Button startIcon={<Icon name="check-circle" size="2xs" />}>Continue</Button>
+  </Card>
+</html>;
+```
+
+### Scoping to part of a page
+
+A custom property is substituted **where it is declared**, not where it is read. To switch
+modes for a subtree, set *all five* attributes on that one element — every layer then
+re-declares there and the chain resolves locally. Overriding only `data-accent` deeper in
+the tree cannot reach a Mode token that an ancestor already resolved.
+
+```html
+<div data-theme="dark" data-accent="violet" data-radius="high" data-font="inter" data-device="desktop">
+```
+
+`@box-ui/tokens/css/adaptive.css` is optional: it picks Dark from
+`prefers-color-scheme` and Mobile below 768px whenever the document has not set
+those attributes itself.
+
+## Where to look
+
+- **Foundations** — the raw palette, the type ramp, and the spacing / rounding / size / opacity scales.
+- **Tokens → Modes** — each collection switching side by side, plus the alias chain.
+- **Icons** — 1 300+ Solar icons in six styles, and the Flags / Payments / Brands catalogues.
+- **Components** — small primitives that consume the tokens and nothing else.

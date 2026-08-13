@@ -1,0 +1,15 @@
+# file: Box UI | Tokens (ccLFzQtw3AuTuHWoHYf2dS)
+# collection: Rounding
+# modes: Low, Medium, Hight
+# aliases (@) point at: Box UI | Primitives -> Rounding
+rounding/base/none :: Low=@rounding/0 | Medium=@rounding/0 | Hight=@rounding/0
+rounding/base/min :: Low=@rounding/2 | Medium=@rounding/4 | Hight=@rounding/6
+rounding/base/2xs :: Low=@rounding/4 | Medium=@rounding/6 | Hight=@rounding/8
+rounding/base/xs :: Low=@rounding/6 | Medium=@rounding/8 | Hight=@rounding/12
+rounding/base/s :: Low=@rounding/8 | Medium=@rounding/12 | Hight=@rounding/16
+rounding/base/m :: Low=@rounding/12 | Medium=@rounding/16 | Hight=@rounding/20
+rounding/base/l :: Low=@rounding/16 | Medium=@rounding/20 | Hight=@rounding/24
+rounding/base/xl :: Low=@rounding/20 | Medium=@rounding/24 | Hight=@rounding/32
+rounding/base/2xl :: Low=@rounding/24 | Medium=@rounding/32 | Hight=@rounding/40
+rounding/base/max :: Low=@rounding/32 | Medium=@rounding/40 | Hight=@rounding/48
+rounding/base/full :: Low=@rounding/full | Medium=@rounding/full | Hight=@rounding/full

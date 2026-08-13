@@ -1,0 +1,30 @@
+{
+  "name": "@box-ui/tokens",
+  "version": "0.1.0",
+  "description": "Design tokens generated from the Box UI Figma Variables (primitives, color modes, light/dark, rounding density, typeface, desktop/mobile).",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./css": "./dist/css/index.css",
+    "./css/primitives.css": "./dist/css/primitives.css",
+    "./css/theme.css": "./dist/css/theme.css",
+    "./css/adaptive.css": "./dist/css/adaptive.css",
+    "./tokens.json": "./dist/tokens.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepack": "node scripts/build.mjs"
+  }
+}

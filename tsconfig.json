@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUncheckedIndexedAccess": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": false,
+    "noEmit": true,
+    "types": ["node"],
+    "paths": {
+      "@box-ui/tokens": ["./packages/tokens/dist/index.d.ts"],
+      "@box-ui/icons": ["./packages/icons/src/index.ts"],
+      "@box-ui/react": ["./packages/react/src/index.ts"]
+    }
+  },
+  "include": ["packages/*/src/**/*", "apps/storybook/stories/**/*", "apps/storybook/.storybook/**/*"],
+  "exclude": ["node_modules", "**/dist", "**/storybook-static"]
+}

@@ -1,0 +1,26 @@
+html,
+body,
+#storybook-root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--box-background-base-primary);
+  color: var(--box-content-base-primary);
+  font-family: var(--box-typography-font-family-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.sb-surface {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: var(--box-spacing-base-m);
+  background: var(--box-background-base-primary);
+  color: var(--box-content-base-primary);
+}
+
+/* Docs pages render Storybook's own chrome; keep the token surface behind them. */
+.sbdocs.sbdocs-wrapper {
+  background: var(--box-background-base-primary);
+}

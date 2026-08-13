@@ -1,0 +1,81 @@
+# file: Box UI | Tokens (ccLFzQtw3AuTuHWoHYf2dS)
+# collection: Grid
+# modes: Desktop, Mobile
+# aliases (@) point at:
+#   typography/* -> Box UI | Tokens -> Typography
+#   rounding/*   -> Box UI | Tokens -> Rounding
+#   spacing/*    -> Box UI | Primitives -> Spacing
+#   size/*       -> Box UI | Primitives -> Size
+typography/font-family/heading :: Desktop=@font-family/heading | Mobile=@font-family/heading
+typography/font-family/body :: Desktop=@font-family/body | Mobile=@font-family/body
+typography/font-weight/medium :: Desktop=@font-weight/medium | Mobile=@font-weight/medium
+typography/font-weight/semibold :: Desktop=@font-weight/semibold | Mobile=@font-weight/semibold
+typography/display/l/font-size :: Desktop=@font-size/72 | Mobile=@font-size/64
+typography/display/l/line-height :: Desktop=@line-height/80 | Mobile=@line-height/72
+typography/display/l/letter-spacing :: Desktop=@letter-spacing/n150 | Mobile=@letter-spacing/n150
+typography/display/m/font-size :: Desktop=@font-size/64 | Mobile=@font-size/56
+typography/display/m/line-height :: Desktop=@line-height/72 | Mobile=@line-height/64
+typography/display/m/letter-spacing :: Desktop=@letter-spacing/n100 | Mobile=@letter-spacing/n100
+typography/display/s/font-size :: Desktop=@font-size/56 | Mobile=@font-size/48
+typography/display/s/line-height :: Desktop=@line-height/64 | Mobile=@line-height/56
+typography/display/s/letter-spacing :: Desktop=@letter-spacing/n75 | Mobile=@letter-spacing/n75
+typography/heading/H1/font-size :: Desktop=@font-size/48 | Mobile=@font-size/40
+typography/heading/H1/line-height :: Desktop=@line-height/56 | Mobile=@line-height/48
+typography/heading/H1/letter-spacing :: Desktop=@letter-spacing/n50 | Mobile=@letter-spacing/n50
+typography/heading/H2/font-size :: Desktop=@font-size/40 | Mobile=@font-size/32
+typography/heading/H2/line-height :: Desktop=@line-height/48 | Mobile=@line-height/40
+typography/heading/H2/letter-spacing :: Desktop=@letter-spacing/n25 | Mobile=@letter-spacing/n25
+typography/heading/H3/font-size :: Desktop=@font-size/32 | Mobile=@font-size/28
+typography/heading/H3/line-height :: Desktop=@line-height/40 | Mobile=@line-height/36
+typography/heading/H3/letter-spacing :: Desktop=@letter-spacing/0 | Mobile=@letter-spacing/0
+typography/heading/H4/font-size :: Desktop=@font-size/24 | Mobile=@font-size/20
+typography/heading/H4/line-height :: Desktop=@line-height/32 | Mobile=@line-height/28
+typography/heading/H4/letter-spacing :: Desktop=@letter-spacing/0 | Mobile=@letter-spacing/0
+typography/heading/H5/font-size :: Desktop=@font-size/20 | Mobile=@font-size/16
+typography/heading/H5/line-height :: Desktop=@line-height/24 | Mobile=@line-height/20
+typography/heading/H5/letter-spacing :: Desktop=@letter-spacing/0 | Mobile=@letter-spacing/0
+typography/body/l/font-size :: Desktop=@font-size/16 | Mobile=@font-size/16
+typography/body/l/line-height :: Desktop=@line-height/20 | Mobile=@line-height/20
+typography/body/l/letter-spacing :: Desktop=@letter-spacing/0 | Mobile=@letter-spacing/0
+typography/body/m/font-size :: Desktop=@font-size/14 | Mobile=@font-size/14
+typography/body/m/line-height :: Desktop=@line-height/18 | Mobile=@line-height/18
+typography/body/m/letter-spacing :: Desktop=@letter-spacing/0 | Mobile=@letter-spacing/0
+typography/caption/l/font-size :: Desktop=@font-size/12 | Mobile=@font-size/12
+typography/caption/l/line-height :: Desktop=@line-height/16 | Mobile=@line-height/16
+typography/caption/l/letter-spacing :: Desktop=@letter-spacing/0 | Mobile=@letter-spacing/0
+typography/caption/m/font-size :: Desktop=@font-size/10 | Mobile=@font-size/10
+typography/caption/m/line-height :: Desktop=@line-height/12 | Mobile=@line-height/12
+typography/caption/m/letter-spacing :: Desktop=@letter-spacing/0 | Mobile=@letter-spacing/0
+rounding/base/none :: Desktop=@rounding/base/none | Mobile=@rounding/base/none
+rounding/base/min :: Desktop=@rounding/base/min | Mobile=@rounding/base/min
+rounding/base/2xs :: Desktop=@rounding/base/2xs | Mobile=@rounding/base/2xs
+rounding/base/xs :: Desktop=@rounding/base/xs | Mobile=@rounding/base/xs
+rounding/base/s :: Desktop=@rounding/base/s | Mobile=@rounding/base/s
+rounding/base/m :: Desktop=@rounding/base/m | Mobile=@rounding/base/m
+rounding/base/l :: Desktop=@rounding/base/l | Mobile=@rounding/base/m
+rounding/base/xl :: Desktop=@rounding/base/xl | Mobile=@rounding/base/l
+rounding/base/2xl :: Desktop=@rounding/base/2xl | Mobile=@rounding/base/xl
+rounding/base/max :: Desktop=@rounding/base/max | Mobile=@rounding/base/2xl
+rounding/base/full :: Desktop=@rounding/base/full | Mobile=@rounding/base/full
+spacing/base/min :: Desktop=@spacing/2 | Mobile=@spacing/2
+spacing/base/4xs :: Desktop=@spacing/4 | Mobile=@spacing/4
+spacing/base/3xs :: Desktop=@spacing/8 | Mobile=@spacing/8
+spacing/base/2xs :: Desktop=@spacing/12 | Mobile=@spacing/12
+spacing/base/xs :: Desktop=@spacing/16 | Mobile=@spacing/16
+spacing/base/s :: Desktop=@spacing/20 | Mobile=@spacing/16
+spacing/base/m :: Desktop=@spacing/24 | Mobile=@spacing/20
+spacing/base/l :: Desktop=@spacing/28 | Mobile=@spacing/24
+spacing/base/xl :: Desktop=@spacing/32 | Mobile=@spacing/28
+spacing/base/2xl :: Desktop=@spacing/36 | Mobile=@spacing/32
+spacing/base/3xl :: Desktop=@spacing/40 | Mobile=@spacing/36
+spacing/base/4xl :: Desktop=@spacing/44 | Mobile=@spacing/40
+spacing/base/max :: Desktop=@spacing/48 | Mobile=@spacing/44
+size/base/min :: Desktop=@size/16 | Mobile=@size/16
+size/base/2xs :: Desktop=@size/20 | Mobile=@size/20
+size/base/xs :: Desktop=@size/24 | Mobile=@size/24
+size/base/s :: Desktop=@size/28 | Mobile=@size/28
+size/base/m :: Desktop=@size/32 | Mobile=@size/32
+size/base/l :: Desktop=@size/36 | Mobile=@size/36
+size/base/xl :: Desktop=@size/40 | Mobile=@size/40
+size/base/2xl :: Desktop=@size/44 | Mobile=@size/44
+size/base/max :: Desktop=@size/48 | Mobile=@size/48

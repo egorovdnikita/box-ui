@@ -1,0 +1,41 @@
+# file: Box UI | Tokens (ccLFzQtw3AuTuHWoHYf2dS)
+# collection: Typography
+# modes: Inter, Inter Display, Inter Tight, Inter Variable
+# aliases (@) point at: Box UI | Primitives -> Typography
+font-family/heading :: Inter="Inter" | Inter Display="Inter Display" | Inter Tight="Inter Tight" | Inter Variable="Inter Variable"
+font-family/body :: Inter="Inter" | Inter Display="Inter Display" | Inter Tight="Inter Tight" | Inter Variable="Inter Variable"
+font-weight/medium :: Inter=@font-weight/medium | Inter Display=@font-weight/medium | Inter Tight=@font-weight/medium | Inter Variable=@font-weight/medium
+font-weight/semibold :: Inter=@font-weight/semibold | Inter Display=@font-weight/semibold | Inter Tight=@font-weight/semibold | Inter Variable=@font-weight/semibold
+font-size/72 :: Inter=@font-size/72 | Inter Display=@font-size/72 | Inter Tight=@font-size/72 | Inter Variable=@font-size/72
+font-size/64 :: Inter=@font-size/64 | Inter Display=@font-size/64 | Inter Tight=@font-size/64 | Inter Variable=@font-size/64
+line-height/80 :: Inter=@line-height/80 | Inter Display=@line-height/80 | Inter Tight=@line-height/80 | Inter Variable=@line-height/80
+line-height/72 :: Inter=@line-height/72 | Inter Display=@line-height/72 | Inter Tight=@line-height/72 | Inter Variable=@line-height/72
+letter-spacing/n150 :: Inter=@letter-spacing/n150 | Inter Display=@letter-spacing/n150 | Inter Tight=@letter-spacing/n150 | Inter Variable=@letter-spacing/n150
+font-size/56 :: Inter=@font-size/56 | Inter Display=@font-size/56 | Inter Tight=@font-size/56 | Inter Variable=@font-size/56
+line-height/64 :: Inter=@line-height/64 | Inter Display=@line-height/64 | Inter Tight=@line-height/64 | Inter Variable=@line-height/64
+letter-spacing/n100 :: Inter=@letter-spacing/n100 | Inter Display=@letter-spacing/n100 | Inter Tight=@letter-spacing/n100 | Inter Variable=@letter-spacing/n100
+font-size/48 :: Inter=@font-size/48 | Inter Display=@font-size/48 | Inter Tight=@font-size/48 | Inter Variable=@font-size/48
+line-height/56 :: Inter=@line-height/56 | Inter Display=@line-height/56 | Inter Tight=@line-height/56 | Inter Variable=@line-height/56
+letter-spacing/n75 :: Inter=@letter-spacing/n75 | Inter Display=@letter-spacing/n75 | Inter Tight=@letter-spacing/n75 | Inter Variable=@letter-spacing/n75
+font-size/40 :: Inter=@font-size/40 | Inter Display=@font-size/40 | Inter Tight=@font-size/40 | Inter Variable=@font-size/40
+line-height/48 :: Inter=@line-height/48 | Inter Display=@line-height/48 | Inter Tight=@line-height/48 | Inter Variable=@line-height/48
+letter-spacing/n50 :: Inter=@letter-spacing/n50 | Inter Display=@letter-spacing/n50 | Inter Tight=@letter-spacing/n50 | Inter Variable=@letter-spacing/n50
+font-size/32 :: Inter=@font-size/32 | Inter Display=@font-size/32 | Inter Tight=@font-size/32 | Inter Variable=@font-size/32
+line-height/40 :: Inter=@line-height/40 | Inter Display=@line-height/40 | Inter Tight=@line-height/40 | Inter Variable=@line-height/40
+letter-spacing/n25 :: Inter=@letter-spacing/n25 | Inter Display=@letter-spacing/n25 | Inter Tight=@letter-spacing/n25 | Inter Variable=@letter-spacing/n25
+font-size/28 :: Inter=@font-size/28 | Inter Display=@font-size/28 | Inter Tight=@font-size/28 | Inter Variable=@font-size/28
+line-height/36 :: Inter=@line-height/36 | Inter Display=@line-height/36 | Inter Tight=@line-height/36 | Inter Variable=@line-height/36
+letter-spacing/0 :: Inter=@letter-spacing/0 | Inter Display=@letter-spacing/0 | Inter Tight=@letter-spacing/0 | Inter Variable=@letter-spacing/0
+font-size/24 :: Inter=@font-size/24 | Inter Display=@font-size/24 | Inter Tight=@font-size/24 | Inter Variable=@font-size/24
+font-size/20 :: Inter=@font-size/20 | Inter Display=@font-size/20 | Inter Tight=@font-size/20 | Inter Variable=@font-size/20
+line-height/32 :: Inter=@line-height/32 | Inter Display=@line-height/32 | Inter Tight=@line-height/32 | Inter Variable=@line-height/32
+line-height/28 :: Inter=@line-height/28 | Inter Display=@line-height/28 | Inter Tight=@line-height/28 | Inter Variable=@line-height/28
+font-size/16 :: Inter=@font-size/16 | Inter Display=@font-size/16 | Inter Tight=@font-size/16 | Inter Variable=@font-size/16
+line-height/24 :: Inter=@line-height/24 | Inter Display=@line-height/24 | Inter Tight=@line-height/24 | Inter Variable=@line-height/24
+line-height/20 :: Inter=@line-height/20 | Inter Display=@line-height/20 | Inter Tight=@line-height/20 | Inter Variable=@line-height/20
+font-size/14 :: Inter=@font-size/14 | Inter Display=@font-size/14 | Inter Tight=@font-size/14 | Inter Variable=@font-size/14
+line-height/18 :: Inter=@line-height/18 | Inter Display=@line-height/18 | Inter Tight=@line-height/18 | Inter Variable=@line-height/18
+font-size/12 :: Inter=@font-size/12 | Inter Display=@font-size/12 | Inter Tight=@font-size/12 | Inter Variable=@font-size/12
+line-height/16 :: Inter=@line-height/16 | Inter Display=@line-height/16 | Inter Tight=@line-height/16 | Inter Variable=@line-height/16
+font-size/10 :: Inter=@font-size/10 | Inter Display=@font-size/10 | Inter Tight=@font-size/10 | Inter Variable=@font-size/10
+line-height/12 :: Inter=@line-height/12 | Inter Display=@line-height/12 | Inter Tight=@line-height/12 | Inter Variable=@line-height/12

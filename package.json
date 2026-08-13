@@ -1,0 +1,29 @@
+{
+  "name": "box-ui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Box UI — design tokens and icons generated from the Box UI Figma libraries, with a Storybook that lets you switch every Figma mode live.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "npm run build -w @box-ui/tokens && npm run build -w @box-ui/icons",
+    "build:tokens": "npm run build -w @box-ui/tokens",
+    "build:icons": "npm run build -w @box-ui/icons",
+    "icons:figma": "node scripts/export-figma-icons.mjs",
+    "storybook": "npm run dev -w @box-ui/storybook",
+    "build:storybook": "npm run build -w @box-ui/storybook",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "typescript": "^5.6.3"
+  }
+}

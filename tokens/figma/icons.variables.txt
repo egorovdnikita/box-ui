@@ -1,0 +1,22 @@
+# file: Box UI | Icons (9pupgeWag4Ssc7jdAYvXMt)
+# collection: Icon
+# modes: Bold, Bold Duotone, Broken, Line Duotone, Linear, Outline
+icon-style :: Bold="Bold" | Bold Duotone="Bold Duotone" | Broken="Broken" | Line Duotone="Line Duotone" | Linear="Linear" | Outline="Outline"
+
+# ---------------------------------------------------------------------------
+# Component structure (not variables — recorded here for provenance)
+# ---------------------------------------------------------------------------
+# Master Icon (component set), page "Master"
+#   Type = UI Icons | Flag | Payments | Brands
+#
+# page "Icon"     — UI Icons (Solar): 1253 component sets x 6 Style variants = 7519 components, 24x24
+#                   naming: "UI icons / <Category> / <Name>", variant property: Style
+# page "Flags"    — 197 component sets x 3 Style variants (Circle, Rounded, Shape) = 591 components
+#                   naming: "Flags/<Country>"
+# page "Payments" — 680 standalone components (crypto / payment marks), 24x24
+# page "Brands"   — 24 component sets x 4 variants = 96 components
+#                   variant properties: Style (Original | Solid) x Circle Shape (True | False)
+# page "Tech"     — 797 standalone components + 8 sets (Figma editor UI kit, not part of Box UI)
+#
+# Icon size is not part of the Icon collection: sizes come from
+# Box UI | Tokens -> Grid -> size/base/* (16, 20, 24, 28, 32, 36, 40, 44, 48).
