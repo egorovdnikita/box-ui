@@ -10,6 +10,8 @@ and device — can be switched live.
 | [Box UI \| Tokens](https://www.figma.com/design/ccLFzQtw3AuTuHWoHYf2dS/Box-UI--Tokens) | 234 semantic tokens across 5 switchable collections |
 | [Box UI \| Icons](https://www.figma.com/design/9pupgeWag4Ssc7jdAYvXMt/Box-UI--Icons) | UI Icons (Solar) in 6 styles, plus Flags / Payments / Brands |
 
+**→ [Live Storybook](https://egorovdnikita.github.io/box-ui/)**
+
 ```bash
 npm install      # also builds tokens and icons
 npm run storybook
@@ -170,6 +172,27 @@ npm run build:icons    # Solar -> packages/icons/src/data/ + catalog.json
 npm run typecheck
 npm run build:storybook
 ```
+
+---
+
+## Deploying the Storybook
+
+The published site lives on the `gh-pages` branch and is served at
+<https://egorovdnikita.github.io/box-ui/>.
+
+```bash
+npm run deploy:storybook   # build + force-push the snapshot to gh-pages
+```
+
+To deploy automatically on every push to `main` instead, move the ready-made workflow
+into place once your git credentials carry the `workflow` scope:
+
+```bash
+gh auth refresh -s workflow
+mkdir -p .github/workflows && cp docs/storybook-pages-workflow.yml .github/workflows/storybook.yml
+```
+
+Then switch the Pages source to *GitHub Actions* in the repository settings.
 
 When the Figma libraries change, update the dumps (the Figma MCP server or the REST API
 can print the same shape) and re-run the build. Nothing else needs to be touched.

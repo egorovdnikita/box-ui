@@ -20,6 +20,7 @@
     "icons:figma": "node scripts/export-figma-icons.mjs",
     "storybook": "npm run dev -w @box-ui/storybook",
     "build:storybook": "npm run build -w @box-ui/storybook",
+    "deploy:storybook": "npm run build:storybook && node scripts/deploy-storybook.mjs",
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "devDependencies": {
