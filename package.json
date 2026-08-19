@@ -25,6 +25,10 @@
   },
   "devDependencies": {
     "@types/node": "^22.20.1",
+    "@web3icons/core": "^4.0.55",
+    "cryptocurrency-icons": "^0.18.1",
+    "flag-icons": "^7.5.0",
+    "simple-icons": "^16.28.0",
     "typescript": "^5.6.3"
   }
 }

@@ -12,4 +12,18 @@ export {
   type IconStyle,
 } from './types';
 export { catalog, families, type IconCatalog, type IconCatalogEntry } from './catalog';
+export {
+  familyIndex,
+  ICON_FAMILIES,
+  ICON_FAMILY_LABELS,
+  FAMILY_SHAPE_LABELS,
+  type BrandTone,
+  type FamilyData,
+  type FamilyIconEntry,
+  type FamilyMeta,
+  type FamilyShape,
+  type IconFamily,
+} from './families';
+export { loadFamily, useFamily } from './familyStore';
+export { FamilyIcon, type FamilyIconProps } from './FamilyIcon';
 export { iconNames, type IconName } from './names';

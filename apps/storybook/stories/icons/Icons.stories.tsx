@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Icon, ICON_SIZES, ICON_STYLES, ICON_STYLE_LABELS, catalog, type IconSizeToken, type IconStyle } from '@box-ui/icons';
-import { Badge, Button, Card, Input, Stack, Text } from '@box-ui/react';
+import { Badge, Card, Input, Stack, Text } from '@box-ui/react';
 import { Code, Grid, Page, Section } from '../_ui';
 
 const meta: Meta = {
@@ -9,7 +9,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: `${catalog.icons.length} icons across ${catalog.categories.length} categories. The six styles are the \`Style\` variants of the Figma component set, driven by the \`icon-style\` variable; sizes are \`size/base/*\` tokens, so they follow the Device mode too.`,
+        component: `All ${catalog.icons.length} icons across ${catalog.categories.length} categories, rendered in one grid. The six styles are the \`Style\` variants of the Figma component set, driven by the \`icon-style\` variable; sizes are \`size/base/*\` tokens, so they follow the Device mode too.`,
       },
     },
   },
@@ -38,7 +38,7 @@ export const Gallery: Story = {
     const [query, setQuery] = useState('');
     const [category, setCategory] = useState('All');
     const [size, setSize] = useState<IconSizeToken>('xs');
-    const [limit, setLimit] = useState(240);
+    const [onlyAvailable, setOnlyAvailable] = useState(false);
     const [copied, setCopied] = useState<string | null>(null);
 
     const style = (globals.iconStyle as IconStyle) ?? 'linear';
@@ -46,11 +46,16 @@ export const Gallery: Story = {
     const filtered = useMemo(() => {
       const q = query.trim().toLowerCase();
       return catalog.icons.filter(
-        (icon) => (category === 'All' || icon.category === category) && (!q || icon.name.includes(q)),
+        (icon) =>
+          (category === 'All' || icon.category === category) &&
+          (!q || icon.name.includes(q)) &&
+          (!onlyAvailable || icon.styles.includes(style)),
       );
-    }, [query, category]);
+    }, [query, category, onlyAvailable, style]);
 
-    const shown = filtered.slice(0, limit);
+    // Solar does not draw every icon in every style; the gallery shows the whole
+    // roster and marks the gaps rather than silently dropping them.
+    const missing = filtered.filter((icon) => !icon.styles.includes(style)).length;
 
     return (
       <Page
@@ -116,16 +121,25 @@ export const Gallery: Story = {
               </select>
             </label>
             <Badge>{filtered.length} icons</Badge>
+            {missing > 0 && <Badge sentiment="warning">{missing} not drawn in {ICON_STYLE_LABELS[style]}</Badge>}
+            <label style={{ display: 'flex', alignItems: 'center', gap: 'var(--box-spacing-base-4xs)', height: 'var(--box-size-base-m)' }}>
+              <input type="checkbox" checked={onlyAvailable} onChange={(e) => setOnlyAvailable(e.target.checked)} />
+              <Text variant="caption-l" tone="secondary" as="span">
+                Only this style
+              </Text>
+            </label>
             {copied && <Badge sentiment="positive">copied “{copied}”</Badge>}
           </Stack>
         </Card>
 
         <Grid min={132} gap="4xs">
-          {shown.map((icon) => (
+          {filtered.map((icon) => {
+            const drawn = icon.styles.includes(style);
+            return (
             <button
               key={icon.name}
               type="button"
-              title={`${icon.name} · ${icon.category}`}
+              title={drawn ? `${icon.name} · ${icon.category}` : `${icon.name} · ${icon.category} — not drawn in ${ICON_STYLE_LABELS[style]}`}
               onClick={() => {
                 void navigator.clipboard?.writeText(icon.name);
                 setCopied(icon.name);
@@ -137,14 +151,25 @@ export const Gallery: Story = {
                 gap: 'var(--box-spacing-base-4xs)',
                 padding: 'var(--box-spacing-base-3xs)',
                 background: 'var(--box-background-base-secondary)',
-                border: '1px solid var(--box-border-base-neutral)',
+                border: drawn ? '1px solid var(--box-border-base-neutral)' : '1px dashed var(--box-border-base-neutral-hover)',
                 borderRadius: 'var(--box-rounding-base-s)',
                 color: 'var(--box-content-base-primary)',
                 cursor: 'pointer',
                 minWidth: 0,
+                contentVisibility: 'auto',
+                containIntrinsicSize: 'auto 68px',
               }}
             >
-              <Icon name={icon.name} size={size} />
+              {drawn ? (
+                <Icon name={icon.name} size={size} />
+              ) : (
+                <Icon
+                  name={icon.name}
+                  iconStyle={icon.styles[0]}
+                  size={size}
+                  style={{ opacity: 0.32 }}
+                />
+              )}
               <span
                 style={{
                   fontSize: 'var(--box-typography-caption-m-font-size)',
@@ -159,14 +184,9 @@ export const Gallery: Story = {
                 {icon.name}
               </span>
             </button>
-          ))}
+            );
+          })}
         </Grid>
-
-        {shown.length < filtered.length && (
-          <Button variant="secondary" onClick={() => setLimit((l) => l + 480)}>
-            Show more ({filtered.length - shown.length} left)
-          </Button>
-        )}
       </Page>
     );
   },

@@ -1,7 +1,7 @@
 {
   "name": "@box-ui/icons",
   "version": "0.1.0",
-  "description": "Box UI icons — the Solar UI Icons set from `Box UI | Icons`, switchable across all six Figma Style modes and sized with Box UI size tokens.",
+  "description": "Box UI icons \u2014 the Solar UI Icons set from `Box UI | Icons`, switchable across all six Figma Style modes and sized with Box UI size tokens.",
   "license": "MIT",
   "type": "module",
   "main": "./src/index.ts",
@@ -9,13 +9,14 @@
   "exports": {
     ".": "./src/index.ts",
     "./catalog.json": "./src/catalog.json",
-    "./figma-families.json": "./src/figma-families.json"
+    "./figma-families.json": "./src/figma-families.json",
+    "./families.json": "./src/families.json"
   },
   "files": [
     "src"
   ],
   "scripts": {
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs && node scripts/build-families.mjs"
   },
   "peerDependencies": {
     "react": ">=18"

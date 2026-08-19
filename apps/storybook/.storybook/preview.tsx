@@ -127,7 +127,7 @@ const preview: Preview = {
     controls: { matchers: { color: /(background|color)$/i } },
     options: {
       storySort: {
-        order: ['Introduction', 'Foundations', 'Tokens', 'Icons', 'Components'],
+        order: ['Introduction', 'Foundations', 'Icons'],
       },
     },
   },

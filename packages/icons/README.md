@@ -42,16 +42,31 @@ Each style is a separate dynamic `import()`, so an app ships only the styles it 
 
 ## Flags, Payments, Brands
 
-`src/figma-families.json` catalogues the other three families of the Figma file —
-names and variant properties, read straight from the file:
+`src/figma-families.json` carries the roster of the other three families, read straight
+off the Figma file; `scripts/build-families.mjs` matches each entry to its artwork:
 
-| Family | Figma page | Count | Variants |
-| --- | --- | --- | --- |
-| Flags | Flags | 197 | `Style` = Circle · Rounded · Shape |
-| Payments | Payments | 679 | none |
-| Brands | Brands | 24 | `Style` = Original · Solid, `Circle Shape` = True · False |
+| Family | Figma page | Count | With artwork | Variants |
+| --- | --- | --- | --- | --- |
+| Flags | Flags | 197 | 197 | `Style` = Circle · Rounded · Shape |
+| Payments | Payments | 675 | 541 | none |
+| Brands | Brands | 24 | 21 | `Style` = Original · Solid, `Circle Shape` = True · False |
 
-Their geometry is not vendored. Export it from Figma when you need it:
+```tsx
+import { FamilyIcon, familyIndex, useFamily } from '@box-ui/icons';
+
+function Flag({ country }: { country: string }) {
+  const flags = useFamily('flags');
+  const entry = flags?.items.find((i) => i.slug === country);
+  return entry ? <FamilyIcon entry={entry} shape="circle" size="m" /> : null;
+}
+```
+
+Each family is a separate dynamic `import()` — the flag payload alone is over a
+megabyte, so nothing loads until something renders it. Entries with no upstream match
+keep their Figma name and `body: null`; `FamilyIcon` draws those as a monogram.
+
+Sources: `flag-icons` (MIT), `@web3icons/core` (MIT) and `cryptocurrency-icons` (CC0),
+`simple-icons` (CC0). To swap in verbatim Figma exports instead:
 
 ```bash
 FIGMA_TOKEN=figd_xxx npm run icons:figma -- --family flags

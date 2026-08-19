@@ -1,0 +1,45 @@
+{
+  "flags": {
+    "figmaPage": "Flags",
+    "figmaNaming": "Flags/<Country>",
+    "variantProperty": "Style",
+    "variants": [
+      "Circle",
+      "Rounded",
+      "Shape"
+    ],
+    "variantProperties": null,
+    "note": "\"Mali\" and \"Solomon Islands\" spell their variants \"Flag Circle\" / \"Flag Rounded\" / \"Flag Shape\" in Figma.",
+    "total": 197,
+    "resolved": 197
+  },
+  "payments": {
+    "figmaPage": "Payments",
+    "figmaNaming": "<Name> (<TICKER>)",
+    "variantProperty": null,
+    "variants": [],
+    "variantProperties": null,
+    "note": "Standalone 24×24 components, no variant property. A handful of names repeat in the Figma file; the list is kept verbatim.",
+    "total": 675,
+    "resolved": 541
+  },
+  "brands": {
+    "figmaPage": "Brands",
+    "figmaNaming": "<Brand>",
+    "variantProperty": null,
+    "variants": null,
+    "variantProperties": {
+      "Style": [
+        "Original",
+        "Solid"
+      ],
+      "Circle Shape": [
+        "True",
+        "False"
+      ]
+    },
+    "note": null,
+    "total": 24,
+    "resolved": 21
+  }
+}

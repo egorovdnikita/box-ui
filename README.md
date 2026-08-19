@@ -104,7 +104,7 @@ and Mobile below 768px whenever the document has not set those attributes itself
 | Package | Contents |
 | --- | --- |
 | [`@box-ui/tokens`](packages/tokens) | CSS custom properties + a typed JS token API, generated from the Figma dumps |
-| [`@box-ui/icons`](packages/icons) | 1 301 Solar icons × 6 styles, an `<Icon>` component and the Figma catalogues |
+| [`@box-ui/icons`](packages/icons) | 1 301 Solar icons × 6 styles, plus the Flags / Payments / Brands families |
 | [`@box-ui/react`](packages/react) | Button, Badge, Card, Input, Text, Stack — token-only primitives used by the docs |
 | [`apps/storybook`](apps/storybook) | The documentation site |
 
@@ -143,18 +143,29 @@ are `size/base/*` tokens — so an icon also follows the device mode.
 
 ### Flags, Payments and Brands
 
-The other three families in the Figma file are catalogued in
-[`packages/icons/src/figma-families.json`](packages/icons/src/figma-families.json) —
-197 flags × 3 shapes, 679 payment marks, 24 brands × 4 variants — with their exact names
-and variant properties, and they are browsable in Storybook. Their geometry is not
-vendored anywhere public, so it is pulled from Figma on demand:
+The other three families of the Figma file ship too — 197 flags, 675 payment marks and
+24 brands, with the variant properties the file gives them:
+
+```tsx
+import { FamilyIcon, useFamily } from '@box-ui/icons';
+
+const flags = useFamily('flags');
+<FamilyIcon entry={flags.items[0]} shape="circle" size="max" />
+```
+
+The Figma file is the source of truth for the roster; the artwork comes from the
+canonical open distribution of the same marks, exactly the way UI Icons takes Solar
+from `@iconify-json/solar` — `flag-icons` (MIT), `@web3icons/core` (MIT) plus
+`cryptocurrency-icons` (CC0), and `simple-icons` (CC0). Entries with no upstream match
+(134 tokens, 3 brands) render as a monogram tile rather than a blank.
+
+To replace all of it with verbatim Figma exports:
 
 ```bash
 FIGMA_TOKEN=figd_xxx npm run icons:figma                      # flags + payments + brands
 FIGMA_TOKEN=figd_xxx npm run icons:figma -- --family flags     # one family
 ```
 
-The SVGs land in `packages/icons/src/data/<family>/` with a `manifest.json`.
 Create a token with the `file_content:read` scope at
 [figma.com/developers/api](https://www.figma.com/developers/api#access-tokens).
 
@@ -168,7 +179,7 @@ repo; the build only transforms them.
 
 ```bash
 npm run build:tokens   # tokens/figma/*.txt -> packages/tokens/dist/
-npm run build:icons    # Solar -> packages/icons/src/data/ + catalog.json
+npm run build:icons    # Solar + the three families -> packages/icons/src/data/
 npm run typecheck
 npm run build:storybook
 ```
