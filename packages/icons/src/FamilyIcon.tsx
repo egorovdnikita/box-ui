@@ -25,6 +25,29 @@ const RADIUS: Record<FamilyShape, string> = {
   circle: 'var(--box-rounding-base-full)',
 };
 
+/**
+ * Relative luminance of a `#rrggbb` brand colour, per WCAG.
+ *
+ * Several marks are officially pure black (Apple, X, GitHub, TikTok). Painting
+ * those literally makes them vanish on a dark surface, so the near-black and
+ * near-white ones defer to `content/base/primary`, which flips with the theme.
+ */
+function luminance(hex: string): number {
+  const value = hex.replace('#', '');
+  if (value.length !== 6) return 0.5;
+  const channel = (offset: number) => {
+    const part = parseInt(value.slice(offset, offset + 2), 16) / 255;
+    return part <= 0.03928 ? part / 12.92 : ((part + 0.055) / 1.055) ** 2.4;
+  };
+  return 0.2126 * channel(0) + 0.7152 * channel(2) + 0.0722 * channel(4);
+}
+
+function paint(color: string | null | undefined): string {
+  if (!color) return 'currentColor';
+  const l = luminance(color);
+  return l < 0.06 || l > 0.94 ? 'var(--box-content-base-primary)' : color;
+}
+
 /** Two letters, so an entry without upstream artwork still reads as itself. */
 function monogram(entry: FamilyIconEntry): string {
   const source = entry.ticker ?? entry.name;
@@ -77,7 +100,7 @@ export function FamilyIcon({ entry, shape = 'natural', tone = 'original', size =
     );
   }
 
-  const brandColor = tone === 'original' && entry.color ? entry.color : undefined;
+  const brandColor = tone === 'original' ? paint(entry.color) : 'currentColor';
 
   return (
     <span className={className} style={frame}>
@@ -91,7 +114,7 @@ export function FamilyIcon({ entry, shape = 'natural', tone = 'original', size =
         aria-label={entry.name}
         focusable="false"
         data-family-icon={entry.slug}
-        style={{ display: 'block', color: brandColor ?? 'inherit', fill: brandColor ?? 'currentColor' }}
+        style={{ display: 'block', color: brandColor, fill: brandColor }}
         // The bodies come from the generated data files, not from user input.
         dangerouslySetInnerHTML={{ __html: entry.body }}
       />
