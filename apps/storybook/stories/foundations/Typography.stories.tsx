@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { model } from '@box-ui/tokens';
 import { Text, type TextVariant } from '@box-ui/react';
-import { Code, Count, ModeGlobals, Page, Scope, Section } from '../_ui';
+import { Caption, Code, Count, ModeGlobals, Page, Scope, Section, demoSurface } from '../_ui';
 
 const meta: Meta = { title: 'Foundations/Typography' };
 export default meta;
@@ -52,24 +52,17 @@ export const Ramp: Story = {
               <div
                 key={variant}
                 className="sb-row"
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 'var(--box-spacing-base-min)',
-                  padding: 'var(--box-spacing-base-3xs) var(--box-spacing-base-4xs)',
-                  borderRadius: 'var(--box-rounding-base-xs)',
-                  borderBottom: '1px solid var(--box-border-base-neutral)',
-                }}
+                style={{ display: 'flex', flexDirection: 'column', gap: 6, padding: '12px 6px' }}
               >
-                <div style={{ display: 'flex', gap: 'var(--box-spacing-base-2xs)', flexWrap: 'wrap', alignItems: 'baseline' }}>
+                <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'baseline' }}>
                   <Code copyable={token}>{token}</Code>
-                  <Text variant="caption-m" tone="tertiary" as="span">
+                  <Caption>
                     {sizes.desktop}
                     {responsive && ` · mobile ${sizes.mobile}`}
-                  </Text>
+                  </Caption>
                   {responsive && <Count>responsive</Count>}
                 </div>
-                <Text variant={variant} as="div">
+                <Text variant={variant} as="div" style={{ color: 'var(--sb-text)' }}>
                   {sample}
                 </Text>
               </div>
@@ -93,15 +86,7 @@ export const Typefaces: Story = {
           <Scope
             globals={globals as unknown as ModeGlobals}
             font={m.slug}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--box-spacing-base-4xs)',
-              padding: 'var(--box-spacing-base-3xs)',
-              borderRadius: 'var(--box-rounding-base-m)',
-              border: '1px solid var(--box-border-base-neutral)',
-              background: 'var(--box-background-base-secondary)',
-            }}
+            style={{ ...demoSurface, display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-4xs)' }}
           >
             <Text variant="h3" as="div">
               Box UI — {m.name}

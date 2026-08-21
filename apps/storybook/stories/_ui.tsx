@@ -9,7 +9,13 @@ import {
   type ReactNode,
 } from 'react';
 import { Icon } from '@box-ui/icons';
-import { Text } from '@box-ui/react';
+
+/*
+ * The docs chrome is Storybook's own look — its palette, its type, its 4px
+ * radius, exposed as the `--sb-*` variables that preview.tsx reads out of
+ * `storybook/theming`. Box UI tokens appear only inside demos, which always
+ * carry both a background and a foreground so they read on any chrome.
+ */
 
 // --- copy-to-clipboard -------------------------------------------------------
 
@@ -22,33 +28,26 @@ export function useCopy() {
 
 function Toast({ message }: { message: string | null }) {
   return (
-    <div
-      aria-live="polite"
-      style={{
-        position: 'fixed',
-        left: '50%',
-        bottom: message ? 'var(--box-spacing-base-m)' : 'calc(-1 * var(--box-size-base-max))',
-        transform: 'translateX(-50%)',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 'var(--box-spacing-base-4xs)',
-        padding: 'var(--box-spacing-base-4xs) var(--box-spacing-base-2xs)',
-        borderRadius: 'var(--box-rounding-base-full)',
-        background: 'var(--box-content-base-primary)',
-        color: 'var(--box-background-base-secondary)',
-        fontSize: 'var(--box-typography-caption-l-font-size)',
-        fontFamily: 'var(--box-typography-font-family-body)',
-        boxShadow: '0 8px 24px var(--box-colors-black-alpha-16)',
-        opacity: message ? 1 : 0,
-        transition: 'bottom 160ms ease, opacity 160ms ease',
-        pointerEvents: 'none',
-        zIndex: 20,
-        maxWidth: '90vw',
-      }}
-    >
-      <Icon name="copy" size="min" />
-      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{message}</span>
+    <div className="sb-toast" data-visible={message ? 'true' : 'false'} aria-live="polite">
+      <Icon name="copy" size={14} />
+      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{message ?? ''}</span>
     </div>
+  );
+}
+
+// --- type --------------------------------------------------------------------
+
+export function Caption({ children }: { children: ReactNode }) {
+  return <span className="sb-caption">{children}</span>;
+}
+
+export function Code({ children, copyable }: { children: ReactNode; copyable?: string }) {
+  const copy = useCopy();
+  if (!copyable) return <code className="sb-code">{children}</code>;
+  return (
+    <button type="button" className="sb-code sb-code-button" onClick={() => copy(copyable)} title={`Copy ${copyable}`}>
+      {children}
+    </button>
   );
 }
 
@@ -80,55 +79,25 @@ export function Page({
 
   return (
     <CopyContext.Provider value={copy}>
-      <div style={{ display: 'flex', flexDirection: 'column', maxWidth: 1180 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
         <header
           style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: 'var(--box-spacing-base-3xs)',
-            paddingBottom: toolbar ? 'var(--box-spacing-base-2xs)' : 'var(--box-spacing-base-l)',
+            gap: 6,
+            paddingBottom: toolbar ? 16 : 28,
           }}
         >
-          <Text variant="h3">{title}</Text>
-          {lead && (
-            <Text variant="body-l" tone="secondary" style={{ maxWidth: '68ch' }}>
-              {lead}
-            </Text>
-          )}
+          <h1 className="sb-title">{title}</h1>
+          {lead && <p className="sb-lead">{lead}</p>}
         </header>
 
-        {toolbar && <Toolbar>{toolbar}</Toolbar>}
+        {toolbar && <div className="sb-toolbar">{toolbar}</div>}
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-xl)' }}>{children}</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>{children}</div>
       </div>
       <Toast message={message} />
     </CopyContext.Provider>
-  );
-}
-
-/** Sticky filter bar. Blurs the content passing underneath it. */
-function Toolbar({ children }: { children: ReactNode }) {
-  return (
-    <div
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 10,
-        display: 'flex',
-        flexWrap: 'wrap',
-        alignItems: 'flex-end',
-        gap: 'var(--box-spacing-base-2xs)',
-        marginBottom: 'var(--box-spacing-base-l)',
-        padding: 'var(--box-spacing-base-3xs)',
-        borderRadius: 'var(--box-rounding-base-m)',
-        border: '1px solid var(--box-border-base-neutral)',
-        background: 'var(--box-background-base-secondary)',
-        backdropFilter: 'blur(12px)',
-        boxShadow: '0 4px 16px var(--box-colors-black-alpha-8)',
-      }}
-    >
-      {children}
-    </div>
   );
 }
 
@@ -147,57 +116,29 @@ export function Section({
   children: ReactNode;
 }) {
   return (
-    <section
-      id={id}
-      style={{ display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-2xs)', scrollMarginTop: 80 }}
-    >
-      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 'var(--box-spacing-base-2xs)' }}>
-        <Text variant="h5">{title}</Text>
+    <section id={id} style={{ display: 'flex', flexDirection: 'column', gap: 10, scrollMarginTop: 72 }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
+        <h2 className="sb-heading">{title}</h2>
         {aside}
       </div>
-      {description && (
-        <Text variant="body-m" tone="secondary" style={{ maxWidth: '68ch' }}>
-          {description}
-        </Text>
-      )}
-      <div style={{ marginTop: 'var(--box-spacing-base-4xs)' }}>{children}</div>
+      {description && <p className="sb-lead">{description}</p>}
+      <div style={{ marginTop: 2 }}>{children}</div>
     </section>
   );
 }
 
-export function Grid({ min = 200, gap = '2xs', children }: { min?: number; gap?: string; children: ReactNode }) {
+export function Grid({ min = 200, gap = 8, children }: { min?: number; gap?: number; children: ReactNode }) {
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: `repeat(auto-fill, minmax(${min}px, 1fr))`,
-        gap: `var(--box-spacing-base-${gap})`,
-      }}
-    >
-      {children}
-    </div>
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, minmax(${min}px, 1fr))`, gap }}>{children}</div>
   );
 }
 
 // --- form controls -----------------------------------------------------------
 
-const controlStyle: CSSProperties = {
-  height: 'var(--box-size-base-m)',
-  borderRadius: 'var(--box-rounding-base-s)',
-  border: '1px solid var(--box-border-base-neutral)',
-  background: 'var(--box-background-base-primary)',
-  color: 'var(--box-content-base-primary)',
-  paddingInline: 'var(--box-spacing-base-3xs)',
-  fontSize: 'var(--box-typography-body-m-font-size)',
-  fontFamily: 'var(--box-typography-font-family-body)',
-};
-
 function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <label style={{ display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-min)' }}>
-      <Text variant="caption-m" tone="tertiary" as="span" style={{ textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-        {label}
-      </Text>
+    <label style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+      <span className="sb-label">{label}</span>
       {children}
     </label>
   );
@@ -216,7 +157,7 @@ export function Select<T extends string>({
 }) {
   return (
     <Field label={label}>
-      <select value={value} onChange={(e) => onChange(e.target.value as T)} style={controlStyle}>
+      <select className="sb-control" value={value} onChange={(e) => onChange(e.target.value as T)}>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
@@ -227,7 +168,7 @@ export function Select<T extends string>({
   );
 }
 
-/** Search box with a clear button; `/` focuses it from anywhere on the page. */
+/** Search box; `/` focuses it from anywhere on the page, Esc clears it. */
 export function Search({
   value,
   onChange,
@@ -258,33 +199,28 @@ export function Search({
   return (
     <Field label={label}>
       <div style={{ position: 'relative', display: 'flex', alignItems: 'center', minWidth: 240 }}>
-        <span style={{ position: 'absolute', left: 'var(--box-spacing-base-4xs)', display: 'flex', color: 'var(--box-content-base-tertiary)', pointerEvents: 'none' }}>
-          <Icon name="magnifer" size="min" />
+        <span style={{ position: 'absolute', left: 8, display: 'flex', color: 'var(--sb-text-muted)', pointerEvents: 'none' }}>
+          <Icon name="magnifer" size={14} />
         </span>
         <input
           ref={input}
+          className="sb-control"
           type="search"
           value={value}
           placeholder={placeholder}
           onChange={(e) => onChange(e.target.value)}
-          style={{
-            ...controlStyle,
-            width: '100%',
-            paddingLeft: 'calc(var(--box-size-base-min) + var(--box-spacing-base-2xs))',
-            paddingRight: value ? 'var(--box-size-base-xs)' : undefined,
-          }}
+          style={{ width: '100%', paddingLeft: 28, paddingRight: value ? 8 : 26 }}
         />
         {!value && (
           <kbd
+            className="sb-code"
             style={{
               position: 'absolute',
-              right: 'var(--box-spacing-base-4xs)',
-              padding: '1px 6px',
-              borderRadius: 'var(--box-rounding-base-min)',
-              border: '1px solid var(--box-border-base-neutral)',
-              color: 'var(--box-content-base-tertiary)',
-              fontSize: 'var(--box-typography-caption-m-font-size)',
-              fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+              right: 6,
+              padding: '1px 5px',
+              border: '1px solid var(--sb-border)',
+              borderRadius: 3,
+              fontSize: 10,
               pointerEvents: 'none',
             }}
           >
@@ -299,21 +235,9 @@ export function Search({
 /** Anchor chips for pages made of many groups. */
 export function JumpNav({ items }: { items: { id: string; label: string }[] }) {
   return (
-    <nav style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--box-spacing-base-min)', alignItems: 'center' }}>
+    <nav style={{ display: 'flex', flexWrap: 'wrap', gap: 4, alignItems: 'center' }}>
       {items.map((item) => (
-        <a
-          key={item.id}
-          href={`#${item.id}`}
-          style={{
-            padding: '2px var(--box-spacing-base-4xs)',
-            borderRadius: 'var(--box-rounding-base-full)',
-            border: '1px solid var(--box-border-base-neutral)',
-            color: 'var(--box-content-base-secondary)',
-            fontSize: 'var(--box-typography-caption-m-font-size)',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-          }}
-        >
+        <a key={item.id} className="sb-chip" href={`#${item.id}`}>
           {item.label}
         </a>
       ))}
@@ -322,44 +246,19 @@ export function JumpNav({ items }: { items: { id: string; label: string }[] }) {
 }
 
 export function Count({ children, tone = 'neutral' }: { children: ReactNode; tone?: 'neutral' | 'warning' }) {
-  return (
-    <span
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        height: 'var(--box-size-base-xs)',
-        padding: '0 var(--box-spacing-base-4xs)',
-        borderRadius: 'var(--box-rounding-base-full)',
-        background: tone === 'warning' ? 'var(--box-background-sentiment-warning-subtle)' : 'var(--box-control-neutral-secondary)',
-        color: tone === 'warning' ? 'var(--box-content-sentiment-warning)' : 'var(--box-content-base-secondary)',
-        fontSize: 'var(--box-typography-caption-l-font-size)',
-        whiteSpace: 'nowrap',
-      }}
-    >
-      {children}
-    </span>
-  );
+  return <span className={tone === 'warning' ? 'sb-count sb-count--warning' : 'sb-count'}>{children}</span>;
+}
+
+/** Right-aligned group of counts inside a toolbar. */
+export function Counts({ children }: { children: ReactNode }) {
+  return <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 28, marginLeft: 'auto' }}>{children}</div>;
 }
 
 export function Empty({ query, onClear }: { query: string; onClear: () => void }) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: 'var(--box-spacing-base-3xs)',
-        padding: 'var(--box-spacing-base-max) var(--box-spacing-base-m)',
-        borderRadius: 'var(--box-rounding-base-m)',
-        border: '1px dashed var(--box-border-base-neutral-hover)',
-        color: 'var(--box-content-base-secondary)',
-        textAlign: 'center',
-      }}
-    >
-      <Icon name="magnifer" size="l" style={{ color: 'var(--box-content-base-tertiary)' }} />
-      <Text variant="body-l" as="div">
-        Nothing matches “{query}”
-      </Text>
+    <div className="sb-empty">
+      <Icon name="magnifer" size={28} />
+      <div>Nothing matches “{query}”</div>
       <button type="button" onClick={onClear} className="sb-link">
         Clear the search
       </button>
@@ -405,24 +304,19 @@ export function Scope({
   );
 }
 
+/**
+ * A Box UI surface inside the Storybook chrome. Carries both a background and a
+ * foreground token, so a demo of the Light theme still reads on a dark canvas.
+ */
+export const demoSurface: CSSProperties = {
+  background: 'var(--box-background-base-secondary)',
+  color: 'var(--box-content-base-primary)',
+  border: '1px solid var(--box-border-base-neutral)',
+  borderRadius: 'var(--box-rounding-base-m)',
+  padding: 'var(--box-spacing-base-3xs)',
+};
+
 // --- token display -----------------------------------------------------------
-
-export function Code({ children, copyable }: { children: ReactNode; copyable?: string }) {
-  const copy = useCopy();
-  const style: CSSProperties = {
-    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
-    fontSize: 'var(--box-typography-caption-l-font-size)',
-    color: 'var(--box-content-base-secondary)',
-    wordBreak: 'break-all',
-  };
-
-  if (!copyable) return <code style={style}>{children}</code>;
-  return (
-    <button type="button" className="sb-code-button" onClick={() => copy(copyable)} title={`Copy ${copyable}`} style={style}>
-      {children}
-    </button>
-  );
-}
 
 /**
  * One colour token. The whole tile is a button — clicking copies the CSS
@@ -436,7 +330,7 @@ export function Swatch({ cssVar, name, meta }: { cssVar: string; name: string; m
       className="sb-tile"
       onClick={() => copy(`var(${cssVar})`, cssVar)}
       title={`Copy var(${cssVar})`}
-      style={{ display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-min)', padding: 0, border: 0, background: 'none', textAlign: 'left' }}
+      style={{ display: 'flex', flexDirection: 'column', gap: 4 }}
     >
       <span
         style={{
@@ -444,8 +338,8 @@ export function Swatch({ cssVar, name, meta }: { cssVar: string; name: string; m
           display: 'block',
           height: 52,
           overflow: 'hidden',
-          borderRadius: 'var(--box-rounding-base-xs)',
-          border: '1px solid var(--box-border-base-neutral)',
+          borderRadius: 'var(--sb-radius)',
+          border: '1px solid var(--sb-border)',
         }}
       >
         {/* checkerboard, so alpha tokens read as translucent */}
@@ -454,23 +348,22 @@ export function Swatch({ cssVar, name, meta }: { cssVar: string; name: string; m
             position: 'absolute',
             inset: 0,
             backgroundImage:
-              'linear-gradient(45deg, var(--box-control-neutral-primary) 25%, transparent 25%, transparent 75%, var(--box-control-neutral-primary) 75%), linear-gradient(45deg, var(--box-control-neutral-primary) 25%, transparent 25%, transparent 75%, var(--box-control-neutral-primary) 75%)',
+              'linear-gradient(45deg, var(--sb-hover) 25%, transparent 25%, transparent 75%, var(--sb-hover) 75%), linear-gradient(45deg, var(--sb-hover) 25%, transparent 25%, transparent 75%, var(--sb-hover) 75%)',
             backgroundSize: '12px 12px',
             backgroundPosition: '0 0, 6px 6px',
+            backgroundColor: 'var(--sb-raised-bg)',
           }}
         />
         <span style={{ position: 'absolute', inset: 0, background: `var(${cssVar})` }} />
         <span className="sb-tile__hint">
-          <Icon name="copy" size="min" />
+          <Icon name="copy" size={14} />
         </span>
       </span>
-      <Text variant="caption-l" as="span" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-        {name}
-      </Text>
+      <span style={{ fontSize: 12, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
       {meta && (
-        <Text variant="caption-m" tone="tertiary" as="span" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+        <span className="sb-code" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {meta}
-        </Text>
+        </span>
       )}
     </button>
   );
@@ -486,21 +379,16 @@ export function Row({ label, value, children }: { label: string; value?: ReactNo
       title={`Copy var(${label})`}
       style={{
         display: 'grid',
-        gridTemplateColumns: 'minmax(180px, 260px) minmax(140px, 200px) 1fr',
-        gap: 'var(--box-spacing-base-2xs)',
+        gridTemplateColumns: 'minmax(200px, 280px) minmax(140px, 200px) 1fr',
+        gap: 12,
         alignItems: 'center',
-        padding: 'var(--box-spacing-base-4xs) var(--box-spacing-base-4xs)',
-        borderRadius: 'var(--box-rounding-base-xs)',
-        borderBottom: '1px solid var(--box-border-base-neutral)',
+        padding: '8px 6px',
         cursor: 'pointer',
       }}
     >
       <Code>{label}</Code>
-      <Text variant="caption-l" tone="tertiary" as="span">
-        {value}
-      </Text>
+      <Caption>{value}</Caption>
       <div>{children}</div>
     </div>
   );
 }
-

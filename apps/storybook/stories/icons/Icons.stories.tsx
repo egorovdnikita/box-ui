@@ -10,8 +10,7 @@ import {
   type IconSizeToken,
   type IconStyle,
 } from '@box-ui/icons';
-import { Text } from '@box-ui/react';
-import { Code, Count, Empty, Grid, Page, Search, Section, Select, useCopy } from '../_ui';
+import { Caption, Code, Count, Counts, Empty, Grid, Page, Search, Section, Select, useCopy } from '../_ui';
 
 const meta: Meta = {
   title: 'Icons/UI Icons',
@@ -50,23 +49,10 @@ function IconTile({ icon, style, size }: { icon: IconCatalogEntry; style: IconSt
   return (
     <button
       type="button"
-      className="sb-cell"
+      className={drawn ? 'sb-cell' : 'sb-cell sb-cell--muted'}
       title={drawn ? `${icon.name} · ${icon.category}` : `${icon.name} · ${icon.category} — not drawn in ${ICON_STYLE_LABELS[style]}`}
       onClick={() => copy(icon.name)}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: 'var(--box-spacing-base-4xs)',
-        padding: 'var(--box-spacing-base-3xs)',
-        background: 'var(--box-background-base-secondary)',
-        border: drawn ? '1px solid var(--box-border-base-neutral)' : '1px dashed var(--box-border-base-neutral-hover)',
-        borderRadius: 'var(--box-rounding-base-s)',
-        color: 'var(--box-content-base-primary)',
-        minWidth: 0,
-        contentVisibility: 'auto',
-        containIntrinsicSize: 'auto 68px',
-      }}
+      style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 68px' }}
     >
       <Icon
         name={icon.name}
@@ -74,19 +60,7 @@ function IconTile({ icon, style, size }: { icon: IconCatalogEntry; style: IconSt
         size={size}
         style={drawn ? undefined : { opacity: 0.32 }}
       />
-      <span
-        style={{
-          fontSize: 'var(--box-typography-caption-m-font-size)',
-          lineHeight: 'var(--box-typography-caption-m-line-height)',
-          color: 'var(--box-content-base-secondary)',
-          maxWidth: '100%',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-        }}
-      >
-        {icon.name}
-      </span>
+      <span className="sb-cell__label">{icon.name}</span>
     </button>
   );
 }
@@ -138,31 +112,21 @@ export const Gallery: Story = {
               onChange={setSize}
               options={ICON_SIZES.map((s) => ({ value: s, label: `size/base/${s}` }))}
             />
-            <label
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 'var(--box-spacing-base-4xs)',
-                height: 'var(--box-size-base-m)',
-                cursor: 'pointer',
-              }}
-            >
+            <label style={{ display: 'flex', alignItems: 'center', gap: 6, height: 28, cursor: 'pointer' }}>
               <input type="checkbox" checked={onlyAvailable} onChange={(e) => setOnlyAvailable(e.target.checked)} />
-              <Text variant="caption-l" tone="secondary" as="span">
-                Only this style
-              </Text>
+              <Caption>Only this style</Caption>
             </label>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--box-spacing-base-4xs)', height: 'var(--box-size-base-m)', marginLeft: 'auto' }}>
+            <Counts>
               <Count>{filtered.length} icons</Count>
               {missing > 0 && <Count tone="warning">{missing} not in {ICON_STYLE_LABELS[style]}</Count>}
-            </div>
+            </Counts>
           </>
         }
       >
         {filtered.length === 0 ? (
           <Empty query={query || category} onClear={() => { setQuery(''); setCategory('All'); setOnlyAvailable(false); }} />
         ) : (
-          <Grid min={128} gap="4xs">
+          <Grid min={128} gap={6}>
             {filtered.map((icon) => (
               <IconTile key={icon.name} icon={icon} style={style} size={size} />
             ))}
@@ -186,15 +150,11 @@ export const Styles: Story = {
             <thead>
               <tr>
                 <th className="sb-table__lead">
-                  <Text variant="caption-m" tone="tertiary" as="span">
-                    ICON
-                  </Text>
+                  <span className="sb-label">Icon</span>
                 </th>
                 {ICON_STYLES.map((style) => (
                   <th key={style} style={{ textAlign: 'center' }}>
-                    <Text variant="caption-m" tone="tertiary" as="span">
-                      {ICON_STYLE_LABELS[style]}
-                    </Text>
+                    <span className="sb-label">{ICON_STYLE_LABELS[style]}</span>
                   </th>
                 ))}
               </tr>
@@ -227,13 +187,11 @@ export const Sizes: Story = {
       lead="Sizes are the `size/base/*` tokens, not hard-coded pixels — switch Device to Mobile and the boxes follow the Grid collection."
     >
       <Section title="Every size token" aside={<Count>{ICON_SIZES.length} tokens</Count>}>
-        <div style={{ display: 'flex', gap: 'var(--box-spacing-base-s)', alignItems: 'flex-end', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 20, alignItems: 'flex-end', flexWrap: 'wrap' }}>
           {ICON_SIZES.map((size) => (
-            <div key={size} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-4xs)', alignItems: 'center' }}>
+            <div key={size} style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center' }}>
               <Icon name="star" size={size} />
-              <Text variant="caption-m" tone="tertiary" as="span">
-                {size}
-              </Text>
+              <Caption>{size}</Caption>
             </div>
           ))}
         </div>
@@ -243,7 +201,7 @@ export const Sizes: Story = {
         title="Colour"
         description="Icons paint with `currentColor`, so they inherit whichever `--box-content-*` token their container uses."
       >
-        <div style={{ display: 'flex', gap: 'var(--box-spacing-base-s)', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
           {[
             ['primary', 'var(--box-content-base-primary)'],
             ['secondary', 'var(--box-content-base-secondary)'],
@@ -252,11 +210,9 @@ export const Sizes: Story = {
             ['warning', 'var(--box-content-sentiment-warning)'],
             ['negative', 'var(--box-content-sentiment-negative)'],
           ].map(([label, color]) => (
-            <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-4xs)', alignItems: 'center', color }}>
+            <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center', color }}>
               <Icon name="shield-check" size="l" />
-              <Text variant="caption-m" as="span">
-                {label}
-              </Text>
+              <span style={{ fontSize: 11 }}>{label}</span>
             </div>
           ))}
         </div>

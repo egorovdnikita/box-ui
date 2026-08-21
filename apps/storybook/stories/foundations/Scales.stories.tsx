@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { model } from '@box-ui/tokens';
-import { Text } from '@box-ui/react';
-import { Code, Count, Grid, ModeGlobals, Page, Row, Scope, Section } from '../_ui';
+import { Code, Count, Grid, ModeGlobals, Page, Row, Scope, Section, demoSurface } from '../_ui';
 
 const meta: Meta = { title: 'Foundations/Scales' };
 export default meta;
@@ -62,19 +61,14 @@ export const Rounding: Story = {
               key={m.slug}
               globals={globals as unknown as ModeGlobals}
               radius={m.slug}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 'var(--box-spacing-base-3xs)',
-                padding: 'var(--box-spacing-base-3xs)',
-                borderRadius: 'var(--box-rounding-base-m)',
-                border: '1px solid var(--box-border-base-neutral)',
-                background: 'var(--box-background-base-secondary)',
-              }}
+              style={{ ...demoSurface, display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-3xs)' }}
             >
-              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-                <Text variant="caption-l">{m.name}</Text>
-                <Code>{`[data-radius="${m.slug}"]`}</Code>
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8 }}>
+                <span style={{ fontSize: 'var(--box-typography-caption-l-font-size)' }}>{m.name}</span>
+                <code
+                  className="sb-code"
+                  style={{ color: 'var(--box-content-base-secondary)' }}
+                >{`[data-radius="${m.slug}"]`}</code>
               </div>
               <div style={{ display: 'flex', gap: 'var(--box-spacing-base-4xs)', flexWrap: 'wrap' }}>
                 {['xs', 's', 'm', 'l', 'xl', '2xl'].map((step) => (

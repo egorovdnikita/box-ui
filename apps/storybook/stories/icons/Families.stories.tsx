@@ -12,8 +12,7 @@ import {
   type IconFamily,
   type IconSizeToken,
 } from '@box-ui/icons';
-import { Text } from '@box-ui/react';
-import { Code, Count, Empty, Grid, Page, Search, Section, Select, useCopy } from '../_ui';
+import { Code, Count, Counts, Empty, Grid, Page, Search, Section, Select, useCopy } from '../_ui';
 
 const meta: Meta = {
   title: 'Icons/Figma families',
@@ -54,38 +53,13 @@ function FamilyTile({
   return (
     <button
       type="button"
-      className="sb-cell"
+      className={item.body ? 'sb-cell' : 'sb-cell sb-cell--muted'}
       title={`${item.name}${detail ? ` · ${detail}` : ''}${item.body ? '' : ' — no bundled artwork'}`}
       onClick={() => copy(item.slug)}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: 'var(--box-spacing-base-4xs)',
-        padding: 'var(--box-spacing-base-3xs)',
-        background: 'var(--box-background-base-secondary)',
-        border: '1px solid var(--box-border-base-neutral)',
-        borderRadius: 'var(--box-rounding-base-s)',
-        color: 'var(--box-content-base-primary)',
-        minWidth: 0,
-        contentVisibility: 'auto',
-        containIntrinsicSize: 'auto 96px',
-      }}
+      style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 96px' }}
     >
       <FamilyIcon entry={item} shape={shape} tone={tone} size={size} />
-      <span
-        style={{
-          fontSize: 'var(--box-typography-caption-m-font-size)',
-          lineHeight: 'var(--box-typography-caption-m-line-height)',
-          color: 'var(--box-content-base-secondary)',
-          maxWidth: '100%',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-        }}
-      >
-        {item.name}
-      </span>
+      <span className="sb-cell__label">{item.name}</span>
     </button>
   );
 }
@@ -149,21 +123,19 @@ function Family({ id, shapes }: { id: IconFamily; shapes: FamilyShape[] }) {
             onChange={setSize}
             options={ICON_SIZES.map((s) => ({ value: s, label: `size/base/${s}` }))}
           />
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--box-spacing-base-4xs)', height: 'var(--box-size-base-m)', marginLeft: 'auto' }}>
+          <Counts>
             <Count>{items.length} shown</Count>
             {monograms > 0 && <Count tone="warning">{monograms} as monogram</Count>}
-          </div>
+          </Counts>
         </>
       }
     >
       {!data ? (
-        <Text variant="body-m" tone="secondary">
-          Loading {meta.figmaPage.toLowerCase()}…
-        </Text>
+        <p className="sb-lead">Loading {meta.figmaPage.toLowerCase()}…</p>
       ) : items.length === 0 ? (
         <Empty query={query} onClear={() => setQuery('')} />
       ) : (
-        <Grid min={148} gap="4xs">
+        <Grid min={148} gap={6}>
           {items.map((item) => (
             <FamilyTile key={item.slug} item={item} shape={shape} tone={tone} size={size} />
           ))}
@@ -174,13 +146,11 @@ function Family({ id, shapes }: { id: IconFamily; shapes: FamilyShape[] }) {
         title="Where the artwork comes from"
         description="The Figma file defines the roster; the geometry is taken from the canonical open set, the same way UI Icons takes Solar from `@iconify-json/solar`."
       >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-4xs)' }}>
-          <Text variant="body-m" tone="secondary" as="div">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <p className="sb-lead">
             {SOURCE_NOTE[id]} {monograms > 0 && `${monograms} entries have no upstream match and render as a monogram tile.`}
-          </Text>
-          <Text variant="body-m" tone="secondary" as="div">
-            To replace all of it with verbatim Figma exports, run the export script with a Figma token:
-          </Text>
+          </p>
+          <p className="sb-lead">To replace all of it with verbatim Figma exports, run the export script with a Figma token:</p>
           <Code copyable={`npm run icons:figma -- --family ${id}`}>{`FIGMA_TOKEN=figd_xxx npm run icons:figma -- --family ${id}`}</Code>
         </div>
       </Section>

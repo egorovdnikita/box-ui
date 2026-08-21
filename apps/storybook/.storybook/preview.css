@@ -1,3 +1,9 @@
+/*
+ * Docs chrome. Everything here paints with Storybook's own theme (the `--sb-*`
+ * variables set in preview.tsx) so the canvas is indistinguishable from the
+ * toolbar and sidebar around it. Box UI tokens are reserved for the demos.
+ */
+
 html,
 body,
 #storybook-root {
@@ -10,45 +16,139 @@ html {
 
 body {
   margin: 0;
-  background: var(--box-background-base-primary);
-  color: var(--box-content-base-primary);
-  font-family: var(--box-typography-font-family-body);
+  background: var(--sb-content-bg);
+  color: var(--sb-text);
+  font-family: var(--sb-font);
+  font-size: 14px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: var(--box-background-sentiment-primary-subtle);
+  background: color-mix(in srgb, var(--sb-accent) 28%, transparent);
 }
 
 .sb-surface {
   box-sizing: border-box;
   min-height: 100%;
-  padding: var(--box-spacing-base-m);
-  background: var(--box-background-base-primary);
-  color: var(--box-content-base-primary);
+  padding: 24px 32px 64px;
+  background: var(--sb-content-bg);
+  color: var(--sb-text);
 }
 
-/* Docs pages render Storybook's own chrome; keep the token surface behind them. */
+@media (max-width: 768px) {
+  .sb-surface {
+    padding: 16px 16px 48px;
+  }
+}
+
+/* Docs pages render Storybook's own chrome; keep the surface behind them. */
 .sbdocs.sbdocs-wrapper {
-  background: var(--box-background-base-primary);
+  background: var(--sb-content-bg);
+}
+
+/* --- type ----------------------------------------------------------------- */
+
+.sb-title {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--sb-text);
+}
+
+.sb-lead {
+  margin: 0;
+  max-width: 76ch;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--sb-text-muted);
+}
+
+.sb-heading {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--sb-text);
+}
+
+.sb-caption {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--sb-text-muted);
+}
+
+.sb-label {
+  font-size: 10px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sb-text-muted);
+}
+
+.sb-code {
+  font-family: var(--sb-font-code);
+  font-size: 12px;
+  color: var(--sb-text-muted);
+  word-break: break-all;
 }
 
 /* --- focus ---------------------------------------------------------------- */
 
 .sb-surface :focus-visible {
-  outline: 2px solid var(--box-border-focus-base);
+  outline: 2px solid var(--sb-accent);
   outline-offset: 2px;
-  border-radius: var(--box-rounding-base-xs);
+  border-radius: var(--sb-radius);
+}
+
+/* --- toolbar -------------------------------------------------------------- */
+
+.sb-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 10px 12px;
+  border: 1px solid var(--sb-border);
+  border-radius: var(--sb-radius);
+  background: var(--sb-bar-bg);
+  box-shadow: 0 2px 8px var(--sb-shadow);
+}
+
+.sb-control {
+  height: 28px;
+  padding-inline: 8px;
+  border: 1px solid var(--sb-input-border);
+  border-radius: var(--sb-radius);
+  background: var(--sb-input-bg);
+  color: var(--sb-text);
+  font-family: var(--sb-font);
+  font-size: 13px;
+}
+
+.sb-control:hover {
+  border-color: var(--sb-accent);
 }
 
 /* --- interactive tiles ---------------------------------------------------- */
 
 .sb-tile {
   position: relative;
-  cursor: pointer;
-  font: inherit;
+  padding: 0;
+  border: 0;
+  background: none;
   color: inherit;
-  transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 120ms ease;
 }
 
 .sb-tile:hover {
@@ -57,13 +157,13 @@ body {
 
 .sb-tile__hint {
   position: absolute;
-  inset-block-start: var(--box-spacing-base-min);
-  inset-inline-end: var(--box-spacing-base-min);
+  inset-block-start: 4px;
+  inset-inline-end: 4px;
   display: flex;
   padding: 3px;
-  border-radius: var(--box-rounding-base-min);
-  background: var(--box-background-base-secondary);
-  color: var(--box-content-base-secondary);
+  border-radius: var(--sb-radius);
+  background: var(--sb-content-bg);
+  color: var(--sb-text-muted);
   opacity: 0;
   transition: opacity 120ms ease;
 }
@@ -73,26 +173,52 @@ body {
   opacity: 1;
 }
 
-/* Icon and family tiles share the hover treatment. */
+/* Icon and family tiles. */
 .sb-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 10px 8px;
+  border: 1px solid var(--sb-border);
+  border-radius: var(--sb-radius);
+  background: var(--sb-raised-bg);
+  color: var(--sb-text);
+  font: inherit;
   cursor: pointer;
   transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
 }
 
 .sb-cell:hover {
   transform: translateY(-1px);
-  border-color: var(--box-border-base-neutral-hover);
-  background: var(--box-background-base-tertiary);
+  border-color: var(--sb-accent);
+  background: var(--sb-hover);
+}
+
+.sb-cell--muted {
+  border-style: dashed;
+}
+
+.sb-cell__label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+  color: var(--sb-text-muted);
 }
 
 /* --- rows ----------------------------------------------------------------- */
 
 .sb-row {
+  border-bottom: 1px solid var(--sb-border);
+  border-radius: var(--sb-radius);
   transition: background 120ms ease;
 }
 
 .sb-row:hover {
-  background: var(--box-control-neutral-secondary);
+  background: var(--sb-hover);
 }
 
 /* --- inline buttons ------------------------------------------------------- */
@@ -106,23 +232,55 @@ body {
   text-decoration: underline;
   text-decoration-style: dotted;
   text-underline-offset: 3px;
-  text-decoration-color: var(--box-border-base-neutral-strong);
+  text-decoration-color: var(--sb-border);
 }
 
 .sb-code-button:hover {
-  color: var(--box-content-sentiment-primary);
+  color: var(--sb-accent);
+  text-decoration-color: currentcolor;
 }
 
 .sb-link {
   padding: 0;
   border: 0;
   background: none;
-  color: var(--box-content-sentiment-primary);
+  color: var(--sb-accent);
   font: inherit;
-  font-size: var(--box-typography-body-m-font-size);
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+.sb-chip {
+  padding: 2px 8px;
+  border: 1px solid var(--sb-border);
+  border-radius: 3em;
+  color: var(--sb-text-muted);
+  font-size: 11px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sb-chip:hover {
+  border-color: var(--sb-accent);
+  color: var(--sb-accent);
+}
+
+.sb-count {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 3em;
+  background: var(--sb-hover);
+  color: var(--sb-text-muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.sb-count--warning {
+  background: color-mix(in srgb, #e69d00 20%, transparent);
+  color: #e69d00;
 }
 
 /* --- tables --------------------------------------------------------------- */
@@ -130,13 +288,13 @@ body {
 .sb-table {
   border-collapse: separate;
   border-spacing: 0;
-  font-size: var(--box-typography-caption-l-font-size);
+  font-size: 12px;
 }
 
 .sb-table th,
 .sb-table td {
-  padding: var(--box-spacing-base-4xs);
-  border-bottom: 1px solid var(--box-border-base-neutral);
+  padding: 8px;
+  border-bottom: 1px solid var(--sb-border);
   text-align: left;
   white-space: nowrap;
 }
@@ -145,22 +303,18 @@ body {
   position: sticky;
   top: 0;
   z-index: 2;
-  background: var(--box-background-base-primary);
+  background: var(--sb-raised-bg);
 }
 
 .sb-table tbody tr:hover td {
-  background: var(--box-control-neutral-secondary);
+  background: var(--sb-hover);
 }
 
 .sb-table .sb-table__lead {
   position: sticky;
   left: 0;
   z-index: 1;
-  background: var(--box-background-base-primary);
-}
-
-.sb-table tbody tr:hover .sb-table__lead {
-  background: var(--box-control-neutral-secondary);
+  background: var(--sb-raised-bg);
 }
 
 .sb-table thead .sb-table__lead {
@@ -171,9 +325,51 @@ body {
 
 .sb-scroller {
   overflow-x: auto;
-  border: 1px solid var(--box-border-base-neutral);
-  border-radius: var(--box-rounding-base-m);
-  background: var(--box-background-base-secondary);
+  border: 1px solid var(--sb-border);
+  border-radius: var(--sb-radius);
+  background: var(--sb-raised-bg);
+}
+
+/* --- empty state ---------------------------------------------------------- */
+
+.sb-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px 24px;
+  border: 1px dashed var(--sb-border);
+  border-radius: var(--sb-radius);
+  color: var(--sb-text-muted);
+  text-align: center;
+}
+
+/* --- toast ---------------------------------------------------------------- */
+
+.sb-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 90vw;
+  padding: 8px 14px;
+  border-radius: var(--sb-radius);
+  background: var(--sb-text);
+  color: var(--sb-content-bg);
+  font-family: var(--sb-font-code);
+  font-size: 12px;
+  box-shadow: 0 6px 20px var(--sb-shadow);
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.sb-toast[data-visible='false'] {
+  opacity: 0;
+  transform: translateX(-50%) translateY(8px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -183,7 +379,8 @@ body {
 
   .sb-tile,
   .sb-cell,
-  .sb-row {
+  .sb-row,
+  .sb-toast {
     transition: none;
   }
 

@@ -30,7 +30,8 @@ const RADIUS: Record<FamilyShape, string> = {
  *
  * Several marks are officially pure black (Apple, X, GitHub, TikTok). Painting
  * those literally makes them vanish on a dark surface, so the near-black and
- * near-white ones defer to `content/base/primary`, which flips with the theme.
+ * near-white ones fall back to `currentColor` and follow whatever surface they
+ * are placed on.
  */
 function luminance(hex: string): number {
   const value = hex.replace('#', '');
@@ -45,7 +46,7 @@ function luminance(hex: string): number {
 function paint(color: string | null | undefined): string {
   if (!color) return 'currentColor';
   const l = luminance(color);
-  return l < 0.06 || l > 0.94 ? 'var(--box-content-base-primary)' : color;
+  return l < 0.06 || l > 0.94 ? 'currentColor' : color;
 }
 
 /** Two letters, so an entry without upstream artwork still reads as itself. */

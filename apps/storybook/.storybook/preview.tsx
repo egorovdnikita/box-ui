@@ -1,8 +1,55 @@
 import { useEffect } from 'react';
 import type { Decorator, Preview } from '@storybook/react-vite';
+import { themes, type ThemeVars } from 'storybook/theming';
 import { IconStyleProvider, ICON_STYLES, ICON_STYLE_LABELS, type IconStyle } from '@box-ui/icons';
 import '@box-ui/react/styles.css';
 import './preview.css';
+
+/**
+ * The docs chrome is Storybook's, not Box UI's — same background as the toolbar
+ * above the canvas, same type, same borders. These are Storybook's own theme
+ * values, read from `storybook/theming` rather than copied, so the canvas can
+ * never drift from the manager around it.
+ *
+ * Box UI tokens still drive everything *inside* a demo: swatches, type samples,
+ * the rounding cards. Those carry their own background and foreground, so they
+ * keep reading correctly whichever chrome they sit on.
+ */
+function chromeVars(theme: ThemeVars): Record<string, string> {
+  const dark = theme.base === 'dark';
+  return {
+    '--sb-content-bg': theme.appContentBg,
+    '--sb-raised-bg': theme.appBg,
+    '--sb-bar-bg': theme.barBg,
+    '--sb-border': theme.appBorderColor,
+    '--sb-radius': `${theme.appBorderRadius ?? 4}px`,
+    '--sb-text': theme.textColor ?? '',
+    '--sb-text-muted': theme.textMutedColor ?? '',
+    '--sb-accent': theme.colorSecondary,
+    '--sb-input-bg': theme.inputBg,
+    '--sb-input-border': theme.inputBorder,
+    '--sb-font': theme.fontBase,
+    '--sb-font-code': theme.fontCode,
+    '--sb-hover': dark ? 'hsl(0 0% 100% / 0.05)' : 'hsl(212 50% 30% / 0.05)',
+    '--sb-shadow': dark ? 'hsl(0 0% 0% / 0.4)' : 'hsl(212 50% 30% / 0.12)',
+  };
+}
+
+/** Mirrors the manager, which follows `prefers-color-scheme` by default. */
+function useStorybookChrome() {
+  useEffect(() => {
+    const query = window.matchMedia('(prefers-color-scheme: dark)');
+    const apply = () => {
+      const vars = chromeVars(query.matches ? themes.dark : themes.light);
+      for (const [name, value] of Object.entries(vars)) {
+        document.documentElement.style.setProperty(name, value);
+      }
+    };
+    apply();
+    query.addEventListener('change', apply);
+    return () => query.removeEventListener('change', apply);
+  }, []);
+}
 
 /**
  * One toolbar control per switchable Figma variable collection.
@@ -91,6 +138,8 @@ const globalTypes: Preview['globalTypes'] = {
 
 const withBoxUiModes: Decorator = (Story, context) => {
   const { theme, accent, radius, font, device, iconStyle } = context.globals as Record<string, string>;
+
+  useStorybookChrome();
 
   useEffect(() => {
     const root = document.documentElement;

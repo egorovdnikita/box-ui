@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { model } from '@box-ui/tokens';
-import { Text } from '@box-ui/react';
-import { Code, Count, Empty, Grid, JumpNav, Page, Search, Section, Swatch, useCopy } from '../_ui';
+import { Code, Count, Counts, Empty, Grid, JumpNav, Page, Search, Section, Swatch, useCopy } from '../_ui';
 
 const meta: Meta = {
   title: 'Foundations/Colors',
@@ -50,10 +49,10 @@ export const Palette: Story = {
         toolbar={
           <>
             <Search value={query} onChange={setQuery} placeholder="blue, alpha, 500…" />
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--box-spacing-base-4xs)', height: 'var(--box-size-base-m)' }}>
+            <Counts>
               <Count>{total} swatches</Count>
               <Count>{groups.length} families</Count>
-            </div>
+            </Counts>
             {!query && (
               <div style={{ flexBasis: '100%' }}>
                 <JumpNav items={groups.map(([family]) => ({ id: anchor(family), label: family }))} />
@@ -99,8 +98,8 @@ function AccentCell({ mode: m, value }: { mode: { slug: string; name: string }; 
         height: 26,
         padding: 0,
         cursor: 'pointer',
-        borderRadius: 'var(--box-rounding-base-min)',
-        border: '1px solid var(--box-border-base-neutral)',
+        borderRadius: 3,
+        border: '1px solid var(--sb-border)',
         background: `var(${value?.cssVar})`,
       }}
     />
@@ -123,11 +122,11 @@ export const Accents: Story = {
         toolbar={
           <>
             <Search value={query} onChange={setQuery} placeholder="brand, neutral, positive…" />
-            <div style={{ display: 'flex', alignItems: 'center', height: 'var(--box-size-base-m)' }}>
+            <Counts>
               <Count>
                 {rows.length} tokens × {accent.modes.length} modes
               </Count>
-            </div>
+            </Counts>
           </>
         }
       >
@@ -143,15 +142,11 @@ export const Accents: Story = {
                 <thead>
                   <tr>
                     <th className="sb-table__lead">
-                      <Text variant="caption-m" tone="tertiary" as="span">
-                        TOKEN
-                      </Text>
+                      <span className="sb-label">Token</span>
                     </th>
                     {accent.modes.map((m) => (
                       <th key={m.slug}>
-                        <Text variant="caption-m" tone="tertiary" as="span">
-                          {m.name}
-                        </Text>
+                        <span className="sb-label">{m.name}</span>
                       </th>
                     ))}
                   </tr>
@@ -199,9 +194,9 @@ export const Semantic: Story = {
         toolbar={
           <>
             <Search value={query} onChange={setQuery} placeholder="background, border, control…" />
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--box-spacing-base-4xs)', height: 'var(--box-size-base-m)' }}>
+            <Counts>
               <Count>{total} tokens</Count>
-            </div>
+            </Counts>
             {!query && (
               <div style={{ flexBasis: '100%' }}>
                 <JumpNav items={groups.map(([group]) => ({ id: anchor(group), label: group }))} />
