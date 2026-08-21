@@ -1,18 +1,19 @@
-import { useMemo, useState, type ReactNode } from 'react';
+import { useMemo, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   FAMILY_SHAPE_LABELS,
   FamilyIcon,
+  ICON_SIZES,
   familyIndex,
   useFamily,
   type BrandTone,
+  type FamilyIconEntry,
   type FamilyShape,
   type IconFamily,
   type IconSizeToken,
-  ICON_SIZES,
 } from '@box-ui/icons';
-import { Badge, Card, Input, Stack, Text } from '@box-ui/react';
-import { Code, Grid, Page, Section } from '../_ui';
+import { Text } from '@box-ui/react';
+import { Code, Count, Empty, Grid, Page, Search, Section, Select, useCopy } from '../_ui';
 
 const meta: Meta = {
   title: 'Icons/Figma families',
@@ -29,32 +30,65 @@ export default meta;
 
 type Story = StoryObj;
 
-const selectStyle = {
-  height: 'var(--box-size-base-m)',
-  borderRadius: 'var(--box-rounding-base-s)',
-  border: '1px solid var(--box-border-base-neutral)',
-  background: 'var(--box-background-base-secondary)',
-  color: 'var(--box-content-base-primary)',
-  paddingInline: 'var(--box-spacing-base-3xs)',
-  fontSize: 'var(--box-typography-body-m-font-size)',
-} as const;
-
-function Field({ label, children }: { label: string; children: ReactNode }) {
-  return (
-    <label style={{ display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-min)' }}>
-      <Text variant="caption-l" tone="secondary" as="span">
-        {label}
-      </Text>
-      {children}
-    </label>
-  );
-}
-
 const SOURCE_NOTE: Record<IconFamily, string> = {
   flags: 'flag-icons (MIT) — 4:3 country flags by ISO 3166-1.',
   payments: '@web3icons/core (MIT) and cryptocurrency-icons (CC0) — token logos by ticker.',
   brands: 'simple-icons (CC0) — brand marks with their official colour.',
 };
+
+/** One roster tile. Below `<Page>`, so it can reach the copy context. */
+function FamilyTile({
+  item,
+  shape,
+  tone,
+  size,
+}: {
+  item: FamilyIconEntry;
+  shape: FamilyShape;
+  tone: BrandTone;
+  size: IconSizeToken;
+}) {
+  const copy = useCopy();
+  const detail = [item.ticker, item.code?.toUpperCase()].filter(Boolean).join(' · ');
+
+  return (
+    <button
+      type="button"
+      className="sb-cell"
+      title={`${item.name}${detail ? ` · ${detail}` : ''}${item.body ? '' : ' — no bundled artwork'}`}
+      onClick={() => copy(item.slug)}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 'var(--box-spacing-base-4xs)',
+        padding: 'var(--box-spacing-base-3xs)',
+        background: 'var(--box-background-base-secondary)',
+        border: '1px solid var(--box-border-base-neutral)',
+        borderRadius: 'var(--box-rounding-base-s)',
+        color: 'var(--box-content-base-primary)',
+        minWidth: 0,
+        contentVisibility: 'auto',
+        containIntrinsicSize: 'auto 96px',
+      }}
+    >
+      <FamilyIcon entry={item} shape={shape} tone={tone} size={size} />
+      <span
+        style={{
+          fontSize: 'var(--box-typography-caption-m-font-size)',
+          lineHeight: 'var(--box-typography-caption-m-line-height)',
+          color: 'var(--box-content-base-secondary)',
+          maxWidth: '100%',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+        }}
+      >
+        {item.name}
+      </span>
+    </button>
+  );
+}
 
 function Family({ id, shapes }: { id: IconFamily; shapes: FamilyShape[] }) {
   const meta = familyIndex[id];
@@ -80,87 +114,58 @@ function Family({ id, shapes }: { id: IconFamily; shapes: FamilyShape[] }) {
       title={meta.figmaPage}
       lead={
         <>
-          {meta.total} entries from the <Code>{meta.figmaPage}</Code> page, named <Code>{meta.figmaNaming}</Code>.{' '}
-          {meta.note}
+          {meta.total} entries from the <Code>{meta.figmaPage}</Code> page, named <Code>{meta.figmaNaming}</Code>. Click a
+          tile to copy its slug. {meta.note}
+        </>
+      }
+      toolbar={
+        <>
+          <Search value={query} onChange={setQuery} placeholder={id === 'payments' ? 'bitcoin, BTC…' : 'filter…'} />
+          {shapes.length > 1 && (
+            <Select
+              label={id === 'brands' ? 'Circle Shape' : 'Style'}
+              value={shape}
+              onChange={setShape}
+              options={shapes.map((s) => ({
+                value: s,
+                label: id === 'brands' ? (s === 'circle' ? 'True' : 'False') : FAMILY_SHAPE_LABELS[s],
+              }))}
+            />
+          )}
+          {id === 'brands' && (
+            <Select
+              label="Style"
+              value={tone}
+              onChange={setTone}
+              options={[
+                { value: 'original' as BrandTone, label: 'Original' },
+                { value: 'solid' as BrandTone, label: 'Solid' },
+              ]}
+            />
+          )}
+          <Select
+            label="Size token"
+            value={size}
+            onChange={setSize}
+            options={ICON_SIZES.map((s) => ({ value: s, label: `size/base/${s}` }))}
+          />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--box-spacing-base-4xs)', height: 'var(--box-size-base-m)', marginLeft: 'auto' }}>
+            <Count>{items.length} shown</Count>
+            {monograms > 0 && <Count tone="warning">{monograms} as monogram</Count>}
+          </div>
         </>
       }
     >
-      <Card padding="2xs">
-        <Stack direction="row" gap="2xs" wrap align="flex-end">
-          <div style={{ minWidth: 240, flex: 1 }}>
-            <Input label="Search" placeholder="filter…" value={query} onChange={(e) => setQuery(e.target.value)} />
-          </div>
-          {shapes.length > 1 && (
-            <Field label={id === 'brands' ? 'Circle Shape' : 'Style'}>
-              <select value={shape} onChange={(e) => setShape(e.target.value as FamilyShape)} style={selectStyle}>
-                {shapes.map((s) => (
-                  <option key={s} value={s}>
-                    {id === 'brands' ? (s === 'circle' ? 'True' : 'False') : FAMILY_SHAPE_LABELS[s]}
-                  </option>
-                ))}
-              </select>
-            </Field>
-          )}
-          {id === 'brands' && (
-            <Field label="Style">
-              <select value={tone} onChange={(e) => setTone(e.target.value as BrandTone)} style={selectStyle}>
-                <option value="original">Original</option>
-                <option value="solid">Solid</option>
-              </select>
-            </Field>
-          )}
-          <Field label="Size token">
-            <select value={size} onChange={(e) => setSize(e.target.value as IconSizeToken)} style={selectStyle}>
-              {ICON_SIZES.map((s) => (
-                <option key={s} value={s}>
-                  size/base/{s}
-                </option>
-              ))}
-            </select>
-          </Field>
-          <Badge>{items.length} shown</Badge>
-          {monograms > 0 && <Badge sentiment="warning">{monograms} as monogram</Badge>}
-        </Stack>
-      </Card>
-
       {!data ? (
         <Text variant="body-m" tone="secondary">
           Loading {meta.figmaPage.toLowerCase()}…
         </Text>
+      ) : items.length === 0 ? (
+        <Empty query={query} onClear={() => setQuery('')} />
       ) : (
         <Grid min={148} gap="4xs">
           {items.map((item) => (
-            <div
-              key={item.slug}
-              title={`${item.name}${item.ticker ? ` · ${item.ticker}` : ''}${item.code ? ` · ${item.code.toUpperCase()}` : ''}`}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 'var(--box-spacing-base-4xs)',
-                padding: 'var(--box-spacing-base-3xs)',
-                background: 'var(--box-background-base-secondary)',
-                border: '1px solid var(--box-border-base-neutral)',
-                borderRadius: 'var(--box-rounding-base-s)',
-                color: 'var(--box-content-base-primary)',
-                minWidth: 0,
-              }}
-            >
-              <FamilyIcon entry={item} shape={shape} tone={tone} size={size} />
-              <span
-                style={{
-                  fontSize: 'var(--box-typography-caption-m-font-size)',
-                  lineHeight: 'var(--box-typography-caption-m-line-height)',
-                  color: 'var(--box-content-base-secondary)',
-                  maxWidth: '100%',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {item.name}
-              </span>
-            </div>
+            <FamilyTile key={item.slug} item={item} shape={shape} tone={tone} size={size} />
           ))}
         </Grid>
       )}
@@ -169,15 +174,15 @@ function Family({ id, shapes }: { id: IconFamily; shapes: FamilyShape[] }) {
         title="Where the artwork comes from"
         description="The Figma file defines the roster; the geometry is taken from the canonical open set, the same way UI Icons takes Solar from `@iconify-json/solar`."
       >
-        <Stack gap="4xs">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-4xs)' }}>
           <Text variant="body-m" tone="secondary" as="div">
             {SOURCE_NOTE[id]} {monograms > 0 && `${monograms} entries have no upstream match and render as a monogram tile.`}
           </Text>
           <Text variant="body-m" tone="secondary" as="div">
             To replace all of it with verbatim Figma exports, run the export script with a Figma token:
           </Text>
-          <Code>{`FIGMA_TOKEN=figd_xxx npm run icons:figma -- --family ${id}`}</Code>
-        </Stack>
+          <Code copyable={`npm run icons:figma -- --family ${id}`}>{`FIGMA_TOKEN=figd_xxx npm run icons:figma -- --family ${id}`}</Code>
+        </div>
       </Section>
     </Page>
   );

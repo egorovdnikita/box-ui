@@ -4,12 +4,20 @@ body,
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background: var(--box-background-base-primary);
   color: var(--box-content-base-primary);
   font-family: var(--box-typography-font-family-body);
   -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--box-background-sentiment-primary-subtle);
 }
 
 .sb-surface {
@@ -23,4 +31,164 @@ body {
 /* Docs pages render Storybook's own chrome; keep the token surface behind them. */
 .sbdocs.sbdocs-wrapper {
   background: var(--box-background-base-primary);
+}
+
+/* --- focus ---------------------------------------------------------------- */
+
+.sb-surface :focus-visible {
+  outline: 2px solid var(--box-border-focus-base);
+  outline-offset: 2px;
+  border-radius: var(--box-rounding-base-xs);
+}
+
+/* --- interactive tiles ---------------------------------------------------- */
+
+.sb-tile {
+  position: relative;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+
+.sb-tile:hover {
+  transform: translateY(-1px);
+}
+
+.sb-tile__hint {
+  position: absolute;
+  inset-block-start: var(--box-spacing-base-min);
+  inset-inline-end: var(--box-spacing-base-min);
+  display: flex;
+  padding: 3px;
+  border-radius: var(--box-rounding-base-min);
+  background: var(--box-background-base-secondary);
+  color: var(--box-content-base-secondary);
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.sb-tile:hover .sb-tile__hint,
+.sb-tile:focus-visible .sb-tile__hint {
+  opacity: 1;
+}
+
+/* Icon and family tiles share the hover treatment. */
+.sb-cell {
+  cursor: pointer;
+  transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+
+.sb-cell:hover {
+  transform: translateY(-1px);
+  border-color: var(--box-border-base-neutral-hover);
+  background: var(--box-background-base-tertiary);
+}
+
+/* --- rows ----------------------------------------------------------------- */
+
+.sb-row {
+  transition: background 120ms ease;
+}
+
+.sb-row:hover {
+  background: var(--box-control-neutral-secondary);
+}
+
+/* --- inline buttons ------------------------------------------------------- */
+
+.sb-code-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--box-border-base-neutral-strong);
+}
+
+.sb-code-button:hover {
+  color: var(--box-content-sentiment-primary);
+}
+
+.sb-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--box-content-sentiment-primary);
+  font: inherit;
+  font-size: var(--box-typography-body-m-font-size);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --- tables --------------------------------------------------------------- */
+
+.sb-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--box-typography-caption-l-font-size);
+}
+
+.sb-table th,
+.sb-table td {
+  padding: var(--box-spacing-base-4xs);
+  border-bottom: 1px solid var(--box-border-base-neutral);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.sb-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--box-background-base-primary);
+}
+
+.sb-table tbody tr:hover td {
+  background: var(--box-control-neutral-secondary);
+}
+
+.sb-table .sb-table__lead {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--box-background-base-primary);
+}
+
+.sb-table tbody tr:hover .sb-table__lead {
+  background: var(--box-control-neutral-secondary);
+}
+
+.sb-table thead .sb-table__lead {
+  z-index: 3;
+}
+
+/* --- scrollers ------------------------------------------------------------ */
+
+.sb-scroller {
+  overflow-x: auto;
+  border: 1px solid var(--box-border-base-neutral);
+  border-radius: var(--box-rounding-base-m);
+  background: var(--box-background-base-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .sb-tile,
+  .sb-cell,
+  .sb-row {
+    transition: none;
+  }
+
+  .sb-tile:hover,
+  .sb-cell:hover {
+    transform: none;
+  }
 }

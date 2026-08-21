@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { model } from '@box-ui/tokens';
 import { Text, type TextVariant } from '@box-ui/react';
-import { Code, ModeGlobals, Page, Scope, Section } from '../_ui';
+import { Code, Count, ModeGlobals, Page, Scope, Section } from '../_ui';
 
 const meta: Meta = { title: 'Foundations/Typography' };
 export default meta;
@@ -39,31 +39,44 @@ export const Ramp: Story = {
       title="Type ramp"
       lead="Twelve type styles from the “Grid” collection. Every step has its own Desktop and Mobile value — switch “Device” in the toolbar to see the ramp compress."
     >
-      {RAMP.map(({ variant, token, sample }) => {
-        const sizes = sizesFor(token);
-        return (
-          <div
-            key={variant}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--box-spacing-base-min)',
-              paddingBottom: 'var(--box-spacing-base-2xs)',
-              borderBottom: '1px solid var(--box-border-base-neutral)',
-            }}
-          >
-            <div style={{ display: 'flex', gap: 'var(--box-spacing-base-2xs)', flexWrap: 'wrap' }}>
-              <Code>{token}</Code>
-              <Text variant="caption-m" tone="tertiary">
-                desktop {sizes.desktop} · mobile {sizes.mobile}
-              </Text>
-            </div>
-            <Text variant={variant} as="div">
-              {sample}
-            </Text>
-          </div>
-        );
-      })}
+      <Section
+        title="Steps"
+        description="Each row shows the Figma token, what it resolves to on either device, and the style itself."
+        aside={<Count>{RAMP.length} styles</Count>}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {RAMP.map(({ variant, token, sample }) => {
+            const sizes = sizesFor(token);
+            const responsive = sizes.desktop !== sizes.mobile;
+            return (
+              <div
+                key={variant}
+                className="sb-row"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 'var(--box-spacing-base-min)',
+                  padding: 'var(--box-spacing-base-3xs) var(--box-spacing-base-4xs)',
+                  borderRadius: 'var(--box-rounding-base-xs)',
+                  borderBottom: '1px solid var(--box-border-base-neutral)',
+                }}
+              >
+                <div style={{ display: 'flex', gap: 'var(--box-spacing-base-2xs)', flexWrap: 'wrap', alignItems: 'baseline' }}>
+                  <Code copyable={token}>{token}</Code>
+                  <Text variant="caption-m" tone="tertiary" as="span">
+                    {sizes.desktop}
+                    {responsive && ` · mobile ${sizes.mobile}`}
+                  </Text>
+                  {responsive && <Count>responsive</Count>}
+                </div>
+                <Text variant={variant} as="div">
+                  {sample}
+                </Text>
+              </div>
+            );
+          })}
+        </div>
+      </Section>
     </Page>
   ),
 };
@@ -76,11 +89,19 @@ export const Typefaces: Story = {
       lead="The “Typography” collection swaps the font family behind `typography/font-family/*`. All four modes render below at once; the toolbar control changes the one the rest of the Storybook uses."
     >
       {font.modes.map((m) => (
-        <Section key={m.slug} title={m.name} description={<Code>{`[data-font="${m.slug}"]`}</Code>}>
+        <Section key={m.slug} title={m.name} aside={<Code>{`[data-font="${m.slug}"]`}</Code>}>
           <Scope
             globals={globals as unknown as ModeGlobals}
             font={m.slug}
-            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-4xs)' }}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--box-spacing-base-4xs)',
+              padding: 'var(--box-spacing-base-3xs)',
+              borderRadius: 'var(--box-rounding-base-m)',
+              border: '1px solid var(--box-border-base-neutral)',
+              background: 'var(--box-background-base-secondary)',
+            }}
           >
             <Text variant="h3" as="div">
               Box UI — {m.name}
