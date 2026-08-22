@@ -18,6 +18,7 @@ import {
   Section,
   ShareLink,
   Swatch,
+  matches,
   useCopy,
   useResolved,
 } from '../_ui';
@@ -58,7 +59,7 @@ export const Palette: Story = {
 
     const groups = useMemo(() => {
       const q = query.trim().toLowerCase();
-      const matched = q ? palette.variables.filter((v) => v.path.toLowerCase().includes(q)) : palette.variables;
+      const matched = q ? palette.variables.filter((v) => matches(query, v.path)) : palette.variables;
       return groupBy(matched, 1);
     }, [query]);
 
@@ -152,7 +153,7 @@ export const Accents: Story = {
     const setQuery = (value: string) => updateArgs({ query: value });
     const rows = useMemo(() => {
       const q = query.trim().toLowerCase();
-      return q ? accent.variables.filter((v) => v.path.toLowerCase().includes(q)) : accent.variables;
+      return q ? accent.variables.filter((v) => matches(query, v.path)) : accent.variables;
     }, [query]);
 
     return (
@@ -299,7 +300,7 @@ export const Semantic: Story = {
 
     const groups = useMemo(() => {
       const q = query.trim().toLowerCase();
-      const matched = q ? mode.variables.filter((v) => v.path.toLowerCase().includes(q)) : mode.variables;
+      const matched = q ? mode.variables.filter((v) => matches(query, v.path)) : mode.variables;
       return groupBy(matched, 2);
     }, [query]);
 

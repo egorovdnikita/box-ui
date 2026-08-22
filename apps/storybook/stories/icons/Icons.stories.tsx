@@ -25,6 +25,7 @@ import {
   Select,
   ShareLink,
   demoSurface,
+  matches,
   useCopy,
 } from '../_ui';
 
@@ -129,15 +130,16 @@ export const Gallery: Story = {
 
     const style = (globals.iconStyle as IconStyle) ?? 'linear';
 
-    const filtered = useMemo(() => {
-      const q = query.trim().toLowerCase();
-      return catalog.icons.filter(
-        (icon) =>
-          (category === 'All' || icon.category === category) &&
-          (!q || icon.name.includes(q)) &&
-          (!onlyAvailable || icon.styles.includes(style)),
-      );
-    }, [query, category, onlyAvailable, style]);
+    const filtered = useMemo(
+      () =>
+        catalog.icons.filter(
+          (icon) =>
+            (category === 'All' || icon.category === category) &&
+            matches(query, icon.name, icon.category) &&
+            (!onlyAvailable || icon.styles.includes(style)),
+        ),
+      [query, category, onlyAvailable, style],
+    );
 
     // Solar does not draw every icon in every style; the gallery shows the whole
     // roster and marks the gaps rather than silently dropping them.
@@ -154,7 +156,7 @@ export const Gallery: Story = {
         }
         toolbar={
           <>
-            <Search value={query} onChange={(value) => set({ query: value })} placeholder="arrow, user, card…" />
+            <Search value={query} onChange={(value) => set({ query: value })} placeholder="arrow up, shield, social…" />
             <Select
               label="Category"
               value={category}
@@ -210,7 +212,11 @@ export const Styles: Story = {
       title="Style variants"
       lead="The `Icon` collection in Figma has exactly these six modes, and each one is a separate `Style` variant of every component set."
     >
-      <Section title="The same twelve icons in every style">
+      <Section
+        title="The same twelve icons in every style"
+        description="A dash means Solar simply does not draw that combination — 1 247 of the 1 301 icons have all six."
+        aside={<Count>{ICON_STYLES.length} styles</Count>}
+      >
         <div className="sb-scroller">
           <table className="sb-table" style={{ width: '100%' }}>
             <thead>
@@ -226,18 +232,28 @@ export const Styles: Story = {
               </tr>
             </thead>
             <tbody>
-              {PREVIEW.map((name) => (
-                <tr key={name}>
-                  <td className="sb-table__lead">
-                    <Code copyable={name}>{name}</Code>
-                  </td>
-                  {ICON_STYLES.map((style) => (
-                    <td key={style} style={{ textAlign: 'center' }}>
-                      <Icon name={name} iconStyle={style} size="s" style={{ margin: '0 auto' }} />
+              {PREVIEW.map((name) => {
+                const drawn = catalog.icons.find((icon) => icon.name === name)?.styles ?? [];
+                return (
+                  <tr key={name}>
+                    <td className="sb-table__lead">
+                      <Code copyable={name}>{name}</Code>
                     </td>
-                  ))}
-                </tr>
-              ))}
+                    {ICON_STYLES.map((style) => (
+                      <td key={style} style={{ textAlign: 'center' }}>
+                        {drawn.includes(style) ? (
+                          <Icon name={name} iconStyle={style} size="s" style={{ margin: '0 auto' }} />
+                        ) : (
+                          // Solar has gaps; an empty cell would read as a broken table.
+                          <span title={`Solar draws no ${ICON_STYLE_LABELS[style]} for ${name}`} style={{ color: 'var(--sb-text-muted)', opacity: 0.5 }}>
+                            —
+                          </span>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

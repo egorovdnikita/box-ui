@@ -1,6 +1,6 @@
 export { Icon, type IconProps } from './Icon';
 export { IconStyleProvider, useIconStyle, IconStyleContext } from './IconStyleProvider';
-export { loadIconStyle, getLoadedIconStyle, useIconSet } from './store';
+export { loadIconStyle, getLoadedIconStyle, getLastLoadedIconSet, useIconSet, type IconSetState } from './store';
 export {
   ICON_SIZES,
   ICON_SIZE_PX,

@@ -39,6 +39,20 @@ src/names.ts                the IconName union
 ```
 
 Each style is a separate dynamic `import()`, so an app ships only the styles it renders.
+Not every icon exists in every style — `catalog.icons[].styles` lists the ones that do,
+and 1 247 of the 1 301 have all six.
+
+Switching style fetches roughly a megabyte, and until it lands the new style has no
+geometry at all. Rather than blanking every icon on screen for that moment, the store
+keeps serving the last set that finished loading:
+
+```tsx
+const { set, pending } = useIconSet('bold-duotone');
+```
+
+`pending` is true while `set` is standing in for a style still in flight; `<Icon>` passes
+it through as `data-icon-pending` if you want to style the interim state. Only the very
+first load has nothing to fall back on.
 
 ## Flags, Payments, Brands
 

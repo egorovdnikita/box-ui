@@ -13,7 +13,21 @@ import {
   type IconFamily,
   type IconSizeToken,
 } from '@box-ui/icons';
-import { Code, Count, Counts, Empty, Grid, Page, ResetFilters, Search, Section, Select, ShareLink, useCopy } from '../_ui';
+import {
+  Code,
+  Count,
+  Counts,
+  Empty,
+  Grid,
+  Page,
+  ResetFilters,
+  Search,
+  Section,
+  Select,
+  ShareLink,
+  matches,
+  useCopy,
+} from '../_ui';
 
 const meta: Meta = {
   title: 'Icons/Figma families',
@@ -89,14 +103,10 @@ function Family({
   const data = useFamily(id);
   const { query, shape, tone, size } = args;
 
-  const items = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!data) return [];
-    if (!q) return data.items;
-    return data.items.filter(
-      (item) => item.name.toLowerCase().includes(q) || item.slug.includes(q) || item.ticker?.toLowerCase().includes(q),
-    );
-  }, [data, query]);
+  const items = useMemo(
+    () => (data ? data.items.filter((item) => matches(query, item.name, item.slug, item.ticker, item.code)) : []),
+    [data, query],
+  );
 
   const monograms = meta.total - meta.resolved;
   const dirty = (Object.keys(defaults) as (keyof FamilyArgs)[]).some((key) => args[key] !== defaults[key]);

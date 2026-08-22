@@ -18,6 +18,15 @@ const cache = new Map<IconStyle, IconSet>();
 const inflight = new Map<IconStyle, Promise<IconSet>>();
 const listeners = new Set<() => void>();
 
+/**
+ * The set most recently displayed. Switching style pulls a payload of roughly a
+ * megabyte, and until it arrives the requested set is simply absent — every icon
+ * on screen would render as an empty box for that frame. Holding the last one
+ * lets the old geometry stay up until the new geometry can replace it, which is
+ * how an icon font behaves.
+ */
+let previous: IconSet | null = null;
+
 function emit() {
   for (const listener of listeners) listener();
 }
@@ -32,6 +41,7 @@ export function loadIconStyle(style: IconStyle): Promise<IconSet> {
     pending = loaders[style]().then((module) => {
       const set = ('default' in module ? module.default : module) as IconSet;
       cache.set(style, set);
+      previous = set;
       inflight.delete(style);
       emit();
       return set;
@@ -50,8 +60,24 @@ function subscribe(listener: () => void) {
   return () => listeners.delete(listener);
 }
 
-/** Returns the icon bodies for `style`, or `null` until they have loaded. */
-export function useIconSet(style: IconStyle): IconSet | null {
+/** The last set that finished loading, whichever style it belongs to. */
+export function getLastLoadedIconSet(): IconSet | null {
+  return previous;
+}
+
+export interface IconSetState {
+  /** The requested style's bodies, or the last loaded set while it arrives. */
+  set: IconSet | null;
+  /** True while `set` is standing in for a style that has not arrived yet. */
+  pending: boolean;
+}
+
+/**
+ * Returns the icon bodies for `style`. While that style is still loading it
+ * hands back the previous set rather than nothing, so a style switch never
+ * blanks the page.
+ */
+export function useIconSet(style: IconStyle): IconSetState {
   const set = useSyncExternalStore(
     subscribe,
     () => cache.get(style) ?? null,
@@ -62,5 +88,6 @@ export function useIconSet(style: IconStyle): IconSet | null {
     void loadIconStyle(style);
   }, [style]);
 
-  return set;
+  if (set) return { set, pending: false };
+  return { set: previous, pending: true };
 }

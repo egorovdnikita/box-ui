@@ -330,6 +330,29 @@ export function Empty({ query, onClear }: { query: string; onClear: () => void }
   );
 }
 
+// --- searching ---------------------------------------------------------------
+
+/**
+ * Every whitespace-separated term has to appear somewhere in the record.
+ *
+ * Icon names are hyphenated, so a plain substring test fails the most natural
+ * query there is: "arrow up" does not occur in `alt-arrow-up`. Separators are
+ * flattened to spaces on both sides, and the terms are matched independently so
+ * word order does not matter either.
+ */
+export function matches(query: string, ...fields: (string | null | undefined)[]): boolean {
+  const terms = query.toLowerCase().split(/[\s,]+/).filter(Boolean);
+  if (terms.length === 0) return true;
+
+  const haystack = fields
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase()
+    .replace(/[-_/]+/g, ' ');
+
+  return terms.every((term) => haystack.includes(term.replace(/[-_/]+/g, ' ')));
+}
+
 // --- mode scoping ------------------------------------------------------------
 
 export type ModeGlobals = { theme: string; accent: string; radius: string; font: string; device: string };

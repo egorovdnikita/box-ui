@@ -28,7 +28,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(function Icon(
 ) {
   const contextStyle = useIconStyle();
   const variant = iconStyle ?? contextStyle;
-  const set = useIconSet(variant);
+  const { set, pending } = useIconSet(variant);
   const body = set?.[name];
   const box = dimension(size);
 
@@ -45,6 +45,8 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(function Icon(
       focusable="false"
       data-icon={name}
       data-icon-style={variant}
+      // Marks geometry still standing in for a style that is loading.
+      data-icon-pending={pending || undefined}
       style={{ display: 'block', flex: 'none', color: 'inherit', ...style }}
       // The bodies come from the generated data files, not from user input.
       dangerouslySetInnerHTML={{ __html: body ?? '' }}
