@@ -254,6 +254,23 @@ export function Counts({ children }: { children: ReactNode }) {
   return <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 28, marginLeft: 'auto' }}>{children}</div>;
 }
 
+/** An aside about the data itself — a Figma quirk, a caveat, a heads-up. */
+export function Callout({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <aside className="sb-callout">
+      <span className="sb-callout__icon">
+        <Icon name="info-circle" size={16} />
+      </span>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <strong style={{ fontSize: 13 }}>{title}</strong>
+        <div className="sb-lead" style={{ margin: 0 }}>
+          {children}
+        </div>
+      </div>
+    </aside>
+  );
+}
+
 export function Empty({ query, onClear }: { query: string; onClear: () => void }) {
   return (
     <div className="sb-empty">
@@ -316,14 +333,85 @@ export const demoSurface: CSSProperties = {
   padding: 'var(--box-spacing-base-3xs)',
 };
 
+// --- live token resolution ---------------------------------------------------
+
+/**
+ * `getPropertyValue` on a custom property hands back the declaration
+ * (`var(--box-color-blue-solid-500)`), not the value it lands on. Assigning it
+ * to a real property on a probe element and reading *that* back is what forces
+ * the whole alias chain to resolve.
+ */
+let probe: HTMLElement | null = null;
+
+function resolve(cssVar: string, kind: 'color' | 'length'): string {
+  if (!cssVar || typeof document === 'undefined') return '';
+  if (!probe) {
+    probe = document.createElement('div');
+    probe.setAttribute('aria-hidden', 'true');
+    probe.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;top:-9999px';
+    document.body.appendChild(probe);
+  }
+  if (kind === 'color') {
+    probe.style.backgroundColor = '';
+    probe.style.backgroundColor = `var(${cssVar})`;
+    return toHex(getComputedStyle(probe).backgroundColor);
+  }
+  probe.style.width = '';
+  probe.style.width = `var(${cssVar})`;
+  const width = getComputedStyle(probe).width;
+  return width === 'auto' ? '' : `${Math.round(parseFloat(width) * 100) / 100}px`;
+}
+
+/** `rgb(59 130 246 / 0.4)` and `rgb(59, 130, 246)` alike -> `#3b82f6` (+ alpha). */
+function toHex(value: string): string {
+  const parts = value.match(/[\d.]+/g);
+  if (!parts || parts.length < 3) return value;
+  const hex = parts
+    .slice(0, 3)
+    .map((part) => Math.round(Number(part)).toString(16).padStart(2, '0'))
+    .join('');
+  const alpha = parts[3] !== undefined ? Math.round(Number(parts[3]) * 255).toString(16).padStart(2, '0') : '';
+  return `#${hex}${alpha === 'ff' ? '' : alpha}`;
+}
+
+/** Re-reads whenever a mode attribute on `<html>` changes. */
+export function useResolved(cssVar: string, kind: 'color' | 'length'): string {
+  const [value, setValue] = useState(() => resolve(cssVar, kind));
+
+  useEffect(() => {
+    const read = () => setValue(resolve(cssVar, kind));
+    read();
+    const observer = new MutationObserver(read);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme', 'data-accent', 'data-radius', 'data-font', 'data-device'],
+    });
+    return () => observer.disconnect();
+  }, [cssVar, kind]);
+
+  return value;
+}
+
 // --- token display -----------------------------------------------------------
 
 /**
  * One colour token. The whole tile is a button — clicking copies the CSS
  * variable, which is the thing you actually paste into code.
  */
-export function Swatch({ cssVar, name, meta }: { cssVar: string; name: string; meta?: ReactNode }) {
+export function Swatch({
+  cssVar,
+  name,
+  meta,
+  /** Show what the alias chain resolves to right now, for this set of modes. */
+  live,
+}: {
+  cssVar: string;
+  name: string;
+  meta?: ReactNode;
+  live?: boolean;
+}) {
   const copy = useCopy();
+  const resolved = useResolved(live ? cssVar : '', 'color');
   return (
     <button
       type="button"
@@ -360,9 +448,9 @@ export function Swatch({ cssVar, name, meta }: { cssVar: string; name: string; m
         </span>
       </span>
       <span style={{ fontSize: 12, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
-      {meta && (
+      {(live || meta) && (
         <span className="sb-code" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-          {meta}
+          {live ? resolved : meta}
         </span>
       )}
     </button>
@@ -370,25 +458,48 @@ export function Swatch({ cssVar, name, meta }: { cssVar: string; name: string; m
 }
 
 /** One row of a scale: token name, what it resolves to, and the drawn value. */
-export function Row({ label, value, children }: { label: string; value?: ReactNode; children?: ReactNode }) {
+export function Row({
+  label,
+  value,
+  /** Also show the px the token resolves to under the current modes. */
+  live,
+  children,
+}: {
+  label: string;
+  value?: ReactNode;
+  live?: boolean;
+  children?: ReactNode;
+}) {
   const copy = useCopy();
+  const resolved = useResolved(live ? label : '', 'length');
+
   return (
-    <div
+    <button
+      type="button"
       className="sb-row"
       onClick={() => copy(`var(${label})`, label)}
       title={`Copy var(${label})`}
       style={{
         display: 'grid',
-        gridTemplateColumns: 'minmax(200px, 280px) minmax(140px, 200px) 1fr',
+        gridTemplateColumns: 'minmax(200px, 280px) minmax(150px, 210px) 1fr',
         gap: 12,
         alignItems: 'center',
+        width: '100%',
         padding: '8px 6px',
+        border: 0,
+        borderBottom: '1px solid var(--sb-border)',
+        background: 'none',
+        font: 'inherit',
+        textAlign: 'left',
         cursor: 'pointer',
       }}
     >
       <Code>{label}</Code>
-      <Caption>{value}</Caption>
+      <Caption>
+        {value}
+        {live && resolved && <span style={{ opacity: 0.75 }}> · {resolved}</span>}
+      </Caption>
       <div>{children}</div>
-    </div>
+    </button>
   );
 }

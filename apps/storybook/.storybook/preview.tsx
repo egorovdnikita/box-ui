@@ -35,21 +35,24 @@ function chromeVars(theme: ThemeVars): Record<string, string> {
   };
 }
 
-/** Mirrors the manager, which follows `prefers-color-scheme` by default. */
-function useStorybookChrome() {
-  useEffect(() => {
-    const query = window.matchMedia('(prefers-color-scheme: dark)');
-    const apply = () => {
-      const vars = chromeVars(query.matches ? themes.dark : themes.light);
-      for (const [name, value] of Object.entries(vars)) {
-        document.documentElement.style.setProperty(name, value);
-      }
-    };
-    apply();
-    query.addEventListener('change', apply);
-    return () => query.removeEventListener('change', apply);
-  }, []);
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+/** The Storybook theme the manager is currently on. */
+const storybookTheme = () => (prefersDark.matches ? themes.dark : themes.light);
+
+/**
+ * Applied at preview boot rather than from a decorator: MDX pages with no
+ * stories never run decorators, and they were the one surface still rendering
+ * in Storybook's default light while the chrome around it was dark.
+ */
+function applyChrome() {
+  for (const [name, value] of Object.entries(chromeVars(storybookTheme()))) {
+    document.documentElement.style.setProperty(name, value);
+  }
 }
+
+applyChrome();
+prefersDark.addEventListener('change', applyChrome);
 
 /**
  * One toolbar control per switchable Figma variable collection.
@@ -139,8 +142,6 @@ const globalTypes: Preview['globalTypes'] = {
 const withBoxUiModes: Decorator = (Story, context) => {
   const { theme, accent, radius, font, device, iconStyle } = context.globals as Record<string, string>;
 
-  useStorybookChrome();
-
   useEffect(() => {
     const root = document.documentElement;
     root.setAttribute('data-theme', theme);
@@ -173,6 +174,8 @@ const preview: Preview = {
   parameters: {
     layout: 'fullscreen',
     backgrounds: { disable: true },
+    // MDX pages render Storybook's docs chrome — hand it the same theme.
+    docs: { theme: storybookTheme() },
     // Every story here is a documentation page, not a component with args —
     // the addon panel only ever said "this story has no controls".
     options: {

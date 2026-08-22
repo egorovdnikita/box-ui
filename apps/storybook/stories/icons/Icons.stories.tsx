@@ -10,7 +10,7 @@ import {
   type IconSizeToken,
   type IconStyle,
 } from '@box-ui/icons';
-import { Caption, Code, Count, Counts, Empty, Grid, Page, Search, Section, Select, useCopy } from '../_ui';
+import { Caption, Code, Count, Counts, Empty, Grid, Page, Search, Section, Select, demoSurface, useCopy } from '../_ui';
 
 const meta: Meta = {
   title: 'Icons/UI Icons',
@@ -199,9 +199,9 @@ export const Sizes: Story = {
 
       <Section
         title="Colour"
-        description="Icons paint with `currentColor`, so they inherit whichever `--box-content-*` token their container uses."
+        description="Icons paint with `currentColor`, so they inherit whichever `--box-content-*` token their container uses. These are Box UI content tokens, so they sit on a Box UI surface — flip Theme in the toolbar and the whole card follows."
       >
-        <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+        <div style={{ ...demoSurface, display: 'flex', gap: 20, flexWrap: 'wrap', padding: 'var(--box-spacing-base-m)' }}>
           {[
             ['primary', 'var(--box-content-base-primary)'],
             ['secondary', 'var(--box-content-base-secondary)'],

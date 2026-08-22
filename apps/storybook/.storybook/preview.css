@@ -330,6 +330,25 @@ body {
   background: var(--sb-raised-bg);
 }
 
+/* --- callout -------------------------------------------------------------- */
+
+.sb-callout {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--sb-border);
+  border-left: 3px solid var(--sb-accent);
+  border-radius: var(--sb-radius);
+  background: var(--sb-raised-bg);
+}
+
+.sb-callout__icon {
+  display: flex;
+  flex: none;
+  margin-top: 1px;
+  color: var(--sb-accent);
+}
+
 /* --- empty state ---------------------------------------------------------- */
 
 .sb-empty {

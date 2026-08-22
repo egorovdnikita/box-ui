@@ -1,7 +1,23 @@
 import { useMemo, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { model } from '@box-ui/tokens';
-import { Code, Count, Counts, Empty, Grid, JumpNav, Page, Search, Section, Swatch, useCopy } from '../_ui';
+import {
+  Callout,
+  Code,
+  Count,
+  Counts,
+  Empty,
+  Grid,
+  JumpNav,
+  ModeGlobals,
+  Page,
+  Scope,
+  Search,
+  Section,
+  Swatch,
+  useCopy,
+  useResolved,
+} from '../_ui';
 
 const meta: Meta = {
   title: 'Foundations/Colors',
@@ -106,6 +122,19 @@ function AccentCell({ mode: m, value }: { mode: { slug: string; name: string }; 
   );
 }
 
+/**
+ * A mode is "off" when its `brand/primary` does not point at the ramp the mode
+ * is named after. Computed rather than hard-coded, so the callout disappears by
+ * itself once the Figma file is corrected.
+ */
+const mismatchedModes = accent.modes
+  .map((m) => {
+    const brand = accent.variables.find((v) => v.path === 'colors/brand/primary');
+    const family = brand?.values[m.slug]?.alias?.split('/')[0];
+    return family && family !== m.slug ? { mode: m.name, family } : null;
+  })
+  .filter((entry): entry is { mode: string; family: string } => entry !== null);
+
 export const Accents: Story = {
   name: 'Accent modes — Color',
   render: () => {
@@ -130,6 +159,19 @@ export const Accents: Story = {
           </>
         }
       >
+        {mismatchedModes.length > 0 && (
+          <Callout title="Some modes point at another ramp">
+            {mismatchedModes.map((entry, index) => (
+              <span key={entry.mode}>
+                {index > 0 && ', '}
+                <strong>{entry.mode}</strong> resolves to the <strong>{entry.family}</strong> ramp
+              </span>
+            ))}
+            . That is how the Figma file is wired today, and it is reproduced here verbatim rather than quietly
+            corrected — fix it in <Code>Box UI | Tokens</Code> and rebuild.
+          </Callout>
+        )}
+
         {rows.length === 0 ? (
           <Empty query={query} onClear={() => setQuery('')} />
         ) : (
@@ -174,10 +216,70 @@ export const Accents: Story = {
   },
 };
 
+/**
+ * The same token under both Mode values at once. Each half re-declares all five
+ * mode attributes, which is what lets two themes resolve side by side on one
+ * page — see the note in `Scope`.
+ */
+function SplitSwatch({ cssVar, name, globals }: { cssVar: string; name: string; globals: ModeGlobals }) {
+  const copy = useCopy();
+  const resolved = useResolved(cssVar, 'color');
+
+  return (
+    <button
+      type="button"
+      className="sb-tile"
+      onClick={() => copy(`var(${cssVar})`, cssVar)}
+      title={`Copy var(${cssVar})`}
+      style={{ display: 'flex', flexDirection: 'column', gap: 4 }}
+    >
+      <span
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          height: 52,
+          overflow: 'hidden',
+          borderRadius: 'var(--sb-radius)',
+          border: '1px solid var(--sb-border)',
+        }}
+      >
+        {(['light', 'dark'] as const).map((theme) => (
+          <Scope key={theme} globals={globals} theme={theme} style={{ position: 'relative' }}>
+            <span style={{ position: 'absolute', inset: 0, background: `var(${cssVar})` }} />
+            <span
+              style={{
+                position: 'absolute',
+                insetInline: 0,
+                bottom: 0,
+                padding: '1px 4px',
+                background: 'var(--box-background-base-primary)',
+                color: 'var(--box-content-base-tertiary)',
+                fontSize: 9,
+                textTransform: 'uppercase',
+                letterSpacing: '0.06em',
+                textAlign: 'center',
+                opacity: 0.9,
+              }}
+            >
+              {theme}
+            </span>
+          </Scope>
+        ))}
+        <span className="sb-tile__hint" style={{ gridColumn: '1 / -1' }} />
+      </span>
+      <span style={{ fontSize: 12, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
+      <span className="sb-code" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+        {resolved} · {globals.theme}
+      </span>
+    </button>
+  );
+}
+
 export const Semantic: Story = {
   name: 'Semantic — Light / Dark',
-  render: () => {
+  render: (_args, { globals }) => {
     const [query, setQuery] = useState('');
+    const [compare, setCompare] = useState(true);
 
     const groups = useMemo(() => {
       const q = query.trim().toLowerCase();
@@ -194,6 +296,10 @@ export const Semantic: Story = {
         toolbar={
           <>
             <Search value={query} onChange={setQuery} placeholder="background, border, control…" />
+            <label style={{ display: 'flex', alignItems: 'center', gap: 6, height: 28, cursor: 'pointer' }}>
+              <input type="checkbox" checked={compare} onChange={(e) => setCompare(e.target.checked)} />
+              <span className="sb-caption">Compare Light / Dark</span>
+            </label>
             <Counts>
               <Count>{total} tokens</Count>
             </Counts>
@@ -211,14 +317,18 @@ export const Semantic: Story = {
           groups.map(([group, variables]) => (
             <Section key={group} id={anchor(group)} title={group} aside={<Count>{variables.length}</Count>}>
               <Grid min={190}>
-                {variables.map((v) => (
-                  <Swatch
-                    key={v.cssVar}
-                    cssVar={v.cssVar}
-                    name={v.path.split('/').slice(2).join('/')}
-                    meta={v.cssVar.replace('--box-', '')}
-                  />
-                ))}
+                {variables.map((v) =>
+                  compare ? (
+                    <SplitSwatch
+                      key={v.cssVar}
+                      cssVar={v.cssVar}
+                      name={v.path.split('/').slice(2).join('/')}
+                      globals={globals as unknown as ModeGlobals}
+                    />
+                  ) : (
+                    <Swatch key={v.cssVar} cssVar={v.cssVar} name={v.path.split('/').slice(2).join('/')} live />
+                  ),
+                )}
               </Grid>
             </Section>
           ))

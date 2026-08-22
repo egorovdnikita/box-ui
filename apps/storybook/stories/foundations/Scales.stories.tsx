@@ -29,7 +29,7 @@ export const Spacing: Story = {
     >
       <Section title="Steps" description={RESPONSIVE_HINT} aside={<Count>{semantic('spacing').length} steps</Count>}>
         {semantic('spacing').map((v) => (
-          <Row key={v.cssVar} label={v.cssVar} value={deviceValue(v)}>
+          <Row key={v.cssVar} label={v.cssVar} value={deviceValue(v)} live>
             <div
               style={{
                 height: 14,
@@ -98,7 +98,7 @@ export const Rounding: Story = {
 
       <Section title="Steps" description={RESPONSIVE_HINT} aside={<Count>{semantic('rounding').length} steps</Count>}>
         {semantic('rounding').map((v) => (
-          <Row key={v.cssVar} label={v.cssVar} value={deviceValue(v)}>
+          <Row key={v.cssVar} label={v.cssVar} value={deviceValue(v)} live>
             <div
               style={{
                 width: 76,
@@ -120,7 +120,7 @@ export const Sizes: Story = {
     <Page title="Sizes" lead="`size/base/*` from the “Grid” collection — control heights, icon boxes, avatars.">
       <Section title="Steps" aside={<Count>{semantic('size').length} steps</Count>}>
         {semantic('size').map((v) => (
-          <Row key={v.cssVar} label={v.cssVar} value={deviceValue(v)}>
+          <Row key={v.cssVar} label={v.cssVar} value={deviceValue(v)} live>
             <div
               style={{
                 display: 'grid',
