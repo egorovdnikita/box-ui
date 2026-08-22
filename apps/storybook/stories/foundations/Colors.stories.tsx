@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useArgs } from 'storybook/preview-api';
 import { model } from '@box-ui/tokens';
 import {
   Callout,
@@ -12,8 +13,10 @@ import {
   ModeGlobals,
   Page,
   Scope,
+  ResetFilters,
   Search,
   Section,
+  ShareLink,
   Swatch,
   useCopy,
   useResolved,
@@ -47,8 +50,11 @@ function groupBy<T extends { path: string }>(variables: T[], depth: number) {
 
 export const Palette: Story = {
   name: 'Primitives — palette',
-  render: () => {
-    const [query, setQuery] = useState('');
+  args: { query: '' },
+  render: (args) => {
+    const [, updateArgs] = useArgs();
+    const query = (args as { query: string }).query;
+    const setQuery = (value: string) => updateArgs({ query: value });
 
     const groups = useMemo(() => {
       const q = query.trim().toLowerCase();
@@ -68,6 +74,8 @@ export const Palette: Story = {
             <Counts>
               <Count>{total} swatches</Count>
               <Count>{groups.length} families</Count>
+              {query && <ResetFilters onReset={() => setQuery('')} />}
+              <ShareLink />
             </Counts>
             {!query && (
               <div style={{ flexBasis: '100%' }}>
@@ -137,8 +145,11 @@ const mismatchedModes = accent.modes
 
 export const Accents: Story = {
   name: 'Accent modes — Color',
-  render: () => {
-    const [query, setQuery] = useState('');
+  args: { query: '' },
+  render: (args) => {
+    const [, updateArgs] = useArgs();
+    const query = (args as { query: string }).query;
+    const setQuery = (value: string) => updateArgs({ query: value });
     const rows = useMemo(() => {
       const q = query.trim().toLowerCase();
       return q ? accent.variables.filter((v) => v.path.toLowerCase().includes(q)) : accent.variables;
@@ -155,6 +166,8 @@ export const Accents: Story = {
               <Count>
                 {rows.length} tokens × {accent.modes.length} modes
               </Count>
+              {query && <ResetFilters onReset={() => setQuery('')} />}
+              <ShareLink />
             </Counts>
           </>
         }
@@ -277,9 +290,12 @@ function SplitSwatch({ cssVar, name, globals }: { cssVar: string; name: string; 
 
 export const Semantic: Story = {
   name: 'Semantic — Light / Dark',
-  render: (_args, { globals }) => {
-    const [query, setQuery] = useState('');
-    const [compare, setCompare] = useState(true);
+  args: { query: '', compare: true },
+  render: (args, { globals }) => {
+    const [, updateArgs] = useArgs();
+    const { query, compare } = args as unknown as { query: string; compare: boolean };
+    const setQuery = (value: string) => updateArgs({ query: value });
+    const setCompare = (value: boolean) => updateArgs({ compare: value });
 
     const groups = useMemo(() => {
       const q = query.trim().toLowerCase();
@@ -302,6 +318,8 @@ export const Semantic: Story = {
             </label>
             <Counts>
               <Count>{total} tokens</Count>
+              {query && <ResetFilters onReset={() => setQuery('')} />}
+              <ShareLink />
             </Counts>
             {!query && (
               <div style={{ flexBasis: '100%' }}>

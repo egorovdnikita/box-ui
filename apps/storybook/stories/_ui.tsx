@@ -8,7 +8,7 @@ import {
   type CSSProperties,
   type ReactNode,
 } from 'react';
-import { Icon } from '@box-ui/icons';
+import { Icon, type IconProps } from '@box-ui/icons';
 
 /*
  * The docs chrome is Storybook's own look — its palette, its type, its 4px
@@ -16,6 +16,17 @@ import { Icon } from '@box-ui/icons';
  * `storybook/theming`. Box UI tokens appear only inside demos, which always
  * carry both a background and a foreground so they read on any chrome.
  */
+
+/**
+ * An icon belonging to the documentation UI rather than to the documentation.
+ *
+ * Pinned to Linear: chrome must not follow the reader's Icon style choice, and
+ * Solar does not draw every icon in every style — `magnifer` has no Bold Duotone
+ * or Line Duotone, so the search field lost its magnifier on those two.
+ */
+function ChromeIcon(props: IconProps) {
+  return <Icon iconStyle="linear" {...props} />;
+}
 
 // --- copy-to-clipboard -------------------------------------------------------
 
@@ -29,7 +40,7 @@ export function useCopy() {
 function Toast({ message }: { message: string | null }) {
   return (
     <div className="sb-toast" data-visible={message ? 'true' : 'false'} aria-live="polite">
-      <Icon name="copy" size={14} />
+      <ChromeIcon name="copy" size={14} />
       <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{message ?? ''}</span>
     </div>
   );
@@ -200,7 +211,7 @@ export function Search({
     <Field label={label}>
       <div style={{ position: 'relative', display: 'flex', alignItems: 'center', minWidth: 240 }}>
         <span style={{ position: 'absolute', left: 8, display: 'flex', color: 'var(--sb-text-muted)', pointerEvents: 'none' }}>
-          <Icon name="magnifer" size={14} />
+          <ChromeIcon name="magnifer" size={14} />
         </span>
         <input
           ref={input}
@@ -232,6 +243,42 @@ export function Search({
   );
 }
 
+/**
+ * Copies the address of the page as the reader sees it — the manager URL, with
+ * the toolbar globals and every filter on it, not the bare iframe.
+ */
+export function ShareLink() {
+  const copy = useCopy();
+
+  const share = () => {
+    let href = window.location.href;
+    try {
+      // Same origin, so the manager URL is readable; fall back to the iframe's.
+      href = window.parent?.location.href ?? href;
+    } catch {
+      /* cross-origin — the iframe URL is still a working link */
+    }
+    copy(href, 'link to this view');
+  };
+
+  return (
+    <button type="button" className="sb-control sb-button" onClick={share} title="Copy a link to this page, filters and all">
+      <ChromeIcon name="link-round" size={14} />
+      Copy link
+    </button>
+  );
+}
+
+/** Clears every filter back to the story's defaults. */
+export function ResetFilters({ onReset }: { onReset: () => void }) {
+  return (
+    <button type="button" className="sb-control sb-button" onClick={onReset} title="Clear every filter">
+      <ChromeIcon name="restart" size={14} />
+      Reset
+    </button>
+  );
+}
+
 /** Anchor chips for pages made of many groups. */
 export function JumpNav({ items }: { items: { id: string; label: string }[] }) {
   return (
@@ -259,7 +306,7 @@ export function Callout({ title, children }: { title: string; children: ReactNod
   return (
     <aside className="sb-callout">
       <span className="sb-callout__icon">
-        <Icon name="info-circle" size={16} />
+        <ChromeIcon name="info-circle" size={16} />
       </span>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
         <strong style={{ fontSize: 13 }}>{title}</strong>
@@ -274,7 +321,7 @@ export function Callout({ title, children }: { title: string; children: ReactNod
 export function Empty({ query, onClear }: { query: string; onClear: () => void }) {
   return (
     <div className="sb-empty">
-      <Icon name="magnifer" size={28} />
+      <ChromeIcon name="magnifer" size={28} />
       <div>Nothing matches “{query}”</div>
       <button type="button" onClick={onClear} className="sb-link">
         Clear the search
@@ -444,7 +491,7 @@ export function Swatch({
         />
         <span style={{ position: 'absolute', inset: 0, background: `var(${cssVar})` }} />
         <span className="sb-tile__hint">
-          <Icon name="copy" size={14} />
+          <ChromeIcon name="copy" size={14} />
         </span>
       </span>
       <span style={{ fontSize: 12, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>

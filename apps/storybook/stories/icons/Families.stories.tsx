@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useArgs } from 'storybook/preview-api';
 import {
   FAMILY_SHAPE_LABELS,
   FamilyIcon,
@@ -12,7 +13,7 @@ import {
   type IconFamily,
   type IconSizeToken,
 } from '@box-ui/icons';
-import { Code, Count, Counts, Empty, Grid, Page, Search, Section, Select, useCopy } from '../_ui';
+import { Code, Count, Counts, Empty, Grid, Page, ResetFilters, Search, Section, Select, ShareLink, useCopy } from '../_ui';
 
 const meta: Meta = {
   title: 'Icons/Figma families',
@@ -28,6 +29,13 @@ const meta: Meta = {
 export default meta;
 
 type Story = StoryObj;
+
+interface FamilyArgs {
+  query: string;
+  shape: FamilyShape;
+  tone: BrandTone;
+  size: IconSizeToken;
+}
 
 const SOURCE_NOTE: Record<IconFamily, string> = {
   flags: 'flag-icons (MIT) — 4:3 country flags by ISO 3166-1.',
@@ -64,13 +72,22 @@ function FamilyTile({
   );
 }
 
-function Family({ id, shapes }: { id: IconFamily; shapes: FamilyShape[] }) {
+function Family({
+  id,
+  shapes,
+  args,
+  defaults,
+  set,
+}: {
+  id: IconFamily;
+  shapes: FamilyShape[];
+  args: FamilyArgs;
+  defaults: FamilyArgs;
+  set: (patch: Partial<FamilyArgs>) => void;
+}) {
   const meta = familyIndex[id];
   const data = useFamily(id);
-  const [query, setQuery] = useState('');
-  const [shape, setShape] = useState<FamilyShape>(shapes[0]);
-  const [tone, setTone] = useState<BrandTone>('original');
-  const [size, setSize] = useState<IconSizeToken>('max');
+  const { query, shape, tone, size } = args;
 
   const items = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -82,6 +99,7 @@ function Family({ id, shapes }: { id: IconFamily; shapes: FamilyShape[] }) {
   }, [data, query]);
 
   const monograms = meta.total - meta.resolved;
+  const dirty = (Object.keys(defaults) as (keyof FamilyArgs)[]).some((key) => args[key] !== defaults[key]);
 
   return (
     <Page
@@ -94,12 +112,16 @@ function Family({ id, shapes }: { id: IconFamily; shapes: FamilyShape[] }) {
       }
       toolbar={
         <>
-          <Search value={query} onChange={setQuery} placeholder={id === 'payments' ? 'bitcoin, BTC…' : 'filter…'} />
+          <Search
+            value={query}
+            onChange={(value) => set({ query: value })}
+            placeholder={id === 'payments' ? 'bitcoin, BTC…' : 'filter…'}
+          />
           {shapes.length > 1 && (
             <Select
               label={id === 'brands' ? 'Circle Shape' : 'Style'}
               value={shape}
-              onChange={setShape}
+              onChange={(value) => set({ shape: value })}
               options={shapes.map((s) => ({
                 value: s,
                 label: id === 'brands' ? (s === 'circle' ? 'True' : 'False') : FAMILY_SHAPE_LABELS[s],
@@ -110,7 +132,7 @@ function Family({ id, shapes }: { id: IconFamily; shapes: FamilyShape[] }) {
             <Select
               label="Style"
               value={tone}
-              onChange={setTone}
+              onChange={(value) => set({ tone: value })}
               options={[
                 { value: 'original' as BrandTone, label: 'Original' },
                 { value: 'solid' as BrandTone, label: 'Solid' },
@@ -120,12 +142,14 @@ function Family({ id, shapes }: { id: IconFamily; shapes: FamilyShape[] }) {
           <Select
             label="Size token"
             value={size}
-            onChange={setSize}
+            onChange={(value) => set({ size: value })}
             options={ICON_SIZES.map((s) => ({ value: s, label: `size/base/${s}` }))}
           />
           <Counts>
             <Count>{items.length} shown</Count>
             {monograms > 0 && <Count tone="warning">{monograms} as monogram</Count>}
+            {dirty && <ResetFilters onReset={() => set(defaults)} />}
+            <ShareLink />
           </Counts>
         </>
       }
@@ -133,7 +157,7 @@ function Family({ id, shapes }: { id: IconFamily; shapes: FamilyShape[] }) {
       {!data ? (
         <p className="sb-lead">Loading {meta.figmaPage.toLowerCase()}…</p>
       ) : items.length === 0 ? (
-        <Empty query={query} onClear={() => setQuery('')} />
+        <Empty query={query} onClear={() => set(defaults)} />
       ) : (
         <Grid min={148} gap={6}>
           {items.map((item) => (
@@ -158,12 +182,29 @@ function Family({ id, shapes }: { id: IconFamily; shapes: FamilyShape[] }) {
   );
 }
 
-export const Flags: Story = {
-  render: () => <Family id="flags" shapes={['natural', 'rounded', 'circle']} />,
-};
-export const Payments: Story = {
-  render: () => <Family id="payments" shapes={['natural']} />,
-};
-export const Brands: Story = {
-  render: () => <Family id="brands" shapes={['natural', 'circle']} />,
-};
+/**
+ * Filters live in args so Storybook keeps them in the URL — `useArgs` has to be
+ * called from the story's own render, not from a component nested inside it.
+ */
+function story(id: IconFamily, shapes: FamilyShape[]): Story {
+  const defaults: FamilyArgs = { query: '', shape: shapes[0], tone: 'original', size: 'max' };
+  return {
+    args: defaults,
+    render: (args) => {
+      const [, updateArgs] = useArgs();
+      return (
+        <Family
+          id={id}
+          shapes={shapes}
+          args={args as unknown as FamilyArgs}
+          defaults={defaults}
+          set={(patch) => updateArgs(patch)}
+        />
+      );
+    },
+  };
+}
+
+export const Flags = story('flags', ['natural', 'rounded', 'circle']);
+export const Payments = story('payments', ['natural']);
+export const Brands = story('brands', ['natural', 'circle']);

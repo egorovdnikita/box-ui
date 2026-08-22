@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useArgs } from 'storybook/preview-api';
 import {
   Icon,
   ICON_SIZES,
@@ -10,7 +11,22 @@ import {
   type IconSizeToken,
   type IconStyle,
 } from '@box-ui/icons';
-import { Caption, Code, Count, Counts, Empty, Grid, Page, Search, Section, Select, demoSurface, useCopy } from '../_ui';
+import {
+  Caption,
+  Code,
+  Count,
+  Counts,
+  Empty,
+  Grid,
+  Page,
+  ResetFilters,
+  Search,
+  Section,
+  Select,
+  ShareLink,
+  demoSurface,
+  useCopy,
+} from '../_ui';
 
 const meta: Meta = {
   title: 'Icons/UI Icons',
@@ -41,8 +57,25 @@ const PREVIEW = [
   'bolt',
 ];
 
+type CopyAs = 'name' | 'jsx';
+
+/** What lands on the clipboard when a tile is clicked. */
+function snippet(as: CopyAs, name: string, style: IconStyle, size: IconSizeToken): string {
+  return as === 'name' ? name : `<Icon name="${name}" iconStyle="${style}" size="${size}" />`;
+}
+
 /** One gallery tile. Below `<Page>`, so it can reach the copy context. */
-function IconTile({ icon, style, size }: { icon: IconCatalogEntry; style: IconStyle; size: IconSizeToken }) {
+function IconTile({
+  icon,
+  style,
+  size,
+  copyAs,
+}: {
+  icon: IconCatalogEntry;
+  style: IconStyle;
+  size: IconSizeToken;
+  copyAs: CopyAs;
+}) {
   const copy = useCopy();
   const drawn = icon.styles.includes(style);
 
@@ -51,7 +84,7 @@ function IconTile({ icon, style, size }: { icon: IconCatalogEntry; style: IconSt
       type="button"
       className={drawn ? 'sb-cell' : 'sb-cell sb-cell--muted'}
       title={drawn ? `${icon.name} · ${icon.category}` : `${icon.name} · ${icon.category} — not drawn in ${ICON_STYLE_LABELS[style]}`}
-      onClick={() => copy(icon.name)}
+      onClick={() => copy(snippet(copyAs, icon.name, drawn ? style : icon.styles[0], size), icon.name)}
       style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 68px' }}
     >
       <Icon
@@ -65,12 +98,34 @@ function IconTile({ icon, style, size }: { icon: IconCatalogEntry; style: IconSt
   );
 }
 
+interface GalleryArgs {
+  query: string;
+  category: string;
+  size: IconSizeToken;
+  onlyAvailable: boolean;
+  copyAs: CopyAs;
+}
+
+const GALLERY_DEFAULTS: GalleryArgs = {
+  query: '',
+  category: 'All',
+  size: 'xs',
+  onlyAvailable: false,
+  copyAs: 'name',
+};
+
 export const Gallery: Story = {
-  render: (_args, { globals }) => {
-    const [query, setQuery] = useState('');
-    const [category, setCategory] = useState('All');
-    const [size, setSize] = useState<IconSizeToken>('xs');
-    const [onlyAvailable, setOnlyAvailable] = useState(false);
+  // Filters live in args, so Storybook keeps them in the URL and a link to a
+  // filtered gallery survives being pasted to someone else.
+  args: GALLERY_DEFAULTS,
+  render: (args, { globals }) => {
+    const [, updateArgs] = useArgs();
+    const current = args as unknown as GalleryArgs;
+    const { query, category, size, onlyAvailable, copyAs } = current;
+    const set = (patch: Partial<GalleryArgs>) => updateArgs(patch);
+    const dirty = (Object.keys(GALLERY_DEFAULTS) as (keyof GalleryArgs)[]).some(
+      (key) => current[key] !== GALLERY_DEFAULTS[key],
+    );
 
     const style = (globals.iconStyle as IconStyle) ?? 'linear';
 
@@ -99,36 +154,47 @@ export const Gallery: Story = {
         }
         toolbar={
           <>
-            <Search value={query} onChange={setQuery} placeholder="arrow, user, card…" />
+            <Search value={query} onChange={(value) => set({ query: value })} placeholder="arrow, user, card…" />
             <Select
               label="Category"
               value={category}
-              onChange={setCategory}
+              onChange={(value) => set({ category: value })}
               options={['All', ...catalog.categories].map((c) => ({ value: c, label: c }))}
             />
             <Select
               label="Size token"
               value={size}
-              onChange={setSize}
+              onChange={(value) => set({ size: value })}
               options={ICON_SIZES.map((s) => ({ value: s, label: `size/base/${s}` }))}
             />
+            <Select
+              label="Click copies"
+              value={copyAs}
+              onChange={(value) => set({ copyAs: value })}
+              options={[
+                { value: 'name' as CopyAs, label: 'name' },
+                { value: 'jsx' as CopyAs, label: '<Icon …/>' },
+              ]}
+            />
             <label style={{ display: 'flex', alignItems: 'center', gap: 6, height: 28, cursor: 'pointer' }}>
-              <input type="checkbox" checked={onlyAvailable} onChange={(e) => setOnlyAvailable(e.target.checked)} />
+              <input type="checkbox" checked={onlyAvailable} onChange={(e) => set({ onlyAvailable: e.target.checked })} />
               <Caption>Only this style</Caption>
             </label>
             <Counts>
               <Count>{filtered.length} icons</Count>
               {missing > 0 && <Count tone="warning">{missing} not in {ICON_STYLE_LABELS[style]}</Count>}
+              {dirty && <ResetFilters onReset={() => set(GALLERY_DEFAULTS)} />}
+              <ShareLink />
             </Counts>
           </>
         }
       >
         {filtered.length === 0 ? (
-          <Empty query={query || category} onClear={() => { setQuery(''); setCategory('All'); setOnlyAvailable(false); }} />
+          <Empty query={query || category} onClear={() => set(GALLERY_DEFAULTS)} />
         ) : (
           <Grid min={128} gap={6}>
             {filtered.map((icon) => (
-              <IconTile key={icon.name} icon={icon} style={style} size={size} />
+              <IconTile key={icon.name} icon={icon} style={style} size={size} copyAs={copyAs} />
             ))}
           </Grid>
         )}

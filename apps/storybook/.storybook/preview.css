@@ -137,6 +137,18 @@ body {
   border-color: var(--sb-accent);
 }
 
+.sb-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.sb-button:hover {
+  border-color: var(--sb-accent);
+  color: var(--sb-accent);
+}
+
 /* --- interactive tiles ---------------------------------------------------- */
 
 .sb-tile {
