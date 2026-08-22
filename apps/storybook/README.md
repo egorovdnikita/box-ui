@@ -44,6 +44,40 @@ render: (_args, { globals }) => <Family id="flags" globals={globals as ModeGloba
 To resolve two modes side by side on one page, use `<Scope>` — and set *all five*
 attributes, for the reason spelled out in the root README.
 
+## Filters live in args, not in `useState`
+
+Anything the reader can change on a page — a search, a select, a checkbox — is a
+Storybook **arg**. Storybook keeps args in the URL, so a filtered view is a link
+someone can paste to a colleague, and the *Copy link* button in each toolbar hands
+it over.
+
+`useArgs` reads Storybook's own hook context, so it has to be called from the story's
+`render` and the values passed down — calling it from a component nested inside does
+not work.
+
+```tsx
+const DEFAULTS = { query: '', category: 'All' };
+
+export const Gallery: StoryObj = {
+  args: DEFAULTS,
+  render: (args) => {
+    const [, updateArgs] = useArgs();
+    …
+  },
+};
+```
+
+The Controls panel being hidden does not affect any of this — args still round-trip
+through the URL.
+
+## Chrome icons are pinned
+
+`<ChromeIcon>` in `_ui.tsx` always renders Linear. Documentation UI must not follow the
+reader's *Icon style* choice, and Solar does not draw every icon in every style —
+`magnifer` has no Bold Duotone or Line Duotone, which once emptied the search field on
+those two settings. Use it for anything that is part of the interface rather than part
+of the subject.
+
 ## Adding a page
 
 ```tsx
