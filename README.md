@@ -105,8 +105,8 @@ and Mobile below 768px whenever the document has not set those attributes itself
 | --- | --- |
 | [`@box-ui/tokens`](packages/tokens) | CSS custom properties + a typed JS token API, generated from the Figma dumps |
 | [`@box-ui/icons`](packages/icons) | 1 301 Solar icons × 6 styles, plus the Flags / Payments / Brands families |
-| [`@box-ui/react`](packages/react) | Button, Badge, Card, Input, Text, Stack — token-only primitives used by the docs |
-| [`apps/storybook`](apps/storybook) | The documentation site |
+| [`@box-ui/react`](packages/react) | Button, Badge, Card, Input, Text, Stack — primitives that prove the token graph, with not one literal value between them |
+| [`apps/storybook`](apps/storybook) | The documentation site — see below |
 
 ```tsx
 import '@box-ui/tokens/css';
@@ -118,6 +118,31 @@ import { Icon } from '@box-ui/icons';
   <Button startIcon={<Icon name="check-circle" size="2xs" />}>Continue</Button>
 </Card>;
 ```
+
+---
+
+## The Storybook
+
+<https://egorovdnikita.github.io/box-ui/>
+
+The six toolbar switches drive the Figma modes, and every page reacts to all of them
+at once. What the pages give you beyond a list of names:
+
+- **Live values.** Each token shows what it *resolves to* under the current modes, not
+  just the alias it points at — `spacing/base/s` reads `20px` on Desktop and `16px` on
+  Mobile, semantic colours read their hex. Reading a custom property back only ever
+  returns its declaration, so the value is measured off a probe element and re-measured
+  whenever a mode attribute changes.
+- **Light against Dark.** Semantic colours split each swatch in two and resolve both
+  themes on the same page.
+- **Click to copy** anywhere — swatches and scale rows copy `var(--box-…)`, icons copy
+  their name.
+- **Search everywhere**, `/` to focus it, with the Figma grouping kept as jump links.
+
+The documentation chrome is deliberately Storybook's own — its palette, type and
+borders, read out of `storybook/theming` so the canvas cannot drift from the manager
+around it. Box UI tokens paint only the things being documented, and every demo surface
+carries its own background and foreground so a Light demo still reads on a dark canvas.
 
 ---
 
@@ -213,11 +238,13 @@ can print the same shape) and re-run the build. Nothing else needs to be touched
 These are reproduced exactly rather than silently corrected — fix them in Figma and rebuild:
 
 - In the **Color** collection the `Teal` mode points at the *green* ramp, `Cyan` at *pink*,
-  and `Yellow` at *rose*.
+  and `Yellow` at *rose*. The Storybook says so on *Foundations → Colors → Accent modes*,
+  worked out from the token model, so the note disappears by itself once Figma is fixed.
 - The strongest **Rounding** mode is spelled `Hight` in Figma. The generated CSS uses
   `data-radius="high"` and also accepts `data-radius="hight"`.
 - `background/base/primary` and `background/base/tertiary` are the same value in Light.
-- The Payments page contains a few duplicated component names.
+- The Payments page repeats four component names, so its 679 components are 675 distinct
+  entries.
 
 ---
 
