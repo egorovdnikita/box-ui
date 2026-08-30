@@ -116,8 +116,8 @@ function Family({
       title={meta.figmaPage}
       lead={
         <>
-          {meta.total} entries from the <Code>{meta.figmaPage}</Code> page, named <Code>{meta.figmaNaming}</Code>. Click a
-          tile to copy its slug. {meta.note}
+          {meta.total} entries from the <Code>{meta.figmaPage}</Code> page, named <Code>{meta.figmaNaming}</Code>. Click
+          a tile to copy its slug. {meta.note}
         </>
       }
       toolbar={
@@ -182,10 +182,15 @@ function Family({
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <p className="sb-lead">
-            {SOURCE_NOTE[id]} {monograms > 0 && `${monograms} entries have no upstream match and render as a monogram tile.`}
+            {SOURCE_NOTE[id]}{' '}
+            {monograms > 0 && `${monograms} entries have no upstream match and render as a monogram tile.`}
           </p>
-          <p className="sb-lead">To replace all of it with verbatim Figma exports, run the export script with a Figma token:</p>
-          <Code copyable={`npm run icons:figma -- --family ${id}`}>{`FIGMA_TOKEN=figd_xxx npm run icons:figma -- --family ${id}`}</Code>
+          <p className="sb-lead">
+            To replace all of it with verbatim Figma exports, run the export script with a Figma token:
+          </p>
+          <Code
+            copyable={`npm run icons:figma -- --family ${id}`}
+          >{`FIGMA_TOKEN=figd_xxx npm run icons:figma -- --family ${id}`}</Code>
         </div>
       </Section>
     </Page>

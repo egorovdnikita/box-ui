@@ -25,7 +25,9 @@ import {
 
 const meta: Meta = {
   title: 'Foundations/Colors',
-  parameters: { docs: { description: { component: 'Colour variables from `Box UI | Primitives` and `Box UI | Tokens`.' } } },
+  parameters: {
+    docs: { description: { component: 'Colour variables from `Box UI | Primitives` and `Box UI | Tokens`.' } },
+  },
 };
 export default meta;
 
@@ -110,7 +112,13 @@ export const Palette: Story = {
 };
 
 /** A single mode cell. Lives below `<Page>`, so it can reach the copy context. */
-function AccentCell({ mode: m, value }: { mode: { slug: string; name: string }; value?: { cssVar?: string; alias?: string } }) {
+function AccentCell({
+  mode: m,
+  value,
+}: {
+  mode: { slug: string; name: string };
+  value?: { cssVar?: string; alias?: string };
+}) {
   const copy = useCopy();
   return (
     <button

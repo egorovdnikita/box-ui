@@ -43,7 +43,13 @@ const LAYERS = {
   'type-scale': { label: 'Typography', group: 'primitive' },
 
   font: { varPrefix: 'type', label: 'Typography', group: 'semantic', switch: { attr: 'data-font', default: 'Inter' } },
-  radius: { varPrefix: 'radius', strip: 'rounding', label: 'Rounding', group: 'semantic', switch: { attr: 'data-radius', default: 'Medium' } },
+  radius: {
+    varPrefix: 'radius',
+    strip: 'rounding',
+    label: 'Rounding',
+    group: 'semantic',
+    switch: { attr: 'data-radius', default: 'Medium' },
+  },
   accent: { label: 'Color', group: 'semantic', switch: { attr: 'data-accent', default: 'Blue' } },
   mode: { label: 'Mode', group: 'semantic', switch: { attr: 'data-theme', default: 'Light' } },
   grid: { label: 'Grid', group: 'semantic', switch: { attr: 'data-device', default: 'Desktop' } },
@@ -59,7 +65,19 @@ const ALIAS_SCOPE = {
 };
 
 /** Emission order — later layers override earlier ones in the cascade. */
-const ORDER = ['palette', 'spacing', 'rounding', 'size', 'opacity', 'type-scale', 'font', 'radius', 'accent', 'mode', 'grid'];
+const ORDER = [
+  'palette',
+  'spacing',
+  'rounding',
+  'size',
+  'opacity',
+  'type-scale',
+  'font',
+  'radius',
+  'accent',
+  'mode',
+  'grid',
+];
 
 /** Figma spells the strongest rounding mode "Hight"; `high` is the canonical slug. */
 const MODE_SLUG = { Hight: 'high' };
@@ -111,7 +129,8 @@ function literal(collectionId, path, value) {
 }
 
 function declaration(collectionId, path, value) {
-  const v = value.type === 'alias' ? `var(${resolveAlias(collectionId, value.ref)})` : literal(collectionId, path, value);
+  const v =
+    value.type === 'alias' ? `var(${resolveAlias(collectionId, value.ref)})` : literal(collectionId, path, value);
   return `  ${varName(collectionId, path)}: ${v};`;
 }
 
@@ -161,13 +180,19 @@ for (const id of ORDER) {
   const dark = byId.mode;
   const darkLines = Object.entries(dark.variables).map(([p, v]) => declaration('mode', p, v.values.Dark));
   adaptive.push(
-    `@media (prefers-color-scheme: dark) {\n${block([`  :root:not([data-theme="light"])`], darkLines.map((l) => `  ${l}`))}}\n`,
+    `@media (prefers-color-scheme: dark) {\n${block(
+      [`  :root:not([data-theme="light"])`],
+      darkLines.map((l) => `  ${l}`),
+    )}}\n`,
   );
 
   const grid = byId.grid;
   const mobileLines = Object.entries(grid.variables).map(([p, v]) => declaration('grid', p, v.values.Mobile));
   adaptive.push(
-    `@media (max-width: 767px) {\n${block([`  :root:not([data-device="desktop"])`], mobileLines.map((l) => `  ${l}`))}}\n`,
+    `@media (max-width: 767px) {\n${block(
+      [`  :root:not([data-device="desktop"])`],
+      mobileLines.map((l) => `  ${l}`),
+    )}}\n`,
   );
 }
 
@@ -234,13 +259,21 @@ function nest(id) {
 const js = `${header('Box UI — token API')}export const modes = ${JSON.stringify(modeLists, null, 2)};
 
 export const attributes = ${JSON.stringify(
-  Object.fromEntries(Object.entries(model.collections).filter(([, c]) => c.attribute).map(([id, c]) => [id, c.attribute])),
+  Object.fromEntries(
+    Object.entries(model.collections)
+      .filter(([, c]) => c.attribute)
+      .map(([id, c]) => [id, c.attribute]),
+  ),
   null,
   2,
 )};
 
 export const defaults = ${JSON.stringify(
-  Object.fromEntries(Object.entries(model.collections).filter(([, c]) => c.attribute).map(([id, c]) => [id, c.defaultMode])),
+  Object.fromEntries(
+    Object.entries(model.collections)
+      .filter(([, c]) => c.attribute)
+      .map(([id, c]) => [id, c.defaultMode]),
+  ),
   null,
   2,
 )};
@@ -299,9 +332,15 @@ writeFileSync(join(dist, 'css', 'theme.css'), themeCss.join(''));
 writeFileSync(join(dist, 'css', 'adaptive.css'), adaptive.join(''));
 writeFileSync(join(dist, 'css', 'index.css'), indexCss);
 writeFileSync(join(dist, 'tokens.json'), `${JSON.stringify(model, null, 2)}\n`);
-writeFileSync(join(dist, 'model.js'), `${header('Box UI — Figma variable graph')}export default ${JSON.stringify(model, null, 2)};\n`);
+writeFileSync(
+  join(dist, 'model.js'),
+  `${header('Box UI — Figma variable graph')}export default ${JSON.stringify(model, null, 2)};\n`,
+);
 writeFileSync(join(dist, 'index.js'), js);
 writeFileSync(join(dist, 'index.d.ts'), dts);
 
-const counts = ORDER.map((id) => `${byId[id].figmaName} (${id}): ${Object.keys(byId[id].variables).length} vars × ${byId[id].modes.length} mode(s)`);
+const counts = ORDER.map(
+  (id) =>
+    `${byId[id].figmaName} (${id}): ${Object.keys(byId[id].variables).length} vars × ${byId[id].modes.length} mode(s)`,
+);
 console.log(`@box-ui/tokens built\n  ${counts.join('\n  ')}`);

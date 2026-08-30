@@ -66,7 +66,8 @@ async function figma(path) {
   return response.json();
 }
 
-const chunk = (items, size) => Array.from({ length: Math.ceil(items.length / size) }, (_, i) => items.slice(i * size, (i + 1) * size));
+const chunk = (items, size) =>
+  Array.from({ length: Math.ceil(items.length / size) }, (_, i) => items.slice(i * size, (i + 1) * size));
 
 /** Collect every COMPONENT under a page, flattening COMPONENT_SET variants. */
 function collect(node, family, out, setName = null) {
@@ -104,7 +105,9 @@ for (const familyName of selected) {
 
   for (const batch of chunk(nodes, BATCH)) {
     const ids = batch.map((n) => n.id).join(',');
-    const { images } = await figma(`/images/${FILE_KEY}?ids=${encodeURIComponent(ids)}&format=svg&svg_outline_text=true`);
+    const { images } = await figma(
+      `/images/${FILE_KEY}?ids=${encodeURIComponent(ids)}&format=svg&svg_outline_text=true`,
+    );
 
     await Promise.all(
       batch.map(async (node) => {
@@ -122,6 +125,9 @@ for (const familyName of selected) {
   }
 
   manifest.sort((a, b) => a.slug.localeCompare(b.slug));
-  await writeFile(join(outDir, 'manifest.json'), `${JSON.stringify({ family: familyName, figmaPage: family.page, icons: manifest }, null, 2)}\n`);
+  await writeFile(
+    join(outDir, 'manifest.json'),
+    `${JSON.stringify({ family: familyName, figmaPage: family.page, icons: manifest }, null, 2)}\n`,
+  );
   console.log(`  wrote ${manifest.length} files to packages/icons/src/data/${familyName}/`);
 }

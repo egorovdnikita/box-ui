@@ -9,6 +9,9 @@ import {
   type ReactNode,
 } from 'react';
 import { Icon, type IconProps } from '@box-ui/icons';
+import { toHex } from './_lib';
+
+export { matches } from './_lib';
 
 /*
  * The docs chrome is Storybook's own look — its palette, its type, its 4px
@@ -140,7 +143,9 @@ export function Section({
 
 export function Grid({ min = 200, gap = 8, children }: { min?: number; gap?: number; children: ReactNode }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, minmax(${min}px, 1fr))`, gap }}>{children}</div>
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, minmax(${min}px, 1fr))`, gap }}>
+      {children}
+    </div>
   );
 }
 
@@ -210,7 +215,15 @@ export function Search({
   return (
     <Field label={label}>
       <div style={{ position: 'relative', display: 'flex', alignItems: 'center', minWidth: 240 }}>
-        <span style={{ position: 'absolute', left: 8, display: 'flex', color: 'var(--sb-text-muted)', pointerEvents: 'none' }}>
+        <span
+          style={{
+            position: 'absolute',
+            left: 8,
+            display: 'flex',
+            color: 'var(--sb-text-muted)',
+            pointerEvents: 'none',
+          }}
+        >
           <ChromeIcon name="magnifer" size={14} />
         </span>
         <input
@@ -262,7 +275,12 @@ export function ShareLink() {
   };
 
   return (
-    <button type="button" className="sb-control sb-button" onClick={share} title="Copy a link to this page, filters and all">
+    <button
+      type="button"
+      className="sb-control sb-button"
+      onClick={share}
+      title="Copy a link to this page, filters and all"
+    >
       <ChromeIcon name="link-round" size={14} />
       Copy link
     </button>
@@ -298,7 +316,9 @@ export function Count({ children, tone = 'neutral' }: { children: ReactNode; ton
 
 /** Right-aligned group of counts inside a toolbar. */
 export function Counts({ children }: { children: ReactNode }) {
-  return <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 28, marginLeft: 'auto' }}>{children}</div>;
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 28, marginLeft: 'auto' }}>{children}</div>
+  );
 }
 
 /** An aside about the data itself — a Figma quirk, a caveat, a heads-up. */
@@ -328,29 +348,6 @@ export function Empty({ query, onClear }: { query: string; onClear: () => void }
       </button>
     </div>
   );
-}
-
-// --- searching ---------------------------------------------------------------
-
-/**
- * Every whitespace-separated term has to appear somewhere in the record.
- *
- * Icon names are hyphenated, so a plain substring test fails the most natural
- * query there is: "arrow up" does not occur in `alt-arrow-up`. Separators are
- * flattened to spaces on both sides, and the terms are matched independently so
- * word order does not matter either.
- */
-export function matches(query: string, ...fields: (string | null | undefined)[]): boolean {
-  const terms = query.toLowerCase().split(/[\s,]+/).filter(Boolean);
-  if (terms.length === 0) return true;
-
-  const haystack = fields
-    .filter(Boolean)
-    .join(' ')
-    .toLowerCase()
-    .replace(/[-_/]+/g, ' ');
-
-  return terms.every((term) => haystack.includes(term.replace(/[-_/]+/g, ' ')));
 }
 
 // --- mode scoping ------------------------------------------------------------
@@ -430,18 +427,6 @@ function resolve(cssVar: string, kind: 'color' | 'length'): string {
   probe.style.width = `var(${cssVar})`;
   const width = getComputedStyle(probe).width;
   return width === 'auto' ? '' : `${Math.round(parseFloat(width) * 100) / 100}px`;
-}
-
-/** `rgb(59 130 246 / 0.4)` and `rgb(59, 130, 246)` alike -> `#3b82f6` (+ alpha). */
-function toHex(value: string): string {
-  const parts = value.match(/[\d.]+/g);
-  if (!parts || parts.length < 3) return value;
-  const hex = parts
-    .slice(0, 3)
-    .map((part) => Math.round(Number(part)).toString(16).padStart(2, '0'))
-    .join('');
-  const alpha = parts[3] !== undefined ? Math.round(Number(parts[3]) * 255).toString(16).padStart(2, '0') : '';
-  return `#${hex}${alpha === 'ff' ? '' : alpha}`;
 }
 
 /** Re-reads whenever a mode attribute on `<html>` changes. */

@@ -1,4 +1,12 @@
-import { forwardRef, type ButtonHTMLAttributes, type CSSProperties, type ElementType, type HTMLAttributes, type InputHTMLAttributes, type ReactNode } from 'react';
+import {
+  forwardRef,
+  type ButtonHTMLAttributes,
+  type CSSProperties,
+  type ElementType,
+  type HTMLAttributes,
+  type InputHTMLAttributes,
+  type ReactNode,
+} from 'react';
 
 const cx = (...parts: (string | false | undefined)[]) => parts.filter(Boolean).join(' ');
 
@@ -9,17 +17,43 @@ const space = (token: SpaceToken) => `var(--box-spacing-base-${token})`;
 // --- Text --------------------------------------------------------------------
 
 export type TextVariant =
-  | 'display-l' | 'display-m' | 'display-s'
-  | 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
-  | 'body-l' | 'body-m'
-  | 'caption-l' | 'caption-m';
+  | 'display-l'
+  | 'display-m'
+  | 'display-s'
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'body-l'
+  | 'body-m'
+  | 'caption-l'
+  | 'caption-m';
 
-export type TextTone = 'primary' | 'secondary' | 'tertiary' | 'disabled' | 'primary-sentiment' | 'positive' | 'warning' | 'negative' | 'informative';
+export type TextTone =
+  | 'primary'
+  | 'secondary'
+  | 'tertiary'
+  | 'disabled'
+  | 'primary-sentiment'
+  | 'positive'
+  | 'warning'
+  | 'negative'
+  | 'informative';
 
 const DEFAULT_TAG: Record<TextVariant, ElementType> = {
-  'display-l': 'h1', 'display-m': 'h1', 'display-s': 'h1',
-  h1: 'h1', h2: 'h2', h3: 'h3', h4: 'h4', h5: 'h5',
-  'body-l': 'p', 'body-m': 'p', 'caption-l': 'span', 'caption-m': 'span',
+  'display-l': 'h1',
+  'display-m': 'h1',
+  'display-s': 'h1',
+  h1: 'h1',
+  h2: 'h2',
+  h3: 'h3',
+  h4: 'h4',
+  h5: 'h5',
+  'body-l': 'p',
+  'body-m': 'p',
+  'caption-l': 'span',
+  'caption-m': 'span',
 };
 
 export interface TextProps extends HTMLAttributes<HTMLElement> {
@@ -33,7 +67,10 @@ export interface TextProps extends HTMLAttributes<HTMLElement> {
 export function Text({ variant = 'body-m', tone, as, className, children, ...rest }: TextProps) {
   const Tag = as ?? DEFAULT_TAG[variant];
   return (
-    <Tag className={cx('box-text', `box-text--${variant}`, tone && tone !== 'primary' && `box-text--${tone}`, className)} {...rest}>
+    <Tag
+      className={cx('box-text', `box-text--${variant}`, tone && tone !== 'primary' && `box-text--${tone}`, className)}
+      {...rest}
+    >
       {children}
     </Tag>
   );
@@ -50,11 +87,27 @@ export interface StackProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
 }
 
-export function Stack({ direction = 'column', gap = 'xs', align, justify, wrap, className, style, children, ...rest }: StackProps) {
+export function Stack({
+  direction = 'column',
+  gap = 'xs',
+  align,
+  justify,
+  wrap,
+  className,
+  style,
+  children,
+  ...rest
+}: StackProps) {
   return (
     <div
       className={cx('box-stack', `box-stack--${direction}`, className)}
-      style={{ gap: space(gap), alignItems: align, justifyContent: justify, flexWrap: wrap ? 'wrap' : undefined, ...style }}
+      style={{
+        gap: space(gap),
+        alignItems: align,
+        justifyContent: justify,
+        flexWrap: wrap ? 'wrap' : undefined,
+        ...style,
+      }}
       {...rest}
     >
       {children}
@@ -102,7 +155,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     <button
       ref={ref}
       type={type}
-      className={cx('box-button', `box-button--${variant}`, `box-button--${size}`, iconOnly && 'box-button--icon-only', className)}
+      className={cx(
+        'box-button',
+        `box-button--${variant}`,
+        `box-button--${size}`,
+        iconOnly && 'box-button--icon-only',
+        className,
+      )}
       {...rest}
     >
       {startIcon}
@@ -138,7 +197,10 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   error?: string;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(function Input({ label, hint, error, id, className, ...rest }, ref) {
+export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { label, hint, error, id, className, ...rest },
+  ref,
+) {
   const inputId = id ?? (label ? `box-input-${label.replace(/\s+/g, '-').toLowerCase()}` : undefined);
   const message = error ?? hint;
 
@@ -149,7 +211,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input({ l
           {label}
         </label>
       )}
-      <input ref={ref} id={inputId} className={cx('box-input', className)} aria-invalid={error ? true : undefined} {...rest} />
+      <input
+        ref={ref}
+        id={inputId}
+        className={cx('box-input', className)}
+        aria-invalid={error ? true : undefined}
+        {...rest}
+      />
       {message && <span className={cx('box-field__hint', error && 'box-field__hint--error')}>{message}</span>}
     </div>
   );

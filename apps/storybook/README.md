@@ -27,7 +27,7 @@ It follows `prefers-color-scheme` exactly as the manager does, so the canvas can
 drift from the toolbar above it. Write documentation UI against `--sb-*`.
 
 **Box UI tokens paint only what is being documented.** Any demo that uses them must carry
-its own background *and* foreground — `demoSurface` in `_ui.tsx` does this — otherwise a
+its own background _and_ foreground — `demoSurface` in `_ui.tsx` does this — otherwise a
 Light-theme demo disappears against a dark canvas. That is a real bug this repo has
 already shipped twice.
 
@@ -38,17 +38,17 @@ attributes; `iconStyle` goes through `<IconStyleProvider>`. A story reads them f
 second render argument:
 
 ```tsx
-render: (_args, { globals }) => <Family id="flags" globals={globals as ModeGlobals} />
+render: (_args, { globals }) => <Family id="flags" globals={globals as ModeGlobals} />;
 ```
 
-To resolve two modes side by side on one page, use `<Scope>` — and set *all five*
+To resolve two modes side by side on one page, use `<Scope>` — and set _all five_
 attributes, for the reason spelled out in the root README.
 
 ## Filters live in args, not in `useState`
 
 Anything the reader can change on a page — a search, a select, a checkbox — is a
 Storybook **arg**. Storybook keeps args in the URL, so a filtered view is a link
-someone can paste to a colleague, and the *Copy link* button in each toolbar hands
+someone can paste to a colleague, and the _Copy link_ button in each toolbar hands
 it over.
 
 `useArgs` reads Storybook's own hook context, so it has to be called from the story's
@@ -73,7 +73,7 @@ through the URL.
 ## Chrome icons are pinned
 
 `<ChromeIcon>` in `_ui.tsx` always renders Linear. Documentation UI must not follow the
-reader's *Icon style* choice, and Solar does not draw every icon in every style —
+reader's _Icon style_ choice, and Solar does not draw every icon in every style —
 `magnifer` has no Bold Duotone or Line Duotone, which once emptied the search field on
 those two settings. Use it for anything that is part of the interface rather than part
 of the subject.

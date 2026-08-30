@@ -47,7 +47,9 @@ function parseValue(raw) {
 export function parseDumps(dir) {
   const out = [];
 
-  for (const file of readdirSync(dir).filter((f) => f.endsWith('.txt')).sort()) {
+  for (const file of readdirSync(dir)
+    .filter((f) => f.endsWith('.txt'))
+    .sort()) {
     const base = file.replace(/\.txt$/, '');
     if (base.startsWith('icons.')) continue; // component catalogue, not variables
 

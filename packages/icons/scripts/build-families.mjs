@@ -75,7 +75,9 @@ const FLAG_ALIASES = {
 
 function buildFlags() {
   const dir = nodeModules('flag-icons', 'flags', '4x3');
-  const codes = readdirSync(dir).filter((f) => f.endsWith('.svg')).map((f) => f.replace('.svg', ''));
+  const codes = readdirSync(dir)
+    .filter((f) => f.endsWith('.svg'))
+    .map((f) => f.replace('.svg', ''));
 
   const byName = {};
   const display = new Intl.DisplayNames(['en'], { type: 'region' });

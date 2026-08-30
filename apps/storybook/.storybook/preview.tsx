@@ -83,10 +83,12 @@ const globalTypes: Preview['globalTypes'] = {
       title: 'Accent',
       icon: 'paintbrush',
       dynamicTitle: true,
-      items: ['blue', 'sky', 'teal', 'emerald', 'orange', 'amber', 'violet', 'purple', 'cyan', 'yellow'].map((value) => ({
-        value,
-        title: value[0].toUpperCase() + value.slice(1),
-      })),
+      items: ['blue', 'sky', 'teal', 'emerald', 'orange', 'amber', 'violet', 'purple', 'cyan', 'yellow'].map(
+        (value) => ({
+          value,
+          title: value[0].toUpperCase() + value.slice(1),
+        }),
+      ),
     },
   },
   radius: {

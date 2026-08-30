@@ -29,7 +29,10 @@ const RAMP: { variant: TextVariant; token: string; sample: string }[] = [
 function sizesFor(token: string) {
   const size = grid.variables.find((v) => v.path === `${token}/font-size`);
   const line = grid.variables.find((v) => v.path === `${token}/line-height`);
-  return { desktop: `${size?.values.desktop?.alias} / ${line?.values.desktop?.alias}`, mobile: `${size?.values.mobile?.alias} / ${line?.values.mobile?.alias}` };
+  return {
+    desktop: `${size?.values.desktop?.alias} / ${line?.values.desktop?.alias}`,
+    mobile: `${size?.values.mobile?.alias} / ${line?.values.mobile?.alias}`,
+  };
 }
 
 export const Ramp: Story = {

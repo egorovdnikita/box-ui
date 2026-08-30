@@ -21,11 +21,11 @@ import { Badge, BoxUIProvider, Button, Card, Input, Stack, Text } from '@box-ui/
 (the default) puts them on a wrapper `<div>`, so several themes can coexist on one page;
 `target="root"` writes them on `<html>` instead and restores the previous values on unmount.
 
-| Component | Tokens it leans on |
-| --- | --- |
-| `Text` | the `typography/*` ramp from Grid |
-| `Stack` | `spacing/base/*` |
-| `Card` | `background/base/*`, `border/base/*`, `rounding/base/l` |
-| `Button` | `control/*`, `size/base/*`, `rounding/base/s`, `border/focus/base` |
-| `Badge` | `background/sentiment/*`, `content/sentiment/*` |
-| `Input` | `border/base/*`, `border/sentiment/negative`, `interactive/disabled` |
+| Component | Tokens it leans on                                                   |
+| --------- | -------------------------------------------------------------------- |
+| `Text`    | the `typography/*` ramp from Grid                                    |
+| `Stack`   | `spacing/base/*`                                                     |
+| `Card`    | `background/base/*`, `border/base/*`, `rounding/base/l`              |
+| `Button`  | `control/*`, `size/base/*`, `rounding/base/s`, `border/focus/base`   |
+| `Badge`   | `background/sentiment/*`, `content/sentiment/*`                      |
+| `Input`   | `border/base/*`, `border/sentiment/negative`, `interactive/disabled` |

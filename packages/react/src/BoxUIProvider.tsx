@@ -1,8 +1,9 @@
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useMemo, type ReactNode } from 'react';
 import { IconStyleProvider, type IconStyle } from '@box-ui/icons';
 
 export type ThemeMode = 'light' | 'dark';
-export type AccentMode = 'blue' | 'sky' | 'teal' | 'emerald' | 'orange' | 'amber' | 'violet' | 'purple' | 'cyan' | 'yellow';
+export type AccentMode =
+  'blue' | 'sky' | 'teal' | 'emerald' | 'orange' | 'amber' | 'violet' | 'purple' | 'cyan' | 'yellow';
 export type RadiusMode = 'low' | 'medium' | 'high';
 export type FontMode = 'inter' | 'inter-display' | 'inter-tight' | 'inter-variable';
 export type DeviceMode = 'desktop' | 'mobile';
@@ -51,7 +52,15 @@ function attributesFor(settings: BoxUISettings): Record<string, string> {
  * device -> Grid, iconStyle -> the `Icon` collection.
  */
 export function BoxUIProvider({ target = 'local', className, children, ...settings }: BoxUIProviderProps) {
-  const attrs = attributesFor(settings);
+  const { theme, accent, radius, font, device } = settings;
+
+  // Memoised on the five primitives so the effect below can depend on `attrs`
+  // itself. It used to depend on `JSON.stringify(attrs)`, which worked but was
+  // opaque to both the reader and the exhaustive-deps check.
+  const attrs = useMemo(
+    () => attributesFor({ theme, accent, radius, font, device }),
+    [theme, accent, radius, font, device],
+  );
 
   useEffect(() => {
     if (target !== 'root' || typeof document === 'undefined') return;
@@ -64,7 +73,7 @@ export function BoxUIProvider({ target = 'local', className, children, ...settin
         else root.setAttribute(attribute, value);
       }
     };
-  }, [target, JSON.stringify(attrs)]);
+  }, [target, attrs]);
 
   const content = <IconStyleProvider style={settings.iconStyle ?? 'linear'}>{children}</IconStyleProvider>;
 

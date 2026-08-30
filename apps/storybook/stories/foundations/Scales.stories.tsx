@@ -19,7 +19,8 @@ function deviceValue(v: { values: Record<string, { alias?: string } | undefined>
   return desktop === mobile ? desktop : `${desktop} · mobile ${mobile}`;
 }
 
-const RESPONSIVE_HINT = 'Rows where the two differ compress on Mobile — switch “Device” in the toolbar to watch them move.';
+const RESPONSIVE_HINT =
+  'Rows where the two differ compress on Mobile — switch “Device” in the toolbar to watch them move.';
 
 export const Spacing: Story = {
   render: () => (
@@ -148,7 +149,10 @@ export const Opacity: Story = {
       <Section title="Steps" aside={<Count>{model.collections.opacity.variables.length} steps</Count>}>
         <Grid min={112}>
           {model.collections.opacity.variables.map((v) => (
-            <div key={v.cssVar} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-min)' }}>
+            <div
+              key={v.cssVar}
+              style={{ display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-min)' }}
+            >
               <div
                 style={{
                   height: 46,

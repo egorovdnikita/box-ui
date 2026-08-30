@@ -84,7 +84,11 @@ function IconTile({
     <button
       type="button"
       className={drawn ? 'sb-cell' : 'sb-cell sb-cell--muted'}
-      title={drawn ? `${icon.name} · ${icon.category}` : `${icon.name} · ${icon.category} — not drawn in ${ICON_STYLE_LABELS[style]}`}
+      title={
+        drawn
+          ? `${icon.name} · ${icon.category}`
+          : `${icon.name} · ${icon.category} — not drawn in ${ICON_STYLE_LABELS[style]}`
+      }
       onClick={() => copy(snippet(copyAs, icon.name, drawn ? style : icon.styles[0], size), icon.name)}
       style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 68px' }}
     >
@@ -179,12 +183,20 @@ export const Gallery: Story = {
               ]}
             />
             <label style={{ display: 'flex', alignItems: 'center', gap: 6, height: 28, cursor: 'pointer' }}>
-              <input type="checkbox" checked={onlyAvailable} onChange={(e) => set({ onlyAvailable: e.target.checked })} />
+              <input
+                type="checkbox"
+                checked={onlyAvailable}
+                onChange={(e) => set({ onlyAvailable: e.target.checked })}
+              />
               <Caption>Only this style</Caption>
             </label>
             <Counts>
               <Count>{filtered.length} icons</Count>
-              {missing > 0 && <Count tone="warning">{missing} not in {ICON_STYLE_LABELS[style]}</Count>}
+              {missing > 0 && (
+                <Count tone="warning">
+                  {missing} not in {ICON_STYLE_LABELS[style]}
+                </Count>
+              )}
               {dirty && <ResetFilters onReset={() => set(GALLERY_DEFAULTS)} />}
               <ShareLink />
             </Counts>
@@ -245,7 +257,10 @@ export const Styles: Story = {
                           <Icon name={name} iconStyle={style} size="s" style={{ margin: '0 auto' }} />
                         ) : (
                           // Solar has gaps; an empty cell would read as a broken table.
-                          <span title={`Solar draws no ${ICON_STYLE_LABELS[style]} for ${name}`} style={{ color: 'var(--sb-text-muted)', opacity: 0.5 }}>
+                          <span
+                            title={`Solar draws no ${ICON_STYLE_LABELS[style]} for ${name}`}
+                            style={{ color: 'var(--sb-text-muted)', opacity: 0.5 }}
+                          >
                             —
                           </span>
                         )}
@@ -283,7 +298,9 @@ export const Sizes: Story = {
         title="Colour"
         description="Icons paint with `currentColor`, so they inherit whichever `--box-content-*` token their container uses. These are Box UI content tokens, so they sit on a Box UI surface — flip Theme in the toolbar and the whole card follows."
       >
-        <div style={{ ...demoSurface, display: 'flex', gap: 20, flexWrap: 'wrap', padding: 'var(--box-spacing-base-m)' }}>
+        <div
+          style={{ ...demoSurface, display: 'flex', gap: 20, flexWrap: 'wrap', padding: 'var(--box-spacing-base-m)' }}
+        >
           {[
             ['primary', 'var(--box-content-base-primary)'],
             ['secondary', 'var(--box-content-base-secondary)'],

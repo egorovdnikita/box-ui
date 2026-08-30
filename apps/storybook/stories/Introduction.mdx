@@ -7,15 +7,15 @@ import { Meta } from '@storybook/addon-docs/blocks';
 Design tokens and icons generated directly from three Figma libraries, with every
 **Variable mode** wired to a switch in the toolbar above.
 
-| Figma file | Collection | Modes | Switch |
-| --- | --- | --- | --- |
-| Box UI \| Primitives | Color Palette, Spacing, Rounding, Size, Opacity, Typography | *Value* only | — |
-| Box UI \| Tokens | **Color** | Blue, Sky, Teal, Emerald, Orange, Amber, Violet, Purple, Cyan, Yellow | `data-accent` |
-| Box UI \| Tokens | **Mode** | Light, Dark | `data-theme` |
-| Box UI \| Tokens | **Rounding** | Low, Medium, High | `data-radius` |
-| Box UI \| Tokens | **Typography** | Inter, Inter Display, Inter Tight, Inter Variable | `data-font` |
-| Box UI \| Tokens | **Grid** | Desktop, Mobile | `data-device` |
-| Box UI \| Icons | **Icon** | Bold, Bold Duotone, Broken, Line Duotone, Linear, Outline | `<IconStyleProvider>` |
+| Figma file           | Collection                                                  | Modes                                                                 | Switch                |
+| -------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------- | --------------------- |
+| Box UI \| Primitives | Color Palette, Spacing, Rounding, Size, Opacity, Typography | _Value_ only                                                          | —                     |
+| Box UI \| Tokens     | **Color**                                                   | Blue, Sky, Teal, Emerald, Orange, Amber, Violet, Purple, Cyan, Yellow | `data-accent`         |
+| Box UI \| Tokens     | **Mode**                                                    | Light, Dark                                                           | `data-theme`          |
+| Box UI \| Tokens     | **Rounding**                                                | Low, Medium, High                                                     | `data-radius`         |
+| Box UI \| Tokens     | **Typography**                                              | Inter, Inter Display, Inter Tight, Inter Variable                     | `data-font`           |
+| Box UI \| Tokens     | **Grid**                                                    | Desktop, Mobile                                                       | `data-device`         |
+| Box UI \| Icons      | **Icon**                                                    | Bold, Bold Duotone, Broken, Line Duotone, Linear, Outline             | `<IconStyleProvider>` |
 
 ## How a token resolves
 
@@ -56,12 +56,12 @@ import { Icon } from '@box-ui/icons';
 ### Scoping to part of a page
 
 A custom property is substituted **where it is declared**, not where it is read. To switch
-modes for a subtree, set *all five* attributes on that one element — every layer then
+modes for a subtree, set _all five_ attributes on that one element — every layer then
 re-declares there and the chain resolves locally. Overriding only `data-accent` deeper in
 the tree cannot reach a Mode token that an ancestor already resolved.
 
 ```html
-<div data-theme="dark" data-accent="violet" data-radius="high" data-font="inter" data-device="desktop">
+<div data-theme="dark" data-accent="violet" data-radius="high" data-font="inter" data-device="desktop"></div>
 ```
 
 `@box-ui/tokens/css/adaptive.css` is optional: it picks Dark from

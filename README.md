@@ -4,11 +4,11 @@ Design tokens and icons generated from the **Box UI** Figma libraries, with a St
 in which every Figma **Variable mode** — colour theme, accent, rounding density, typeface
 and device — can be switched live.
 
-| Figma file | What it contributes |
-| --- | --- |
+| Figma file                                                                                     | What it contributes                                                          |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [Box UI \| Primitives](https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Box-UI--Primitives) | 777 raw values: colour palette, spacing, rounding, size, opacity, type scale |
-| [Box UI \| Tokens](https://www.figma.com/design/ccLFzQtw3AuTuHWoHYf2dS/Box-UI--Tokens) | 234 semantic tokens across 5 switchable collections |
-| [Box UI \| Icons](https://www.figma.com/design/9pupgeWag4Ssc7jdAYvXMt/Box-UI--Icons) | UI Icons (Solar) in 6 styles, plus Flags / Payments / Brands |
+| [Box UI \| Tokens](https://www.figma.com/design/ccLFzQtw3AuTuHWoHYf2dS/Box-UI--Tokens)         | 234 semantic tokens across 5 switchable collections                          |
+| [Box UI \| Icons](https://www.figma.com/design/9pupgeWag4Ssc7jdAYvXMt/Box-UI--Icons)           | UI Icons (Solar) in 6 styles, plus Flags / Payments / Brands                 |
 
 **→ [Live Storybook](https://egorovdnikita.github.io/box-ui/)**
 
@@ -61,16 +61,17 @@ A radius, which passes through two switchable layers:
 
 ### Switches
 
-| Attribute | Figma collection | Values | Default |
-| --- | --- | --- | --- |
-| `data-theme` | Mode | `light` `dark` | `light` |
-| `data-accent` | Color | `blue` `sky` `teal` `emerald` `orange` `amber` `violet` `purple` `cyan` `yellow` | `blue` |
-| `data-radius` | Rounding | `low` `medium` `high` | `medium` |
-| `data-font` | Typography | `inter` `inter-display` `inter-tight` `inter-variable` | `inter` |
-| `data-device` | Grid | `desktop` `mobile` | `desktop` |
+| Attribute     | Figma collection | Values                                                                           | Default   |
+| ------------- | ---------------- | -------------------------------------------------------------------------------- | --------- |
+| `data-theme`  | Mode             | `light` `dark`                                                                   | `light`   |
+| `data-accent` | Color            | `blue` `sky` `teal` `emerald` `orange` `amber` `violet` `purple` `cyan` `yellow` | `blue`    |
+| `data-radius` | Rounding         | `low` `medium` `high`                                                            | `medium`  |
+| `data-font`   | Typography       | `inter` `inter-display` `inter-tight` `inter-variable`                           | `inter`   |
+| `data-device` | Grid             | `desktop` `mobile`                                                               | `desktop` |
 
 They compose freely:
 
+<!-- prettier-ignore -->
 ```html
 <html data-theme="dark" data-accent="violet" data-radius="high" data-device="mobile">
 ```
@@ -86,6 +87,7 @@ So when you scope modes to a subtree, put **all five attributes on that one elem
 Every layer is then re-declared there and the whole chain resolves locally — which is how
 two themes can sit side by side on one page.
 
+<!-- prettier-ignore -->
 ```html
 <!-- works: the whole chain re-declares here -->
 <div data-theme="dark" data-accent="violet" data-radius="high" data-font="inter" data-device="desktop">
@@ -101,12 +103,12 @@ and Mobile below 768px whenever the document has not set those attributes itself
 
 ## Packages
 
-| Package | Contents |
-| --- | --- |
-| [`@box-ui/tokens`](packages/tokens) | CSS custom properties + a typed JS token API, generated from the Figma dumps |
-| [`@box-ui/icons`](packages/icons) | 1 301 Solar icons × 6 styles, plus the Flags / Payments / Brands families |
-| [`@box-ui/react`](packages/react) | Button, Badge, Card, Input, Text, Stack — primitives that prove the token graph, with not one literal value between them |
-| [`apps/storybook`](apps/storybook) | The documentation site — see below |
+| Package                             | Contents                                                                                                                 |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| [`@box-ui/tokens`](packages/tokens) | CSS custom properties + a typed JS token API, generated from the Figma dumps                                             |
+| [`@box-ui/icons`](packages/icons)   | 1 301 Solar icons × 6 styles, plus the Flags / Payments / Brands families                                                |
+| [`@box-ui/react`](packages/react)   | Button, Badge, Card, Input, Text, Stack — primitives that prove the token graph, with not one literal value between them |
+| [`apps/storybook`](apps/storybook)  | The documentation site — see below                                                                                       |
 
 ```tsx
 import '@box-ui/tokens/css';
@@ -128,7 +130,7 @@ import { Icon } from '@box-ui/icons';
 The six toolbar switches drive the Figma modes, and every page reacts to all of them
 at once. What the pages give you beyond a list of names:
 
-- **Live values.** Each token shows what it *resolves to* under the current modes, not
+- **Live values.** Each token shows what it _resolves to_ under the current modes, not
   just the alias it points at — `spacing/base/s` reads `20px` on Desktop and `16px` on
   Mobile, semantic colours read their hex. Reading a custom property back only ever
   returns its declaration, so the value is measured off a probe element and re-measured
@@ -175,7 +177,7 @@ The other three families of the Figma file ship too — 197 flags, 675 payment m
 import { FamilyIcon, useFamily } from '@box-ui/icons';
 
 const flags = useFamily('flags');
-<FamilyIcon entry={flags.items[0]} shape="circle" size="max" />
+<FamilyIcon entry={flags.items[0]} shape="circle" size="max" />;
 ```
 
 The Figma file is the source of truth for the roster; the artwork comes from the
@@ -205,9 +207,34 @@ repo; the build only transforms them.
 ```bash
 npm run build:tokens   # tokens/figma/*.txt -> packages/tokens/dist/
 npm run build:icons    # Solar + the three families -> packages/icons/src/data/
-npm run typecheck
 npm run build:storybook
 ```
+
+---
+
+## Checks
+
+```bash
+npm run check   # typecheck + lint + format:check + test
+```
+
+The pieces run on their own too: `typecheck`, `lint` (`lint:fix`), `format`
+(`format:check`), `test` (`test:watch`).
+
+The 29 tests are about the two things that can rot quietly:
+
+- **The token pipeline.** Every `var()` in the generated CSS has to land on a variable
+  that exists — a hop that lands nowhere is a transparent colour or a collapsed length,
+  invisible until someone opens the page. The same suite checks that every Figma alias
+  resolves, that no variable is missing a mode, and that the `Hight` spelling is still
+  tolerated.
+- **The icon data.** The catalogue and the six per-style payloads have to agree in both
+  directions: every style an icon claims must have geometry, and every icon with geometry
+  must claim it. Nothing may carry a baked `fill="#…"`, or it would ignore the
+  `--box-content-*` token around it.
+
+Plus the search matcher and the colour readout, which are pure functions with unobvious
+rules.
 
 ---
 
@@ -228,7 +255,7 @@ gh auth refresh -s workflow
 mkdir -p .github/workflows && cp docs/storybook-pages-workflow.yml .github/workflows/storybook.yml
 ```
 
-Then switch the Pages source to *GitHub Actions* in the repository settings.
+Then switch the Pages source to _GitHub Actions_ in the repository settings.
 
 When the Figma libraries change, update the dumps (the Figma MCP server or the REST API
 can print the same shape) and re-run the build. Nothing else needs to be touched.
@@ -237,8 +264,8 @@ can print the same shape) and re-run the build. Nothing else needs to be touched
 
 These are reproduced exactly rather than silently corrected — fix them in Figma and rebuild:
 
-- In the **Color** collection the `Teal` mode points at the *green* ramp, `Cyan` at *pink*,
-  and `Yellow` at *rose*. The Storybook says so on *Foundations → Colors → Accent modes*,
+- In the **Color** collection the `Teal` mode points at the _green_ ramp, `Cyan` at _pink_,
+  and `Yellow` at _rose_. The Storybook says so on _Foundations → Colors → Accent modes_,
   worked out from the token model, so the note disappears by itself once Figma is fixed.
 - The strongest **Rounding** mode is spelled `Hight` in Figma. The generated CSS uses
   `data-radius="high"` and also accepts `data-radius="hight"`.

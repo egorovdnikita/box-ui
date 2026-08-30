@@ -4,7 +4,7 @@
  * the element (or on <html>) and everything re-resolves.
  */
 
-@import "@box-ui/tokens/css";
+@import '@box-ui/tokens/css';
 
 /* --- Text ---------------------------------------------------------------- */
 
@@ -30,27 +30,91 @@
   font-weight: var(--box-typography-font-weight-semibold);
 }
 
-.box-text--display-l { font-size: var(--box-typography-display-l-font-size); line-height: var(--box-typography-display-l-line-height); letter-spacing: var(--box-typography-display-l-letter-spacing); }
-.box-text--display-m { font-size: var(--box-typography-display-m-font-size); line-height: var(--box-typography-display-m-line-height); letter-spacing: var(--box-typography-display-m-letter-spacing); }
-.box-text--display-s { font-size: var(--box-typography-display-s-font-size); line-height: var(--box-typography-display-s-line-height); letter-spacing: var(--box-typography-display-s-letter-spacing); }
-.box-text--h1 { font-size: var(--box-typography-heading-h1-font-size); line-height: var(--box-typography-heading-h1-line-height); letter-spacing: var(--box-typography-heading-h1-letter-spacing); }
-.box-text--h2 { font-size: var(--box-typography-heading-h2-font-size); line-height: var(--box-typography-heading-h2-line-height); letter-spacing: var(--box-typography-heading-h2-letter-spacing); }
-.box-text--h3 { font-size: var(--box-typography-heading-h3-font-size); line-height: var(--box-typography-heading-h3-line-height); letter-spacing: var(--box-typography-heading-h3-letter-spacing); }
-.box-text--h4 { font-size: var(--box-typography-heading-h4-font-size); line-height: var(--box-typography-heading-h4-line-height); letter-spacing: var(--box-typography-heading-h4-letter-spacing); }
-.box-text--h5 { font-size: var(--box-typography-heading-h5-font-size); line-height: var(--box-typography-heading-h5-line-height); letter-spacing: var(--box-typography-heading-h5-letter-spacing); }
-.box-text--body-l { font-size: var(--box-typography-body-l-font-size); line-height: var(--box-typography-body-l-line-height); letter-spacing: var(--box-typography-body-l-letter-spacing); }
-.box-text--body-m { font-size: var(--box-typography-body-m-font-size); line-height: var(--box-typography-body-m-line-height); letter-spacing: var(--box-typography-body-m-letter-spacing); }
-.box-text--caption-l { font-size: var(--box-typography-caption-l-font-size); line-height: var(--box-typography-caption-l-line-height); letter-spacing: var(--box-typography-caption-l-letter-spacing); }
-.box-text--caption-m { font-size: var(--box-typography-caption-m-font-size); line-height: var(--box-typography-caption-m-line-height); letter-spacing: var(--box-typography-caption-m-letter-spacing); }
+.box-text--display-l {
+  font-size: var(--box-typography-display-l-font-size);
+  line-height: var(--box-typography-display-l-line-height);
+  letter-spacing: var(--box-typography-display-l-letter-spacing);
+}
+.box-text--display-m {
+  font-size: var(--box-typography-display-m-font-size);
+  line-height: var(--box-typography-display-m-line-height);
+  letter-spacing: var(--box-typography-display-m-letter-spacing);
+}
+.box-text--display-s {
+  font-size: var(--box-typography-display-s-font-size);
+  line-height: var(--box-typography-display-s-line-height);
+  letter-spacing: var(--box-typography-display-s-letter-spacing);
+}
+.box-text--h1 {
+  font-size: var(--box-typography-heading-h1-font-size);
+  line-height: var(--box-typography-heading-h1-line-height);
+  letter-spacing: var(--box-typography-heading-h1-letter-spacing);
+}
+.box-text--h2 {
+  font-size: var(--box-typography-heading-h2-font-size);
+  line-height: var(--box-typography-heading-h2-line-height);
+  letter-spacing: var(--box-typography-heading-h2-letter-spacing);
+}
+.box-text--h3 {
+  font-size: var(--box-typography-heading-h3-font-size);
+  line-height: var(--box-typography-heading-h3-line-height);
+  letter-spacing: var(--box-typography-heading-h3-letter-spacing);
+}
+.box-text--h4 {
+  font-size: var(--box-typography-heading-h4-font-size);
+  line-height: var(--box-typography-heading-h4-line-height);
+  letter-spacing: var(--box-typography-heading-h4-letter-spacing);
+}
+.box-text--h5 {
+  font-size: var(--box-typography-heading-h5-font-size);
+  line-height: var(--box-typography-heading-h5-line-height);
+  letter-spacing: var(--box-typography-heading-h5-letter-spacing);
+}
+.box-text--body-l {
+  font-size: var(--box-typography-body-l-font-size);
+  line-height: var(--box-typography-body-l-line-height);
+  letter-spacing: var(--box-typography-body-l-letter-spacing);
+}
+.box-text--body-m {
+  font-size: var(--box-typography-body-m-font-size);
+  line-height: var(--box-typography-body-m-line-height);
+  letter-spacing: var(--box-typography-body-m-letter-spacing);
+}
+.box-text--caption-l {
+  font-size: var(--box-typography-caption-l-font-size);
+  line-height: var(--box-typography-caption-l-line-height);
+  letter-spacing: var(--box-typography-caption-l-letter-spacing);
+}
+.box-text--caption-m {
+  font-size: var(--box-typography-caption-m-font-size);
+  line-height: var(--box-typography-caption-m-line-height);
+  letter-spacing: var(--box-typography-caption-m-letter-spacing);
+}
 
-.box-text--secondary { color: var(--box-content-base-secondary); }
-.box-text--tertiary { color: var(--box-content-base-tertiary); }
-.box-text--disabled { color: var(--box-content-base-disabled); }
-.box-text--primary-sentiment { color: var(--box-content-sentiment-primary); }
-.box-text--positive { color: var(--box-content-sentiment-positive); }
-.box-text--warning { color: var(--box-content-sentiment-warning); }
-.box-text--negative { color: var(--box-content-sentiment-negative); }
-.box-text--informative { color: var(--box-content-sentiment-informative); }
+.box-text--secondary {
+  color: var(--box-content-base-secondary);
+}
+.box-text--tertiary {
+  color: var(--box-content-base-tertiary);
+}
+.box-text--disabled {
+  color: var(--box-content-base-disabled);
+}
+.box-text--primary-sentiment {
+  color: var(--box-content-sentiment-primary);
+}
+.box-text--positive {
+  color: var(--box-content-sentiment-positive);
+}
+.box-text--warning {
+  color: var(--box-content-sentiment-warning);
+}
+.box-text--negative {
+  color: var(--box-content-sentiment-negative);
+}
+.box-text--informative {
+  color: var(--box-content-sentiment-informative);
+}
 
 /* --- Stack --------------------------------------------------------------- */
 
@@ -59,8 +123,12 @@
   min-width: 0;
 }
 
-.box-stack--row { flex-direction: row; }
-.box-stack--column { flex-direction: column; }
+.box-stack--row {
+  flex-direction: row;
+}
+.box-stack--column {
+  flex-direction: column;
+}
 
 /* --- Surface / Card ------------------------------------------------------ */
 
@@ -73,8 +141,13 @@
   padding: var(--box-spacing-base-m);
 }
 
-.box-card--flat { background: var(--box-background-base-tertiary); border-color: transparent; }
-.box-card--outline { background: transparent; }
+.box-card--flat {
+  background: var(--box-background-base-tertiary);
+  border-color: transparent;
+}
+.box-card--outline {
+  background: transparent;
+}
 
 /* --- Button -------------------------------------------------------------- */
 
@@ -89,7 +162,10 @@
   font-family: var(--box-typography-font-family-body);
   font-weight: var(--box-typography-font-weight-semibold);
   cursor: pointer;
-  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
   white-space: nowrap;
 }
 
@@ -112,23 +188,56 @@
   line-height: var(--box-typography-body-l-line-height);
 }
 
-.box-button--primary { background: var(--box-control-primary-base); color: var(--box-content-static-white); }
-.box-button--primary:hover:not(:disabled) { background: var(--box-control-primary-hover); }
+.box-button--primary {
+  background: var(--box-control-primary-base);
+  color: var(--box-content-static-white);
+}
+.box-button--primary:hover:not(:disabled) {
+  background: var(--box-control-primary-hover);
+}
 
-.box-button--secondary { background: var(--box-control-neutral-secondary); color: var(--box-content-base-primary); }
-.box-button--secondary:hover:not(:disabled) { background: var(--box-control-neutral-secondary-hover); }
+.box-button--secondary {
+  background: var(--box-control-neutral-secondary);
+  color: var(--box-content-base-primary);
+}
+.box-button--secondary:hover:not(:disabled) {
+  background: var(--box-control-neutral-secondary-hover);
+}
 
-.box-button--outline { background: transparent; border-color: var(--box-border-base-neutral); color: var(--box-content-base-primary); }
-.box-button--outline:hover:not(:disabled) { border-color: var(--box-border-base-neutral-hover); background: var(--box-control-neutral-secondary); }
+.box-button--outline {
+  background: transparent;
+  border-color: var(--box-border-base-neutral);
+  color: var(--box-content-base-primary);
+}
+.box-button--outline:hover:not(:disabled) {
+  border-color: var(--box-border-base-neutral-hover);
+  background: var(--box-control-neutral-secondary);
+}
 
-.box-button--subtle { background: var(--box-control-primary-subtle); color: var(--box-content-sentiment-primary); }
-.box-button--subtle:hover:not(:disabled) { background: var(--box-control-primary-subtle-hover); }
+.box-button--subtle {
+  background: var(--box-control-primary-subtle);
+  color: var(--box-content-sentiment-primary);
+}
+.box-button--subtle:hover:not(:disabled) {
+  background: var(--box-control-primary-subtle-hover);
+}
 
-.box-button--ghost { background: transparent; color: var(--box-content-base-secondary); }
-.box-button--ghost:hover:not(:disabled) { background: var(--box-control-neutral-secondary); color: var(--box-content-base-primary); }
+.box-button--ghost {
+  background: transparent;
+  color: var(--box-content-base-secondary);
+}
+.box-button--ghost:hover:not(:disabled) {
+  background: var(--box-control-neutral-secondary);
+  color: var(--box-content-base-primary);
+}
 
-.box-button--danger { background: var(--box-background-sentiment-negative); color: var(--box-content-static-white); }
-.box-button--danger:hover:not(:disabled) { filter: brightness(0.94); }
+.box-button--danger {
+  background: var(--box-background-sentiment-negative);
+  color: var(--box-content-static-white);
+}
+.box-button--danger:hover:not(:disabled) {
+  filter: brightness(0.94);
+}
 
 .box-button:focus-visible {
   outline: 2px solid var(--box-border-focus-base);
@@ -142,7 +251,10 @@
   cursor: not-allowed;
 }
 
-.box-button--icon-only { padding-inline: 0; aspect-ratio: 1; }
+.box-button--icon-only {
+  padding-inline: 0;
+  aspect-ratio: 1;
+}
 
 /* --- Badge --------------------------------------------------------------- */
 
@@ -160,23 +272,63 @@
   font-weight: var(--box-typography-font-weight-semibold);
 }
 
-.box-badge--solid.box-badge--primary { background: var(--box-background-sentiment-primary); color: var(--box-content-static-white); }
-.box-badge--solid.box-badge--informative { background: var(--box-background-sentiment-informative); color: var(--box-content-static-white); }
-.box-badge--solid.box-badge--positive { background: var(--box-background-sentiment-positive); color: var(--box-content-static-white); }
-.box-badge--solid.box-badge--warning { background: var(--box-background-sentiment-warning); color: var(--box-content-static-black); }
-.box-badge--solid.box-badge--negative { background: var(--box-background-sentiment-negative); color: var(--box-content-static-white); }
-.box-badge--solid.box-badge--neutral { background: var(--box-control-neutral-primary); color: var(--box-content-sentiment-neutral); }
+.box-badge--solid.box-badge--primary {
+  background: var(--box-background-sentiment-primary);
+  color: var(--box-content-static-white);
+}
+.box-badge--solid.box-badge--informative {
+  background: var(--box-background-sentiment-informative);
+  color: var(--box-content-static-white);
+}
+.box-badge--solid.box-badge--positive {
+  background: var(--box-background-sentiment-positive);
+  color: var(--box-content-static-white);
+}
+.box-badge--solid.box-badge--warning {
+  background: var(--box-background-sentiment-warning);
+  color: var(--box-content-static-black);
+}
+.box-badge--solid.box-badge--negative {
+  background: var(--box-background-sentiment-negative);
+  color: var(--box-content-static-white);
+}
+.box-badge--solid.box-badge--neutral {
+  background: var(--box-control-neutral-primary);
+  color: var(--box-content-sentiment-neutral);
+}
 
-.box-badge--subtle.box-badge--primary { background: var(--box-background-sentiment-primary-subtle); color: var(--box-content-sentiment-primary); }
-.box-badge--subtle.box-badge--informative { background: var(--box-background-sentiment-informative-subtle); color: var(--box-content-sentiment-informative); }
-.box-badge--subtle.box-badge--positive { background: var(--box-background-sentiment-positive-subtle); color: var(--box-content-sentiment-positive); }
-.box-badge--subtle.box-badge--warning { background: var(--box-background-sentiment-warning-subtle); color: var(--box-content-sentiment-warning); }
-.box-badge--subtle.box-badge--negative { background: var(--box-background-sentiment-negative-subtle); color: var(--box-content-sentiment-negative); }
-.box-badge--subtle.box-badge--neutral { background: var(--box-control-neutral-secondary); color: var(--box-content-sentiment-neutral); }
+.box-badge--subtle.box-badge--primary {
+  background: var(--box-background-sentiment-primary-subtle);
+  color: var(--box-content-sentiment-primary);
+}
+.box-badge--subtle.box-badge--informative {
+  background: var(--box-background-sentiment-informative-subtle);
+  color: var(--box-content-sentiment-informative);
+}
+.box-badge--subtle.box-badge--positive {
+  background: var(--box-background-sentiment-positive-subtle);
+  color: var(--box-content-sentiment-positive);
+}
+.box-badge--subtle.box-badge--warning {
+  background: var(--box-background-sentiment-warning-subtle);
+  color: var(--box-content-sentiment-warning);
+}
+.box-badge--subtle.box-badge--negative {
+  background: var(--box-background-sentiment-negative-subtle);
+  color: var(--box-content-sentiment-negative);
+}
+.box-badge--subtle.box-badge--neutral {
+  background: var(--box-control-neutral-secondary);
+  color: var(--box-content-sentiment-neutral);
+}
 
 /* --- Input --------------------------------------------------------------- */
 
-.box-field { display: flex; flex-direction: column; gap: var(--box-spacing-base-4xs); }
+.box-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--box-spacing-base-4xs);
+}
 
 .box-field__label {
   color: var(--box-content-base-secondary);
@@ -200,11 +352,32 @@
   line-height: var(--box-typography-body-m-line-height);
 }
 
-.box-input::placeholder { color: var(--box-content-base-tertiary); }
-.box-input:hover:not(:disabled) { border-color: var(--box-border-base-neutral-hover); }
-.box-input:focus-visible { outline: 2px solid var(--box-border-focus-base); outline-offset: 1px; border-color: var(--box-content-sentiment-primary); }
-.box-input:disabled { background: var(--box-interactive-disabled); color: var(--box-interactive-disabled-content); cursor: not-allowed; }
-.box-input[aria-invalid="true"] { border-color: var(--box-border-sentiment-negative); }
+.box-input::placeholder {
+  color: var(--box-content-base-tertiary);
+}
+.box-input:hover:not(:disabled) {
+  border-color: var(--box-border-base-neutral-hover);
+}
+.box-input:focus-visible {
+  outline: 2px solid var(--box-border-focus-base);
+  outline-offset: 1px;
+  border-color: var(--box-content-sentiment-primary);
+}
+.box-input:disabled {
+  background: var(--box-interactive-disabled);
+  color: var(--box-interactive-disabled-content);
+  cursor: not-allowed;
+}
+.box-input[aria-invalid='true'] {
+  border-color: var(--box-border-sentiment-negative);
+}
 
-.box-field__hint { color: var(--box-content-base-tertiary); font-family: var(--box-typography-font-family-body); font-size: var(--box-typography-caption-l-font-size); line-height: var(--box-typography-caption-l-line-height); }
-.box-field__hint--error { color: var(--box-content-sentiment-negative); }
+.box-field__hint {
+  color: var(--box-content-base-tertiary);
+  font-family: var(--box-typography-font-family-body);
+  font-size: var(--box-typography-caption-l-font-size);
+  line-height: var(--box-typography-caption-l-line-height);
+}
+.box-field__hint--error {
+  color: var(--box-content-sentiment-negative);
+}

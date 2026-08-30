@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+import { paint } from './color';
 import type { BrandTone, FamilyIconEntry, FamilyShape } from './families';
 import type { IconSize } from './types';
 
@@ -25,30 +26,6 @@ const RADIUS: Record<FamilyShape, string> = {
   circle: 'var(--box-rounding-base-full)',
 };
 
-/**
- * Relative luminance of a `#rrggbb` brand colour, per WCAG.
- *
- * Several marks are officially pure black (Apple, X, GitHub, TikTok). Painting
- * those literally makes them vanish on a dark surface, so the near-black and
- * near-white ones fall back to `currentColor` and follow whatever surface they
- * are placed on.
- */
-function luminance(hex: string): number {
-  const value = hex.replace('#', '');
-  if (value.length !== 6) return 0.5;
-  const channel = (offset: number) => {
-    const part = parseInt(value.slice(offset, offset + 2), 16) / 255;
-    return part <= 0.03928 ? part / 12.92 : ((part + 0.055) / 1.055) ** 2.4;
-  };
-  return 0.2126 * channel(0) + 0.7152 * channel(2) + 0.0722 * channel(4);
-}
-
-function paint(color: string | null | undefined): string {
-  if (!color) return 'currentColor';
-  const l = luminance(color);
-  return l < 0.06 || l > 0.94 ? 'currentColor' : color;
-}
-
 /** Two letters, so an entry without upstream artwork still reads as itself. */
 function monogram(entry: FamilyIconEntry): string {
   const source = entry.ticker ?? entry.name;
@@ -65,7 +42,14 @@ function monogram(entry: FamilyIconEntry): string {
  * variants do; `natural` keeps the full rectangle. Entries with no geometry
  * fall back to a monogram tile rather than an empty box.
  */
-export function FamilyIcon({ entry, shape = 'natural', tone = 'original', size = 'm', className, style }: FamilyIconProps) {
+export function FamilyIcon({
+  entry,
+  shape = 'natural',
+  tone = 'original',
+  size = 'm',
+  className,
+  style,
+}: FamilyIconProps) {
   const box = dimension(size);
   const wide = shape === 'natural' && entry.code != null;
 

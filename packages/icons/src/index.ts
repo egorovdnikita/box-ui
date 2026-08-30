@@ -26,4 +26,5 @@ export {
 } from './families';
 export { loadFamily, useFamily } from './familyStore';
 export { FamilyIcon, type FamilyIconProps } from './FamilyIcon';
+export { luminance, paint } from './color';
 export { iconNames, type IconName } from './names';

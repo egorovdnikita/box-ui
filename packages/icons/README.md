@@ -10,12 +10,12 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 </IconStyleProvider>;
 ```
 
-| Prop | Type | Default |
-| --- | --- | --- |
-| `name` | Solar icon name — `arrow-up`, `home-smile`, `card-transfer`, … | required |
+| Prop        | Type                                                             | Default                         |
+| ----------- | ---------------------------------------------------------------- | ------------------------------- |
+| `name`      | Solar icon name — `arrow-up`, `home-smile`, `card-transfer`, …   | required                        |
 | `iconStyle` | `bold` `bold-duotone` `broken` `line-duotone` `linear` `outline` | nearest provider, else `linear` |
-| `size` | `min` `2xs` `xs` `s` `m` `l` `xl` `2xl` `max`, or a number | `xs` |
-| `title` | accessible name; without it the icon is `aria-hidden` | — |
+| `size`      | `min` `2xs` `xs` `s` `m` `l` `xl` `2xl` `max`, or a number       | `xs`                            |
+| `title`     | accessible name; without it the icon is `aria-hidden`            | —                               |
 
 Sizes are the `size/base/*` tokens from the Grid collection, so icons follow
 `data-device` like everything else. Geometry paints with `currentColor`, so colour comes
@@ -59,11 +59,11 @@ first load has nothing to fall back on.
 `src/figma-families.json` carries the roster of the other three families, read straight
 off the Figma file; `scripts/build-families.mjs` matches each entry to its artwork:
 
-| Family | Figma page | Count | With artwork | Variants |
-| --- | --- | --- | --- | --- |
-| Flags | Flags | 197 | 197 | `Style` = Circle · Rounded · Shape |
-| Payments | Payments | 675 | 541 | none |
-| Brands | Brands | 24 | 21 | `Style` = Original · Solid, `Circle Shape` = True · False |
+| Family   | Figma page | Count | With artwork | Variants                                                  |
+| -------- | ---------- | ----- | ------------ | --------------------------------------------------------- |
+| Flags    | Flags      | 197   | 197          | `Style` = Circle · Rounded · Shape                        |
+| Payments | Payments   | 675   | 541          | none                                                      |
+| Brands   | Brands     | 24    | 21           | `Style` = Original · Solid, `Circle Shape` = True · False |
 
 ```tsx
 import { FamilyIcon, familyIndex, useFamily } from '@box-ui/icons';

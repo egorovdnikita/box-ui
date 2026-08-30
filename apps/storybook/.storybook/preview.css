@@ -199,7 +199,10 @@ body {
   color: var(--sb-text);
   font: inherit;
   cursor: pointer;
-  transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+  transition:
+    transform 120ms ease,
+    border-color 120ms ease,
+    background 120ms ease;
 }
 
 .sb-cell:hover {
@@ -395,7 +398,9 @@ body {
   box-shadow: 0 6px 20px var(--sb-shadow);
   pointer-events: none;
   transform: translateX(-50%);
-  transition: opacity 160ms ease, transform 160ms ease;
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
 }
 
 .sb-toast[data-visible='false'] {
