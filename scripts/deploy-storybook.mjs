@@ -26,6 +26,26 @@ if (!existsSync(join(source, 'index.html'))) {
 }
 
 const git = (cwd, ...args) => execFileSync('git', args, { cwd, stdio: 'inherit' });
+
+/**
+ * Pushes, retrying a couple of times.
+ *
+ * The snapshot is around 18 MB and this push drops its connection often enough
+ * that a one-shot deploy is unreliable; the failure arrives as a bare exit 128,
+ * which reads like a real rejection when it is only the network.
+ */
+function pushWithRetry(cwd, attempts = 3) {
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    try {
+      git(cwd, 'push', '-f', 'origin', branch);
+      return;
+    } catch (error) {
+      if (attempt === attempts) throw error;
+      console.warn(`\npush failed (attempt ${attempt}/${attempts}) — retrying`);
+    }
+  }
+}
+
 const read = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
 
 const remote = read('remote', 'get-url', 'origin');
@@ -43,7 +63,7 @@ try {
   git(staging, 'add', '-A');
   git(staging, 'commit', '-q', '-m', `Deploy Storybook (${sha})`);
   git(staging, 'remote', 'add', 'origin', remote);
-  git(staging, 'push', '-f', 'origin', branch);
+  pushWithRetry(staging);
 
   console.log(`\nDeployed ${sha} → ${branch}. Live in a minute at https://egorovdnikita.github.io/box-ui/`);
 } finally {
