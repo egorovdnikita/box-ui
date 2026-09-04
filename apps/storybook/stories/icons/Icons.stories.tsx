@@ -24,17 +24,20 @@ import {
   Section,
   Select,
   ShareLink,
+  counted,
   demoSurface,
   matches,
   useCopy,
 } from '../_ui';
 
 const meta: Meta = {
-  title: 'Icons/UI Icons',
+  // `id` is pinned so translating the title does not change the story URLs.
+  id: 'icons-ui-icons',
+  title: 'Иконки/UI Icons',
   parameters: {
     docs: {
       description: {
-        component: `All ${catalog.icons.length} icons across ${catalog.categories.length} categories, rendered in one grid. The six styles are the \`Style\` variants of the Figma component set, driven by the \`icon-style\` variable; sizes are \`size/base/*\` tokens, so they follow the Device mode too.`,
+        component: `Все ${catalog.icons.length} иконок из ${catalog.categories.length} категорий, одной сеткой. Шесть стилей — это варианты \`Style\` компонент-сета в Figma, которыми управляет переменная \`icon-style\`; размеры берутся из токенов \`size/base/*\`, поэтому слушаются и моды Device.`,
       },
     },
   },
@@ -87,7 +90,7 @@ function IconTile({
       title={
         drawn
           ? `${icon.name} · ${icon.category}`
-          : `${icon.name} · ${icon.category} — not drawn in ${ICON_STYLE_LABELS[style]}`
+          : `${icon.name} · ${icon.category} — не нарисована в стиле ${ICON_STYLE_LABELS[style]}`
       }
       onClick={() => copy(snippet(copyAs, icon.name, drawn ? style : icon.styles[0], size), icon.name)}
       style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 68px' }}
@@ -103,6 +106,9 @@ function IconTile({
   );
 }
 
+/** The catalogue's own category names stay as Solar spells them. */
+const ALL_CATEGORIES = 'All';
+
 interface GalleryArgs {
   query: string;
   category: string;
@@ -113,13 +119,14 @@ interface GalleryArgs {
 
 const GALLERY_DEFAULTS: GalleryArgs = {
   query: '',
-  category: 'All',
+  category: ALL_CATEGORIES,
   size: 'xs',
   onlyAvailable: false,
   copyAs: 'name',
 };
 
 export const Gallery: Story = {
+  name: 'Галерея',
   // Filters live in args, so Storybook keeps them in the URL and a link to a
   // filtered gallery survives being pasted to someone else.
   args: GALLERY_DEFAULTS,
@@ -138,7 +145,7 @@ export const Gallery: Story = {
       () =>
         catalog.icons.filter(
           (icon) =>
-            (category === 'All' || icon.category === category) &&
+            (category === ALL_CATEGORIES || icon.category === category) &&
             matches(query, icon.name, icon.category) &&
             (!onlyAvailable || icon.styles.includes(style)),
         ),
@@ -151,34 +158,37 @@ export const Gallery: Story = {
 
     return (
       <Page
-        title="Icon gallery"
+        title="Галерея иконок"
         lead={
           <>
-            Style follows the <strong>Icon style</strong> control in the toolbar — currently{' '}
-            <strong>{ICON_STYLE_LABELS[style]}</strong>. Click any icon to copy its name.
+            Стиль следует за переключателем <strong>Icon style</strong> на панели — сейчас{' '}
+            <strong>{ICON_STYLE_LABELS[style]}</strong>. Клик по иконке копирует её имя.
           </>
         }
         toolbar={
           <>
             <Search value={query} onChange={(value) => set({ query: value })} placeholder="arrow up, shield, social…" />
             <Select
-              label="Category"
+              label="Категория"
               value={category}
               onChange={(value) => set({ category: value })}
-              options={['All', ...catalog.categories].map((c) => ({ value: c, label: c }))}
+              options={[
+                { value: ALL_CATEGORIES, label: 'Все' },
+                ...catalog.categories.map((c) => ({ value: c, label: c })),
+              ]}
             />
             <Select
-              label="Size token"
+              label="Токен размера"
               value={size}
               onChange={(value) => set({ size: value })}
               options={ICON_SIZES.map((s) => ({ value: s, label: `size/base/${s}` }))}
             />
             <Select
-              label="Click copies"
+              label="Клик копирует"
               value={copyAs}
               onChange={(value) => set({ copyAs: value })}
               options={[
-                { value: 'name' as CopyAs, label: 'name' },
+                { value: 'name' as CopyAs, label: 'имя' },
                 { value: 'jsx' as CopyAs, label: '<Icon …/>' },
               ]}
             />
@@ -188,13 +198,13 @@ export const Gallery: Story = {
                 checked={onlyAvailable}
                 onChange={(e) => set({ onlyAvailable: e.target.checked })}
               />
-              <Caption>Only this style</Caption>
+              <Caption>Только этот стиль</Caption>
             </label>
             <Counts>
-              <Count>{filtered.length} icons</Count>
+              <Count>{counted(filtered.length, ['иконка', 'иконки', 'иконок'])}</Count>
               {missing > 0 && (
                 <Count tone="warning">
-                  {missing} not in {ICON_STYLE_LABELS[style]}
+                  {missing} нет в стиле {ICON_STYLE_LABELS[style]}
                 </Count>
               )}
               {dirty && <ResetFilters onReset={() => set(GALLERY_DEFAULTS)} />}
@@ -218,23 +228,23 @@ export const Gallery: Story = {
 };
 
 export const Styles: Story = {
-  name: 'Style variants',
+  name: 'Варианты стилей',
   render: () => (
     <Page
-      title="Style variants"
-      lead="The `Icon` collection in Figma has exactly these six modes, and each one is a separate `Style` variant of every component set."
+      title="Варианты стилей"
+      lead="В коллекции `Icon` в Figma ровно эти шесть мод, и каждая — отдельный вариант `Style` у каждого компонент-сета."
     >
       <Section
-        title="The same twelve icons in every style"
-        description="A dash means Solar simply does not draw that combination — 1 247 of the 1 301 icons have all six."
-        aside={<Count>{ICON_STYLES.length} styles</Count>}
+        title="Одни и те же двенадцать иконок во всех стилях"
+        description="Прочерк означает, что Solar просто не рисует это сочетание — все шесть стилей есть у 1247 иконок из 1301."
+        aside={<Count>{counted(ICON_STYLES.length, ['стиль', 'стиля', 'стилей'])}</Count>}
       >
         <div className="sb-scroller">
           <table className="sb-table" style={{ width: '100%' }}>
             <thead>
               <tr>
                 <th className="sb-table__lead">
-                  <span className="sb-label">Icon</span>
+                  <span className="sb-label">Иконка</span>
                 </th>
                 {ICON_STYLES.map((style) => (
                   <th key={style} style={{ textAlign: 'center' }}>
@@ -258,7 +268,7 @@ export const Styles: Story = {
                         ) : (
                           // Solar has gaps; an empty cell would read as a broken table.
                           <span
-                            title={`Solar draws no ${ICON_STYLE_LABELS[style]} for ${name}`}
+                            title={`Solar не рисует ${name} в стиле ${ICON_STYLE_LABELS[style]}`}
                             style={{ color: 'var(--sb-text-muted)', opacity: 0.5 }}
                           >
                             —
@@ -278,12 +288,16 @@ export const Styles: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Размеры',
   render: () => (
     <Page
-      title="Icon sizes"
-      lead="Sizes are the `size/base/*` tokens, not hard-coded pixels — switch Device to Mobile and the boxes follow the Grid collection."
+      title="Размеры иконок"
+      lead="Размеры — это токены `size/base/*`, а не зашитые пиксели: переключите Device на Mobile, и боксы поедут за коллекцией Grid."
     >
-      <Section title="Every size token" aside={<Count>{ICON_SIZES.length} tokens</Count>}>
+      <Section
+        title="Все токены размеров"
+        aside={<Count>{counted(ICON_SIZES.length, ['токен', 'токена', 'токенов'])}</Count>}
+      >
         <div style={{ display: 'flex', gap: 20, alignItems: 'flex-end', flexWrap: 'wrap' }}>
           {ICON_SIZES.map((size) => (
             <div key={size} style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center' }}>
@@ -295,8 +309,8 @@ export const Sizes: Story = {
       </Section>
 
       <Section
-        title="Colour"
-        description="Icons paint with `currentColor`, so they inherit whichever `--box-content-*` token their container uses. These are Box UI content tokens, so they sit on a Box UI surface — flip Theme in the toolbar and the whole card follows."
+        title="Цвет"
+        description="Иконки красятся `currentColor`, поэтому наследуют тот токен `--box-content-*`, который задан контейнером. Это токены контента Box UI, и лежат они на поверхности Box UI — переключите Theme на панели, и карточка поедет целиком."
       >
         <div
           style={{ ...demoSurface, display: 'flex', gap: 20, flexWrap: 'wrap', padding: 'var(--box-spacing-base-m)' }}
@@ -317,7 +331,7 @@ export const Sizes: Story = {
         </div>
       </Section>
 
-      <Section title="Usage">
+      <Section title="Использование">
         <Code>{`<Icon name="shield-check" size="l" iconStyle="bold" title="Verified" />`}</Code>
       </Section>
     </Page>

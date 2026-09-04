@@ -11,7 +11,7 @@ import {
 import { Icon, type IconProps } from '@box-ui/icons';
 import { toHex } from './_lib';
 
-export { matches } from './_lib';
+export { matches, counted, plural } from './_lib';
 
 /*
  * The docs chrome is Storybook's own look — its palette, its type, its 4px
@@ -59,7 +59,12 @@ export function Code({ children, copyable }: { children: ReactNode; copyable?: s
   const copy = useCopy();
   if (!copyable) return <code className="sb-code">{children}</code>;
   return (
-    <button type="button" className="sb-code sb-code-button" onClick={() => copy(copyable)} title={`Copy ${copyable}`}>
+    <button
+      type="button"
+      className="sb-code sb-code-button"
+      onClick={() => copy(copyable)}
+      title={`Скопировать ${copyable}`}
+    >
       {children}
     </button>
   );
@@ -188,8 +193,8 @@ export function Select<T extends string>({
 export function Search({
   value,
   onChange,
-  placeholder = 'Search…',
-  label = 'Search',
+  placeholder = 'Поиск…',
+  label = 'Поиск',
 }: {
   value: string;
   onChange: (value: string) => void;
@@ -271,7 +276,7 @@ export function ShareLink() {
     } catch {
       /* cross-origin — the iframe URL is still a working link */
     }
-    copy(href, 'link to this view');
+    copy(href, 'ссылка на этот вид');
   };
 
   return (
@@ -279,10 +284,10 @@ export function ShareLink() {
       type="button"
       className="sb-control sb-button"
       onClick={share}
-      title="Copy a link to this page, filters and all"
+      title="Скопировать ссылку на эту страницу вместе с фильтрами"
     >
       <ChromeIcon name="link-round" size={14} />
-      Copy link
+      Скопировать ссылку
     </button>
   );
 }
@@ -290,9 +295,9 @@ export function ShareLink() {
 /** Clears every filter back to the story's defaults. */
 export function ResetFilters({ onReset }: { onReset: () => void }) {
   return (
-    <button type="button" className="sb-control sb-button" onClick={onReset} title="Clear every filter">
+    <button type="button" className="sb-control sb-button" onClick={onReset} title="Сбросить все фильтры">
       <ChromeIcon name="restart" size={14} />
-      Reset
+      Сбросить
     </button>
   );
 }
@@ -342,9 +347,9 @@ export function Empty({ query, onClear }: { query: string; onClear: () => void }
   return (
     <div className="sb-empty">
       <ChromeIcon name="magnifer" size={28} />
-      <div>Nothing matches “{query}”</div>
+      <div>Ничего не найдено по запросу «{query}»</div>
       <button type="button" onClick={onClear} className="sb-link">
-        Clear the search
+        Очистить поиск
       </button>
     </div>
   );
@@ -472,7 +477,7 @@ export function Swatch({
       type="button"
       className="sb-tile"
       onClick={() => copy(`var(${cssVar})`, cssVar)}
-      title={`Copy var(${cssVar})`}
+      title={`Скопировать var(${cssVar})`}
       style={{ display: 'flex', flexDirection: 'column', gap: 4 }}
     >
       <span
@@ -533,7 +538,7 @@ export function Row({
       type="button"
       className="sb-row"
       onClick={() => copy(`var(${label})`, label)}
-      title={`Copy var(${label})`}
+      title={`Скопировать var(${label})`}
       style={{
         display: 'grid',
         gridTemplateColumns: 'minmax(200px, 280px) minmax(150px, 210px) 1fr',

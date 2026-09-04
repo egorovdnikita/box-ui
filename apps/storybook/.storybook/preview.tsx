@@ -66,9 +66,9 @@ prefersDark.addEventListener('change', applyChrome);
  */
 const globalTypes: Preview['globalTypes'] = {
   theme: {
-    description: 'Figma collection “Mode”',
+    description: 'Коллекция Figma «Mode»',
     toolbar: {
-      title: 'Theme',
+      title: 'Тема',
       icon: 'contrast',
       dynamicTitle: true,
       items: [
@@ -78,9 +78,9 @@ const globalTypes: Preview['globalTypes'] = {
     },
   },
   accent: {
-    description: 'Figma collection “Color”',
+    description: 'Коллекция Figma «Color»',
     toolbar: {
-      title: 'Accent',
+      title: 'Акцент',
       icon: 'paintbrush',
       dynamicTitle: true,
       items: ['blue', 'sky', 'teal', 'emerald', 'orange', 'amber', 'violet', 'purple', 'cyan', 'yellow'].map(
@@ -92,9 +92,9 @@ const globalTypes: Preview['globalTypes'] = {
     },
   },
   radius: {
-    description: 'Figma collection “Rounding”',
+    description: 'Коллекция Figma «Rounding»',
     toolbar: {
-      title: 'Radius',
+      title: 'Скругление',
       icon: 'component',
       dynamicTitle: true,
       items: [
@@ -105,9 +105,9 @@ const globalTypes: Preview['globalTypes'] = {
     },
   },
   font: {
-    description: 'Figma collection “Typography”',
+    description: 'Коллекция Figma «Typography»',
     toolbar: {
-      title: 'Typeface',
+      title: 'Гарнитура',
       icon: 'type',
       dynamicTitle: true,
       items: [
@@ -119,9 +119,9 @@ const globalTypes: Preview['globalTypes'] = {
     },
   },
   device: {
-    description: 'Figma collection “Grid”',
+    description: 'Коллекция Figma «Grid»',
     toolbar: {
-      title: 'Device',
+      title: 'Устройство',
       icon: 'mobile',
       dynamicTitle: true,
       items: [
@@ -131,9 +131,9 @@ const globalTypes: Preview['globalTypes'] = {
     },
   },
   iconStyle: {
-    description: 'Figma collection “Icon”',
+    description: 'Коллекция Figma «Icon»',
     toolbar: {
-      title: 'Icon style',
+      title: 'Стиль иконок',
       icon: 'star',
       dynamicTitle: true,
       items: ICON_STYLES.map((value) => ({ value, title: ICON_STYLE_LABELS[value] })),
@@ -183,7 +183,7 @@ const preview: Preview = {
     options: {
       showPanel: false,
       storySort: {
-        order: ['Introduction', 'Getting started', 'Foundations', 'Icons'],
+        order: ['Обзор', 'Начало работы', 'Основы', 'Иконки'],
       },
     },
     controls: { disable: true },

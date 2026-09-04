@@ -1,15 +1,15 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Introduction" />
+<Meta title="Обзор" id="introduction" />
 
 # Box UI
 
-Design tokens and icons generated directly from three Figma libraries, with every
-**Variable mode** wired to a switch in the toolbar above.
+Дизайн-токены и иконки, сгенерированные прямо из трёх библиотек Figma. Каждая **мода
+переменных** выведена в переключатель на панели сверху.
 
-| Figma file           | Collection                                                  | Modes                                                                 | Switch                |
+| Файл Figma           | Коллекция                                                   | Моды                                                                  | Переключатель         |
 | -------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------- | --------------------- |
-| Box UI \| Primitives | Color Palette, Spacing, Rounding, Size, Opacity, Typography | _Value_ only                                                          | —                     |
+| Box UI \| Primitives | Color Palette, Spacing, Rounding, Size, Opacity, Typography | только _Value_                                                        | —                     |
 | Box UI \| Tokens     | **Color**                                                   | Blue, Sky, Teal, Emerald, Orange, Amber, Violet, Purple, Cyan, Yellow | `data-accent`         |
 | Box UI \| Tokens     | **Mode**                                                    | Light, Dark                                                           | `data-theme`          |
 | Box UI \| Tokens     | **Rounding**                                                | Low, Medium, High                                                     | `data-radius`         |
@@ -17,28 +17,29 @@ Design tokens and icons generated directly from three Figma libraries, with ever
 | Box UI \| Tokens     | **Grid**                                                    | Desktop, Mobile                                                       | `data-device`         |
 | Box UI \| Icons      | **Icon**                                                    | Bold, Bold Duotone, Broken, Line Duotone, Linear, Outline             | `<IconStyleProvider>` |
 
-## How a token resolves
+## Как разрешается токен
 
-Nothing is duplicated per theme. Each Figma alias becomes a `var()` hop, so a mode
-switch on `<html>` re-resolves the whole chain — exactly like flipping the mode in Figma.
+Ничего не дублируется под каждую тему. Каждый алиас Figma становится переходом `var()`,
+поэтому переключение моды на `<html>` заново разрешает всю цепочку — ровно как смена моды
+в самой Figma.
 
 ```
 --box-background-sentiment-primary   [data-theme]    Mode
   └─ var(--box-colors-brand-primary) [data-accent]   Color
-       └─ var(--box-color-blue-solid-500)            Color Palette (fixed)
+       └─ var(--box-color-blue-solid-500)            Color Palette (фиксировано)
             └─ #3b82f6
 ```
 
-Sizing works the same way, one level deeper on the rounding side:
+С размерами то же самое, только со стороны скруглений на уровень глубже:
 
 ```
 --box-rounding-base-xl   [data-device]  Grid     Desktop → base/xl, Mobile → base/l
   └─ var(--box-radius-base-xl)  [data-radius]  Rounding  Low 20 · Medium 24 · High 32
-       └─ var(--box-rounding-24)                          Rounding (primitive)
+       └─ var(--box-rounding-24)                          Rounding (примитив)
             └─ 24px
 ```
 
-## Using it
+## Как это применять
 
 ```tsx
 import '@box-ui/tokens/css';
@@ -47,34 +48,36 @@ import { Icon } from '@box-ui/icons';
 
 <html data-theme="dark" data-accent="violet" data-radius="high" data-device="mobile">
   <Card>
-    <Text variant="h4">Ready</Text>
-    <Button startIcon={<Icon name="check-circle" size="2xs" />}>Continue</Button>
+    <Text variant="h4">Готово</Text>
+    <Button startIcon={<Icon name="check-circle" size="2xs" />}>Продолжить</Button>
   </Card>
 </html>;
 ```
 
-### Scoping to part of a page
+### Переключение мод для части страницы
 
-A custom property is substituted **where it is declared**, not where it is read. To switch
-modes for a subtree, set _all five_ attributes on that one element — every layer then
-re-declares there and the chain resolves locally. Overriding only `data-accent` deeper in
-the tree cannot reach a Mode token that an ancestor already resolved.
+Кастомное свойство подставляется **там, где объявлено**, а не там, где прочитано. Чтобы
+переключить моды для поддерева, поставьте на один элемент _все пять_ атрибутов — тогда
+каждый слой переобъявляется здесь же и цепочка разрешается локально. Переопределение
+одного лишь `data-accent` глубже по дереву не дотянется до токена Mode, который предок уже
+разрешил.
 
 ```html
 <div data-theme="dark" data-accent="violet" data-radius="high" data-font="inter" data-device="desktop"></div>
 ```
 
-`@box-ui/tokens/css/adaptive.css` is optional: it picks Dark from
-`prefers-color-scheme` and Mobile below 768px whenever the document has not set
-those attributes itself.
+`@box-ui/tokens/css/adaptive.css` необязателен: он берёт тёмную тему из
+`prefers-color-scheme`, а Mobile — ниже 768px, но только когда документ сам не выставил эти
+атрибуты.
 
-## Where to look
+## Куда смотреть
 
-- **Foundations** — the raw palette, the type ramp, and the spacing / rounding / size / opacity scales.
-- **Icons** — 1 300+ Solar icons in six styles, plus the Flags / Payments / Brands families.
+- **Начало работы** — установка, подключение мод, использование токенов и иконок.
+- **Основы** — сырая палитра, текстовая шкала и шкалы отступов, скруглений, размеров и прозрачности.
+- **Иконки** — 1300+ иконок Solar в шести стилях и семейства «Флаги / Платежи / Бренды».
 
-The toolbar switches above drive every token on these pages, so any story doubles as a
-mode preview. The pages themselves are deliberately painted in Storybook's own colours —
-what flips with the switches is the Box UI content, never the documentation around it.
+Переключатели на панели управляют всеми токенами на этих страницах, поэтому любая история
+заодно работает превью моды. Сами страницы намеренно окрашены в собственные цвета
+Storybook — переключатели меняют содержимое Box UI, а не документацию вокруг него.
 
-Dedicated mode and component sections land once there are components to put in them.
+Отдельные разделы про моды и компоненты появятся, когда появятся компоненты.

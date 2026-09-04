@@ -25,17 +25,20 @@ import {
   Section,
   Select,
   ShareLink,
+  counted,
   matches,
   useCopy,
 } from '../_ui';
 
 const meta: Meta = {
-  title: 'Icons/Figma families',
+  // `id` is pinned so translating the title does not change the story URLs.
+  id: 'icons-figma-families',
+  title: 'Иконки/Семейства Figma',
   parameters: {
     docs: {
       description: {
         component:
-          'Besides the Solar UI Icons, `Box UI | Icons` carries three more families. The roster and the variant properties are read off the Figma file; the artwork comes from the canonical open distributions of the same marks.',
+          'Кроме Solar UI Icons в `Box UI | Icons` лежат ещё три семейства. Состав и свойства вариантов считаны из файла Figma; сама графика берётся из канонических открытых поставок тех же знаков.',
       },
     },
   },
@@ -52,9 +55,9 @@ interface FamilyArgs {
 }
 
 const SOURCE_NOTE: Record<IconFamily, string> = {
-  flags: 'flag-icons (MIT) — 4:3 country flags by ISO 3166-1.',
-  payments: '@web3icons/core (MIT) and cryptocurrency-icons (CC0) — token logos by ticker.',
-  brands: 'simple-icons (CC0) — brand marks with their official colour.',
+  flags: 'flag-icons (MIT) — флаги стран 4:3 по ISO 3166-1.',
+  payments: '@web3icons/core (MIT) и cryptocurrency-icons (CC0) — логотипы токенов по тикеру.',
+  brands: 'simple-icons (CC0) — фирменные знаки в их официальном цвете.',
 };
 
 /** One roster tile. Below `<Page>`, so it can reach the copy context. */
@@ -76,7 +79,7 @@ function FamilyTile({
     <button
       type="button"
       className={item.body ? 'sb-cell' : 'sb-cell sb-cell--muted'}
-      title={`${item.name}${detail ? ` · ${detail}` : ''}${item.body ? '' : ' — no bundled artwork'}`}
+      title={`${item.name}${detail ? ` · ${detail}` : ''}${item.body ? '' : ' — графика не поставляется'}`}
       onClick={() => copy(item.slug)}
       style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 96px' }}
     >
@@ -116,8 +119,8 @@ function Family({
       title={meta.figmaPage}
       lead={
         <>
-          {meta.total} entries from the <Code>{meta.figmaPage}</Code> page, named <Code>{meta.figmaNaming}</Code>. Click
-          a tile to copy its slug. {meta.note}
+          {counted(meta.total, ['запись', 'записи', 'записей'])} со страницы <Code>{meta.figmaPage}</Code>, именование{' '}
+          <Code>{meta.figmaNaming}</Code>. Клик по плитке копирует её slug. {meta.note}
         </>
       }
       toolbar={
@@ -125,11 +128,11 @@ function Family({
           <Search
             value={query}
             onChange={(value) => set({ query: value })}
-            placeholder={id === 'payments' ? 'bitcoin, BTC…' : 'filter…'}
+            placeholder={id === 'payments' ? 'bitcoin, BTC…' : 'фильтр…'}
           />
           {shapes.length > 1 && (
             <Select
-              label={id === 'brands' ? 'Circle Shape' : 'Style'}
+              label={id === 'brands' ? 'Circle Shape' : 'Стиль'}
               value={shape}
               onChange={(value) => set({ shape: value })}
               options={shapes.map((s) => ({
@@ -140,7 +143,7 @@ function Family({
           )}
           {id === 'brands' && (
             <Select
-              label="Style"
+              label="Стиль"
               value={tone}
               onChange={(value) => set({ tone: value })}
               options={[
@@ -150,14 +153,14 @@ function Family({
             />
           )}
           <Select
-            label="Size token"
+            label="Токен размера"
             value={size}
             onChange={(value) => set({ size: value })}
             options={ICON_SIZES.map((s) => ({ value: s, label: `size/base/${s}` }))}
           />
           <Counts>
-            <Count>{items.length} shown</Count>
-            {monograms > 0 && <Count tone="warning">{monograms} as monogram</Count>}
+            <Count>показано: {items.length}</Count>
+            {monograms > 0 && <Count tone="warning">монограммой: {monograms}</Count>}
             {dirty && <ResetFilters onReset={() => set(defaults)} />}
             <ShareLink />
           </Counts>
@@ -165,7 +168,7 @@ function Family({
       }
     >
       {!data ? (
-        <p className="sb-lead">Loading {meta.figmaPage.toLowerCase()}…</p>
+        <p className="sb-lead">Загружаем {meta.figmaPage.toLowerCase()}…</p>
       ) : items.length === 0 ? (
         <Empty query={query} onClear={() => set(defaults)} />
       ) : (
@@ -177,16 +180,17 @@ function Family({
       )}
 
       <Section
-        title="Where the artwork comes from"
-        description="The Figma file defines the roster; the geometry is taken from the canonical open set, the same way UI Icons takes Solar from `@iconify-json/solar`."
+        title="Откуда берётся графика"
+        description="Состав задаёт файл Figma; геометрия берётся из канонического открытого набора — так же, как UI Icons берут Solar из `@iconify-json/solar`."
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <p className="sb-lead">
             {SOURCE_NOTE[id]}{' '}
-            {monograms > 0 && `${monograms} entries have no upstream match and render as a monogram tile.`}
+            {monograms > 0 &&
+              `Для ${monograms} записей соответствия в источнике нет — они рисуются плиткой-монограммой.`}
           </p>
           <p className="sb-lead">
-            To replace all of it with verbatim Figma exports, run the export script with a Figma token:
+            Чтобы заменить всё это дословными экспортами из Figma, запустите скрипт с токеном Figma:
           </p>
           <Code
             copyable={`npm run icons:figma -- --family ${id}`}
@@ -220,6 +224,6 @@ function story(id: IconFamily, shapes: FamilyShape[]): Story {
   };
 }
 
-export const Flags = story('flags', ['natural', 'rounded', 'circle']);
-export const Payments = story('payments', ['natural']);
-export const Brands = story('brands', ['natural', 'circle']);
+export const Flags = { ...story('flags', ['natural', 'rounded', 'circle']), name: 'Флаги' };
+export const Payments = { ...story('payments', ['natural']), name: 'Платежи' };
+export const Brands = { ...story('brands', ['natural', 'circle']), name: 'Бренды' };

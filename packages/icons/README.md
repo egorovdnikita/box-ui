@@ -1,6 +1,6 @@
 # @box-ui/icons
 
-The icon set of `Box UI | Icons`, with the six Figma `Style` modes switchable at runtime.
+Набор иконок из `Box UI | Icons`; шесть мод `Style` из Figma переключаются на лету.
 
 ```tsx
 import { Icon, IconStyleProvider } from '@box-ui/icons';
@@ -10,60 +10,61 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 </IconStyleProvider>;
 ```
 
-| Prop        | Type                                                             | Default                         |
-| ----------- | ---------------------------------------------------------------- | ------------------------------- |
-| `name`      | Solar icon name — `arrow-up`, `home-smile`, `card-transfer`, …   | required                        |
-| `iconStyle` | `bold` `bold-duotone` `broken` `line-duotone` `linear` `outline` | nearest provider, else `linear` |
-| `size`      | `min` `2xs` `xs` `s` `m` `l` `xl` `2xl` `max`, or a number       | `xs`                            |
-| `title`     | accessible name; without it the icon is `aria-hidden`            | —                               |
+| Свойство    | Тип                                                              | По умолчанию                        |
+| ----------- | ---------------------------------------------------------------- | ----------------------------------- |
+| `name`      | имя иконки Solar — `arrow-up`, `home-smile`, `card-transfer`, …  | обязательно                         |
+| `iconStyle` | `bold` `bold-duotone` `broken` `line-duotone` `linear` `outline` | ближайший провайдер, иначе `linear` |
+| `size`      | `min` `2xs` `xs` `s` `m` `l` `xl` `2xl` `max` или число          | `xs`                                |
+| `title`     | доступное имя; без него иконка получает `aria-hidden`            | —                                   |
 
-Sizes are the `size/base/*` tokens from the Grid collection, so icons follow
-`data-device` like everything else. Geometry paints with `currentColor`, so colour comes
-from the surrounding `--box-content-*`.
+Размеры — токены `size/base/*` из коллекции Grid, поэтому иконки слушаются `data-device`
+наравне со всем остальным. Геометрия красится `currentColor`, так что цвет приходит из
+окружающего `--box-content-*`.
 
 ## UI Icons
 
-The 1 253 UI Icon component sets in the Figma file are the [Solar](https://www.figma.com/community/file/1166831539721848736)
-set by 480 Design. `scripts/build.mjs` takes the geometry from the canonical Solar
-distribution (`@iconify-json/solar`), splits it by style and writes:
+1253 компонент-сета UI Icons в файле Figma — это набор
+[Solar](https://www.figma.com/community/file/1166831539721848736) авторства 480 Design.
+`scripts/build.mjs` берёт геометрию из канонической поставки Solar
+(`@iconify-json/solar`), разрезает её по стилям и пишет:
 
 ```
-src/data/bold.json          1 280 icons
-src/data/bold-duotone.json  1 247
-src/data/broken.json        1 288
-src/data/line-duotone.json  1 277
-src/data/linear.json        1 288
-src/data/outline.json       1 292
-src/catalog.json            1 301 icons in 38 categories
-src/names.ts                the IconName union
+src/data/bold.json          1280 иконок
+src/data/bold-duotone.json  1247
+src/data/broken.json        1288
+src/data/line-duotone.json  1277
+src/data/linear.json        1288
+src/data/outline.json       1292
+src/catalog.json            1301 иконка в 38 категориях
+src/names.ts                объединение IconName
 ```
 
-Each style is a separate dynamic `import()`, so an app ships only the styles it renders.
-Not every icon exists in every style — `catalog.icons[].styles` lists the ones that do,
-and 1 247 of the 1 301 have all six.
+Каждый стиль — отдельный динамический `import()`, поэтому приложение везёт только те
+стили, которые рисует. Не каждая иконка существует во всех стилях: доступные перечислены
+в `catalog.icons[].styles`, все шесть есть у 1247 из 1301.
 
-Switching style fetches roughly a megabyte, and until it lands the new style has no
-geometry at all. Rather than blanking every icon on screen for that moment, the store
-keeps serving the last set that finished loading:
+Переключение стиля тянет около мегабайта, и всё это время у нового стиля нет геометрии
+вообще. Вместо того чтобы на этот момент погасить все иконки на экране, хранилище
+продолжает отдавать последний загруженный набор:
 
 ```tsx
 const { set, pending } = useIconSet('bold-duotone');
 ```
 
-`pending` is true while `set` is standing in for a style still in flight; `<Icon>` passes
-it through as `data-icon-pending` if you want to style the interim state. Only the very
-first load has nothing to fall back on.
+`pending` истинно, пока `set` подменяет стиль, который ещё летит; `<Icon>` пробрасывает это
+как `data-icon-pending`, если промежуточное состояние хочется оформить. Отступать некуда
+только на самой первой загрузке.
 
-## Flags, Payments, Brands
+## Флаги, платежи, бренды
 
-`src/figma-families.json` carries the roster of the other three families, read straight
-off the Figma file; `scripts/build-families.mjs` matches each entry to its artwork:
+В `src/figma-families.json` лежит состав трёх остальных семейств, считанный прямо из файла
+Figma; `scripts/build-families.mjs` подбирает каждой записи графику:
 
-| Family   | Figma page | Count | With artwork | Variants                                                  |
-| -------- | ---------- | ----- | ------------ | --------------------------------------------------------- |
-| Flags    | Flags      | 197   | 197          | `Style` = Circle · Rounded · Shape                        |
-| Payments | Payments   | 675   | 541          | none                                                      |
-| Brands   | Brands     | 24    | 21           | `Style` = Original · Solid, `Circle Shape` = True · False |
+| Семейство | Страница Figma | Записей | С графикой | Варианты                                                  |
+| --------- | -------------- | ------- | ---------- | --------------------------------------------------------- |
+| Flags     | Flags          | 197     | 197        | `Style` = Circle · Rounded · Shape                        |
+| Payments  | Payments       | 675     | 541        | нет                                                       |
+| Brands    | Brands         | 24      | 21         | `Style` = Original · Solid, `Circle Shape` = True · False |
 
 ```tsx
 import { FamilyIcon, familyIndex, useFamily } from '@box-ui/icons';
@@ -75,19 +76,21 @@ function Flag({ country }: { country: string }) {
 }
 ```
 
-Each family is a separate dynamic `import()` — the flag payload alone is over a
-megabyte, so nothing loads until something renders it. Entries with no upstream match
-keep their Figma name and `body: null`; `FamilyIcon` draws those as a monogram.
+Каждое семейство — отдельный динамический `import()`: один только набор флагов весит больше
+мегабайта, поэтому ничего не грузится, пока это не понадобится для отрисовки. Записи без
+соответствия в источнике сохраняют своё имя из Figma и `body: null`; `FamilyIcon` рисует их
+монограммой.
 
-Sources: `flag-icons` (MIT), `@web3icons/core` (MIT) and `cryptocurrency-icons` (CC0),
-`simple-icons` (CC0). To swap in verbatim Figma exports instead:
+Источники: `flag-icons` (MIT), `@web3icons/core` (MIT) и `cryptocurrency-icons` (CC0),
+`simple-icons` (CC0). Чтобы подставить вместо них дословные экспорты из Figma:
 
 ```bash
 FIGMA_TOKEN=figd_xxx npm run icons:figma -- --family flags
 ```
 
-Files land in `src/data/<family>/<slug>.svg` alongside a `manifest.json`.
+Файлы окажутся в `src/data/<family>/<slug>.svg` рядом с `manifest.json`.
 
-## Licence
+## Лицензии
 
-Code MIT. The Solar icons are © 480 Design, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Код — MIT. Иконки Solar — © 480 Design,
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

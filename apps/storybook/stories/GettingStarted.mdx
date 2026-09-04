@@ -1,54 +1,54 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Getting started" />
+<Meta title="Начало работы" id="getting-started" />
 
-# Getting started
+# Начало работы
 
-Three packages, none of which contain a literal colour, radius or size: everything comes
-from the Figma Variables through `@box-ui/tokens`.
+Три пакета, и ни в одном нет литерального цвета, радиуса или размера: всё приходит из
+переменных Figma через `@box-ui/tokens`.
 
 ```bash
 npm i @box-ui/tokens @box-ui/icons @box-ui/react
 ```
 
-## 1. Load the CSS
+## 1. Подключите CSS
 
 ```js
 import '@box-ui/tokens/css';
 ```
 
-That is `primitives.css` (the 777 fixed values on `:root`) plus `theme.css` (one block per
-Figma mode, selected by a `data-*` attribute). They can be imported separately if you only
-want one of them.
+Это `primitives.css` (777 фиксированных значений на `:root`) плюс `theme.css` (по блоку на
+каждую моду Figma, выбираются атрибутом `data-*`). Их можно импортировать по отдельности,
+если нужен только один.
 
-Optionally:
+Дополнительно:
 
 ```js
 import '@box-ui/tokens/css/adaptive.css';
 ```
 
-which picks Dark from `prefers-color-scheme` and Mobile below 768px **only when the
-document has not set those attributes itself**.
+Он берёт тёмную тему из `prefers-color-scheme`, а Mobile — ниже 768px, **но только если
+документ сам не выставил эти атрибуты**.
 
-## 2. Choose the modes
+## 2. Выберите моды
 
-Every switchable Figma collection maps to one attribute:
+Каждая переключаемая коллекция Figma соответствует одному атрибуту:
 
-| Attribute     | Figma collection | Values                                                                           | Default   |
-| ------------- | ---------------- | -------------------------------------------------------------------------------- | --------- |
-| `data-theme`  | Mode             | `light` `dark`                                                                   | `light`   |
-| `data-accent` | Color            | `blue` `sky` `teal` `emerald` `orange` `amber` `violet` `purple` `cyan` `yellow` | `blue`    |
-| `data-radius` | Rounding         | `low` `medium` `high`                                                            | `medium`  |
-| `data-font`   | Typography       | `inter` `inter-display` `inter-tight` `inter-variable`                           | `inter`   |
-| `data-device` | Grid             | `desktop` `mobile`                                                               | `desktop` |
+| Атрибут | Коллекция Figma | Значения | По умолчанию |
+| --- | --- | --- | --- |
+| `data-theme` | Mode | `light` `dark` | `light` |
+| `data-accent` | Color | `blue` `sky` `teal` `emerald` `orange` `amber` `violet` `purple` `cyan` `yellow` | `blue` |
+| `data-radius` | Rounding | `low` `medium` `high` | `medium` |
+| `data-font` | Typography | `inter` `inter-display` `inter-tight` `inter-variable` | `inter` |
+| `data-device` | Grid | `desktop` `mobile` | `desktop` |
 
-Set them on `<html>` and the whole document follows:
+Поставьте их на `<html>` — и за ними пойдёт весь документ:
 
 ```html
 <html data-theme="dark" data-accent="violet" data-radius="high" data-font="inter" data-device="desktop">
 ```
 
-Or let the provider do it:
+Или пусть это сделает провайдер:
 
 ```jsx
 import { BoxUIProvider } from '@box-ui/react';
@@ -58,12 +58,12 @@ import { BoxUIProvider } from '@box-ui/react';
 </BoxUIProvider>;
 ```
 
-`target="local"` — the default — wraps the children in a `<div>` instead, which is how two
-themes sit side by side on one page.
+`target="local"` — значение по умолчанию — вместо этого оборачивает детей в `<div>`, и
+именно так две темы уживаются на одной странице.
 
-## 3. Use the tokens
+## 3. Пользуйтесь токенами
 
-In CSS, by name:
+В CSS, по имени:
 
 ```css
 .card {
@@ -74,7 +74,7 @@ In CSS, by name:
 }
 ```
 
-Or from JS, if you would rather not type the names:
+Или из JS, если не хочется набирать имена руками:
 
 ```js
 import { color, layout } from '@box-ui/tokens';
@@ -83,10 +83,10 @@ color.background.base.secondary; // 'var(--box-background-base-secondary)'
 layout.spacing.base.m; // 'var(--box-spacing-base-m)'
 ```
 
-`model` carries the whole graph — collections, modes, and what each variable aliases —
-which is what these documentation pages are built from.
+В `model` лежит весь граф — коллекции, моды и то, на что ссылается каждая переменная.
+Именно из него собраны эти страницы документации.
 
-## 4. Icons
+## 4. Иконки
 
 ```jsx
 import { Icon, IconStyleProvider } from '@box-ui/icons';
@@ -98,18 +98,17 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 </IconStyleProvider>;
 ```
 
-Sizes are `size/base/*` tokens, so an icon follows `data-device` like everything else, and
-the geometry paints with `currentColor`. Each style is a separate dynamic `import()`, so an
-app ships only what it renders.
+Размеры — токены `size/base/*`, поэтому иконка слушается `data-device` наравне со всем
+остальным, а геометрия красится `currentColor`. Каждый стиль — отдельный динамический
+`import()`, так что приложение везёт только то, что рисует.
 
-Without a `title` the icon is hidden from assistive technology, which is what you want for
-decoration; pass one when the icon carries the meaning.
+Без `title` иконка скрыта от вспомогательных технологий — это то, что нужно для
+декоративных; передавайте `title`, когда смысл несёт именно иконка.
 
-## Where to go next
+## Куда дальше
 
-- **Introduction** — how the alias chain works and why scoping needs all five attributes.
-- **Foundations** — the palette, the scales, the type ramp, each showing live resolved values.
-- **Icons** — the searchable gallery and the Flags / Payments / Brands families.
+- **Обзор** — как работает цепочка алиасов и почему при локальном переключении нужны все пять атрибутов.
+- **Основы** — палитра, шкалы, текстовая шкала; везде показаны реально вычисленные значения.
+- **Иконки** — галерея с поиском и семейства «Флаги / Платежи / Бренды».
 
-
-Machine-readable summary of all of the above: <a href="llms.txt" target="_blank" rel="noreferrer">llms.txt</a>.
+Машиночитаемая сводка всего перечисленного: <a href="llms.txt" target="_blank" rel="noreferrer">llms.txt</a>.

@@ -19,68 +19,74 @@ const REPO = 'https://github.com/egorovdnikita/box-ui';
 
 export function render(model, catalog, families) {
   const c = model.collections;
-  const primitives = ['palette', 'spacing', 'rounding', 'size', 'opacity', 'type-scale']
-    .map((id) => c[id].variables.length)
-    .reduce((a, b) => a + b, 0);
-  const semantic = ['accent', 'mode', 'radius', 'font', 'grid']
-    .map((id) => c[id].variables.length)
-    .reduce((a, b) => a + b, 0);
+  const sum = (ids) => ids.map((id) => c[id].variables.length).reduce((a, b) => a + b, 0);
+  const primitives = sum(['palette', 'spacing', 'rounding', 'size', 'opacity', 'type-scale']);
+  const semantic = sum(['accent', 'mode', 'radius', 'font', 'grid']);
 
-  const switches = Object.entries(c)
-    .filter(([, collection]) => collection.attribute)
-    .map(([, collection]) => {
+  const switches = Object.values(c)
+    .filter((collection) => collection.attribute)
+    .map((collection) => {
       const values = collection.modes.map((m) => m.slug).join(' | ');
-      return `- \`${collection.attribute}\`: ${values} (default \`${collection.defaultMode}\`) — Figma collection “${collection.figmaName}”`;
+      return `- \`${collection.attribute}\`: ${values} (по умолчанию \`${collection.defaultMode}\`) — коллекция Figma «${collection.figmaName}»`;
     })
+    .join('\n');
+
+  const collections = Object.entries(c)
+    .map(
+      ([id, collection]) =>
+        `- \`${id}\` — переменных: ${collection.variables.length}, мод: ${collection.modes.length}, из «${collection.figmaName}»`,
+    )
+    .join('\n');
+
+  const rosters = Object.entries(families)
+    .map(
+      ([id, meta]) =>
+        `- \`${id}\` — записей: ${meta.total} со страницы Figma «${meta.figmaPage}», из них с графикой: ${meta.resolved}`,
+    )
     .join('\n');
 
   return `# Box UI
 
-Design tokens and icons generated from the Box UI Figma libraries. Every Figma
-Variable mode — colour theme, accent, rounding density, typeface and device — is a
-switch on an HTML attribute, and the whole alias chain re-resolves under it.
+Дизайн-токены и иконки, сгенерированные из библиотек Figma «Box UI». Каждая мода
+переменных Figma — цветовая тема, акцент, плотность скруглений, гарнитура и устройство —
+это переключатель на HTML-атрибуте, под которым заново разрешается вся цепочка алиасов.
 
-- Live documentation: ${SITE}
-- Source: ${REPO}
-- Licence: MIT (code), CC BY 4.0 (Solar icons, © 480 Design)
+- Документация: ${SITE}
+- Исходники: ${REPO}
+- Лицензии: MIT (код), CC BY 4.0 (иконки Solar, © 480 Design)
 
-## Tokens
+## Токены
 
-${primitives} primitive values and ${semantic} semantic tokens, emitted as CSS custom
-properties prefixed \`--box-\`. A Figma alias becomes a \`var()\` hop, so nothing is
-duplicated per theme.
+Примитивных значений: ${primitives}. Семантических токенов: ${semantic}. Выводятся как
+CSS-переменные с префиксом \`--box-\`. Алиас Figma превращается в переход \`var()\`,
+поэтому ничего не дублируется под каждую тему.
 
 \`\`\`
 npm i @box-ui/tokens
 \`\`\`
 
 \`\`\`js
-import '@box-ui/tokens/css';        // primitives + every mode block
+import '@box-ui/tokens/css'; // примитивы + блоки всех мод
 import { model, attributes, defaults } from '@box-ui/tokens';
 \`\`\`
 
-### Switches
+### Переключатели
 
 ${switches}
 
-Set all five on one element to resolve a whole theme locally; a custom property is
-substituted where it is declared, so overriding one attribute deeper in the tree cannot
-reach a token an ancestor already resolved.
+Поставьте все пять на один элемент, чтобы разрешить тему локально: кастомное свойство
+подставляется там, где объявлено, поэтому переопределение одного атрибута глубже по
+дереву не дотянется до токена, который предок уже разрешил.
 
-### Collections
+### Коллекции
 
-${Object.entries(c)
-  .map(
-    ([id, collection]) =>
-      `- \`${id}\` — ${collection.variables.length} variables, ${collection.modes.length} mode(s), from “${collection.figmaName}”`,
-  )
-  .join('\n')}
+${collections}
 
-## Icons
+## Иконки
 
-${catalog.icons.length} icons in ${catalog.categories.length} categories, in ${catalog.styles.length} styles
-(${catalog.styles.map((s) => s.figma).join(', ')}). All 24×24, painted with
-\`currentColor\`, sized with \`size/base/*\` tokens.
+Иконок: ${catalog.icons.length} в ${catalog.categories.length} категориях. Стилей: ${catalog.styles.length}
+(${catalog.styles.map((s) => s.figma).join(', ')}). Все 24×24, красятся \`currentColor\`,
+размеры берутся из токенов \`size/base/*\`.
 
 \`\`\`jsx
 import { Icon, IconStyleProvider } from '@box-ui/icons';
@@ -90,27 +96,22 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 </IconStyleProvider>
 \`\`\`
 
-Not every icon is drawn in every style — \`catalog.icons[].styles\` lists the ones that
-are.
+Не каждая иконка нарисована во всех стилях — доступные перечислены в
+\`catalog.icons[].styles\`.
 
-### Other families
+### Остальные семейства
 
-${Object.entries(families)
-  .map(
-    ([id, meta]) =>
-      `- \`${id}\` — ${meta.total} entries from the “${meta.figmaPage}” Figma page, ${meta.resolved} with bundled artwork`,
-  )
-  .join('\n')}
+${rosters}
 
-## Pages
+## Страницы
 
-- [Introduction](${SITE}/?path=/docs/introduction--docs): the variable graph and how a token resolves
-- [Getting started](${SITE}/?path=/docs/getting-started--docs): install, wire up the modes, use the tokens
-- [Colours](${SITE}/?path=/story/foundations-colors--palette): the palette, the accent modes, the semantic tokens in Light and Dark
-- [Scales](${SITE}/?path=/story/foundations-scales--spacing): spacing, rounding, sizes, opacity
-- [Typography](${SITE}/?path=/story/foundations-typography--ramp): the type ramp and the four typefaces
-- [UI Icons](${SITE}/?path=/story/icons-ui-icons--gallery): the searchable gallery
-- [Figma families](${SITE}/?path=/story/icons-figma-families--flags): flags, payments, brands
+- [Обзор](${SITE}/?path=/docs/introduction--docs): граф переменных и как разрешается токен
+- [Начало работы](${SITE}/?path=/docs/getting-started--docs): установка, подключение мод, использование токенов
+- [Цвета](${SITE}/?path=/story/foundations-colors--palette): палитра, акцентные моды, семантика в светлой и тёмной темах
+- [Шкалы](${SITE}/?path=/story/foundations-scales--spacing): отступы, скругления, размеры, прозрачность
+- [Типографика](${SITE}/?path=/story/foundations-typography--ramp): текстовая шкала и четыре гарнитуры
+- [UI Icons](${SITE}/?path=/story/icons-ui-icons--gallery): галерея с поиском
+- [Семейства Figma](${SITE}/?path=/story/icons-figma-families--flags): флаги, платежи, бренды
 `;
 }
 

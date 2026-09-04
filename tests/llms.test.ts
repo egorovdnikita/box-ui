@@ -16,8 +16,8 @@ describe('llms.txt', () => {
   });
 
   it('counts icons and families rather than repeating a number', () => {
-    expect(published).toContain(`${catalog.icons.length} icons`);
-    expect(published).toContain(`${families.flags.total} entries`);
+    expect(published).toContain(`Иконок: ${catalog.icons.length}`);
+    expect(published).toContain(`записей: ${families.flags.total}`);
   });
 
   it('lists every switchable attribute', () => {

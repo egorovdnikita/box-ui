@@ -1,34 +1,34 @@
 # @box-ui/storybook
 
-The documentation site — <https://egorovdnikita.github.io/box-ui/>.
+Сайт документации — <https://egorovdnikita.github.io/box-ui/>.
 
 ```bash
-npm run storybook          # dev server
-npm run build:storybook    # static build into storybook-static/
-npm run deploy:storybook   # build + publish to the gh-pages branch
+npm run storybook          # дев-сервер
+npm run build:storybook    # статическая сборка в storybook-static/
+npm run deploy:storybook   # собрать и опубликовать в ветку gh-pages
 ```
 
-## Layout
+## Устройство
 
 ```
-.storybook/main.ts          stories glob, docs addon, staticDirs
-.storybook/manager.ts       sidebar branding: name, version, link to the repository
-.storybook/preview.tsx      toolbar switches, mode attributes, Storybook chrome variables
-.storybook/preview.css      every docs style, written against --sb-*
-stories/_lib.ts             pure helpers, tested in tests/
-stories/_ui.tsx             the docs kit: Page, Toolbar, Search, Swatch, Row, Callout…
-stories/Introduction.mdx    the variable graph
-stories/GettingStarted.mdx  install and consume
-stories/foundations/        Colors, Scales, Typography
-stories/icons/              UI Icons, Figma families
-public/llms.txt             generated — served at the site root
+.storybook/main.ts          какие истории собирать, аддон docs, staticDirs
+.storybook/manager.ts       брендирование сайдбара: имя, версия, ссылка на репозиторий
+.storybook/preview.tsx      переключатели, атрибуты мод, переменные оформления Storybook
+.storybook/preview.css      все стили документации, написаны на --sb-*
+stories/_lib.ts             чистые хелперы, покрыты тестами в tests/
+stories/_ui.tsx             набор для документации: Page, Toolbar, Search, Swatch, Row, Callout…
+stories/Introduction.mdx    граф переменных
+stories/GettingStarted.mdx  установка и применение
+stories/foundations/        Цвета, Шкалы, Типографика
+stories/icons/              UI Icons, семейства Figma
+public/llms.txt             генерируется, отдаётся из корня сайта
 ```
 
-`public/` is copied to the root of the build, which is how `llms.txt` ends up at
-`/llms.txt`. It is written by `scripts/build-llms-txt.mjs` from the token model, so
-every number in it is counted rather than typed; `tests/llms.test.ts` fails if it drifts.
+`public/` копируется в корень сборки — так `llms.txt` и оказывается по адресу `/llms.txt`.
+Его пишет `scripts/build-llms-txt.mjs` из модели токенов, поэтому каждое число в нём
+посчитано, а не набрано руками; `tests/llms.test.ts` падает, если файл разъедется.
 
-## Two palettes, on purpose
+## Две палитры, и это намеренно
 
 The chrome — background, type, borders, radius, accent — is **Storybook's own**, read
 out of `storybook/theming` at preview boot and published as `--sb-*` custom properties.
@@ -40,11 +40,11 @@ its own background _and_ foreground — `demoSurface` in `_ui.tsx` does this —
 Light-theme demo disappears against a dark canvas. That is a real bug this repo has
 already shipped twice.
 
-## Toolbar globals
+## Глобальные переключатели
 
-`theme`, `accent`, `radius`, `font` and `device` are written onto `<html>` as `data-*`
-attributes; `iconStyle` goes through `<IconStyleProvider>`. A story reads them from the
-second render argument:
+`theme`, `accent`, `radius`, `font` и `device` пишутся на `<html>` как атрибуты `data-*`;
+`iconStyle` идёт через `<IconStyleProvider>`. История читает их из второго аргумента
+`render`:
 
 ```tsx
 render: (_args, { globals }) => <Family id="flags" globals={globals as ModeGlobals} />;
@@ -53,7 +53,7 @@ render: (_args, { globals }) => <Family id="flags" globals={globals as ModeGloba
 To resolve two modes side by side on one page, use `<Scope>` — and set _all five_
 attributes, for the reason spelled out in the root README.
 
-## Filters live in args, not in `useState`
+## Фильтры живут в args, а не в `useState`
 
 Anything the reader can change on a page — a search, a select, a checkbox — is a
 Storybook **arg**. Storybook keeps args in the URL, so a filtered view is a link
@@ -76,10 +76,10 @@ export const Gallery: StoryObj = {
 };
 ```
 
-The Controls panel being hidden does not affect any of this — args still round-trip
-through the URL.
+То, что панель Controls скрыта, ни на что здесь не влияет — args всё равно ходят через
+адрес в обе стороны.
 
-## Chrome icons are pinned
+## Иконки интерфейса прибиты к одному стилю
 
 `<ChromeIcon>` in `_ui.tsx` always renders Linear. Documentation UI must not follow the
 reader's _Icon style_ choice, and Solar does not draw every icon in every style —
@@ -87,7 +87,7 @@ reader's _Icon style_ choice, and Solar does not draw every icon in every style 
 those two settings. Use it for anything that is part of the interface rather than part
 of the subject.
 
-## Adding a page
+## Как добавить страницу
 
 ```tsx
 const meta: Meta = { title: 'Foundations/Elevation' };
@@ -102,8 +102,11 @@ export const Shadows: StoryObj = {
 };
 ```
 
-`<Page>` provides the copy-to-clipboard context, so `useCopy()` only works **below** it —
-calling it in the story's own render function silently returns a no-op.
+`<Page>` предоставляет контекст копирования, поэтому `useCopy()` работает только **внутри**
+него — вызов в самой функции `render` истории молча вернёт пустышку.
 
-Sections are documentation pages rather than components with args, so the addon panel is
-hidden globally (`options.showPanel: false`). Story order lives in `storySort`.
+Разделы здесь — страницы документации, а не компоненты с args, поэтому панель аддонов
+скрыта глобально (`options.showPanel: false`). Порядок разделов задаётся в `storySort`.
+
+Заголовки разделов и историй русские, а `id` у каждой meta закреплён по-английски — чтобы
+перевод названий не менял адреса страниц.

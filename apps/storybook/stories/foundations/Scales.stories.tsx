@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { model } from '@box-ui/tokens';
-import { Code, Count, Grid, ModeGlobals, Page, Row, Scope, Section, demoSurface } from '../_ui';
+import { Code, Count, Grid, ModeGlobals, Page, Row, Scope, Section, counted, demoSurface } from '../_ui';
 
-const meta: Meta = { title: 'Foundations/Scales' };
+// `id` is pinned so translating the title does not change the story URLs.
+const meta: Meta = { id: 'foundations-scales', title: 'Основы/Шкалы' };
 export default meta;
 
 type Story = StoryObj;
@@ -20,15 +21,20 @@ function deviceValue(v: { values: Record<string, { alias?: string } | undefined>
 }
 
 const RESPONSIVE_HINT =
-  'Rows where the two differ compress on Mobile — switch “Device” in the toolbar to watch them move.';
+  'Строки, где значения расходятся, на Mobile сжимаются — переключите «Device» на панели и посмотрите, как они меняются.';
 
 export const Spacing: Story = {
+  name: 'Отступы',
   render: () => (
     <Page
-      title="Spacing"
-      lead="`spacing/base/*` lives in the “Grid” collection: thirteen steps that each carry a Desktop and a Mobile value. From `s` upwards Mobile drops one step of the primitive scale."
+      title="Отступы"
+      lead="`spacing/base/*` живёт в коллекции «Grid»: тринадцать ступеней, у каждой значение для Desktop и для Mobile. Начиная с `s` мобильная версия спускается на одну ступень примитивной шкалы."
     >
-      <Section title="Steps" description={RESPONSIVE_HINT} aside={<Count>{semantic('spacing').length} steps</Count>}>
+      <Section
+        title="Ступени"
+        description={RESPONSIVE_HINT}
+        aside={<Count>{counted(semantic('spacing').length, ['ступень', 'ступени', 'ступеней'])}</Count>}
+      >
         {semantic('spacing').map((v) => (
           <Row key={v.cssVar} label={v.cssVar} value={deviceValue(v)} live>
             <div
@@ -47,14 +53,15 @@ export const Spacing: Story = {
 };
 
 export const Rounding: Story = {
+  name: 'Скругления',
   render: (_args, { globals }) => (
     <Page
-      title="Rounding"
-      lead="Two collections stack here. “Rounding” maps each step to a primitive radius per density (Low / Medium / High), then “Grid” re-maps the steps again for Mobile — `xl` on Desktop resolves to the `l` value on Mobile."
+      title="Скругления"
+      lead="Здесь складываются две коллекции. «Rounding» сопоставляет каждой ступени примитивный радиус для своей плотности (Low / Medium / High), а «Grid» переназначает ступени ещё раз для Mobile — `xl` на Desktop разрешается в значение `l` на Mobile."
     >
       <Section
-        title="Density modes"
-        description="All three densities side by side; the toolbar “Radius” control drives the rest of the Storybook."
+        title="Моды плотности"
+        description="Все три плотности рядом; переключатель «Radius» на панели управляет остальным Storybook."
       >
         <Grid min={230}>
           {radius.modes.map((m) => (
@@ -97,7 +104,11 @@ export const Rounding: Story = {
         </Grid>
       </Section>
 
-      <Section title="Steps" description={RESPONSIVE_HINT} aside={<Count>{semantic('rounding').length} steps</Count>}>
+      <Section
+        title="Ступени"
+        description={RESPONSIVE_HINT}
+        aside={<Count>{counted(semantic('rounding').length, ['ступень', 'ступени', 'ступеней'])}</Count>}
+      >
         {semantic('rounding').map((v) => (
           <Row key={v.cssVar} label={v.cssVar} value={deviceValue(v)} live>
             <div
@@ -117,9 +128,13 @@ export const Rounding: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Размеры',
   render: () => (
-    <Page title="Sizes" lead="`size/base/*` from the “Grid” collection — control heights, icon boxes, avatars.">
-      <Section title="Steps" aside={<Count>{semantic('size').length} steps</Count>}>
+    <Page title="Размеры" lead="`size/base/*` из коллекции «Grid» — высоты контролов, боксы иконок, аватары.">
+      <Section
+        title="Ступени"
+        aside={<Count>{counted(semantic('size').length, ['ступень', 'ступени', 'ступеней'])}</Count>}
+      >
         {semantic('size').map((v) => (
           <Row key={v.cssVar} label={v.cssVar} value={deviceValue(v)} live>
             <div
@@ -144,9 +159,16 @@ export const Sizes: Story = {
 };
 
 export const Opacity: Story = {
+  name: 'Прозрачность',
   render: () => (
-    <Page title="Opacity" lead="The primitive “Opacity” collection, emitted as unitless ratios (`opacity/40` → `0.4`).">
-      <Section title="Steps" aside={<Count>{model.collections.opacity.variables.length} steps</Count>}>
+    <Page
+      title="Прозрачность"
+      lead="Примитивная коллекция «Opacity», выводится безразмерными долями (`opacity/40` → `0.4`)."
+    >
+      <Section
+        title="Ступени"
+        aside={<Count>{counted(model.collections.opacity.variables.length, ['ступень', 'ступени', 'ступеней'])}</Count>}
+      >
         <Grid min={112}>
           {model.collections.opacity.variables.map((v) => (
             <div

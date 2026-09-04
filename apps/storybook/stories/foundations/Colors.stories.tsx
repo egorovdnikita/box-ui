@@ -18,15 +18,18 @@ import {
   Section,
   ShareLink,
   Swatch,
+  counted,
   matches,
   useCopy,
   useResolved,
 } from '../_ui';
 
 const meta: Meta = {
-  title: 'Foundations/Colors',
+  // `id` is pinned so translating the title does not change the story URLs.
+  id: 'foundations-colors',
+  title: 'Основы/Цвета',
   parameters: {
-    docs: { description: { component: 'Colour variables from `Box UI | Primitives` and `Box UI | Tokens`.' } },
+    docs: { description: { component: 'Цветовые переменные из `Box UI | Primitives` и `Box UI | Tokens`.' } },
   },
 };
 export default meta;
@@ -52,7 +55,7 @@ function groupBy<T extends { path: string }>(variables: T[], depth: number) {
 }
 
 export const Palette: Story = {
-  name: 'Primitives — palette',
+  name: 'Примитивы — палитра',
   args: { query: '' },
   render: (args) => {
     const [, updateArgs] = useArgs();
@@ -69,14 +72,14 @@ export const Palette: Story = {
 
     return (
       <Page
-        title="Colour palette"
-        lead={`${palette.variables.length} raw colour variables from the “Color Palette” collection. These never change with a mode — every semantic token points at one of them. Click a swatch to copy its CSS variable.`}
+        title="Цветовая палитра"
+        lead={`${palette.variables.length} сырых цветовых переменных из коллекции «Color Palette». Они не меняются ни в одной моде — каждый семантический токен указывает на одну из них. Клик по образцу копирует CSS-переменную.`}
         toolbar={
           <>
             <Search value={query} onChange={setQuery} placeholder="blue, alpha, 500…" />
             <Counts>
-              <Count>{total} swatches</Count>
-              <Count>{groups.length} families</Count>
+              <Count>{counted(total, ['образец', 'образца', 'образцов'])}</Count>
+              <Count>{counted(groups.length, ['семейство', 'семейства', 'семейств'])}</Count>
               {query && <ResetFilters onReset={() => setQuery('')} />}
               <ShareLink />
             </Counts>
@@ -123,7 +126,7 @@ function AccentCell({
   return (
     <button
       type="button"
-      title={`${m.name} → ${value?.alias ?? ''} · click to copy`}
+      title={`${m.name} → ${value?.alias ?? ''} · клик копирует`}
       onClick={() => value?.alias && copy(value.alias, value.alias)}
       style={{
         display: 'block',
@@ -153,7 +156,7 @@ const mismatchedModes = accent.modes
   .filter((entry): entry is { mode: string; family: string } => entry !== null);
 
 export const Accents: Story = {
-  name: 'Accent modes — Color',
+  name: 'Акцентные моды — Color',
   args: { query: '' },
   render: (args) => {
     const [, updateArgs] = useArgs();
@@ -166,14 +169,15 @@ export const Accents: Story = {
 
     return (
       <Page
-        title="Accent colour modes"
-        lead="The “Color” collection has ten modes. Switch “Accent” in the toolbar and every brand token below re-points at a different primitive ramp — the semantic names never change."
+        title="Акцентные цветовые моды"
+        lead="В коллекции «Color» десять мод. Переключите «Accent» на панели — и каждый брендовый токен ниже начнёт указывать на другую примитивную шкалу, а семантические имена останутся прежними."
         toolbar={
           <>
             <Search value={query} onChange={setQuery} placeholder="brand, neutral, positive…" />
             <Counts>
               <Count>
-                {rows.length} tokens × {accent.modes.length} modes
+                {counted(rows.length, ['токен', 'токена', 'токенов'])} ×{' '}
+                {counted(accent.modes.length, ['мода', 'моды', 'мод'])}
               </Count>
               {query && <ResetFilters onReset={() => setQuery('')} />}
               <ShareLink />
@@ -182,15 +186,15 @@ export const Accents: Story = {
         }
       >
         {mismatchedModes.length > 0 && (
-          <Callout title="Some modes point at another ramp">
+          <Callout title="Часть мод указывает на чужую шкалу">
             {mismatchedModes.map((entry, index) => (
               <span key={entry.mode}>
                 {index > 0 && ', '}
-                <strong>{entry.mode}</strong> resolves to the <strong>{entry.family}</strong> ramp
+                <strong>{entry.mode}</strong> разрешается в шкалу <strong>{entry.family}</strong>
               </span>
             ))}
-            . That is how the Figma file is wired today, and it is reproduced here verbatim rather than quietly
-            corrected — fix it in <Code>Box UI | Tokens</Code> and rebuild.
+            . Так это устроено в Figma сегодня, и здесь воспроизведено буквально, а не тихо исправлено — почините в{' '}
+            <Code>Box UI | Tokens</Code> и пересоберите.
           </Callout>
         )}
 
@@ -198,15 +202,15 @@ export const Accents: Story = {
           <Empty query={query} onClear={() => setQuery('')} />
         ) : (
           <Section
-            title="Every token × every mode"
-            description="Rows are tokens, columns are the ten Figma modes. Each cell renders what that mode resolves to — hover for the primitive it aliases, click to copy it."
+            title="Каждый токен × каждая мода"
+            description="Строки — токены, столбцы — десять мод Figma. В ячейке то, во что мода разрешается: наведите, чтобы увидеть примитив, кликните, чтобы скопировать."
           >
             <div className="sb-scroller">
               <table className="sb-table">
                 <thead>
                   <tr>
                     <th className="sb-table__lead">
-                      <span className="sb-label">Token</span>
+                      <span className="sb-label">Токен</span>
                     </th>
                     {accent.modes.map((m) => (
                       <th key={m.slug}>
@@ -298,7 +302,7 @@ function SplitSwatch({ cssVar, name, globals }: { cssVar: string; name: string; 
 }
 
 export const Semantic: Story = {
-  name: 'Semantic — Light / Dark',
+  name: 'Семантика — светлая и тёмная',
   args: { query: '', compare: true },
   render: (args, { globals }) => {
     const [, updateArgs] = useArgs();
@@ -316,17 +320,17 @@ export const Semantic: Story = {
 
     return (
       <Page
-        title="Semantic colours"
-        lead={`${mode.variables.length} tokens in the “Mode” collection. Every one of them resolves through the “Color” collection, so they follow both the Theme and the Accent toolbar controls.`}
+        title="Семантические цвета"
+        lead={`${mode.variables.length} токенов в коллекции «Mode». Каждый разрешается через коллекцию «Color», поэтому они слушаются и переключателя Theme, и переключателя Accent.`}
         toolbar={
           <>
             <Search value={query} onChange={setQuery} placeholder="background, border, control…" />
             <label style={{ display: 'flex', alignItems: 'center', gap: 6, height: 28, cursor: 'pointer' }}>
               <input type="checkbox" checked={compare} onChange={(e) => setCompare(e.target.checked)} />
-              <span className="sb-caption">Compare Light / Dark</span>
+              <span className="sb-caption">Светлая и тёмная рядом</span>
             </label>
             <Counts>
-              <Count>{total} tokens</Count>
+              <Count>{counted(total, ['токен', 'токена', 'токенов'])}</Count>
               {query && <ResetFilters onReset={() => setQuery('')} />}
               <ShareLink />
             </Counts>

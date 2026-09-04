@@ -44,3 +44,23 @@ export function toHex(value: string): string {
       : '';
   return `#${hex}${alpha === 'ff' ? '' : alpha}`;
 }
+
+/**
+ * Russian plural agreement: `plural(1301, ['иконка', 'иконки', 'иконок'])`.
+ *
+ * The counts in the toolbars are data-driven, so they land on every form —
+ * 1 301 takes the singular, 22 the paucal, 15 the genitive plural. Getting this
+ * wrong is the sort of thing that reads as machine translation.
+ */
+export function plural(count: number, forms: [string, string, string]): string {
+  const mod10 = count % 10;
+  const mod100 = count % 100;
+  if (mod10 === 1 && mod100 !== 11) return forms[0];
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return forms[1];
+  return forms[2];
+}
+
+/** `count(5, [...])` -> `"5 иконок"`. */
+export function counted(count: number, forms: [string, string, string]): string {
+  return `${count} ${plural(count, forms)}`;
+}

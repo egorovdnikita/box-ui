@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { model } from '@box-ui/tokens';
 import { Text, type TextVariant } from '@box-ui/react';
-import { Caption, Code, Count, ModeGlobals, Page, Scope, Section, demoSurface } from '../_ui';
+import { Caption, Code, Count, ModeGlobals, Page, Scope, Section, counted, demoSurface } from '../_ui';
 
-const meta: Meta = { title: 'Foundations/Typography' };
+// `id` is pinned so translating the title does not change the story URLs.
+const meta: Meta = { id: 'foundations-typography', title: 'Основы/Типографика' };
 export default meta;
 
 type Story = StoryObj;
@@ -36,16 +37,16 @@ function sizesFor(token: string) {
 }
 
 export const Ramp: Story = {
-  name: 'Type ramp',
+  name: 'Шкала текста',
   render: () => (
     <Page
-      title="Type ramp"
-      lead="Twelve type styles from the “Grid” collection. Every step has its own Desktop and Mobile value — switch “Device” in the toolbar to see the ramp compress."
+      title="Шкала текста"
+      lead="Двенадцать текстовых стилей из коллекции «Grid». У каждой ступени своё значение для Desktop и для Mobile — переключите «Device» на панели, и шкала сожмётся."
     >
       <Section
-        title="Steps"
-        description="Each row shows the Figma token, what it resolves to on either device, and the style itself."
-        aside={<Count>{RAMP.length} styles</Count>}
+        title="Ступени"
+        description="В строке — токен Figma, во что он разрешается на каждом устройстве, и сам стиль."
+        aside={<Count>{counted(RAMP.length, ['стиль', 'стиля', 'стилей'])}</Count>}
       >
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           {RAMP.map(({ variant, token, sample }) => {
@@ -63,7 +64,7 @@ export const Ramp: Story = {
                     {sizes.desktop}
                     {responsive && ` · mobile ${sizes.mobile}`}
                   </Caption>
-                  {responsive && <Count>responsive</Count>}
+                  {responsive && <Count>адаптивный</Count>}
                 </div>
                 <Text variant={variant} as="div" style={{ color: 'var(--sb-text)' }}>
                   {sample}
@@ -78,11 +79,11 @@ export const Ramp: Story = {
 };
 
 export const Typefaces: Story = {
-  name: 'Typeface modes',
+  name: 'Моды гарнитур',
   render: (_args, { globals }) => (
     <Page
-      title="Typeface modes"
-      lead="The “Typography” collection swaps the font family behind `typography/font-family/*`. All four modes render below at once; the toolbar control changes the one the rest of the Storybook uses."
+      title="Моды гарнитур"
+      lead="Коллекция «Typography» подменяет семейство за `typography/font-family/*`. Ниже сразу все четыре моды; переключатель на панели меняет ту, которой пользуется остальной Storybook."
     >
       {font.modes.map((m) => (
         <Section key={m.slug} title={m.name} aside={<Code>{`[data-font="${m.slug}"]`}</Code>}>
@@ -101,8 +102,8 @@ export const Typefaces: Story = {
         </Section>
       ))}
       <Section
-        title="Fallbacks"
-        description="Only the family name comes from Figma. The generated CSS appends `var(--box-font-fallback)` so an unavailable family degrades to the system stack instead of to a serif default."
+        title="Запасные шрифты"
+        description="Из Figma приходит только имя семейства. Сгенерированный CSS дописывает `var(--box-font-fallback)`, чтобы недоступная гарнитура падала в системный стек, а не в засечный шрифт по умолчанию."
       >
         <Code>--box-type-font-family-heading: "Inter Display", var(--box-font-fallback);</Code>
       </Section>

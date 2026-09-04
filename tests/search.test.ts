@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { matches, toHex } from '../apps/storybook/stories/_lib';
+import { counted, matches, plural, toHex } from '../apps/storybook/stories/_lib';
 
 describe('search', () => {
   it('matches terms across a hyphenated name', () => {
@@ -48,5 +48,32 @@ describe('colour readout', () => {
   it('passes anything it cannot read straight through', () => {
     expect(toHex('')).toBe('');
     expect(toHex('none')).toBe('none');
+  });
+});
+
+describe('склонение числительных', () => {
+  it('согласует форму с числом', () => {
+    const forms: [string, string, string] = ['иконка', 'иконки', 'иконок'];
+    expect(plural(1, forms)).toBe('иконка');
+    expect(plural(1301, forms)).toBe('иконка');
+    expect(plural(2, forms)).toBe('иконки');
+    expect(plural(24, forms)).toBe('иконки');
+    expect(plural(5, forms)).toBe('иконок');
+    expect(plural(197, forms)).toBe('иконок');
+    expect(plural(0, forms)).toBe('иконок');
+  });
+
+  it('не спотыкается на подростковых числах', () => {
+    const forms: [string, string, string] = ['токен', 'токена', 'токенов'];
+    expect(plural(11, forms)).toBe('токенов');
+    expect(plural(12, forms)).toBe('токенов');
+    expect(plural(14, forms)).toBe('токенов');
+    expect(plural(111, forms)).toBe('токенов');
+    expect(plural(112, forms)).toBe('токенов');
+  });
+
+  it('склеивает число с формой', () => {
+    expect(counted(675, ['запись', 'записи', 'записей'])).toBe('675 записей');
+    expect(counted(21, ['запись', 'записи', 'записей'])).toBe('21 запись');
   });
 });
