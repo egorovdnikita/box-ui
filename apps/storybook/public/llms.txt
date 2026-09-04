@@ -1,0 +1,83 @@
+# Box UI
+
+Design tokens and icons generated from the Box UI Figma libraries. Every Figma
+Variable mode — colour theme, accent, rounding density, typeface and device — is a
+switch on an HTML attribute, and the whole alias chain re-resolves under it.
+
+- Live documentation: https://egorovdnikita.github.io/box-ui
+- Source: https://github.com/egorovdnikita/box-ui
+- Licence: MIT (code), CC BY 4.0 (Solar icons, © 480 Design)
+
+## Tokens
+
+777 primitive values and 234 semantic tokens, emitted as CSS custom
+properties prefixed `--box-`. A Figma alias becomes a `var()` hop, so nothing is
+duplicated per theme.
+
+```
+npm i @box-ui/tokens
+```
+
+```js
+import '@box-ui/tokens/css';        // primitives + every mode block
+import { model, attributes, defaults } from '@box-ui/tokens';
+```
+
+### Switches
+
+- `data-font`: inter | inter-display | inter-tight | inter-variable (default `inter`) — Figma collection “Typography”
+- `data-radius`: low | medium | high (default `medium`) — Figma collection “Rounding”
+- `data-accent`: blue | sky | teal | emerald | orange | amber | violet | purple | cyan | yellow (default `blue`) — Figma collection “Color”
+- `data-theme`: light | dark (default `light`) — Figma collection “Mode”
+- `data-device`: desktop | mobile (default `desktop`) — Figma collection “Grid”
+
+Set all five on one element to resolve a whole theme locally; a custom property is
+substituted where it is declared, so overriding one attribute deeper in the tree cannot
+reach a token an ancestor already resolved.
+
+### Collections
+
+- `palette` — 584 variables, 1 mode(s), from “Color Palette”
+- `spacing` — 29 variables, 1 mode(s), from “Spacing”
+- `rounding` — 31 variables, 1 mode(s), from “Rounding”
+- `size` — 29 variables, 1 mode(s), from “Size”
+- `opacity` — 29 variables, 1 mode(s), from “Opacity”
+- `type-scale` — 75 variables, 1 mode(s), from “Typography”
+- `font` — 37 variables, 4 mode(s), from “Typography”
+- `radius` — 11 variables, 3 mode(s), from “Rounding”
+- `accent` — 43 variables, 10 mode(s), from “Color”
+- `mode` — 70 variables, 2 mode(s), from “Mode”
+- `grid` — 73 variables, 2 mode(s), from “Grid”
+
+## Icons
+
+1301 icons in 38 categories, in 6 styles
+(Bold, Bold Duotone, Broken, Line Duotone, Linear, Outline). All 24×24, painted with
+`currentColor`, sized with `size/base/*` tokens.
+
+```jsx
+import { Icon, IconStyleProvider } from '@box-ui/icons';
+
+<IconStyleProvider style="bold-duotone">
+  <Icon name="home-smile" size="l" title="Home" />
+</IconStyleProvider>
+```
+
+Not every icon is drawn in every style — `catalog.icons[].styles` lists the ones that
+are.
+
+### Other families
+
+- `flags` — 197 entries from the “Flags” Figma page, 197 with bundled artwork
+- `payments` — 675 entries from the “Payments” Figma page, 541 with bundled artwork
+- `brands` — 24 entries from the “Brands” Figma page, 21 with bundled artwork
+
+## Pages
+
+- [Introduction](https://egorovdnikita.github.io/box-ui/?path=/docs/introduction--docs): the variable graph and how a token resolves
+- [Getting started](https://egorovdnikita.github.io/box-ui/?path=/docs/getting-started--docs): install, wire up the modes, use the tokens
+- [Colours](https://egorovdnikita.github.io/box-ui/?path=/story/foundations-colors--palette): the palette, the accent modes, the semantic tokens in Light and Dark
+- [Scales](https://egorovdnikita.github.io/box-ui/?path=/story/foundations-scales--spacing): spacing, rounding, sizes, opacity
+- [Typography](https://egorovdnikita.github.io/box-ui/?path=/story/foundations-typography--ramp): the type ramp and the four typefaces
+- [UI Icons](https://egorovdnikita.github.io/box-ui/?path=/story/icons-ui-icons--gallery): the searchable gallery
+- [Figma families](https://egorovdnikita.github.io/box-ui/?path=/story/icons-figma-families--flags): flags, payments, brands

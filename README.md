@@ -140,6 +140,10 @@ at once. What the pages give you beyond a list of names:
 - **Click to copy** anywhere — swatches and scale rows copy `var(--box-…)`, icons copy
   their name.
 - **Search everywhere**, `/` to focus it, with the Figma grouping kept as jump links.
+- **[Getting started](https://egorovdnikita.github.io/box-ui/?path=/docs/getting-started--docs)** —
+  install, wire the five mode attributes, use the tokens and the icons.
+- **[llms.txt](https://egorovdnikita.github.io/box-ui/llms.txt)** — the whole system as one
+  machine-readable page, generated from the token model so it cannot go stale.
 
 The documentation chrome is deliberately Storybook's own — its palette, type and
 borders, read out of `storybook/theming` so the canvas cannot drift from the manager

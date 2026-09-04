@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "prepare": "npm run build",
-    "build": "npm run build -w @box-ui/tokens && npm run build -w @box-ui/icons",
+    "build": "npm run build -w @box-ui/tokens && npm run build -w @box-ui/icons && node scripts/build-llms-txt.mjs",
     "build:tokens": "npm run build -w @box-ui/tokens",
     "build:icons": "npm run build -w @box-ui/icons",
     "icons:figma": "node scripts/export-figma-icons.mjs",
@@ -28,7 +28,8 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check": "npm run typecheck && npm run lint && npm run format:check && npm test"
+    "check": "npm run typecheck && npm run lint && npm run format:check && npm test",
+    "build:llms": "node scripts/build-llms-txt.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.20.1",

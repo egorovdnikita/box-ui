@@ -1,0 +1,118 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting started" />
+
+# Getting started
+
+Three packages, none of which contain a literal colour, radius or size: everything comes
+from the Figma Variables through `@box-ui/tokens`.
+
+```bash
+npm i @box-ui/tokens @box-ui/icons @box-ui/react
+```
+
+## 1. Load the CSS
+
+```js
+import '@box-ui/tokens/css';
+```
+
+That is `primitives.css` (the 777 fixed values on `:root`) plus `theme.css` (one block per
+Figma mode, selected by a `data-*` attribute). They can be imported separately if you only
+want one of them.
+
+Optionally:
+
+```js
+import '@box-ui/tokens/css/adaptive.css';
+```
+
+which picks Dark from `prefers-color-scheme` and Mobile below 768px **only when the
+document has not set those attributes itself**.
+
+## 2. Choose the modes
+
+Every switchable Figma collection maps to one attribute:
+
+| Attribute     | Figma collection | Values                                                                           | Default   |
+| ------------- | ---------------- | -------------------------------------------------------------------------------- | --------- |
+| `data-theme`  | Mode             | `light` `dark`                                                                   | `light`   |
+| `data-accent` | Color            | `blue` `sky` `teal` `emerald` `orange` `amber` `violet` `purple` `cyan` `yellow` | `blue`    |
+| `data-radius` | Rounding         | `low` `medium` `high`                                                            | `medium`  |
+| `data-font`   | Typography       | `inter` `inter-display` `inter-tight` `inter-variable`                           | `inter`   |
+| `data-device` | Grid             | `desktop` `mobile`                                                               | `desktop` |
+
+Set them on `<html>` and the whole document follows:
+
+{/* prettier-ignore */}
+```html
+<html data-theme="dark" data-accent="violet" data-radius="high" data-font="inter" data-device="desktop">
+```
+
+Or let the provider do it:
+
+```jsx
+import { BoxUIProvider } from '@box-ui/react';
+
+<BoxUIProvider target="root" theme="dark" accent="violet" radius="high">
+  <App />
+</BoxUIProvider>;
+```
+
+`target="local"` — the default — wraps the children in a `<div>` instead, which is how two
+themes sit side by side on one page.
+
+## 3. Use the tokens
+
+In CSS, by name:
+
+```css
+.card {
+  background: var(--box-background-base-secondary);
+  color: var(--box-content-base-primary);
+  border-radius: var(--box-rounding-base-m);
+  padding: var(--box-spacing-base-m);
+}
+```
+
+Or from JS, if you would rather not type the names:
+
+```js
+import { color, layout } from '@box-ui/tokens';
+
+color.background.base.secondary; // 'var(--box-background-base-secondary)'
+layout.spacing.base.m; // 'var(--box-spacing-base-m)'
+```
+
+`model` carries the whole graph — collections, modes, and what each variable aliases —
+which is what these documentation pages are built from.
+
+## 4. Icons
+
+```jsx
+import { Icon, IconStyleProvider } from '@box-ui/icons';
+
+<Icon name="home-smile" size="l" title="Home" />
+
+<IconStyleProvider style="bold-duotone">
+  <Icon name="shield-check" size="m" />
+</IconStyleProvider>;
+```
+
+Sizes are `size/base/*` tokens, so an icon follows `data-device` like everything else, and
+the geometry paints with `currentColor`. Each style is a separate dynamic `import()`, so an
+app ships only what it renders.
+
+Without a `title` the icon is hidden from assistive technology, which is what you want for
+decoration; pass one when the icon carries the meaning.
+
+## Where to go next
+
+- **Introduction** — how the alias chain works and why scoping needs all five attributes.
+- **Foundations** — the palette, the scales, the type ramp, each showing live resolved values.
+- **Icons** — the searchable gallery and the Flags / Payments / Brands families.
+
+{/_ A markdown link here would be rewritten into Storybook's router as
+`./?path=/llms.txt`; a plain anchor reaches the static file. _/}
+
+Machine-readable summary of all of the above: <a href="llms.txt" target="_blank" rel="noreferrer">llms.txt</a>.

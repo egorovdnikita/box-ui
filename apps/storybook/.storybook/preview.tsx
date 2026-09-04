@@ -183,7 +183,7 @@ const preview: Preview = {
     options: {
       showPanel: false,
       storySort: {
-        order: ['Introduction', 'Foundations', 'Icons'],
+        order: ['Introduction', 'Getting started', 'Foundations', 'Icons'],
       },
     },
     controls: { disable: true },

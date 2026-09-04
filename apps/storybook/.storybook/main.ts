@@ -3,6 +3,8 @@ import remarkGfm from 'remark-gfm';
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(ts|tsx)'],
+  // llms.txt is served from the site root, the way vkui.io publishes theirs.
+  staticDirs: ['../public'],
   addons: [
     {
       name: '@storybook/addon-docs',

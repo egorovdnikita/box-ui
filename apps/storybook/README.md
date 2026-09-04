@@ -11,13 +11,22 @@ npm run deploy:storybook   # build + publish to the gh-pages branch
 ## Layout
 
 ```
-.storybook/preview.tsx   toolbar switches, mode attributes, Storybook chrome variables
-.storybook/preview.css   every docs style, written against --sb-*
-stories/_ui.tsx          the docs kit: Page, Toolbar, Search, Swatch, Row, Callout…
-stories/Introduction.mdx the landing page
-stories/foundations/     Colors, Scales, Typography
-stories/icons/           UI Icons, Figma families
+.storybook/main.ts          stories glob, docs addon, staticDirs
+.storybook/manager.ts       sidebar branding: name, version, link to the repository
+.storybook/preview.tsx      toolbar switches, mode attributes, Storybook chrome variables
+.storybook/preview.css      every docs style, written against --sb-*
+stories/_lib.ts             pure helpers, tested in tests/
+stories/_ui.tsx             the docs kit: Page, Toolbar, Search, Swatch, Row, Callout…
+stories/Introduction.mdx    the variable graph
+stories/GettingStarted.mdx  install and consume
+stories/foundations/        Colors, Scales, Typography
+stories/icons/              UI Icons, Figma families
+public/llms.txt             generated — served at the site root
 ```
+
+`public/` is copied to the root of the build, which is how `llms.txt` ends up at
+`/llms.txt`. It is written by `scripts/build-llms-txt.mjs` from the token model, so
+every number in it is counted rather than typed; `tests/llms.test.ts` fails if it drifts.
 
 ## Two palettes, on purpose
 
