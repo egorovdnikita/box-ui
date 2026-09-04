@@ -1,0 +1,83 @@
+# Box UI
+
+Дизайн-токены и иконки, сгенерированные из библиотек Figma «Box UI». Каждая мода
+переменных Figma — цветовая тема, акцент, плотность скруглений, гарнитура и устройство —
+это переключатель на HTML-атрибуте, под которым заново разрешается вся цепочка алиасов.
+
+- Документация: https://egorovdnikita.github.io/box-ui
+- Исходники: https://github.com/egorovdnikita/box-ui
+- Лицензии: MIT (код), CC BY 4.0 (иконки Solar, © 480 Design)
+
+## Токены
+
+Примитивных значений: 777. Семантических токенов: 234. Выводятся как
+CSS-переменные с префиксом `--box-`. Алиас Figma превращается в переход `var()`,
+поэтому ничего не дублируется под каждую тему.
+
+```
+npm i @box-ui/tokens
+```
+
+```js
+import '@box-ui/tokens/css'; // примитивы + блоки всех мод
+import { model, attributes, defaults } from '@box-ui/tokens';
+```
+
+### Переключатели
+
+- `data-font`: inter | inter-display | inter-tight | inter-variable (по умолчанию `inter`) — коллекция Figma «Typography»
+- `data-radius`: low | medium | high (по умолчанию `medium`) — коллекция Figma «Rounding»
+- `data-accent`: blue | sky | teal | emerald | orange | amber | violet | purple | cyan | yellow (по умолчанию `blue`) — коллекция Figma «Color»
+- `data-theme`: light | dark (по умолчанию `light`) — коллекция Figma «Mode»
+- `data-device`: desktop | mobile (по умолчанию `desktop`) — коллекция Figma «Grid»
+
+Поставьте все пять на один элемент, чтобы разрешить тему локально: кастомное свойство
+подставляется там, где объявлено, поэтому переопределение одного атрибута глубже по
+дереву не дотянется до токена, который предок уже разрешил.
+
+### Коллекции
+
+- `palette` — переменных: 584, мод: 1, из «Color Palette»
+- `spacing` — переменных: 29, мод: 1, из «Spacing»
+- `rounding` — переменных: 31, мод: 1, из «Rounding»
+- `size` — переменных: 29, мод: 1, из «Size»
+- `opacity` — переменных: 29, мод: 1, из «Opacity»
+- `type-scale` — переменных: 75, мод: 1, из «Typography»
+- `font` — переменных: 37, мод: 4, из «Typography»
+- `radius` — переменных: 11, мод: 3, из «Rounding»
+- `accent` — переменных: 43, мод: 10, из «Color»
+- `mode` — переменных: 70, мод: 2, из «Mode»
+- `grid` — переменных: 73, мод: 2, из «Grid»
+
+## Иконки
+
+Иконок: 1301 в 38 категориях. Стилей: 6
+(Bold, Bold Duotone, Broken, Line Duotone, Linear, Outline). Все 24×24, красятся `currentColor`,
+размеры берутся из токенов `size/base/*`.
+
+```jsx
+import { Icon, IconStyleProvider } from '@box-ui/icons';
+
+<IconStyleProvider style="bold-duotone">
+  <Icon name="home-smile" size="l" title="Home" />
+</IconStyleProvider>
+```
+
+Не каждая иконка нарисована во всех стилях — доступные перечислены в
+`catalog.icons[].styles`.
+
+### Остальные семейства
+
+- `flags` — записей: 197 со страницы Figma «Flags», из них с графикой: 197
+- `payments` — записей: 675 со страницы Figma «Payments», из них с графикой: 541
+- `brands` — записей: 24 со страницы Figma «Brands», из них с графикой: 21
+
+## Страницы
+
+- [Обзор](https://egorovdnikita.github.io/box-ui/?path=/docs/introduction--docs): граф переменных и как разрешается токен
+- [Начало работы](https://egorovdnikita.github.io/box-ui/?path=/docs/getting-started--docs): установка, подключение мод, использование токенов
+- [Цвета](https://egorovdnikita.github.io/box-ui/?path=/story/foundations-colors--palette): палитра, акцентные моды, семантика в светлой и тёмной темах
+- [Шкалы](https://egorovdnikita.github.io/box-ui/?path=/story/foundations-scales--spacing): отступы, скругления, размеры, прозрачность
+- [Типографика](https://egorovdnikita.github.io/box-ui/?path=/story/foundations-typography--ramp): текстовая шкала и четыре гарнитуры
+- [UI Icons](https://egorovdnikita.github.io/box-ui/?path=/story/icons-ui-icons--gallery): галерея с поиском
+- [Семейства Figma](https://egorovdnikita.github.io/box-ui/?path=/story/icons-figma-families--flags): флаги, платежи, бренды
