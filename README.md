@@ -219,7 +219,7 @@ npm run build:storybook
 ## Checks
 
 ```bash
-npm run check   # typecheck + lint + format:check + test
+npm run check   # typecheck + lint + format:check + test + build the Storybook
 ```
 
 The pieces run on their own too: `typecheck`, `lint` (`lint:fix`), `format`

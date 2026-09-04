@@ -10,3 +10,7 @@ apps/storybook/storybook-static/
 
 # verbatim Figma dumps: the formatting is the record
 tokens/figma/
+
+# Prettier reads `{/* … */}` in MDX as emphasis and rewrites it to `{/_ … _/}`,
+# which Storybook's indexer cannot parse — it broke the build once already.
+*.mdx
