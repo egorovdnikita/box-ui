@@ -20,8 +20,12 @@ const REPO = 'https://github.com/egorovdnikita/box-ui';
 export function render(model, catalog, families) {
   const c = model.collections;
   const sum = (ids) => ids.map((id) => c[id].variables.length).reduce((a, b) => a + b, 0);
-  const primitives = sum(['palette', 'spacing', 'rounding', 'size', 'opacity', 'type-scale']);
-  const semantic = sum(['accent', 'mode', 'radius', 'font', 'grid']);
+  // Counted by layer prefix rather than a hard-coded list, so adding a
+  // collection in Figma cannot leave these two numbers behind.
+  const ids = Object.keys(c);
+  const primitives = sum(ids.filter((id) => id.startsWith('prim-')));
+  const semantic = sum(ids.filter((id) => !id.startsWith('prim-')));
+  const switchCount = ids.filter((id) => c[id].attribute).length;
 
   const switches = Object.values(c)
     .filter((collection) => collection.attribute)
@@ -47,9 +51,10 @@ export function render(model, catalog, families) {
 
   return `# Box UI
 
-Дизайн-токены и иконки, сгенерированные из библиотек Figma «Box UI». Каждая мода
-переменных Figma — цветовая тема, акцент, плотность скруглений, гарнитура и устройство —
-это переключатель на HTML-атрибуте, под которым заново разрешается вся цепочка алиасов.
+Дизайн-токены и иконки, сгенерированные из файла Figma «Box UI | Components». Каждая
+мода переменных Figma — тема, акцент, плотность скруглений, гарнитура, устройство,
+статус, вид контрола и его состояние — это переключатель на HTML-атрибуте, под которым
+заново разрешается вся цепочка алиасов.
 
 - Документация: ${SITE}
 - Исходники: ${REPO}
@@ -74,9 +79,16 @@ import { model, attributes, defaults } from '@box-ui/tokens';
 
 ${switches}
 
-Поставьте все пять на один элемент, чтобы разрешить тему локально: кастомное свойство
-подставляется там, где объявлено, поэтому переопределение одного атрибута глубже по
-дереву не дотянется до токена, который предок уже разрешил.
+Поставьте все ${switchCount} на один элемент, чтобы разрешить тему локально: кастомное
+свойство подставляется там, где объявлено, поэтому переопределение одного атрибута
+глубже по дереву не дотянется до токена, который предок уже разрешил.
+
+Состояния контролов не нужно переключать вручную: \`@box-ui/tokens/css/controls.css\`
+отображает моды коллекции «Controls · State» на \`:hover\`, \`:active\` и \`:disabled\`
+для любого элемента с атрибутом \`data-box-control\`.
+
+Прозрачные ступени Figma хранит как «эта шкала на N%»; в CSS они выводятся через
+\`color-mix(in srgb, … N%, transparent)\`.
 
 ### Коллекции
 
@@ -107,9 +119,10 @@ ${rosters}
 
 - [Обзор](${SITE}/?path=/docs/introduction--docs): граф переменных и как разрешается токен
 - [Начало работы](${SITE}/?path=/docs/getting-started--docs): установка, подключение мод, использование токенов
-- [Цвета](${SITE}/?path=/story/foundations-colors--palette): палитра, акцентные моды, семантика в светлой и тёмной темах
-- [Шкалы](${SITE}/?path=/story/foundations-scales--spacing): отступы, скругления, размеры, прозрачность
+- [Цвета](${SITE}/?path=/story/foundations-colors--palette): палитра, именованные шкалы, акцентные моды, семантика в светлой и тёмной темах, статусы
+- [Шкалы](${SITE}/?path=/story/foundations-scales--spacing): отступы, скругления, размеры
 - [Типографика](${SITE}/?path=/story/foundations-typography--ramp): текстовая шкала и четыре гарнитуры
+- [Контролы](${SITE}/?path=/story/controls-controls--matrix): вид × состояние × семейство на живых кнопках
 - [UI Icons](${SITE}/?path=/story/icons-ui-icons--gallery): галерея с поиском
 - [Семейства Figma](${SITE}/?path=/story/icons-figma-families--flags): флаги, платежи, бренды
 `;

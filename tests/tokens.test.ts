@@ -1,13 +1,26 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { parseDumps, COLLECTIONS } from '../packages/tokens/scripts/parse-figma.mjs';
+import { aliasesIn, parseDumps } from '../packages/tokens/scripts/parse-figma.mjs';
 
 const root = join(import.meta.dirname, '..');
 const css = (name: string) => readFileSync(join(root, 'packages/tokens/dist/css', name), 'utf8');
 
 const DEFINITION = /^\s*(--box-[a-z0-9-]+)\s*:/gim;
 const REFERENCE = /var\(\s*(--box-[a-z0-9-]+)/gi;
+
+/** Every attribute the generated CSS is expected to switch on. */
+const ATTRIBUTES = [
+  'data-theme',
+  'data-accent',
+  'data-radius',
+  'data-font',
+  'data-device',
+  'data-status',
+  'data-appearance',
+  'data-state',
+  'data-icon-style',
+];
 
 const names = (source: string, pattern: RegExp) => {
   const found = new Set<string>();
@@ -16,7 +29,7 @@ const names = (source: string, pattern: RegExp) => {
 };
 
 describe('generated CSS', () => {
-  const all = css('primitives.css') + css('theme.css');
+  const all = css('primitives.css') + css('theme.css') + css('controls.css');
 
   it('resolves every var() it references', () => {
     // The whole point of the pipeline is that a Figma alias becomes a var()
@@ -27,35 +40,86 @@ describe('generated CSS', () => {
     const dangling = [...referenced].filter((name) => !defined.has(name));
 
     // Guard the guard: a regex that matched nothing would pass silently.
-    expect(defined.size).toBeGreaterThan(500);
-    expect(referenced.size).toBeGreaterThan(100);
+    expect(defined.size).toBeGreaterThan(1000);
+    expect(referenced.size).toBeGreaterThan(400);
     expect(dangling).toEqual([]);
   });
 
   it('defines every primitive on :root, with no mode attribute', () => {
     const primitives = css('primitives.css');
     expect(primitives).toContain(':root');
-    expect(primitives).not.toMatch(/\[data-(theme|accent|radius|font|device)/);
+    expect(primitives).not.toMatch(new RegExp(`\\[(${ATTRIBUTES.join('|')})`));
   });
 
   it('emits a block for every mode of every switchable collection', () => {
     const theme = css('theme.css');
-    for (const attribute of ['data-theme', 'data-accent', 'data-radius', 'data-font', 'data-device']) {
+    for (const attribute of ATTRIBUTES) {
       expect(theme, `${attribute} has no block`).toContain(`[${attribute}=`);
     }
   });
 
-  it('accepts the Figma spelling of the strongest rounding mode', () => {
-    // "Hight" is a typo in the Figma file that the CSS deliberately tolerates.
-    expect(css('theme.css')).toMatch(/data-radius="?hight"?/);
+  it('puts the default mode on :root at zero specificity', () => {
+    // `:where(:root)` so an explicit attribute deeper in the tree always wins,
+    // whichever order the two rules happen to be emitted in.
+    expect(css('theme.css')).toContain(':where(:root),\n[data-theme="light"]');
+  });
+
+  it('spells an opacity override as color-mix rather than a flattened hex', () => {
+    // Figma stores these as "that ramp step, at N%". Flattening them would
+    // break the alias chain: changing the ramp would no longer move the tint.
+    expect(css('primitives.css')).toContain(
+      '--box-palette-neutral-alpha-16: color-mix(in srgb, var(--box-palette-neutral-solid-500) 16%, transparent);',
+    );
+  });
+
+  it('re-declares the theme hops that reach Status on every control', () => {
+    // Status is the one collection Figma varies per instance. Those hops are
+    // declared inside the [data-theme] blocks, so without this a control that
+    // sets its own [data-status] would silently keep its ancestor's sentiment.
+    const controls = css('controls.css');
+    for (const selector of [
+      ':where(:root) [data-box-control]',
+      '[data-theme="light"] [data-box-control]',
+      '[data-theme="dark"] [data-box-control]',
+    ]) {
+      expect(controls, `${selector} is missing`).toContain(selector);
+    }
+    expect(controls).toContain('--box-status-fill-solid: var(--box-status-color-solid-base);');
+    expect(controls).toContain('--box-status-fill-solid: var(--box-status-color-solid-low);');
+  });
+
+  it('drives control states from pseudo-classes as well as the attribute', () => {
+    // CSS cannot set an attribute on hover, so the State collection would be
+    // unreachable without this bridge.
+    const controls = css('controls.css');
+    expect(controls).toContain('[data-box-control]:hover');
+    expect(controls).toContain('[data-box-control]:active');
+    expect(controls).toContain('[data-box-control]:disabled');
   });
 });
 
 describe('Figma dumps', () => {
   const collections = parseDumps(join(root, 'tokens/figma'));
+  const byId = Object.fromEntries(collections.map((c) => [c.id, c]));
 
-  it('parses every collection the mapping declares', () => {
-    expect(collections.map((c) => c.id).sort()).toEqual([...new Set(Object.values(COLLECTIONS))].sort());
+  it('parses every collection in the Figma file', () => {
+    expect(collections.map((c) => c.id).sort()).toEqual([
+      'brand-color',
+      'brand-icon',
+      'brand-rounding',
+      'brand-type',
+      'prim-color',
+      'prim-rounding',
+      'prim-size',
+      'prim-spacing',
+      'prim-type',
+      'sys-appearance',
+      'sys-color',
+      'sys-responsive',
+      'sys-state',
+      'sys-status',
+      'sys-theme',
+    ]);
   });
 
   it('gives every variable a value in every mode of its collection', () => {
@@ -70,23 +134,34 @@ describe('Figma dumps', () => {
     expect(gaps).toEqual([]);
   });
 
-  it('points every alias at a variable that exists', () => {
-    const known = new Set<string>();
-    for (const collection of collections) {
-      for (const path of Object.keys(collection.variables)) known.add(path);
-    }
-
+  it('points every alias at a variable that exists in the collection it names', () => {
+    // `color/alpha/16` is a real variable in both brand-color and sys-status,
+    // so an alias is only resolvable together with its collection prefix.
     const broken: string[] = [];
     for (const collection of collections) {
       for (const [path, variable] of Object.entries(collection.variables)) {
         for (const value of Object.values(variable.values)) {
-          if (value && typeof value === 'object' && 'type' in value && value.type === 'alias') {
-            const ref = (value as { ref: string }).ref;
-            if (!known.has(ref)) broken.push(`${collection.id}/${path} -> @${ref}`);
+          for (const alias of aliasesIn(value)) {
+            if (!byId[alias.collection]?.variables[alias.ref])
+              broken.push(`${collection.id}/${path} -> @${alias.collection}:${alias.ref}`);
           }
         }
       }
     }
     expect(broken).toEqual([]);
+  });
+
+  it('has at least one path that two collections both use', () => {
+    // Guards the reason aliases carry a collection at all: if this ever stops
+    // being true, the prefix is no longer load-bearing and the test above is
+    // not testing what it claims to.
+    const owners = new Map<string, string[]>();
+    for (const collection of collections) {
+      for (const path of Object.keys(collection.variables)) {
+        owners.set(path, [...(owners.get(path) ?? []), collection.id]);
+      }
+    }
+    const shared = [...owners].filter(([, ids]) => ids.length > 1);
+    expect(shared.length).toBeGreaterThan(0);
   });
 });

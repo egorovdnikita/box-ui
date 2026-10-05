@@ -310,20 +310,25 @@ export const Sizes: Story = {
 
       <Section
         title="Цвет"
-        description="Иконки красятся `currentColor`, поэтому наследуют тот токен `--box-content-*`, который задан контейнером. Это токены контента Box UI, и лежат они на поверхности Box UI — переключите Theme на панели, и карточка поедет целиком."
+        description="Иконки красятся `currentColor`, поэтому наследуют тот цветовой токен, который задан контейнером. Тональности берутся из коллекции «System · Status»: один токен `--box-status-content-on-surface-default`, а `data-status` на обёртке решает, какого он цвета."
       >
         <div
           style={{ ...demoSurface, display: 'flex', gap: 20, flexWrap: 'wrap', padding: 'var(--box-spacing-base-m)' }}
         >
           {[
-            ['primary', 'var(--box-content-base-primary)'],
-            ['secondary', 'var(--box-content-base-secondary)'],
-            ['sentiment/primary', 'var(--box-content-sentiment-primary)'],
-            ['positive', 'var(--box-content-sentiment-positive)'],
-            ['warning', 'var(--box-content-sentiment-warning)'],
-            ['negative', 'var(--box-content-sentiment-negative)'],
-          ].map(([label, color]) => (
-            <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center', color }}>
+            ['strong', 'var(--box-surface-base-content-strong)', undefined],
+            ['muted', 'var(--box-surface-base-content-muted)', undefined],
+            ['accent', 'var(--box-accent-content-on-soft-default)', undefined],
+            ['positive', 'var(--box-status-content-on-surface-default)', 'positive'],
+            ['warning', 'var(--box-status-content-on-surface-default)', 'warning'],
+            ['negative', 'var(--box-status-content-on-surface-default)', 'negative'],
+            ['information', 'var(--box-status-content-on-surface-default)', 'information'],
+          ].map(([label, color, status]) => (
+            <div
+              key={label}
+              data-status={status}
+              style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center', color }}
+            >
               <Icon name="shield-check" size="l" />
               <span style={{ fontSize: 11 }}>{label}</span>
             </div>

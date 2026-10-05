@@ -69,7 +69,7 @@ describe('icon data', () => {
   });
 
   it('paints with currentColor rather than a baked fill', () => {
-    // A hard-coded fill would ignore the --box-content-* token around it.
+    // A hard-coded fill would ignore the --box-surface-base-content-* token around it.
     const baked = Object.entries(sets.linear)
       .filter(([, body]) => /fill="#|stroke="#/.test(body))
       .map(([name]) => name);

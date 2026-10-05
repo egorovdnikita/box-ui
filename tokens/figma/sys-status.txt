@@ -1,0 +1,14 @@
+# collection: sys-status
+# figma: ◑ System ・ Status
+# modes: Positive, Warning, Negative, Information
+color/solid/low :: Positive=@sys-color:color/positive/550 | Warning=@sys-color:color/warning/550 | Negative=@sys-color:color/negative/450 | Information=@sys-color:color/informative/450
+color/solid/base :: Positive=@sys-color:color/positive/600 | Warning=@sys-color:color/warning/600 | Negative=@sys-color:color/negative/500 | Information=@sys-color:color/informative/500
+color/solid/high :: Positive=@sys-color:color/positive/650 | Warning=@sys-color:color/warning/650 | Negative=@sys-color:color/negative/550 | Information=@sys-color:color/informative/550
+color/alpha/16 :: Positive=@sys-color:color/positive/alpha-16 | Warning=@sys-color:color/warning/alpha-16 | Negative=@sys-color:color/negative/alpha-16 | Information=@sys-color:color/informative/alpha-16
+color/alpha/24 :: Positive=@sys-color:color/positive/alpha-24 | Warning=@sys-color:color/warning/alpha-24 | Negative=@sys-color:color/negative/alpha-24 | Information=@sys-color:color/informative/alpha-24
+color/alpha/48 :: Positive=@sys-color:color/positive/alpha-48 | Warning=@sys-color:color/warning/alpha-48 | Negative=@sys-color:color/negative/alpha-48 | Information=@sys-color:color/informative/alpha-48
+color/contrast :: Positive=@sys-color:color/white/base | Warning=@sys-color:color/white/base | Negative=@sys-color:color/white/base | Information=@sys-color:color/white/base
+color/alpha/64 :: Positive=@sys-color:color/positive/alpha-64 | Warning=@sys-color:color/warning/alpha-64 | Negative=@sys-color:color/negative/alpha-64 | Information=@sys-color:color/informative/alpha-64
+color/alpha/80 :: Positive=@sys-color:color/positive/alpha-80 | Warning=@sys-color:color/warning/alpha-80 | Negative=@sys-color:color/negative/alpha-80 | Information=@sys-color:color/informative/alpha-80
+content/on-dark :: Positive=@sys-color:color/positive/350 | Warning=@sys-color:color/warning/300 | Negative=@sys-color:color/negative/300 | Information=@sys-color:color/informative/350
+content/on-light :: Positive=@sys-color:color/positive/850 | Warning=@sys-color:color/warning/800 | Negative=@sys-color:color/negative/900 | Information=@sys-color:color/informative/800

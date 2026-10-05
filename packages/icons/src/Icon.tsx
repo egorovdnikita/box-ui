@@ -20,7 +20,7 @@ function dimension(size: IconSize): string {
 
 /**
  * Renders one Solar icon. The geometry paints with `currentColor`, so colour
- * comes from whatever `--box-content-*` token the surrounding text uses.
+ * comes from whatever `--box-surface-base-content-*` token the surrounding text uses.
  */
 export const Icon = forwardRef<SVGSVGElement, IconProps>(function Icon(
   { name, iconStyle, size = 'xs', title, style, ...rest },

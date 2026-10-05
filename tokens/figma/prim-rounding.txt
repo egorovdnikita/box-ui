@@ -1,0 +1,34 @@
+# collection: prim-rounding
+# figma: ◉ Primitives ・ Rounding
+# modes: Value
+rounding/0=0
+rounding/2=2
+rounding/4=4
+rounding/6=6
+rounding/8=8
+rounding/10=10
+rounding/12=12
+rounding/14=14
+rounding/16=16
+rounding/18=18
+rounding/20=20
+rounding/24=24
+rounding/28=28
+rounding/32=32
+rounding/36=36
+rounding/40=40
+rounding/44=44
+rounding/48=48
+rounding/52=52
+rounding/56=56
+rounding/60=60
+rounding/64=64
+rounding/68=68
+rounding/72=72
+rounding/76=76
+rounding/80=80
+rounding/84=84
+rounding/88=88
+rounding/92=92
+rounding/96=96
+rounding/full=9999

@@ -2,11 +2,13 @@ import { useEffect, useMemo, type ReactNode } from 'react';
 import { IconStyleProvider, type IconStyle } from '@box-ui/icons';
 
 export type ThemeMode = 'light' | 'dark';
-export type AccentMode =
-  'blue' | 'sky' | 'teal' | 'emerald' | 'orange' | 'amber' | 'violet' | 'purple' | 'cyan' | 'yellow';
+export type AccentMode = 'indigo' | 'lime' | 'yellow' | 'pink' | 'monochrome';
 export type RadiusMode = 'low' | 'medium' | 'high';
 export type FontMode = 'inter' | 'inter-display' | 'inter-tight' | 'inter-variable';
 export type DeviceMode = 'desktop' | 'mobile';
+export type StatusMode = 'positive' | 'warning' | 'negative' | 'information';
+export type AppearanceMode = 'solid' | 'soft' | 'outline';
+export type StateMode = 'default' | 'hover' | 'active' | 'disabled';
 
 export interface BoxUISettings {
   theme?: ThemeMode;
@@ -14,6 +16,15 @@ export interface BoxUISettings {
   radius?: RadiusMode;
   font?: FontMode;
   device?: DeviceMode;
+  /** Sentiment for the Status collection — what `status/*` tokens resolve to. */
+  status?: StatusMode;
+  /** Fill style for controls — what `control/*` and `state/*` tokens resolve to. */
+  appearance?: AppearanceMode;
+  /**
+   * Forces a control state. Normally left unset: `controls.css` drives this
+   * from :hover / :active / :disabled. Pin it to document every state at once.
+   */
+  state?: StateMode;
   iconStyle?: IconStyle;
 }
 
@@ -35,12 +46,18 @@ export const MODE_ATTRIBUTES = {
   radius: 'data-radius',
   font: 'data-font',
   device: 'data-device',
+  status: 'data-status',
+  appearance: 'data-appearance',
+  state: 'data-state',
+  iconStyle: 'data-icon-style',
 } as const;
+
+type ModeKey = keyof typeof MODE_ATTRIBUTES;
 
 function attributesFor(settings: BoxUISettings): Record<string, string> {
   const attrs: Record<string, string> = {};
   for (const [key, attribute] of Object.entries(MODE_ATTRIBUTES)) {
-    const value = settings[key as keyof typeof MODE_ATTRIBUTES];
+    const value = settings[key as ModeKey];
     if (value) attrs[attribute] = value;
   }
   return attrs;
@@ -48,18 +65,20 @@ function attributesFor(settings: BoxUISettings): Record<string, string> {
 
 /**
  * Applies Box UI modes. Every mode maps to one Figma variable collection:
- * theme -> Mode, accent -> Color, radius -> Rounding, font -> Typography,
- * device -> Grid, iconStyle -> the `Icon` collection.
+ * theme -> System · Theme, accent -> Brand · Color, radius -> Brand · Rounding,
+ * font -> Brand · Typography, device -> System · Responsive,
+ * status -> System · Status, appearance -> Controls · Appearance,
+ * state -> Controls · State, iconStyle -> Brand · Icon.
  */
 export function BoxUIProvider({ target = 'local', className, children, ...settings }: BoxUIProviderProps) {
-  const { theme, accent, radius, font, device } = settings;
+  const { theme, accent, radius, font, device, status, appearance, state, iconStyle } = settings;
 
-  // Memoised on the five primitives so the effect below can depend on `attrs`
+  // Memoised on the mode primitives so the effect below can depend on `attrs`
   // itself. It used to depend on `JSON.stringify(attrs)`, which worked but was
   // opaque to both the reader and the exhaustive-deps check.
   const attrs = useMemo(
-    () => attributesFor({ theme, accent, radius, font, device }),
-    [theme, accent, radius, font, device],
+    () => attributesFor({ theme, accent, radius, font, device, status, appearance, state, iconStyle }),
+    [theme, accent, radius, font, device, status, appearance, state, iconStyle],
   );
 
   useEffect(() => {
@@ -75,7 +94,7 @@ export function BoxUIProvider({ target = 'local', className, children, ...settin
     };
   }, [target, attrs]);
 
-  const content = <IconStyleProvider style={settings.iconStyle ?? 'linear'}>{children}</IconStyleProvider>;
+  const content = <IconStyleProvider style={iconStyle ?? 'linear'}>{children}</IconStyleProvider>;
 
   if (target === 'root') return content;
   return (

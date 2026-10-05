@@ -357,17 +357,26 @@ export function Empty({ query, onClear }: { query: string; onClear: () => void }
 
 // --- mode scoping ------------------------------------------------------------
 
-export type ModeGlobals = { theme: string; accent: string; radius: string; font: string; device: string };
+export type ModeGlobals = {
+  theme: string;
+  accent: string;
+  radius: string;
+  font: string;
+  device: string;
+  status: string;
+  appearance: string;
+  state: string;
+};
 
 /**
  * Scopes Box UI modes to a subtree.
  *
  * A custom property is substituted where it is *declared*, not where it is
- * read: `--box-background-sentiment-primary: var(--box-colors-brand-primary)`
- * is resolved on the element that declares it. So overriding only
- * `data-accent` deeper in the tree cannot reach a Mode token that `<html>`
- * already resolved. Setting all five attributes together re-declares every
- * layer on this one element, and the whole chain resolves locally.
+ * read: `--box-accent-fill-solid: var(--box-brand-solid-500)` is resolved on
+ * the element that declares it. So overriding only `data-accent` deeper in the
+ * tree cannot reach a Theme token that `<html>` already resolved. Setting every
+ * mode attribute together re-declares all eight layers on this one element, and
+ * the whole chain resolves locally.
  */
 export function Scope({
   globals,
@@ -376,6 +385,9 @@ export function Scope({
   radius,
   font,
   device,
+  status,
+  appearance,
+  state,
   style,
   children,
 }: Partial<ModeGlobals> & { globals: ModeGlobals; style?: CSSProperties; children: ReactNode }) {
@@ -386,6 +398,9 @@ export function Scope({
       data-radius={radius ?? globals.radius}
       data-font={font ?? globals.font}
       data-device={device ?? globals.device}
+      data-status={status ?? globals.status}
+      data-appearance={appearance ?? globals.appearance}
+      data-state={state ?? globals.state}
       style={style}
     >
       {children}
@@ -398,9 +413,9 @@ export function Scope({
  * foreground token, so a demo of the Light theme still reads on a dark canvas.
  */
 export const demoSurface: CSSProperties = {
-  background: 'var(--box-background-base-secondary)',
-  color: 'var(--box-content-base-primary)',
-  border: '1px solid var(--box-border-base-neutral)',
+  background: 'var(--box-surface-base-fill-raised)',
+  color: 'var(--box-surface-base-content-strong)',
+  border: '1px solid var(--box-surface-base-border-default)',
   borderRadius: 'var(--box-rounding-base-m)',
   padding: 'var(--box-spacing-base-3xs)',
 };
@@ -409,7 +424,7 @@ export const demoSurface: CSSProperties = {
 
 /**
  * `getPropertyValue` on a custom property hands back the declaration
- * (`var(--box-color-blue-solid-500)`), not the value it lands on. Assigning it
+ * (`var(--box-palette-blue-solid-500)`), not the value it lands on. Assigning it
  * to a real property on a probe element and reading *that* back is what forces
  * the whole alias chain to resolve.
  */

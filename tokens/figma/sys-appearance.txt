@@ -1,0 +1,39 @@
+# collection: sys-appearance
+# figma: ◑ System ・ Controls ・ Appearance
+# modes: Solid, Soft, Outline
+accent/fill/default :: Solid=@sys-theme:interaction/accent/solid/fill/default | Soft=@sys-theme:interaction/accent/soft/fill/default | Outline=@sys-color:color/transparent
+accent/fill/hover :: Solid=@sys-theme:interaction/accent/solid/fill/hover | Soft=@sys-theme:interaction/accent/soft/fill/hover | Outline=@sys-color:color/transparent
+accent/fill/active :: Solid=@sys-theme:interaction/accent/solid/fill/active | Soft=@sys-theme:interaction/accent/soft/fill/active | Outline=@sys-color:color/transparent
+accent/content/enabled :: Solid=@sys-theme:interaction/accent/solid/content/enabled | Soft=@sys-theme:interaction/accent/soft/content/enabled | Outline=@sys-theme:interaction/accent/outline/content/enabled
+accent/border/default :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/accent/outline/border/default
+accent/border/hover :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/accent/outline/border/hover
+accent/border/active :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/accent/outline/border/active
+status/fill/default :: Solid=@sys-theme:interaction/status/solid/fill/default | Soft=@sys-theme:interaction/status/soft/fill/default | Outline=@sys-color:color/transparent
+status/fill/hover :: Solid=@sys-theme:interaction/status/solid/fill/hover | Soft=@sys-theme:interaction/status/soft/fill/hover | Outline=@sys-color:color/transparent
+status/fill/active :: Solid=@sys-theme:interaction/status/solid/fill/active | Soft=@sys-theme:interaction/status/soft/fill/active | Outline=@sys-color:color/transparent
+status/content/enabled :: Solid=@sys-theme:interaction/status/solid/content/enabled | Soft=@sys-theme:interaction/status/soft/content/enabled | Outline=@sys-theme:interaction/status/outline/content/enabled
+status/border/default :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/status/outline/border/default
+status/border/hover :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/status/outline/border/hover
+status/border/active :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/status/outline/border/active
+static/fill/default :: Solid=@sys-theme:interaction/static/solid/fill/default | Soft=@sys-theme:interaction/static/soft/fill/default | Outline=@sys-color:color/transparent
+static/fill/hover :: Solid=@sys-theme:interaction/static/solid/fill/hover | Soft=@sys-theme:interaction/static/soft/fill/hover | Outline=@sys-color:color/transparent
+static/fill/active :: Solid=@sys-theme:interaction/static/solid/fill/active | Soft=@sys-theme:interaction/static/soft/fill/active | Outline=@sys-color:color/transparent
+static/content/disabled :: Solid=@sys-theme:interaction/on-accent/control-alpha/48 | Soft=@sys-theme:interaction/on-accent/control-alpha/48 | Outline=@sys-theme:interaction/on-accent/control-alpha/48
+static/content/default :: Solid=@sys-theme:interaction/static/solid/content/default | Soft=@sys-theme:interaction/static/content/on-surface/enabled | Outline=@sys-theme:interaction/static/content/on-surface/enabled
+static/content/hover :: Solid=@sys-theme:interaction/static/solid/content/hover | Soft=@sys-theme:interaction/static/content/on-surface/enabled | Outline=@sys-theme:interaction/static/content/on-surface/enabled
+static/content/active :: Solid=@sys-theme:interaction/static/solid/content/active | Soft=@sys-theme:interaction/static/content/on-surface/enabled | Outline=@sys-theme:interaction/static/content/on-surface/enabled
+static/border/default :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/static/outline/border/default
+static/border/hover :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/static/outline/border/hover
+static/border/active :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/static/outline/border/active
+neutral/fill/default :: Solid=@sys-theme:interaction/neutral/grayscale/solid/fill/default | Soft=@sys-theme:interaction/neutral/grayscale/soft/fill/default | Outline=@sys-color:color/transparent
+neutral/fill/hover :: Solid=@sys-theme:interaction/neutral/grayscale/solid/fill/hover | Soft=@sys-theme:interaction/neutral/grayscale/soft/fill/hover | Outline=@sys-color:color/transparent
+neutral/fill/active :: Solid=@sys-theme:interaction/neutral/grayscale/solid/fill/active | Soft=@sys-theme:interaction/neutral/grayscale/soft/fill/active | Outline=@sys-color:color/transparent
+neutral/content/enabled :: Solid=@sys-theme:interaction/neutral/grayscale/solid/content/enabled | Soft=@sys-theme:interaction/neutral/grayscale/soft/content/enabled | Outline=@sys-theme:interaction/neutral/grayscale/outline/content/enabled
+neutral/border/default :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/neutral/grayscale/outline/border/default
+neutral/border/hover :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/neutral/grayscale/outline/border/hover
+neutral/border/active :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/neutral/grayscale/outline/border/active
+disabled/fill :: Solid=@sys-theme:interaction/disabled/fill | Soft=@sys-theme:interaction/disabled/fill | Outline=@sys-color:color/transparent
+disabled/content :: Solid=@sys-theme:interaction/disabled/content | Soft=@sys-theme:interaction/disabled/content | Outline=@sys-theme:interaction/disabled/content
+disabled/border :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/disabled/border
+static/fill/disabled :: Solid=@sys-theme:interaction/on-accent/control-alpha/32 | Soft=@sys-theme:interaction/on-accent/control-alpha/24 | Outline=@sys-color:color/transparent
+static/border/disabled :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/on-accent/control-alpha/32

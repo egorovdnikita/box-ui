@@ -57,16 +57,19 @@ prefersDark.addEventListener('change', applyChrome);
 /**
  * One toolbar control per switchable Figma variable collection.
  *
- *   Theme   -> Tokens / Mode        [data-theme]
- *   Accent  -> Tokens / Color       [data-accent]
- *   Radius  -> Tokens / Rounding    [data-radius]
- *   Type    -> Tokens / Typography  [data-font]
- *   Device  -> Tokens / Grid        [data-device]
- *   Icons   -> Icons / Icon         (icon-style)
+ *   Theme       -> ◑ System · Theme                  [data-theme]
+ *   Accent      -> ☯︎ Brand · Color                   [data-accent]
+ *   Radius      -> ☯︎ Brand · Rounding                [data-radius]
+ *   Type        -> ☯︎ Brand · Typography              [data-font]
+ *   Device      -> ◑ System · Responsive             [data-device]
+ *   Status      -> ◑ System · Status                 [data-status]
+ *   Appearance  -> ◑ System · Controls · Appearance  [data-appearance]
+ *   State       -> ◑ System · Controls · State       [data-state]
+ *   Icons       -> ☯︎ Brand · Icon                    (icon-style)
  */
 const globalTypes: Preview['globalTypes'] = {
   theme: {
-    description: 'Коллекция Figma «Mode»',
+    description: 'Коллекция Figma «System · Theme»',
     toolbar: {
       title: 'Тема',
       icon: 'contrast',
@@ -78,21 +81,19 @@ const globalTypes: Preview['globalTypes'] = {
     },
   },
   accent: {
-    description: 'Коллекция Figma «Color»',
+    description: 'Коллекция Figma «Brand · Color»',
     toolbar: {
       title: 'Акцент',
       icon: 'paintbrush',
       dynamicTitle: true,
-      items: ['blue', 'sky', 'teal', 'emerald', 'orange', 'amber', 'violet', 'purple', 'cyan', 'yellow'].map(
-        (value) => ({
-          value,
-          title: value[0].toUpperCase() + value.slice(1),
-        }),
-      ),
+      items: ['indigo', 'lime', 'yellow', 'pink', 'monochrome'].map((value) => ({
+        value,
+        title: value[0].toUpperCase() + value.slice(1),
+      })),
     },
   },
   radius: {
-    description: 'Коллекция Figma «Rounding»',
+    description: 'Коллекция Figma «Brand · Rounding»',
     toolbar: {
       title: 'Скругление',
       icon: 'component',
@@ -105,7 +106,7 @@ const globalTypes: Preview['globalTypes'] = {
     },
   },
   font: {
-    description: 'Коллекция Figma «Typography»',
+    description: 'Коллекция Figma «Brand · Typography»',
     toolbar: {
       title: 'Гарнитура',
       icon: 'type',
@@ -119,7 +120,7 @@ const globalTypes: Preview['globalTypes'] = {
     },
   },
   device: {
-    description: 'Коллекция Figma «Grid»',
+    description: 'Коллекция Figma «System · Responsive»',
     toolbar: {
       title: 'Устройство',
       icon: 'mobile',
@@ -130,8 +131,49 @@ const globalTypes: Preview['globalTypes'] = {
       ],
     },
   },
+  status: {
+    description: 'Коллекция Figma «System · Status»',
+    toolbar: {
+      title: 'Статус',
+      icon: 'bell',
+      dynamicTitle: true,
+      items: [
+        { value: 'positive', title: 'Positive' },
+        { value: 'warning', title: 'Warning' },
+        { value: 'negative', title: 'Negative' },
+        { value: 'information', title: 'Information' },
+      ],
+    },
+  },
+  appearance: {
+    description: 'Коллекция Figma «Controls · Appearance»',
+    toolbar: {
+      title: 'Вид контрола',
+      icon: 'box',
+      dynamicTitle: true,
+      items: [
+        { value: 'solid', title: 'Solid' },
+        { value: 'soft', title: 'Soft' },
+        { value: 'outline', title: 'Outline' },
+      ],
+    },
+  },
+  state: {
+    description: 'Коллекция Figma «Controls · State» — обычно её ведут :hover/:active/:disabled',
+    toolbar: {
+      title: 'Состояние',
+      icon: 'pointerhand',
+      dynamicTitle: true,
+      items: [
+        { value: 'default', title: 'Default' },
+        { value: 'hover', title: 'Hover' },
+        { value: 'active', title: 'Active' },
+        { value: 'disabled', title: 'Disabled' },
+      ],
+    },
+  },
   iconStyle: {
-    description: 'Коллекция Figma «Icon»',
+    description: 'Коллекция Figma «Brand · Icon»',
     toolbar: {
       title: 'Стиль иконок',
       icon: 'star',
@@ -142,7 +184,10 @@ const globalTypes: Preview['globalTypes'] = {
 };
 
 const withBoxUiModes: Decorator = (Story, context) => {
-  const { theme, accent, radius, font, device, iconStyle } = context.globals as Record<string, string>;
+  const { theme, accent, radius, font, device, status, appearance, state, iconStyle } = context.globals as Record<
+    string,
+    string
+  >;
 
   useEffect(() => {
     const root = document.documentElement;
@@ -151,7 +196,10 @@ const withBoxUiModes: Decorator = (Story, context) => {
     root.setAttribute('data-radius', radius);
     root.setAttribute('data-font', font);
     root.setAttribute('data-device', device);
-  }, [theme, accent, radius, font, device]);
+    root.setAttribute('data-status', status);
+    root.setAttribute('data-appearance', appearance);
+    root.setAttribute('data-state', state);
+  }, [theme, accent, radius, font, device, status, appearance, state]);
 
   return (
     <IconStyleProvider style={iconStyle as IconStyle}>
@@ -166,10 +214,13 @@ const preview: Preview = {
   globalTypes,
   initialGlobals: {
     theme: 'light',
-    accent: 'blue',
-    radius: 'medium',
+    accent: 'indigo',
+    radius: 'low',
     font: 'inter',
     device: 'desktop',
+    status: 'positive',
+    appearance: 'solid',
+    state: 'default',
     iconStyle: 'linear',
   },
   decorators: [withBoxUiModes],
@@ -183,7 +234,7 @@ const preview: Preview = {
     options: {
       showPanel: false,
       storySort: {
-        order: ['Обзор', 'Начало работы', 'Основы', 'Иконки'],
+        order: ['Обзор', 'Начало работы', 'Основы', 'Контролы', 'Иконки'],
       },
     },
     controls: { disable: true },

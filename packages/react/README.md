@@ -8,7 +8,7 @@
 import '@box-ui/react/styles.css';
 import { Badge, BoxUIProvider, Button, Card, Input, Stack, Text } from '@box-ui/react';
 
-<BoxUIProvider theme="dark" accent="violet" radius="high" device="mobile" iconStyle="bold">
+<BoxUIProvider theme="dark" accent="pink" radius="high" device="mobile" iconStyle="bold">
   <Card>
     <Text variant="h4">Оплата</Text>
     <Badge sentiment="positive">Активна</Badge>

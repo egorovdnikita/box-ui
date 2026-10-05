@@ -1,14 +1,15 @@
 # Box UI
 
-Дизайн-токены и иконки, сгенерированные из библиотек Figma **Box UI**. В Storybook каждую
-**моду переменных** Figma — цветовую тему, акцент, плотность скруглений, гарнитуру и
-устройство — можно переключить вживую.
+Дизайн-токены и иконки, сгенерированные из файла Figma **Box UI**. В Storybook каждую
+**моду переменных** Figma — тему, акцент, плотность скруглений, гарнитуру, устройство,
+статус, вид контрола и его состояние — можно переключить вживую.
 
-| Файл Figma                                                                                     | Что даёт                                                                                 |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| [Box UI \| Primitives](https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Box-UI--Primitives) | 777 сырых значений: палитра, отступы, скругления, размеры, прозрачность, текстовая шкала |
-| [Box UI \| Tokens](https://www.figma.com/design/ccLFzQtw3AuTuHWoHYf2dS/Box-UI--Tokens)         | 234 семантических токена в 5 переключаемых коллекциях                                    |
-| [Box UI \| Icons](https://www.figma.com/design/9pupgeWag4Ssc7jdAYvXMt/Box-UI--Icons)           | UI Icons (Solar) в 6 стилях, плюс «Флаги / Платежи / Бренды»                             |
+| Файл Figma                                                                                     | Что даёт                                                                                         |
+| ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| [Box UI \| Components](https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Box-UI--Components) | 1118 переменных в 15 коллекциях, UI Icons (Solar) в 6 стилях, «Флаги / Платежи / Бренды», Button |
+
+Коллекции разложены на три слоя: `◉ Primitives` — сырые литералы, `☯︎ Brand` — то, что
+меняет бренд, `◑ System` — то, из чего собираются компоненты.
 
 **→ [Живой Storybook](https://egorovdnikita.github.io/box-ui/)**
 
@@ -27,78 +28,114 @@ npm run storybook
 не продублирована в коде компонентов.
 
 ```
-Box UI | Primitives                        Box UI | Tokens
-──────────────────────                     ───────────────
-Color Palette  584 ──┐
-Spacing         29 ──┼── Grid      [data-device]   Desktop · Mobile
-Rounding        31 ──┤     ▲
-Size            29 ──┘     ├── Rounding  [data-radius]   Low · Medium · High
-Opacity         29         └── Typography[data-font]     Inter · Display · Tight · Variable
-Typography      75
-       ▲
-       └────────────── Color     [data-accent]  Blue Sky Teal Emerald Orange
-                          ▲                     Amber Violet Purple Cyan Yellow
-                          └───── Mode      [data-theme]   Light · Dark
+◉ Primitives · Color       585 ─┐
+◉ Primitives · Spacing      29  │
+◉ Primitives · Rounding     31  ├─ сырые литералы, одна мода «Value»
+◉ Primitives · Size         29  │
+◉ Primitives · Typography   75 ─┘
+    │
+    ├─ ◑ System · Color       76   именованные роли над палитрой
+    │      │
+    │      └─ ◑ System · Status    11  [data-status]  Positive · Warning · Negative · Information
+    │               │
+    ├─ ☯︎ Brand · Color        47   [data-accent]  Indigo · Lime · Yellow · Pink · Monochrome
+    │      │        │
+    │      └────────┴─ ◑ System · Theme   96  [data-theme]  Light · Dark
+    │                        │
+    │                        └─ ◑ Controls · Appearance  36  [data-appearance]  Solid · Soft · Outline
+    │                                   │
+    │                                   └─ ◑ Controls · State  16  [data-state]
+    │                                            Default · Hover · Active · Disabled
+    ├─ ☯︎ Brand · Rounding     11   [data-radius]      Low · Medium · High
+    ├─ ☯︎ Brand · Typography    2   [data-font]        Inter · Display · Tight · Variable
+    ├─ ☯︎ Brand · Icon          1   [data-icon-style]  Bold … Outline
+    │
+    └─ ◑ System · Responsive  73   [data-device]      Desktop · Mobile
 ```
 
 Один цвет от начала до конца:
 
 ```
---box-background-sentiment-primary        [data-theme]   Mode
-  └─ var(--box-colors-brand-primary)      [data-accent]  Color
-       └─ var(--box-color-blue-solid-500)                Color Palette (фиксировано)
-            └─ #3b82f6
+--box-accent-fill-solid                   [data-theme]   System · Theme
+  └─ var(--box-brand-solid-500)           [data-accent]  Brand · Color
+       └─ var(--box-palette-indigo-solid-500)            Primitives · Color (фиксировано)
+            └─ #6366f1
+```
+
+Кнопка добавляет к этой цепочке ещё два переключаемых слоя — и ни один из них не описан
+в CSS компонента повторно:
+
+```
+--box-state-accent-fill                             [data-state]       Controls · State
+  └─ var(--box-control-accent-fill-default)          [data-appearance]  Controls · Appearance
+       └─ var(--box-interaction-accent-solid-fill-default)  [data-theme]  System · Theme
+            └─ var(--box-accent-fill-solid)
+                 └─ var(--box-brand-solid-500)       [data-accent]      Brand · Color
+                      └─ var(--box-palette-indigo-solid-500)            → #6366f1
 ```
 
 Радиус проходит через два переключаемых слоя:
 
 ```
---box-rounding-base-xl        [data-device]  Grid      Desktop → base/xl · Mobile → base/l
-  └─ var(--box-radius-base-xl)[data-radius]  Rounding  Low 20 · Medium 24 · High 32
-       └─ var(--box-rounding-24)                       Rounding (примитив)
-            └─ 24px
+--box-rounding-base-xl           [data-device]  System · Responsive  Desktop → xl · Mobile → l
+  └─ var(--box-radius-xl)        [data-radius]  Brand · Rounding     Low 20 · Medium 24 · High 32
+       └─ var(--box-rounding-20)                Primitives · Rounding
+            └─ 20px
 ```
 
 ### Переключатели
 
-| Атрибут       | Коллекция Figma | Значения                                                                         | По умолчанию |
-| ------------- | --------------- | -------------------------------------------------------------------------------- | ------------ |
-| `data-theme`  | Mode            | `light` `dark`                                                                   | `light`      |
-| `data-accent` | Color           | `blue` `sky` `teal` `emerald` `orange` `amber` `violet` `purple` `cyan` `yellow` | `blue`       |
-| `data-radius` | Rounding        | `low` `medium` `high`                                                            | `medium`     |
-| `data-font`   | Typography      | `inter` `inter-display` `inter-tight` `inter-variable`                           | `inter`      |
-| `data-device` | Grid            | `desktop` `mobile`                                                               | `desktop`    |
+| Атрибут           | Коллекция Figma       | Значения                                                         | По умолчанию |
+| ----------------- | --------------------- | ---------------------------------------------------------------- | ------------ |
+| `data-theme`      | System · Theme        | `light` `dark`                                                   | `light`      |
+| `data-accent`     | Brand · Color         | `indigo` `lime` `yellow` `pink` `monochrome`                     | `indigo`     |
+| `data-radius`     | Brand · Rounding      | `low` `medium` `high`                                            | `low`        |
+| `data-font`       | Brand · Typography    | `inter` `inter-display` `inter-tight` `inter-variable`           | `inter`      |
+| `data-device`     | System · Responsive   | `desktop` `mobile`                                               | `desktop`    |
+| `data-status`     | System · Status       | `positive` `warning` `negative` `information`                    | `positive`   |
+| `data-appearance` | Controls · Appearance | `solid` `soft` `outline`                                         | `solid`      |
+| `data-state`      | Controls · State      | `default` `hover` `active` `disabled`                            | `default`    |
+| `data-icon-style` | Brand · Icon          | `bold` `bold-duotone` `broken` `line-duotone` `linear` `outline` | `bold`       |
+
+`data-state` руками обычно не выставляют: `@box-ui/tokens/css/controls.css` отображает моды
+этой коллекции на `:hover`, `:active` и `:disabled` для любого элемента с атрибутом
+`data-box-control`. Выставить его вручную полезно, чтобы показать все состояния разом.
 
 Они свободно сочетаются:
 
 <!-- prettier-ignore -->
 ```html
-<html data-theme="dark" data-accent="violet" data-radius="high" data-device="mobile">
+<html data-theme="dark" data-accent="pink" data-radius="high" data-device="mobile">
 ```
 
 ### Переключение для части страницы
 
 Кастомное свойство подставляется **там, где объявлено**, а не там, где прочитано:
-`--box-background-sentiment-primary: var(--box-colors-brand-primary)` разрешается на том
+`--box-accent-fill-solid: var(--box-brand-solid-500)` разрешается на том
 элементе, который его объявил. Поэтому переопределение одного лишь `data-accent` у потомка
 не дотянется до токена Mode, который `<html>` уже разрешил.
 
-Значит, переключая моды для поддерева, ставьте **все пять атрибутов на один элемент**.
+Значит, переключая моды для поддерева, ставьте **все атрибуты на один элемент**.
 Тогда каждый слой переобъявляется здесь же и вся цепочка разрешается локально — именно так
 две темы уживаются на одной странице.
 
 <!-- prettier-ignore -->
 ```html
 <!-- работает: вся цепочка переобъявляется здесь -->
-<div data-theme="dark" data-accent="violet" data-radius="high" data-font="inter" data-device="desktop">
+<div data-theme="dark" data-accent="pink" data-radius="high" data-font="inter" data-device="desktop"
+     data-status="positive" data-appearance="solid" data-state="default">
 
-<!-- не работает: токены Mode уже разрешены выше -->
-<div data-accent="violet">
+<!-- не работает: токены System · Theme уже разрешены выше -->
+<div data-accent="pink">
 ```
 
 `@box-ui/tokens/css/adaptive.css` необязателен: он берёт тёмную тему из
 `prefers-color-scheme`, а Mobile — ниже 768px, но только когда документ сам не выставил эти
 атрибуты.
+
+Прозрачные ступени палитры Figma хранит не как отдельный цвет, а как «вот эта ступень, на
+N%». В CSS это выводится через `color-mix(in srgb, … N%, transparent)`, поэтому правка
+базовой шкалы двигает за собой и все её полупрозрачные производные.
 
 ---
 
@@ -109,6 +146,7 @@ Typography      75
 | [`@box-ui/tokens`](packages/tokens) | CSS-переменные и типизированный JS-API токенов, сгенерированные из дампов Figma                                 |
 | [`@box-ui/icons`](packages/icons)   | 1301 иконка Solar × 6 стилей, плюс семейства «Флаги / Платежи / Бренды»                                         |
 | [`@box-ui/react`](packages/react)   | Button, Badge, Card, Input, Text, Stack — примитивы, доказывающие граф токенов: ни одного литерального значения |
+| [`tokens/figma`](tokens/figma)      | Дословные дампы переменных Figma и [инструкция по перевыгрузке](tokens/figma/README.md)                         |
 | [`apps/storybook`](apps/storybook)  | Сайт документации — см. ниже                                                                                    |
 
 ```tsx
@@ -128,7 +166,7 @@ import { Icon } from '@box-ui/icons';
 
 <https://egorovdnikita.github.io/box-ui/>
 
-Шесть переключателей на панели управляют модами Figma, и каждая страница реагирует на все
+Девять переключателей на панели управляют модами Figma, и каждая страница реагирует на все
 сразу. Что страницы дают сверх списка имён:
 
 - **Живые значения.** Токен показывает, во что он _разрешается_ при текущих модах, а не
@@ -143,7 +181,7 @@ import { Icon } from '@box-ui/icons';
 - **Поиск на каждой странице**, `/` ставит в него фокус, группировка Figma сохранена в виде
   быстрых ссылок. Фильтры живут в адресе, поэтому отфильтрованный вид можно переслать.
 - **[Начало работы](https://egorovdnikita.github.io/box-ui/?path=/docs/getting-started--docs)** —
-  установка, подключение пяти мод-атрибутов, использование токенов и иконок.
+  установка, подключение мод-атрибутов, использование токенов и иконок.
 - **[llms.txt](https://egorovdnikita.github.io/box-ui/llms.txt)** — вся система одной
   машиночитаемой страницей, генерируется из модели токенов и поэтому не устаревает.
 

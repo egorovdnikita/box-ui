@@ -10,9 +10,50 @@ import {
 
 const cx = (...parts: (string | false | undefined)[]) => parts.filter(Boolean).join(' ');
 
-/** Spacing scale from the Grid collection — `spacing/base/*`. */
+/** Spacing scale from the Responsive collection — `spacing/base/*`. */
 export type SpaceToken = 'min' | '4xs' | '3xs' | '2xs' | 'xs' | 's' | 'm' | 'l' | 'xl' | '2xl' | '3xl' | '4xl' | 'max';
 const space = (token: SpaceToken) => `var(--box-spacing-base-${token})`;
+
+/**
+ * The control families of the Figma `Controls · Appearance` collection, plus
+ * `ghost`, which lives in `Controls · State` on its own.
+ */
+export type ControlFamily = 'accent' | 'status' | 'static' | 'neutral' | 'ghost';
+
+/** Modes of `Controls · Appearance`. */
+export type ControlAppearance = 'solid' | 'soft' | 'outline';
+
+/** Modes of `System · Status`. */
+export type StatusTone = 'positive' | 'warning' | 'negative' | 'information';
+
+/** Modes of `Controls · State`. */
+export type ControlState = 'default' | 'hover' | 'active' | 'disabled';
+
+/**
+ * The attributes a control needs for its tokens to resolve on the element.
+ *
+ * `data-state` is not decoration: a custom property is substituted where it is
+ * declared, so a control that set only `data-appearance` would read a
+ * `--box-state-*` value its ancestor had already resolved under the ancestor's
+ * appearance. Re-declaring the State layer here puts the substitution back on
+ * this element, and the :hover / :active / :disabled rules in `controls.css`
+ * out-specify it when the control is actually interacted with.
+ *
+ * `data-box-control` is what opts into those rules.
+ */
+function controlAttributes(
+  family: ControlFamily,
+  appearance: ControlAppearance,
+  state: ControlState,
+  status?: StatusTone,
+) {
+  return {
+    'data-box-control': '',
+    'data-appearance': appearance,
+    'data-state': state,
+    'data-status': family === 'status' ? (status ?? 'negative') : undefined,
+  };
+}
 
 // --- Text --------------------------------------------------------------------
 
@@ -30,16 +71,10 @@ export type TextVariant =
   | 'caption-l'
   | 'caption-m';
 
-export type TextTone =
-  | 'primary'
-  | 'secondary'
-  | 'tertiary'
-  | 'disabled'
-  | 'primary-sentiment'
-  | 'positive'
-  | 'warning'
-  | 'negative'
-  | 'informative';
+export type TextTone = 'primary' | 'secondary' | 'tertiary' | 'disabled' | 'accent' | StatusTone;
+
+const STATUS_TONES: StatusTone[] = ['positive', 'warning', 'negative', 'information'];
+const isStatusTone = (tone: TextTone): tone is StatusTone => (STATUS_TONES as TextTone[]).includes(tone);
 
 const DEFAULT_TAG: Record<TextVariant, ElementType> = {
   'display-l': 'h1',
@@ -63,12 +98,19 @@ export interface TextProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
 }
 
-/** Type ramp from the Grid collection — the same token pair resizes on Mobile. */
-export function Text({ variant = 'body-m', tone, as, className, children, ...rest }: TextProps) {
+/** Type ramp from the Responsive collection — the same token pair resizes on Mobile. */
+export function Text({ variant = 'body-m', tone = 'primary', as, className, children, ...rest }: TextProps) {
   const Tag = as ?? DEFAULT_TAG[variant];
+  const status = isStatusTone(tone);
   return (
     <Tag
-      className={cx('box-text', `box-text--${variant}`, tone && tone !== 'primary' && `box-text--${tone}`, className)}
+      className={cx(
+        'box-text',
+        `box-text--${variant}`,
+        status ? 'box-text--status' : tone !== 'primary' && `box-text--${tone}`,
+        className,
+      )}
+      data-status={status ? tone : undefined}
       {...rest}
     >
       {children}
@@ -137,18 +179,42 @@ export function Card({ variant = 'raised', padding, className, style, children, 
 
 // --- Button ------------------------------------------------------------------
 
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'subtle' | 'ghost' | 'danger';
+/** Figma variant sizes: XS (32), S (36), M (40), L (44), XL (48). */
+export type ButtonSize = 'xs' | 's' | 'm' | 'l' | 'xl';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonVariant;
-  size?: 's' | 'm' | 'l';
+  /** Which Figma button set this is: Priority (`accent`), Status, Static or Neutral. */
+  family?: ControlFamily;
+  appearance?: ControlAppearance;
+  /** Which sentiment, when `family` is `status`. */
+  status?: StatusTone;
+  /**
+   * Pins the control to one State mode. Normally left alone — `controls.css`
+   * drives it from :hover / :active / :disabled. Set it to document every
+   * state side by side.
+   */
+  state?: ControlState;
+  size?: ButtonSize;
   iconOnly?: boolean;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { variant = 'primary', size = 'm', iconOnly, startIcon, endIcon, className, children, type = 'button', ...rest },
+  {
+    family = 'accent',
+    appearance = 'solid',
+    status,
+    state = 'default',
+    size = 'm',
+    iconOnly,
+    startIcon,
+    endIcon,
+    className,
+    children,
+    type = 'button',
+    ...rest
+  },
   ref,
 ) {
   return (
@@ -157,11 +223,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       type={type}
       className={cx(
         'box-button',
-        `box-button--${variant}`,
+        `box-control--${family}`,
         `box-button--${size}`,
         iconOnly && 'box-button--icon-only',
         className,
       )}
+      {...controlAttributes(family, appearance, state, status)}
       {...rest}
     >
       {startIcon}
@@ -173,17 +240,29 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
 
 // --- Badge -------------------------------------------------------------------
 
-export type Sentiment = 'primary' | 'informative' | 'positive' | 'warning' | 'negative' | 'neutral';
-
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-  sentiment?: Sentiment;
-  variant?: 'solid' | 'subtle';
+  family?: ControlFamily;
+  appearance?: ControlAppearance;
+  status?: StatusTone;
+  state?: ControlState;
   children?: ReactNode;
 }
 
-export function Badge({ sentiment = 'neutral', variant = 'subtle', className, children, ...rest }: BadgeProps) {
+export function Badge({
+  family = 'neutral',
+  appearance = 'soft',
+  status,
+  state = 'default',
+  className,
+  children,
+  ...rest
+}: BadgeProps) {
   return (
-    <span className={cx('box-badge', `box-badge--${variant}`, `box-badge--${sentiment}`, className)} {...rest}>
+    <span
+      className={cx('box-badge', `box-control--${family}`, className)}
+      {...controlAttributes(family, appearance, state, status)}
+      {...rest}
+    >
       {children}
     </span>
   );
@@ -205,7 +284,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const message = error ?? hint;
 
   return (
-    <div className="box-field">
+    <div className="box-field" data-status={error ? 'negative' : undefined}>
       {label && (
         <label className="box-field__label" htmlFor={inputId}>
           {label}

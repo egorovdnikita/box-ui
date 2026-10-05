@@ -1,0 +1,4 @@
+# collection: brand-icon
+# figma: ☯︎ Brand ・ Icon
+# modes: Bold, Bold Duotone, Broken, Line Duotone, Linear, Outline
+icon-style :: Bold="Bold" | Bold Duotone="Bold Duotone" | Broken="Broken" | Line Duotone="Line Duotone" | Linear="Linear" | Outline="Outline"

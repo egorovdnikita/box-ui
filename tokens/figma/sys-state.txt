@@ -1,0 +1,19 @@
+# collection: sys-state
+# figma: ◑ System ・ Controls ・ State
+# modes: Default, Hover, Active, Disabled
+ghost/fill :: Default=@sys-theme:interaction/ghost/fill/default | Hover=@sys-theme:interaction/ghost/fill/hover | Active=@sys-theme:interaction/ghost/fill/active | Disabled=@sys-theme:interaction/ghost/fill/disabled
+ghost/content :: Default=@sys-theme:interaction/ghost/content/enabled | Hover=@sys-theme:interaction/ghost/content/enabled | Active=@sys-theme:interaction/ghost/content/enabled | Disabled=@sys-theme:interaction/disabled/content
+selection/fill :: Default=@sys-theme:interaction/selection/neutral/fill/default | Hover=@sys-theme:interaction/selection/neutral/fill/hover | Active=@sys-theme:interaction/selection/neutral/fill/active | Disabled=@sys-theme:interaction/disabled/fill
+selection/content :: Default=@sys-theme:interaction/selection/neutral/content/enabled | Hover=@sys-theme:interaction/selection/neutral/content/enabled | Active=@sys-theme:interaction/selection/neutral/content/enabled | Disabled=@sys-theme:interaction/disabled/content
+accent/fill :: Default=@sys-appearance:accent/fill/default | Hover=@sys-appearance:accent/fill/hover | Active=@sys-appearance:accent/fill/active | Disabled=@sys-appearance:disabled/fill
+accent/content :: Default=@sys-appearance:accent/content/enabled | Hover=@sys-appearance:accent/content/enabled | Active=@sys-appearance:accent/content/enabled | Disabled=@sys-appearance:disabled/content
+accent/border :: Default=@sys-appearance:accent/border/default | Hover=@sys-appearance:accent/border/hover | Active=@sys-appearance:accent/border/active | Disabled=@sys-appearance:disabled/border
+status/fill :: Default=@sys-appearance:status/fill/default | Hover=@sys-appearance:status/fill/hover | Active=@sys-appearance:status/fill/active | Disabled=@sys-appearance:disabled/fill
+status/content :: Default=@sys-appearance:status/content/enabled | Hover=@sys-appearance:status/content/enabled | Active=@sys-appearance:status/content/enabled | Disabled=@sys-appearance:disabled/content
+status/border :: Default=@sys-appearance:status/border/default | Hover=@sys-appearance:status/border/hover | Active=@sys-appearance:status/border/active | Disabled=@sys-appearance:disabled/border
+static/fill :: Default=@sys-appearance:static/fill/default | Hover=@sys-appearance:static/fill/hover | Active=@sys-appearance:static/fill/active | Disabled=@sys-appearance:static/fill/disabled
+static/content :: Default=@sys-appearance:static/content/default | Hover=@sys-appearance:static/content/hover | Active=@sys-appearance:static/content/active | Disabled=@sys-appearance:static/content/disabled
+static/border :: Default=@sys-appearance:static/border/default | Hover=@sys-appearance:static/border/hover | Active=@sys-appearance:static/border/active | Disabled=@sys-appearance:static/border/disabled
+neutral/fill :: Default=@sys-appearance:neutral/fill/default | Hover=@sys-appearance:neutral/fill/hover | Active=@sys-appearance:neutral/fill/active | Disabled=@sys-appearance:disabled/fill
+neutral/content :: Default=@sys-appearance:neutral/content/enabled | Hover=@sys-appearance:neutral/content/enabled | Active=@sys-appearance:neutral/content/enabled | Disabled=@sys-appearance:disabled/content
+neutral/border :: Default=@sys-appearance:neutral/border/default | Hover=@sys-appearance:neutral/border/hover | Active=@sys-appearance:neutral/border/active | Disabled=@sys-appearance:disabled/border

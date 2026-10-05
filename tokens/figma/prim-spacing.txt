@@ -1,0 +1,32 @@
+# collection: prim-spacing
+# figma: ◉ Primitives ・ Spacing
+# modes: Value
+spacing/2=2
+spacing/4=4
+spacing/6=6
+spacing/8=8
+spacing/10=10
+spacing/12=12
+spacing/14=14
+spacing/16=16
+spacing/18=18
+spacing/20=20
+spacing/24=24
+spacing/28=28
+spacing/32=32
+spacing/36=36
+spacing/40=40
+spacing/44=44
+spacing/48=48
+spacing/52=52
+spacing/56=56
+spacing/60=60
+spacing/64=64
+spacing/68=68
+spacing/72=72
+spacing/76=76
+spacing/80=80
+spacing/84=84
+spacing/88=88
+spacing/92=92
+spacing/96=96

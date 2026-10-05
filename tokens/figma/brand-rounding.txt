@@ -1,0 +1,14 @@
+# collection: brand-rounding
+# figma: ☯︎ Brand ・ Rounding
+# modes: Low, Medium, High
+rounding/none :: Low=@prim-rounding:rounding/0 | Medium=@prim-rounding:rounding/0 | High=@prim-rounding:rounding/0
+rounding/min :: Low=@prim-rounding:rounding/2 | Medium=@prim-rounding:rounding/4 | High=@prim-rounding:rounding/6
+rounding/2xs :: Low=@prim-rounding:rounding/4 | Medium=@prim-rounding:rounding/6 | High=@prim-rounding:rounding/8
+rounding/xs :: Low=@prim-rounding:rounding/6 | Medium=@prim-rounding:rounding/8 | High=@prim-rounding:rounding/12
+rounding/s :: Low=@prim-rounding:rounding/8 | Medium=@prim-rounding:rounding/12 | High=@prim-rounding:rounding/16
+rounding/m :: Low=@prim-rounding:rounding/12 | Medium=@prim-rounding:rounding/16 | High=@prim-rounding:rounding/20
+rounding/l :: Low=@prim-rounding:rounding/16 | Medium=@prim-rounding:rounding/20 | High=@prim-rounding:rounding/24
+rounding/xl :: Low=@prim-rounding:rounding/20 | Medium=@prim-rounding:rounding/24 | High=@prim-rounding:rounding/32
+rounding/2xl :: Low=@prim-rounding:rounding/24 | Medium=@prim-rounding:rounding/32 | High=@prim-rounding:rounding/40
+rounding/max :: Low=@prim-rounding:rounding/32 | Medium=@prim-rounding:rounding/40 | High=@prim-rounding:rounding/48
+rounding/full :: Low=@prim-rounding:rounding/full | Medium=@prim-rounding:rounding/full | High=@prim-rounding:rounding/full

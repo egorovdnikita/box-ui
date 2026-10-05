@@ -36,16 +36,19 @@ import '@box-ui/tokens/css/adaptive.css';
 
 | Атрибут | Коллекция Figma | Значения | По умолчанию |
 | --- | --- | --- | --- |
-| `data-theme` | Mode | `light` `dark` | `light` |
-| `data-accent` | Color | `blue` `sky` `teal` `emerald` `orange` `amber` `violet` `purple` `cyan` `yellow` | `blue` |
-| `data-radius` | Rounding | `low` `medium` `high` | `medium` |
-| `data-font` | Typography | `inter` `inter-display` `inter-tight` `inter-variable` | `inter` |
-| `data-device` | Grid | `desktop` `mobile` | `desktop` |
+| `data-theme` | System · Theme | `light` `dark` | `light` |
+| `data-accent` | Brand · Color | `indigo` `lime` `yellow` `pink` `monochrome` | `indigo` |
+| `data-radius` | Brand · Rounding | `low` `medium` `high` | `low` |
+| `data-font` | Brand · Typography | `inter` `inter-display` `inter-tight` `inter-variable` | `inter` |
+| `data-device` | System · Responsive | `desktop` `mobile` | `desktop` |
+| `data-status` | System · Status | `positive` `warning` `negative` `information` | `positive` |
+| `data-appearance` | Controls · Appearance | `solid` `soft` `outline` | `solid` |
+| `data-state` | Controls · State | `default` `hover` `active` `disabled` | `default` |
 
 Поставьте их на `<html>` — и за ними пойдёт весь документ:
 
 ```html
-<html data-theme="dark" data-accent="violet" data-radius="high" data-font="inter" data-device="desktop">
+<html data-theme="dark" data-accent="pink" data-radius="high" data-font="inter" data-device="desktop">
 ```
 
 Или пусть это сделает провайдер:
@@ -67,8 +70,8 @@ import { BoxUIProvider } from '@box-ui/react';
 
 ```css
 .card {
-  background: var(--box-background-base-secondary);
-  color: var(--box-content-base-primary);
+  background: var(--box-surface-base-fill-raised);
+  color: var(--box-surface-base-content-strong);
   border-radius: var(--box-rounding-base-m);
   padding: var(--box-spacing-base-m);
 }
@@ -79,7 +82,7 @@ import { BoxUIProvider } from '@box-ui/react';
 ```js
 import { color, layout } from '@box-ui/tokens';
 
-color.background.base.secondary; // 'var(--box-background-base-secondary)'
+color.background.base.secondary; // 'var(--box-surface-base-fill-raised)'
 layout.spacing.base.m; // 'var(--box-spacing-base-m)'
 ```
 
@@ -107,7 +110,7 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 
 ## Куда дальше
 
-- **Обзор** — как работает цепочка алиасов и почему при локальном переключении нужны все пять атрибутов.
+- **Обзор** — как работает цепочка алиасов и почему при локальном переключении нужны все атрибуты.
 - **Основы** — палитра, шкалы, текстовая шкала; везде показаны реально вычисленные значения.
 - **Иконки** — галерея с поиском и семейства «Флаги / Платежи / Бренды».
 

@@ -4,18 +4,23 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Box UI
 
-Дизайн-токены и иконки, сгенерированные прямо из трёх библиотек Figma. Каждая **мода
-переменных** выведена в переключатель на панели сверху.
+Дизайн-токены и иконки, сгенерированные прямо из файла Figma «Box UI | Components» —
+1118 переменных в 15 коллекциях. Каждая **мода переменных** выведена в переключатель на
+панели сверху.
 
-| Файл Figma           | Коллекция                                                   | Моды                                                                  | Переключатель         |
-| -------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------- | --------------------- |
-| Box UI \| Primitives | Color Palette, Spacing, Rounding, Size, Opacity, Typography | только _Value_                                                        | —                     |
-| Box UI \| Tokens     | **Color**                                                   | Blue, Sky, Teal, Emerald, Orange, Amber, Violet, Purple, Cyan, Yellow | `data-accent`         |
-| Box UI \| Tokens     | **Mode**                                                    | Light, Dark                                                           | `data-theme`          |
-| Box UI \| Tokens     | **Rounding**                                                | Low, Medium, High                                                     | `data-radius`         |
-| Box UI \| Tokens     | **Typography**                                              | Inter, Inter Display, Inter Tight, Inter Variable                     | `data-font`           |
-| Box UI \| Tokens     | **Grid**                                                    | Desktop, Mobile                                                       | `data-device`         |
-| Box UI \| Icons      | **Icon**                                                    | Bold, Bold Duotone, Broken, Line Duotone, Linear, Outline             | `<IconStyleProvider>` |
+| Коллекция Figma                     | Моды                                                      | Переключатель     |
+| ----------------------------------- | --------------------------------------------------------- | ----------------- |
+| ◉ Primitives ・ Color / Spacing / Rounding / Size / Typography | только _Value_                 | —                 |
+| ◑ System ・ Color                   | только _Value_                                            | —                 |
+| ☯︎ Brand ・ Color                    | Indigo, Lime, Yellow, Pink, Monochrome                    | `data-accent`     |
+| ☯︎ Brand ・ Rounding                 | Low, Medium, High                                         | `data-radius`     |
+| ☯︎ Brand ・ Typography               | Inter, Inter Display, Inter Tight, Inter Variable         | `data-font`       |
+| ☯︎ Brand ・ Icon                     | Bold, Bold Duotone, Broken, Line Duotone, Linear, Outline | `data-icon-style` |
+| ◑ System ・ Theme                   | Light, Dark                                               | `data-theme`      |
+| ◑ System ・ Responsive              | Desktop, Mobile                                           | `data-device`     |
+| ◑ System ・ Status                  | Positive, Warning, Negative, Information                  | `data-status`     |
+| ◑ System ・ Controls ・ Appearance   | Solid, Soft, Outline                                      | `data-appearance` |
+| ◑ System ・ Controls ・ State        | Default, Hover, Active, Disabled                          | `data-state`      |
 
 ## Как разрешается токен
 
@@ -24,19 +29,29 @@ import { Meta } from '@storybook/addon-docs/blocks';
 в самой Figma.
 
 ```
---box-background-sentiment-primary   [data-theme]    Mode
-  └─ var(--box-colors-brand-primary) [data-accent]   Color
-       └─ var(--box-color-blue-solid-500)            Color Palette (фиксировано)
-            └─ #3b82f6
+--box-accent-fill-solid   [data-theme]   System · Theme
+  └─ var(--box-brand-solid-500) [data-accent]  Brand · Color
+       └─ var(--box-palette-indigo-solid-500)          Primitives · Color (фиксировано)
+            └─ #6366f1
+```
+
+У кнопки над этим ещё два переключаемых слоя — и ни один не описан в CSS компонента
+повторно:
+
+```
+--box-state-accent-fill   [data-state]   Controls · State
+  └─ var(--box-control-accent-fill-default)  [data-appearance]  Controls · Appearance
+       └─ var(--box-interaction-accent-solid-fill-default)  [data-theme]  System · Theme
+            └─ … → var(--box-palette-indigo-solid-500)
 ```
 
 С размерами то же самое, только со стороны скруглений на уровень глубже:
 
 ```
---box-rounding-base-xl   [data-device]  Grid     Desktop → base/xl, Mobile → base/l
-  └─ var(--box-radius-base-xl)  [data-radius]  Rounding  Low 20 · Medium 24 · High 32
-       └─ var(--box-rounding-24)                          Rounding (примитив)
-            └─ 24px
+--box-rounding-base-xl   [data-device]  System · Responsive  Desktop → xl, Mobile → l
+  └─ var(--box-radius-xl)  [data-radius]  Brand · Rounding   Low 20 · Medium 24 · High 32
+       └─ var(--box-rounding-20)                             Primitives · Rounding
+            └─ 20px
 ```
 
 ## Как это применять
@@ -46,7 +61,7 @@ import '@box-ui/tokens/css';
 import { Button, Card, Text } from '@box-ui/react';
 import { Icon } from '@box-ui/icons';
 
-<html data-theme="dark" data-accent="violet" data-radius="high" data-device="mobile">
+<html data-theme="dark" data-accent="pink" data-radius="high" data-device="mobile">
   <Card>
     <Text variant="h4">Готово</Text>
     <Button startIcon={<Icon name="check-circle" size="2xs" />}>Продолжить</Button>
@@ -57,14 +72,27 @@ import { Icon } from '@box-ui/icons';
 ### Переключение мод для части страницы
 
 Кастомное свойство подставляется **там, где объявлено**, а не там, где прочитано. Чтобы
-переключить моды для поддерева, поставьте на один элемент _все пять_ атрибутов — тогда
-каждый слой переобъявляется здесь же и цепочка разрешается локально. Переопределение
-одного лишь `data-accent` глубже по дереву не дотянется до токена Mode, который предок уже
-разрешил.
+переключить моды для поддерева, поставьте на один элемент _все_ атрибуты — тогда каждый
+слой переобъявляется здесь же и цепочка разрешается локально. Переопределение одного лишь
+`data-accent` глубже по дереву не дотянется до токена темы, который предок уже разрешил.
 
 ```html
-<div data-theme="dark" data-accent="violet" data-radius="high" data-font="inter" data-device="desktop"></div>
+<div
+  data-theme="dark"
+  data-accent="pink"
+  data-radius="high"
+  data-font="inter"
+  data-device="desktop"
+  data-status="positive"
+  data-appearance="solid"
+  data-state="default"
+></div>
 ```
+
+Из этого же правила следует, почему `<Button>` сам несёт `data-appearance` и `data-state`:
+без них вид и состояние кнопки разрешались бы на предке. По той же причине
+`controls.css` переобъявляет на каждом контроле те 18 переменных темы, что ведут в
+коллекцию «Status», — иначе `data-status` на самой кнопке ничего бы не менял.
 
 `@box-ui/tokens/css/adaptive.css` необязателен: он берёт тёмную тему из
 `prefers-color-scheme`, а Mobile — ниже 768px, но только когда документ сам не выставил эти
@@ -73,7 +101,8 @@ import { Icon } from '@box-ui/icons';
 ## Куда смотреть
 
 - **Начало работы** — установка, подключение мод, использование токенов и иконок.
-- **Основы** — сырая палитра, текстовая шкала и шкалы отступов, скруглений, размеров и прозрачности.
+- **Основы** — палитра, именованные шкалы, акцент, тема, статусы, текстовая шкала и шкалы отступов, скруглений и размеров.
+- **Контролы** — вид × состояние × семейство на живых кнопках.
 - **Иконки** — 1300+ иконок Solar в шести стилях и семейства «Флаги / Платежи / Бренды».
 
 Переключатели на панели управляют всеми токенами на этих страницах, поэтому любая история

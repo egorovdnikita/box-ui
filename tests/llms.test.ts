@@ -21,7 +21,16 @@ describe('llms.txt', () => {
   });
 
   it('lists every switchable attribute', () => {
-    for (const attribute of ['data-theme', 'data-accent', 'data-radius', 'data-font', 'data-device']) {
+    for (const attribute of [
+      'data-theme',
+      'data-accent',
+      'data-radius',
+      'data-font',
+      'data-device',
+      'data-status',
+      'data-appearance',
+      'data-state',
+    ]) {
       expect(published).toContain(attribute);
     }
   });

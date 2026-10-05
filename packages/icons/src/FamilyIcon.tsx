@@ -72,9 +72,9 @@ export function FamilyIcon({
         title={`${entry.name} — no bundled artwork`}
         style={{
           ...frame,
-          background: 'var(--box-control-neutral-secondary)',
-          color: 'var(--box-content-base-secondary)',
-          border: '1px dashed var(--box-border-base-neutral-hover)',
+          background: 'var(--box-interaction-neutral-grayscale-soft-fill-default)',
+          color: 'var(--box-surface-base-content-muted)',
+          border: '1px dashed var(--box-surface-base-border-strong)',
           fontSize: `calc(${box} * 0.3)`,
           fontWeight: 600,
           letterSpacing: '-0.02em',

@@ -1,0 +1,5 @@
+# collection: brand-type
+# figma: ☯︎ Brand ・ Typography
+# modes: Inter, Inter Display, Inter Tight, Inter Variable
+font-family/heading :: Inter="Inter" | Inter Display="Inter Display" | Inter Tight="Inter Tight" | Inter Variable="Inter Variable"
+font-family/body :: Inter="Inter" | Inter Display="Inter Display" | Inter Tight="Inter Tight" | Inter Variable="Inter Variable"

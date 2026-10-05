@@ -9,8 +9,8 @@ export default meta;
 
 type Story = StoryObj;
 
-const grid = model.collections.grid;
-const font = model.collections.font;
+const responsive = model.collections['sys-responsive'];
+const font = model.collections['brand-type'];
 
 const RAMP: { variant: TextVariant; token: string; sample: string }[] = [
   { variant: 'display-l', token: 'typography/display/l', sample: 'Display L' },
@@ -28,8 +28,8 @@ const RAMP: { variant: TextVariant; token: string; sample: string }[] = [
 ];
 
 function sizesFor(token: string) {
-  const size = grid.variables.find((v) => v.path === `${token}/font-size`);
-  const line = grid.variables.find((v) => v.path === `${token}/line-height`);
+  const size = responsive.variables.find((v) => v.path === `${token}/font-size`);
+  const line = responsive.variables.find((v) => v.path === `${token}/line-height`);
   return {
     desktop: `${size?.values.desktop?.alias} / ${line?.values.desktop?.alias}`,
     mobile: `${size?.values.mobile?.alias} / ${line?.values.mobile?.alias}`,
@@ -41,7 +41,7 @@ export const Ramp: Story = {
   render: () => (
     <Page
       title="Шкала текста"
-      lead="Двенадцать текстовых стилей из коллекции «Grid». У каждой ступени своё значение для Desktop и для Mobile — переключите «Device» на панели, и шкала сожмётся."
+      lead="Двенадцать текстовых стилей из коллекции «◑ System · Responsive». У каждой ступени своё значение для Desktop и для Mobile — переключите «Device» на панели, и шкала сожмётся."
     >
       <Section
         title="Ступени"
@@ -83,7 +83,7 @@ export const Typefaces: Story = {
   render: (_args, { globals }) => (
     <Page
       title="Моды гарнитур"
-      lead="Коллекция «Typography» подменяет семейство за `typography/font-family/*`. Ниже сразу все четыре моды; переключатель на панели меняет ту, которой пользуется остальной Storybook."
+      lead="Коллекция «☯︎ Brand · Typography» подменяет семейство за `typography/font-family/*`. Ниже сразу все четыре моды; переключатель на панели меняет ту, которой пользуется остальной Storybook."
     >
       {font.modes.map((m) => (
         <Section key={m.slug} title={m.name} aside={<Code>{`[data-font="${m.slug}"]`}</Code>}>
@@ -105,7 +105,7 @@ export const Typefaces: Story = {
         title="Запасные шрифты"
         description="Из Figma приходит только имя семейства. Сгенерированный CSS дописывает `var(--box-font-fallback)`, чтобы недоступная гарнитура падала в системный стек, а не в засечный шрифт по умолчанию."
       >
-        <Code>--box-type-font-family-heading: "Inter Display", var(--box-font-fallback);</Code>
+        <Code>--box-typography-font-family-heading: "Inter Display", var(--box-font-fallback);</Code>
       </Section>
     </Page>
   ),

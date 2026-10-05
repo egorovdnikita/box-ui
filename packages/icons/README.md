@@ -19,7 +19,7 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 
 Размеры — токены `size/base/*` из коллекции Grid, поэтому иконки слушаются `data-device`
 наравне со всем остальным. Геометрия красится `currentColor`, так что цвет приходит из
-окружающего `--box-content-*`.
+окружающего `--box-surface-base-content-*`.
 
 ## UI Icons
 
