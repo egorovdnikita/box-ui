@@ -90,8 +90,8 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 
 ## Страницы
 
-- [Обзор](https://egorovdnikita.github.io/box-ui/?path=/docs/introduction--docs): граф переменных и как разрешается токен
-- [Начало работы](https://egorovdnikita.github.io/box-ui/?path=/docs/getting-started--docs): установка, подключение мод, использование токенов
+- [Обзор](https://egorovdnikita.github.io/box-ui/?path=/story/introduction--docs): граф переменных и как разрешается токен
+- [Начало работы](https://egorovdnikita.github.io/box-ui/?path=/story/getting-started--docs): установка, подключение мод, использование токенов
 - [Токены](https://egorovdnikita.github.io/box-ui/?path=/story/tokens-search--search): поиск по всем 15 коллекциям Figma и их таблицы — значения и превью по модам, code syntax, описания
 - [Иконки](https://egorovdnikita.github.io/box-ui/?path=/story/icons-system--system): системные иконки с поиском, стилями и размерами
 - [Флаги](https://egorovdnikita.github.io/box-ui/?path=/story/icons-flags--flags), [Платежи](https://egorovdnikita.github.io/box-ui/?path=/story/icons-payments--payments), [Бренды](https://egorovdnikita.github.io/box-ui/?path=/story/icons-brands--brands): семейства из Figma

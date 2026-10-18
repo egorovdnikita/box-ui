@@ -1,12 +1,14 @@
+import type { ReactNode } from 'react';
 import { addons } from 'storybook/preview-api';
 import { SELECT_STORY } from 'storybook/internal/core-events';
 import { catalog } from '@box-ui/icons';
 import { attributes, defaults } from '@box-ui/tokens';
 import { COLLECTION_ORDER, STORY_OF, collections } from './_doctable';
 import { counted } from './_lib';
+import { useCopy } from './_ui';
 
 /*
- * Blocks for the two MDX pages. Every number and every list here is read from
+ * Blocks for the Overview and Getting Started pages. Every number and every list here is read from
  * the token model and the icon catalogue, so the overview cannot drift from
  * what the packages actually ship.
  */
@@ -129,6 +131,32 @@ export function ModeTable() {
           </div>
         );
       })}
+    </div>
+  );
+}
+
+// --- prose -------------------------------------------------------------------
+
+/** A paragraph of running text, in the page's own type. */
+export function P({ children }: { children: ReactNode }) {
+  return <p className="sb-prose">{children}</p>;
+}
+
+/** Inline code inside prose. */
+export function C({ children }: { children: ReactNode }) {
+  return <code className="sb-inline">{children}</code>;
+}
+
+/** A block of code with a copy button, drawn in the chrome like the token tables. */
+export function CodeBlock({ code, label }: { code: string; label?: string }) {
+  const copy = useCopy();
+  return (
+    <div className="sb-codeblock">
+      {label && <span className="sb-codeblock__label">{label}</span>}
+      <pre>{code}</pre>
+      <button type="button" className="sb-codeblock__copy" onClick={() => copy(code, 'код скопирован')}>
+        Копировать
+      </button>
     </div>
   );
 }

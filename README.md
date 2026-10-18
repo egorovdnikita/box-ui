@@ -180,7 +180,7 @@ import { Icon } from '@box-ui/icons';
   своё имя или готовый `<Icon …/>`.
 - **Поиск на каждой странице**, `/` ставит в него фокус, группировка Figma сохранена в виде
   быстрых ссылок. Фильтры живут в адресе, поэтому отфильтрованный вид можно переслать.
-- **[Начало работы](https://egorovdnikita.github.io/box-ui/?path=/docs/getting-started--docs)** —
+- **[Начало работы](https://egorovdnikita.github.io/box-ui/?path=/story/getting-started--docs)** —
   установка, подключение мод-атрибутов, использование токенов и иконок.
 - **[llms.txt](https://egorovdnikita.github.io/box-ui/llms.txt)** — вся система одной
   машиночитаемой страницей, генерируется из модели токенов и поэтому не устаревает.

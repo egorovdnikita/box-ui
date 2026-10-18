@@ -943,13 +943,81 @@ button.sb-select svg {
   pointer-events: none;
 }
 
-/* --- overview blocks (Introduction.mdx, GettingStarted.mdx) --------------- */
+/* --- overview pages (Overview, Getting Started) --------------------------- */
+
+.sb-prose {
+  margin: 0;
+  color: var(--sb-text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.sb-inline {
+  padding: 1px 5px;
+  border: 1px solid var(--sb-border);
+  border-radius: var(--sb-radius-inner);
+  background: var(--sb-raised-bg);
+  font-family: var(--sb-font-code);
+  font-size: 12px;
+}
+
+.sb-codeblock {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--sb-border);
+  border-radius: var(--sb-radius);
+  background: var(--sb-raised-bg);
+}
+
+.sb-codeblock__label {
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--sb-border);
+  color: var(--sb-text-muted);
+  font-size: 12px;
+}
+
+.sb-codeblock pre {
+  margin: 0;
+  padding: 12px;
+  overflow-x: auto;
+  color: var(--sb-text);
+  font-family: var(--sb-font-code);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.sb-codeblock__copy {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid var(--sb-border);
+  border-radius: var(--sb-radius);
+  background: var(--sb-content-bg);
+  color: var(--sb-text-muted);
+  font-family: var(--sb-font);
+  font-size: 12px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.sb-codeblock:hover .sb-codeblock__copy,
+.sb-codeblock__copy:focus-visible {
+  opacity: 1;
+}
+
+.sb-codeblock__copy:hover {
+  border-color: var(--sb-accent);
+  color: var(--sb-accent);
+}
 
 .sb-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 8px;
-  margin: 24px 0;
 }
 
 .sb-stats__item {
@@ -973,7 +1041,6 @@ button.sb-select svg {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px;
-  margin: 16px 0 24px;
 }
 
 .sb-layers__layer {
@@ -1021,7 +1088,6 @@ button.sb-select svg {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 8px;
-  margin: 16px 0 24px;
 }
 
 .sb-next__card {
@@ -1030,7 +1096,6 @@ button.sb-select svg {
 
 .sb-modes {
   display: grid;
-  margin: 16px 0 24px;
   border: 1px solid var(--sb-border);
   border-radius: var(--sb-radius);
   background: var(--sb-raised-bg);
@@ -1047,24 +1112,6 @@ button.sb-select svg {
   padding: 4px 12px;
   border-top: 1px solid var(--sb-border);
   color: var(--sb-text);
-}
-
-/* Storybook's docs styles size bare spans in MDX; keep the table at table size. */
-.sb-modes__row > span,
-.sb-layers__item > span,
-.sb-next__card > span,
-.sb-stats__item > span:not(.sb-stats__value) {
-  font-size: 13px;
-}
-
-.sb-modes__row--head > span {
-  font-size: 11px;
-}
-
-.sb-layers__item > .sb-caption,
-.sb-next__card > .sb-caption,
-.sb-stats__item > .sb-caption {
-  font-size: 12px;
 }
 
 .sb-modes__row--head {
