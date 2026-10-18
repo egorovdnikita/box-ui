@@ -234,7 +234,7 @@ const preview: Preview = {
     options: {
       showPanel: false,
       storySort: {
-        order: ['Обзор', 'Начало работы', 'Основы', 'Контролы', 'Иконки'],
+        order: ['Обзор', 'Начало работы', 'Основы', 'Иконки'],
       },
     },
     controls: { disable: true },

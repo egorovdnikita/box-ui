@@ -122,7 +122,6 @@ ${rosters}
 - [Цвета](${SITE}/?path=/story/foundations-colors--palette): палитра, именованные шкалы, акцентные моды, семантика в светлой и тёмной темах, статусы
 - [Шкалы](${SITE}/?path=/story/foundations-scales--spacing): отступы, скругления, размеры
 - [Типографика](${SITE}/?path=/story/foundations-typography--ramp): текстовая шкала и четыре гарнитуры
-- [Контролы](${SITE}/?path=/story/controls-controls--matrix): вид × состояние × семейство на живых кнопках
 - [UI Icons](${SITE}/?path=/story/icons-ui-icons--gallery): галерея с поиском
 - [Семейства Figma](${SITE}/?path=/story/icons-figma-families--flags): флаги, платежи, бренды
 `;

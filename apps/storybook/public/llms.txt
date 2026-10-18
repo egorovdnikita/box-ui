@@ -95,6 +95,5 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 - [Цвета](https://egorovdnikita.github.io/box-ui/?path=/story/foundations-colors--palette): палитра, именованные шкалы, акцентные моды, семантика в светлой и тёмной темах, статусы
 - [Шкалы](https://egorovdnikita.github.io/box-ui/?path=/story/foundations-scales--spacing): отступы, скругления, размеры
 - [Типографика](https://egorovdnikita.github.io/box-ui/?path=/story/foundations-typography--ramp): текстовая шкала и четыре гарнитуры
-- [Контролы](https://egorovdnikita.github.io/box-ui/?path=/story/controls-controls--matrix): вид × состояние × семейство на живых кнопках
 - [UI Icons](https://egorovdnikita.github.io/box-ui/?path=/story/icons-ui-icons--gallery): галерея с поиском
 - [Семейства Figma](https://egorovdnikita.github.io/box-ui/?path=/story/icons-figma-families--flags): флаги, платежи, бренды

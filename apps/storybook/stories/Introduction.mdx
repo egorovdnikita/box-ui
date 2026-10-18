@@ -35,7 +35,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
             └─ #6366f1
 ```
 
-У кнопки над этим ещё два переключаемых слоя — и ни один не описан в CSS компонента
+У контролов над этим ещё два переключаемых слоя — и ни один не описан в CSS компонента
 повторно:
 
 ```
@@ -58,13 +58,13 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ```tsx
 import '@box-ui/tokens/css';
-import { Button, Card, Text } from '@box-ui/react';
+import { Card, Text } from '@box-ui/react';
 import { Icon } from '@box-ui/icons';
 
 <html data-theme="dark" data-accent="pink" data-radius="high" data-device="mobile">
   <Card>
+    <Icon name="check-circle" size="m" />
     <Text variant="h4">Готово</Text>
-    <Button startIcon={<Icon name="check-circle" size="2xs" />}>Продолжить</Button>
   </Card>
 </html>;
 ```
@@ -89,10 +89,10 @@ import { Icon } from '@box-ui/icons';
 ></div>
 ```
 
-Из этого же правила следует, почему `<Button>` сам несёт `data-appearance` и `data-state`:
-без них вид и состояние кнопки разрешались бы на предке. По той же причине
+Из этого же правила следует, почему каждый контрол сам несёт `data-appearance` и
+`data-state`: без них вид и состояние разрешались бы на предке. По той же причине
 `controls.css` переобъявляет на каждом контроле те 18 переменных темы, что ведут в
-коллекцию «Status», — иначе `data-status` на самой кнопке ничего бы не менял.
+коллекцию «Status», — иначе `data-status` на самом контроле ничего бы не менял.
 
 `@box-ui/tokens/css/adaptive.css` необязателен: он берёт тёмную тему из
 `prefers-color-scheme`, а Mobile — ниже 768px, но только когда документ сам не выставил эти
@@ -102,7 +102,6 @@ import { Icon } from '@box-ui/icons';
 
 - **Начало работы** — установка, подключение мод, использование токенов и иконок.
 - **Основы** — палитра, именованные шкалы, акцент, тема, статусы, текстовая шкала и шкалы отступов, скруглений и размеров.
-- **Контролы** — вид × состояние × семейство на живых кнопках.
 - **Иконки** — 1300+ иконок Solar в шести стилях и семейства «Флаги / Платежи / Бренды».
 
 Переключатели на панели управляют всеми токенами на этих страницах, поэтому любая история
