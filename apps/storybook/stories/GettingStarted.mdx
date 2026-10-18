@@ -70,10 +70,10 @@ import { BoxUIProvider } from '@box-ui/react';
 
 ```css
 .card {
-  background: var(--box-surface-base-fill-raised);
-  color: var(--box-surface-base-content-strong);
-  border-radius: var(--box-rounding-base-m);
-  padding: var(--box-spacing-base-m);
+  background: var(--surface-base-fill-raised);
+  color: var(--surface-base-content-strong);
+  border-radius: var(--rounding-m);
+  padding: var(--spacing-m);
 }
 ```
 
@@ -82,8 +82,8 @@ import { BoxUIProvider } from '@box-ui/react';
 ```js
 import { color, layout } from '@box-ui/tokens';
 
-color.background.base.secondary; // 'var(--box-surface-base-fill-raised)'
-layout.spacing.base.m; // 'var(--box-spacing-base-m)'
+color.background.base.secondary; // 'var(--surface-base-fill-raised)'
+layout.spacing.base.m; // 'var(--spacing-m)'
 ```
 
 В `model` лежит весь граф — коллекции, моды и то, на что ссылается каждая переменная.
@@ -111,6 +111,7 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 ## Куда дальше
 
 - **Обзор** — как работает цепочка алиасов и почему при локальном переключении нужны все атрибуты.
+- **Токены** — таблицы всех коллекций: значения по модам, code syntax из Figma, описания.
 - **Основы** — палитра, шкалы, текстовая шкала; везде показаны реально вычисленные значения.
 - **Иконки** — галерея с поиском и семейства «Флаги / Платежи / Бренды».
 

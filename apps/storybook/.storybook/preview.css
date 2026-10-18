@@ -336,6 +336,189 @@ body {
   z-index: 3;
 }
 
+/* --- token tables (after the Figma documentation pages) ------------------- */
+
+/*
+ * Raised cells on a sunken table with 1px gaps between them, a header row in
+ * small muted type, group headings that sit on the table itself, and one
+ * description per group spanning its rows. Storybook's palette throughout;
+ * only the swatches are Box UI.
+ */
+
+.sb-doc__scroller {
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+.sb-doc {
+  display: grid;
+  gap: 1px;
+  padding: 4px;
+  border-radius: 8px;
+  background: var(--sb-content-bg);
+  box-shadow: inset 0 0 0 1px var(--sb-border);
+  font-size: 13px;
+}
+
+.sb-doc__head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 12px;
+  background: var(--sb-raised-bg);
+  color: var(--sb-text-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sb-doc__heading {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 4px;
+  align-items: baseline;
+  padding: 20px 12px 10px;
+  color: var(--sb-text-muted);
+  font-size: 13px;
+  scroll-margin-top: 140px;
+}
+
+.sb-doc__sep {
+  opacity: 0.7;
+}
+
+.sb-doc__strong {
+  color: var(--sb-text);
+  font-weight: 600;
+}
+
+.sb-doc__cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 40px;
+  padding: 6px 12px;
+  background: var(--sb-raised-bg);
+  color: var(--sb-text);
+}
+
+.sb-doc__name {
+  font-weight: 500;
+}
+
+.sb-doc__name svg {
+  flex: none;
+  color: var(--sb-text-muted);
+}
+
+.sb-doc__description {
+  align-items: flex-start;
+  padding-block: 12px;
+  color: var(--sb-text-muted);
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: normal;
+}
+
+.sb-doc__mono {
+  font-family: var(--sb-font-code);
+  font-size: 12px;
+}
+
+.sb-doc__muted {
+  color: var(--sb-text-muted);
+}
+
+.sb-doc__literal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.sb-doc__opacity {
+  margin-left: auto;
+  color: var(--sb-text-muted);
+  font-family: var(--sb-font-code);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* A swatch over a checkerboard, so translucent tokens read as translucent. */
+.sb-doc__swatch {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px var(--sb-border);
+  background:
+    linear-gradient(var(--swatch), var(--swatch)),
+    repeating-conic-gradient(var(--sb-hover) 0% 25%, transparent 0% 50%) 0 0 / 8px 8px;
+}
+
+.sb-doc__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  padding: 4px 8px 4px 4px;
+  border: 1px solid var(--sb-border);
+  border-radius: 6px;
+  background: none;
+  color: var(--sb-text);
+  font-family: var(--sb-font);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.sb-doc__chip > span:not(.sb-doc__swatch, .sb-doc__opacity) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sb-doc__chip svg {
+  flex: none;
+  color: var(--sb-text-muted);
+}
+
+.sb-doc__chip:hover {
+  border-color: var(--sb-accent);
+}
+
+.sb-doc__code {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--sb-text);
+  font-family: var(--sb-font-code);
+  font-size: 12px;
+  text-align: left;
+  word-break: break-all;
+  cursor: pointer;
+}
+
+.sb-doc__code:hover {
+  color: var(--sb-accent);
+}
+
+.sb-doc__flag {
+  flex: none;
+  padding: 1px 6px;
+  border-radius: 3em;
+  background: color-mix(in srgb, #e69d00 20%, transparent);
+  color: #e69d00;
+  font-family: var(--sb-font);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
 /* --- scrollers ------------------------------------------------------------ */
 
 .sb-scroller {

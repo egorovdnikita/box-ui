@@ -15,12 +15,12 @@ export interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'name'> {
 }
 
 function dimension(size: IconSize): string {
-  return typeof size === 'number' ? `${size}px` : `var(--box-size-base-${size})`;
+  return typeof size === 'number' ? `${size}px` : `var(--size-${size})`;
 }
 
 /**
  * Renders one Solar icon. The geometry paints with `currentColor`, so colour
- * comes from whatever `--box-surface-base-content-*` token the surrounding text uses.
+ * comes from whatever `--surface-base-content-*` token the surrounding text uses.
  */
 export const Icon = forwardRef<SVGSVGElement, IconProps>(function Icon(
   { name, iconStyle, size = 'xs', title, style, ...rest },

@@ -41,8 +41,8 @@ export const Spacing: Story = {
               style={{
                 height: 14,
                 width: `var(${v.cssVar})`,
-                background: 'var(--box-accent-fill-solid)',
-                borderRadius: 'var(--box-rounding-base-min)',
+                background: 'var(--accent-fill-solid)',
+                borderRadius: 'var(--rounding-min)',
               }}
             />
           </Row>
@@ -69,16 +69,16 @@ export const Rounding: Story = {
               key={m.slug}
               globals={globals as unknown as ModeGlobals}
               radius={m.slug}
-              style={{ ...demoSurface, display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-3xs)' }}
+              style={{ ...demoSurface, display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3xs)' }}
             >
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8 }}>
-                <span style={{ fontSize: 'var(--box-typography-caption-l-font-size)' }}>{m.name}</span>
+                <span style={{ fontSize: 'var(--type-caption-l-font-size)' }}>{m.name}</span>
                 <code
                   className="sb-code"
-                  style={{ color: 'var(--box-surface-base-content-muted)' }}
+                  style={{ color: 'var(--surface-base-content-muted)' }}
                 >{`[data-radius="${m.slug}"]`}</code>
               </div>
-              <div style={{ display: 'flex', gap: 'var(--box-spacing-base-4xs)', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: 'var(--spacing-4xs)', flexWrap: 'wrap' }}>
                 {['xs', 's', 'm', 'l', 'xl', '2xl'].map((step) => (
                   <div
                     key={step}
@@ -88,11 +88,11 @@ export const Rounding: Story = {
                       placeItems: 'center',
                       width: 46,
                       height: 46,
-                      background: 'var(--box-accent-fill-soft)',
-                      border: '1px solid var(--box-accent-content-on-soft-default)',
-                      borderRadius: `var(--box-rounding-base-${step})`,
-                      color: 'var(--box-accent-content-on-soft-default)',
-                      fontSize: 'var(--box-typography-caption-m-font-size)',
+                      background: 'var(--accent-fill-soft)',
+                      border: '1px solid var(--accent-content-on-soft-default)',
+                      borderRadius: `var(--rounding-${step})`,
+                      color: 'var(--accent-content-on-soft-default)',
+                      fontSize: 'var(--type-caption-m-font-size)',
                     }}
                   >
                     {step}
@@ -116,8 +116,8 @@ export const Rounding: Story = {
                 width: 76,
                 height: 42,
                 borderRadius: `var(${v.cssVar})`,
-                background: 'var(--box-accent-fill-soft)',
-                border: '1px solid var(--box-accent-content-on-soft-default)',
+                background: 'var(--accent-fill-soft)',
+                border: '1px solid var(--accent-content-on-soft-default)',
               }}
             />
           </Row>
@@ -146,10 +146,10 @@ export const Sizes: Story = {
                 placeItems: 'center',
                 width: `var(${v.cssVar})`,
                 height: `var(${v.cssVar})`,
-                background: 'var(--box-interaction-neutral-grayscale-solid-fill-default)',
-                borderRadius: 'var(--box-rounding-base-2xs)',
-                color: 'var(--box-surface-base-content-muted)',
-                fontSize: 'var(--box-typography-caption-m-font-size)',
+                background: 'var(--interaction-neutral-grayscale-solid-fill-default)',
+                borderRadius: 'var(--rounding-2xs)',
+                color: 'var(--surface-base-content-muted)',
+                fontSize: 'var(--type-caption-m-font-size)',
               }}
             >
               {v.path.split('/').pop()}

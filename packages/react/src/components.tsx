@@ -12,7 +12,7 @@ const cx = (...parts: (string | false | undefined)[]) => parts.filter(Boolean).j
 
 /** Spacing scale from the Responsive collection — `spacing/base/*`. */
 export type SpaceToken = 'min' | '4xs' | '3xs' | '2xs' | 'xs' | 's' | 'm' | 'l' | 'xl' | '2xl' | '3xl' | '4xl' | 'max';
-const space = (token: SpaceToken) => `var(--box-spacing-base-${token})`;
+const space = (token: SpaceToken) => `var(--spacing-${token})`;
 
 /**
  * The control families of the Figma `Controls · Appearance` collection, plus
@@ -34,7 +34,7 @@ export type ControlState = 'default' | 'hover' | 'active' | 'disabled';
  *
  * `data-state` is not decoration: a custom property is substituted where it is
  * declared, so a control that set only `data-appearance` would read a
- * `--box-state-*` value its ancestor had already resolved under the ancestor's
+ * `--control-*` State value its ancestor had already resolved under the ancestor's
  * appearance. Re-declaring the State layer here puts the substitution back on
  * this element, and the :hover / :active / :disabled rules in `controls.css`
  * out-specify it when the control is actually interacted with.

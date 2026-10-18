@@ -310,19 +310,17 @@ export const Sizes: Story = {
 
       <Section
         title="Цвет"
-        description="Иконки красятся `currentColor`, поэтому наследуют тот цветовой токен, который задан контейнером. Тональности берутся из коллекции «System · Status»: один токен `--box-status-content-on-surface-default`, а `data-status` на обёртке решает, какого он цвета."
+        description="Иконки красятся `currentColor`, поэтому наследуют тот цветовой токен, который задан контейнером. Тональности берутся из коллекции «System · Status»: один токен `--status-content-on-surface-default`, а `data-status` на обёртке решает, какого он цвета."
       >
-        <div
-          style={{ ...demoSurface, display: 'flex', gap: 20, flexWrap: 'wrap', padding: 'var(--box-spacing-base-m)' }}
-        >
+        <div style={{ ...demoSurface, display: 'flex', gap: 20, flexWrap: 'wrap', padding: 'var(--spacing-m)' }}>
           {[
-            ['strong', 'var(--box-surface-base-content-strong)', undefined],
-            ['muted', 'var(--box-surface-base-content-muted)', undefined],
-            ['accent', 'var(--box-accent-content-on-soft-default)', undefined],
-            ['positive', 'var(--box-status-content-on-surface-default)', 'positive'],
-            ['warning', 'var(--box-status-content-on-surface-default)', 'warning'],
-            ['negative', 'var(--box-status-content-on-surface-default)', 'negative'],
-            ['information', 'var(--box-status-content-on-surface-default)', 'information'],
+            ['strong', 'var(--surface-base-content-strong)', undefined],
+            ['muted', 'var(--surface-base-content-muted)', undefined],
+            ['accent', 'var(--accent-content-on-soft-default)', undefined],
+            ['positive', 'var(--status-content-on-surface-default)', 'positive'],
+            ['warning', 'var(--status-content-on-surface-default)', 'warning'],
+            ['negative', 'var(--status-content-on-surface-default)', 'negative'],
+            ['information', 'var(--status-content-on-surface-default)', 'information'],
           ].map(([label, color, status]) => (
             <div
               key={label}

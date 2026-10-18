@@ -3,8 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useArgs } from 'storybook/preview-api';
 import { model } from '@box-ui/tokens';
 import {
-  Callout,
-  Code,
   Count,
   Counts,
   Empty,
@@ -32,7 +30,7 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'Цветовые переменные из `Box UI | Components` — примитивы, именованные шкалы, акцент, тема и статусы.',
+          'Цветовые переменные из `Foundation – Core` наглядно: палитра и семантика в обеих темах. Полные таблицы — в разделе «Токены».',
       },
     },
   },
@@ -50,10 +48,7 @@ const palette = {
   ...model.collections['prim-color'],
   variables: model.collections['prim-color'].variables.map((v) => ({ ...v, path: v.path.replace(/^color\//, '') })),
 };
-const ramps = model.collections['sys-color'];
-const accent = model.collections['brand-color'];
 const mode = model.collections['sys-theme'];
-const status = model.collections['sys-status'];
 
 /** Palette entries are either a literal hex or "<pct>% of another ramp step". */
 function paletteMeta(value?: { value?: string | number; alias?: string; opacity?: number }) {
@@ -137,139 +132,6 @@ export const Palette: Story = {
   },
 };
 
-/** A single mode cell. Lives below `<Page>`, so it can reach the copy context. */
-function AccentCell({
-  mode: m,
-  value,
-}: {
-  mode: { slug: string; name: string };
-  value?: { cssVar?: string; alias?: string };
-}) {
-  const copy = useCopy();
-  return (
-    <button
-      type="button"
-      title={`${m.name} → ${value?.alias ?? ''} · клик копирует`}
-      onClick={() => value?.alias && copy(value.alias, value.alias)}
-      style={{
-        display: 'block',
-        width: 44,
-        height: 26,
-        padding: 0,
-        cursor: 'pointer',
-        borderRadius: 3,
-        border: '1px solid var(--sb-border)',
-        background: `var(${value?.cssVar})`,
-      }}
-    />
-  );
-}
-
-/** Ramp families that actually exist in the palette, e.g. `indigo`, `lime`. */
-const paletteFamilies = new Set(palette.variables.map((v) => v.path.split('/')[0]));
-
-/**
- * A mode is "off" when its `color/solid/500` does not point at the ramp the
- * mode is named after. Modes with no ramp of their own — Monochrome — are not
- * candidates. Computed rather than hard-coded, so the callout appears only
- * while the Figma file actually disagrees with itself.
- */
-const mismatchedModes = accent.modes
-  .filter((m) => paletteFamilies.has(m.slug))
-  .map((m) => {
-    const solid = accent.variables.find((v) => v.path === 'color/solid/500');
-    const family = solid?.values[m.slug]?.alias?.split(':')[1]?.split('/')[1];
-    return family && family !== m.slug ? { mode: m.name, family } : null;
-  })
-  .filter((entry): entry is { mode: string; family: string } => entry !== null);
-
-export const Accents: Story = {
-  name: 'Акцентные моды — Brand · Color',
-  args: { query: '' },
-  render: (args) => {
-    const [, updateArgs] = useArgs();
-    const query = (args as { query: string }).query;
-    const setQuery = (value: string) => updateArgs({ query: value });
-    const rows = useMemo(() => {
-      const q = query.trim().toLowerCase();
-      return q ? accent.variables.filter((v) => matches(query, v.path)) : accent.variables;
-    }, [query]);
-
-    return (
-      <Page
-        title="Акцентные цветовые моды"
-        lead={`В коллекции «☯︎ Brand · Color» ${counted(accent.modes.length, ['мода', 'моды', 'мод'])}. Переключите «Акцент» на панели — и каждый брендовый токен ниже начнёт указывать на другую примитивную шкалу, а семантические имена останутся прежними.`}
-        toolbar={
-          <>
-            <Search value={query} onChange={setQuery} placeholder="brand, neutral, positive…" />
-            <Counts>
-              <Count>
-                {counted(rows.length, ['токен', 'токена', 'токенов'])} ×{' '}
-                {counted(accent.modes.length, ['мода', 'моды', 'мод'])}
-              </Count>
-              {query && <ResetFilters onReset={() => setQuery('')} />}
-              <ShareLink />
-            </Counts>
-          </>
-        }
-      >
-        {mismatchedModes.length > 0 && (
-          <Callout title="Часть мод указывает на чужую шкалу">
-            {mismatchedModes.map((entry, index) => (
-              <span key={entry.mode}>
-                {index > 0 && ', '}
-                <strong>{entry.mode}</strong> разрешается в шкалу <strong>{entry.family}</strong>
-              </span>
-            ))}
-            . Так это устроено в Figma сегодня, и здесь воспроизведено буквально, а не тихо исправлено — почините в{' '}
-            <Code>Box UI | Components</Code> и пересоберите.
-          </Callout>
-        )}
-
-        {rows.length === 0 ? (
-          <Empty query={query} onClear={() => setQuery('')} />
-        ) : (
-          <Section
-            title="Каждый токен × каждая мода"
-            description="Строки — токены, столбцы — моды Figma. В ячейке то, во что мода разрешается: наведите, чтобы увидеть примитив, кликните, чтобы скопировать."
-          >
-            <div className="sb-scroller">
-              <table className="sb-table">
-                <thead>
-                  <tr>
-                    <th className="sb-table__lead">
-                      <span className="sb-label">Токен</span>
-                    </th>
-                    {accent.modes.map((m) => (
-                      <th key={m.slug}>
-                        <span className="sb-label">{m.name}</span>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map((v) => (
-                    <tr key={v.cssVar}>
-                      <td className="sb-table__lead">
-                        <Code copyable={`var(${v.cssVar})`}>{v.path}</Code>
-                      </td>
-                      {accent.modes.map((m) => (
-                        <td key={m.slug}>
-                          <AccentCell mode={m} value={v.values[m.slug]} />
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Section>
-        )}
-      </Page>
-    );
-  },
-};
-
 /**
  * The same token under both Mode values at once. Each half re-declares all five
  * mode attributes, which is what lets two themes resolve side by side on one
@@ -306,8 +168,8 @@ function SplitSwatch({ cssVar, name, globals }: { cssVar: string; name: string; 
                 insetInline: 0,
                 bottom: 0,
                 padding: '1px 4px',
-                background: 'var(--box-surface-base-fill-page)',
-                color: 'var(--box-surface-base-content-subtle)',
+                background: 'var(--surface-base-fill-page)',
+                color: 'var(--surface-base-content-subtle)',
                 fontSize: 9,
                 textTransform: 'uppercase',
                 letterSpacing: '0.06em',
@@ -395,120 +257,4 @@ export const Semantic: Story = {
       </Page>
     );
   },
-};
-
-export const Ramps: Story = {
-  name: 'Именованные шкалы — System · Color',
-  args: { query: '' },
-  render: (args) => {
-    const [, updateArgs] = useArgs();
-    const query = (args as { query: string }).query;
-    const setQuery = (value: string) => updateArgs({ query: value });
-
-    const groups = useMemo(() => {
-      const stripped = ramps.variables.map((v) => ({ ...v, path: v.path.replace(/^color\//, '') }));
-      const q = query.trim().toLowerCase();
-      return groupBy(q ? stripped.filter((v) => matches(query, v.path)) : stripped, 1);
-    }, [query]);
-
-    const total = groups.reduce((sum, [, list]) => sum + list.length, 0);
-
-    return (
-      <Page
-        title="Именованные шкалы"
-        lead={`${ramps.variables.length} токенов в «◑ System · Color». Это слой между палитрой и темой: он даёт сырым шкалам роли — neutral, positive, warning, negative, informative — и ни в одной моде не меняется. Тема и статусы указывают уже сюда, а не в палитру напрямую.`}
-        toolbar={
-          <>
-            <Search value={query} onChange={setQuery} placeholder="neutral, positive, alpha…" />
-            <Counts>
-              <Count>{counted(total, ['токен', 'токена', 'токенов'])}</Count>
-              <Count>{counted(groups.length, ['роль', 'роли', 'ролей'])}</Count>
-              {query && <ResetFilters onReset={() => setQuery('')} />}
-              <ShareLink />
-            </Counts>
-            {!query && (
-              <div style={{ flexBasis: '100%' }}>
-                <JumpNav items={groups.map(([role]) => ({ id: anchor(role), label: role }))} />
-              </div>
-            )}
-          </>
-        }
-      >
-        {total === 0 ? (
-          <Empty query={query} onClear={() => setQuery('')} />
-        ) : (
-          groups.map(([role, variables]) => (
-            <Section key={role} id={anchor(role)} title={role} aside={<Count>{variables.length}</Count>}>
-              <Grid min={150}>
-                {variables.map((v) => (
-                  <Swatch
-                    key={v.cssVar}
-                    cssVar={v.cssVar}
-                    name={v.path.split('/').slice(1).join(' / ')}
-                    meta={v.values.value?.alias?.split(':')[1]?.replace(/^color\//, '') ?? ''}
-                    live
-                  />
-                ))}
-              </Grid>
-            </Section>
-          ))
-        )}
-      </Page>
-    );
-  },
-};
-
-export const Statuses: Story = {
-  name: 'Статусы — System · Status',
-  render: () => (
-    <Page
-      title="Статусы"
-      lead={`${status.variables.length} токенов × ${counted(status.modes.length, ['мода', 'моды', 'мод'])}. Коллекция даёт один набор имён для всех четырёх тональностей: компонент пишет \u0060--box-status-*\u0060 один раз, а \u0060data-status\u0060 решает, станет это зелёным, жёлтым, красным или синим.`}
-      toolbar={
-        <Counts>
-          <Count>
-            {counted(status.variables.length, ['токен', 'токена', 'токенов'])} ×{' '}
-            {counted(status.modes.length, ['мода', 'моды', 'мод'])}
-          </Count>
-          <ShareLink />
-        </Counts>
-      }
-    >
-      <Section
-        title="Каждый токен × каждая мода"
-        description="Переключатель «Статус» на панели задаёт моду для всей страницы. Таблица показывает все четыре сразу."
-      >
-        <div className="sb-scroller">
-          <table className="sb-table">
-            <thead>
-              <tr>
-                <th className="sb-table__lead">
-                  <span className="sb-label">Токен</span>
-                </th>
-                {status.modes.map((m) => (
-                  <th key={m.slug}>
-                    <span className="sb-label">{m.name}</span>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {status.variables.map((v) => (
-                <tr key={v.cssVar}>
-                  <td className="sb-table__lead">
-                    <Code copyable={`var(${v.cssVar})`}>{v.path}</Code>
-                  </td>
-                  {status.modes.map((m) => (
-                    <td key={m.slug}>
-                      <AccentCell mode={m} value={v.values[m.slug]} />
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Section>
-    </Page>
-  ),
 };

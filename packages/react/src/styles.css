@@ -16,12 +16,12 @@
 
 .box-text {
   margin: 0;
-  color: var(--box-surface-base-content-strong);
-  font-family: var(--box-typography-font-family-body);
-  font-weight: var(--box-typography-font-weight-medium);
-  font-size: var(--box-typography-body-m-font-size);
-  line-height: var(--box-typography-body-m-line-height);
-  letter-spacing: var(--box-typography-body-m-letter-spacing);
+  color: var(--surface-base-content-strong);
+  font-family: var(--font-family-body);
+  font-weight: var(--type-font-weight-medium);
+  font-size: var(--type-body-m-font-size);
+  line-height: var(--type-body-m-line-height);
+  letter-spacing: var(--type-body-m-letter-spacing);
 }
 
 .box-text--display-l,
@@ -32,86 +32,86 @@
 .box-text--h3,
 .box-text--h4,
 .box-text--h5 {
-  font-family: var(--box-typography-font-family-heading);
-  font-weight: var(--box-typography-font-weight-semibold);
+  font-family: var(--font-family-heading);
+  font-weight: var(--type-font-weight-semibold);
 }
 
 .box-text--display-l {
-  font-size: var(--box-typography-display-l-font-size);
-  line-height: var(--box-typography-display-l-line-height);
-  letter-spacing: var(--box-typography-display-l-letter-spacing);
+  font-size: var(--type-display-l-font-size);
+  line-height: var(--type-display-l-line-height);
+  letter-spacing: var(--type-display-l-letter-spacing);
 }
 .box-text--display-m {
-  font-size: var(--box-typography-display-m-font-size);
-  line-height: var(--box-typography-display-m-line-height);
-  letter-spacing: var(--box-typography-display-m-letter-spacing);
+  font-size: var(--type-display-m-font-size);
+  line-height: var(--type-display-m-line-height);
+  letter-spacing: var(--type-display-m-letter-spacing);
 }
 .box-text--display-s {
-  font-size: var(--box-typography-display-s-font-size);
-  line-height: var(--box-typography-display-s-line-height);
-  letter-spacing: var(--box-typography-display-s-letter-spacing);
+  font-size: var(--type-display-s-font-size);
+  line-height: var(--type-display-s-line-height);
+  letter-spacing: var(--type-display-s-letter-spacing);
 }
 .box-text--h1 {
-  font-size: var(--box-typography-heading-h1-font-size);
-  line-height: var(--box-typography-heading-h1-line-height);
-  letter-spacing: var(--box-typography-heading-h1-letter-spacing);
+  font-size: var(--type-h1-font-size);
+  line-height: var(--type-h1-line-height);
+  letter-spacing: var(--type-h1-letter-spacing);
 }
 .box-text--h2 {
-  font-size: var(--box-typography-heading-h2-font-size);
-  line-height: var(--box-typography-heading-h2-line-height);
-  letter-spacing: var(--box-typography-heading-h2-letter-spacing);
+  font-size: var(--type-h2-font-size);
+  line-height: var(--type-h2-line-height);
+  letter-spacing: var(--type-h2-letter-spacing);
 }
 .box-text--h3 {
-  font-size: var(--box-typography-heading-h3-font-size);
-  line-height: var(--box-typography-heading-h3-line-height);
-  letter-spacing: var(--box-typography-heading-h3-letter-spacing);
+  font-size: var(--type-h3-font-size);
+  line-height: var(--type-h3-line-height);
+  letter-spacing: var(--type-h3-letter-spacing);
 }
 .box-text--h4 {
-  font-size: var(--box-typography-heading-h4-font-size);
-  line-height: var(--box-typography-heading-h4-line-height);
-  letter-spacing: var(--box-typography-heading-h4-letter-spacing);
+  font-size: var(--type-h4-font-size);
+  line-height: var(--type-h4-line-height);
+  letter-spacing: var(--type-h4-letter-spacing);
 }
 .box-text--h5 {
-  font-size: var(--box-typography-heading-h5-font-size);
-  line-height: var(--box-typography-heading-h5-line-height);
-  letter-spacing: var(--box-typography-heading-h5-letter-spacing);
+  font-size: var(--type-h5-font-size);
+  line-height: var(--type-h5-line-height);
+  letter-spacing: var(--type-h5-letter-spacing);
 }
 .box-text--body-l {
-  font-size: var(--box-typography-body-l-font-size);
-  line-height: var(--box-typography-body-l-line-height);
-  letter-spacing: var(--box-typography-body-l-letter-spacing);
+  font-size: var(--type-body-l-font-size);
+  line-height: var(--type-body-l-line-height);
+  letter-spacing: var(--type-body-l-letter-spacing);
 }
 .box-text--body-m {
-  font-size: var(--box-typography-body-m-font-size);
-  line-height: var(--box-typography-body-m-line-height);
-  letter-spacing: var(--box-typography-body-m-letter-spacing);
+  font-size: var(--type-body-m-font-size);
+  line-height: var(--type-body-m-line-height);
+  letter-spacing: var(--type-body-m-letter-spacing);
 }
 .box-text--caption-l {
-  font-size: var(--box-typography-caption-l-font-size);
-  line-height: var(--box-typography-caption-l-line-height);
-  letter-spacing: var(--box-typography-caption-l-letter-spacing);
+  font-size: var(--type-caption-l-font-size);
+  line-height: var(--type-caption-l-line-height);
+  letter-spacing: var(--type-caption-l-letter-spacing);
 }
 .box-text--caption-m {
-  font-size: var(--box-typography-caption-m-font-size);
-  line-height: var(--box-typography-caption-m-line-height);
-  letter-spacing: var(--box-typography-caption-m-letter-spacing);
+  font-size: var(--type-caption-m-font-size);
+  line-height: var(--type-caption-m-line-height);
+  letter-spacing: var(--type-caption-m-letter-spacing);
 }
 
 .box-text--secondary {
-  color: var(--box-surface-base-content-muted);
+  color: var(--surface-base-content-muted);
 }
 .box-text--tertiary {
-  color: var(--box-surface-base-content-subtle);
+  color: var(--surface-base-content-subtle);
 }
 .box-text--disabled {
-  color: var(--box-interaction-disabled-content);
+  color: var(--interaction-disabled-content);
 }
 .box-text--accent {
-  color: var(--box-accent-content-on-soft-default);
+  color: var(--accent-content-on-soft-default);
 }
 /* The sentiment comes from [data-status] on the element itself. */
 .box-text--status {
-  color: var(--box-status-content-on-surface-default);
+  color: var(--status-content-on-surface-default);
 }
 
 /* --- Stack --------------------------------------------------------------- */
@@ -132,15 +132,15 @@
 
 .box-card {
   box-sizing: border-box;
-  background: var(--box-surface-base-fill-raised);
-  border: 1px solid var(--box-surface-base-border-default);
-  border-radius: var(--box-rounding-base-l);
-  color: var(--box-surface-base-content-strong);
-  padding: var(--box-spacing-base-m);
+  background: var(--surface-base-fill-raised);
+  border: 1px solid var(--surface-base-border-default);
+  border-radius: var(--rounding-l);
+  color: var(--surface-base-content-strong);
+  padding: var(--spacing-m);
 }
 
 .box-card--flat {
-  background: var(--box-surface-base-fill-layer-subtle);
+  background: var(--surface-base-fill-layer-subtle);
   border-color: transparent;
 }
 .box-card--outline {
@@ -152,29 +152,29 @@
 /* One family per Figma control family. Each binds the three State tokens to
  * component-local names so the rest of the rules stay family-agnostic. */
 .box-control--accent {
-  --box-ctl-fill: var(--box-state-accent-fill);
-  --box-ctl-content: var(--box-state-accent-content);
-  --box-ctl-border: var(--box-state-accent-border);
+  --box-ctl-fill: var(--control-accent-fill);
+  --box-ctl-content: var(--control-accent-content);
+  --box-ctl-border: var(--control-accent-border);
 }
 .box-control--status {
-  --box-ctl-fill: var(--box-state-status-fill);
-  --box-ctl-content: var(--box-state-status-content);
-  --box-ctl-border: var(--box-state-status-border);
+  --box-ctl-fill: var(--control-status-fill);
+  --box-ctl-content: var(--control-status-content);
+  --box-ctl-border: var(--control-status-border);
 }
 .box-control--static {
-  --box-ctl-fill: var(--box-state-static-fill);
-  --box-ctl-content: var(--box-state-static-content);
-  --box-ctl-border: var(--box-state-static-border);
+  --box-ctl-fill: var(--control-static-fill);
+  --box-ctl-content: var(--control-static-content);
+  --box-ctl-border: var(--control-static-border);
 }
 .box-control--neutral {
-  --box-ctl-fill: var(--box-state-neutral-fill);
-  --box-ctl-content: var(--box-state-neutral-content);
-  --box-ctl-border: var(--box-state-neutral-border);
+  --box-ctl-fill: var(--control-neutral-fill);
+  --box-ctl-content: var(--control-neutral-content);
+  --box-ctl-border: var(--control-neutral-border);
 }
 .box-control--ghost {
-  --box-ctl-fill: var(--box-state-ghost-fill);
-  --box-ctl-content: var(--box-state-ghost-content);
-  --box-ctl-border: var(--box-color-transparent);
+  --box-ctl-fill: var(--control-ghost-fill);
+  --box-ctl-content: var(--control-ghost-content);
+  --box-ctl-border: var(--system-color-transparent);
 }
 
 /* --- Button -------------------------------------------------------------- */
@@ -183,14 +183,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--box-spacing-base-3xs);
+  gap: var(--spacing-3xs);
   box-sizing: border-box;
   background: var(--box-ctl-fill);
   border: 1px solid var(--box-ctl-border);
-  border-radius: var(--box-rounding-base-s);
+  border-radius: var(--rounding-s);
   color: var(--box-ctl-content);
-  font-family: var(--box-typography-font-family-body);
-  font-weight: var(--box-typography-font-weight-semibold);
+  font-family: var(--font-family-body);
+  font-weight: var(--type-font-weight-semibold);
   cursor: pointer;
   transition:
     background-color 120ms ease,
@@ -201,38 +201,38 @@
 
 /* Sizes are the Figma variant names: XS (32) … XL (48). */
 .box-button--xs {
-  height: var(--box-size-base-m);
-  padding-inline: var(--box-spacing-base-2xs);
-  font-size: var(--box-typography-caption-l-font-size);
-  line-height: var(--box-typography-caption-l-line-height);
+  height: var(--size-m);
+  padding-inline: var(--spacing-2xs);
+  font-size: var(--type-caption-l-font-size);
+  line-height: var(--type-caption-l-line-height);
 }
 .box-button--s {
-  height: var(--box-size-base-l);
-  padding-inline: var(--box-spacing-base-2xs);
-  font-size: var(--box-typography-body-m-font-size);
-  line-height: var(--box-typography-body-m-line-height);
+  height: var(--size-l);
+  padding-inline: var(--spacing-2xs);
+  font-size: var(--type-body-m-font-size);
+  line-height: var(--type-body-m-line-height);
 }
 .box-button--m {
-  height: var(--box-size-base-xl);
-  padding-inline: var(--box-spacing-base-xs);
-  font-size: var(--box-typography-body-m-font-size);
-  line-height: var(--box-typography-body-m-line-height);
+  height: var(--size-xl);
+  padding-inline: var(--spacing-xs);
+  font-size: var(--type-body-m-font-size);
+  line-height: var(--type-body-m-line-height);
 }
 .box-button--l {
-  height: var(--box-size-base-2xl);
-  padding-inline: var(--box-spacing-base-xs);
-  font-size: var(--box-typography-body-l-font-size);
-  line-height: var(--box-typography-body-l-line-height);
+  height: var(--size-2xl);
+  padding-inline: var(--spacing-xs);
+  font-size: var(--type-body-l-font-size);
+  line-height: var(--type-body-l-line-height);
 }
 .box-button--xl {
-  height: var(--box-size-base-max);
-  padding-inline: var(--box-spacing-base-s);
-  font-size: var(--box-typography-body-l-font-size);
-  line-height: var(--box-typography-body-l-line-height);
+  height: var(--size-max);
+  padding-inline: var(--spacing-s);
+  font-size: var(--type-body-l-font-size);
+  line-height: var(--type-body-l-line-height);
 }
 
 .box-button:focus-visible {
-  outline: 2px solid var(--box-accent-border-default);
+  outline: 2px solid var(--accent-border-default);
   outline-offset: 2px;
 }
 
@@ -250,18 +250,18 @@
 .box-badge {
   display: inline-flex;
   align-items: center;
-  gap: var(--box-spacing-base-4xs);
+  gap: var(--spacing-4xs);
   box-sizing: border-box;
-  height: var(--box-size-base-2xs);
-  padding-inline: var(--box-spacing-base-4xs);
+  height: var(--size-2xs);
+  padding-inline: var(--spacing-4xs);
   background: var(--box-ctl-fill);
   border: 1px solid var(--box-ctl-border);
-  border-radius: var(--box-rounding-base-min);
+  border-radius: var(--rounding-min);
   color: var(--box-ctl-content);
-  font-family: var(--box-typography-font-family-body);
-  font-size: var(--box-typography-caption-l-font-size);
-  line-height: var(--box-typography-caption-l-line-height);
-  font-weight: var(--box-typography-font-weight-semibold);
+  font-family: var(--font-family-body);
+  font-size: var(--type-caption-l-font-size);
+  line-height: var(--type-caption-l-line-height);
+  font-weight: var(--type-font-weight-semibold);
 }
 
 /* --- Input --------------------------------------------------------------- */
@@ -269,58 +269,58 @@
 .box-field {
   display: flex;
   flex-direction: column;
-  gap: var(--box-spacing-base-4xs);
+  gap: var(--spacing-4xs);
 }
 
 .box-field__label {
-  color: var(--box-surface-base-content-muted);
-  font-family: var(--box-typography-font-family-body);
-  font-size: var(--box-typography-caption-l-font-size);
-  line-height: var(--box-typography-caption-l-line-height);
-  font-weight: var(--box-typography-font-weight-medium);
+  color: var(--surface-base-content-muted);
+  font-family: var(--font-family-body);
+  font-size: var(--type-caption-l-font-size);
+  line-height: var(--type-caption-l-line-height);
+  font-weight: var(--type-font-weight-medium);
 }
 
 .box-input {
   box-sizing: border-box;
   width: 100%;
-  height: var(--box-size-base-xl);
-  padding-inline: var(--box-spacing-base-2xs);
-  background: var(--box-surface-base-fill-raised);
-  border: 1px solid var(--box-surface-base-border-default);
-  border-radius: var(--box-rounding-base-s);
-  color: var(--box-surface-base-content-strong);
-  font-family: var(--box-typography-font-family-body);
-  font-size: var(--box-typography-body-m-font-size);
-  line-height: var(--box-typography-body-m-line-height);
+  height: var(--size-xl);
+  padding-inline: var(--spacing-2xs);
+  background: var(--surface-base-fill-raised);
+  border: 1px solid var(--surface-base-border-default);
+  border-radius: var(--rounding-s);
+  color: var(--surface-base-content-strong);
+  font-family: var(--font-family-body);
+  font-size: var(--type-body-m-font-size);
+  line-height: var(--type-body-m-line-height);
 }
 
 .box-input::placeholder {
-  color: var(--box-surface-base-content-subtle);
+  color: var(--surface-base-content-subtle);
 }
 .box-input:hover:not(:disabled) {
-  border-color: var(--box-surface-base-border-strong);
+  border-color: var(--surface-base-border-strong);
 }
 .box-input:focus-visible {
-  outline: 2px solid var(--box-accent-border-default);
+  outline: 2px solid var(--accent-border-default);
   outline-offset: 1px;
-  border-color: var(--box-accent-fill-solid);
+  border-color: var(--accent-fill-solid);
 }
 .box-input:disabled {
-  background: var(--box-interaction-disabled-fill);
-  color: var(--box-interaction-disabled-content);
+  background: var(--interaction-disabled-fill);
+  color: var(--interaction-disabled-content);
   cursor: not-allowed;
 }
 /* The field carries [data-status="negative"] when there is an error. */
 .box-input[aria-invalid='true'] {
-  border-color: var(--box-status-fill-solid);
+  border-color: var(--status-fill-solid);
 }
 
 .box-field__hint {
-  color: var(--box-surface-base-content-subtle);
-  font-family: var(--box-typography-font-family-body);
-  font-size: var(--box-typography-caption-l-font-size);
-  line-height: var(--box-typography-caption-l-line-height);
+  color: var(--surface-base-content-subtle);
+  font-family: var(--font-family-body);
+  font-size: var(--type-caption-l-font-size);
+  line-height: var(--type-caption-l-line-height);
 }
 .box-field__hint--error {
-  color: var(--box-status-content-on-surface-default);
+  color: var(--status-content-on-surface-default);
 }

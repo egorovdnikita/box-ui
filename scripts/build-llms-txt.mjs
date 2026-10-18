@@ -51,7 +51,7 @@ export function render(model, catalog, families) {
 
   return `# Box UI
 
-Дизайн-токены и иконки, сгенерированные из файла Figma «Box UI | Components». Каждая
+Дизайн-токены и иконки, сгенерированные из файла Figma «Foundation – Core». Каждая
 мода переменных Figma — тема, акцент, плотность скруглений, гарнитура, устройство,
 статус, вид контрола и его состояние — это переключатель на HTML-атрибуте, под которым
 заново разрешается вся цепочка алиасов.
@@ -63,7 +63,7 @@ export function render(model, catalog, families) {
 ## Токены
 
 Примитивных значений: ${primitives}. Семантических токенов: ${semantic}. Выводятся как
-CSS-переменные с префиксом \`--box-\`. Алиас Figma превращается в переход \`var()\`,
+CSS-переменные с теми же именами, что Code syntax в Figma (\`var(--surface-base-fill-page)\`). Алиас Figma превращается в переход \`var()\`,
 поэтому ничего не дублируется под каждую тему.
 
 \`\`\`
@@ -119,7 +119,8 @@ ${rosters}
 
 - [Обзор](${SITE}/?path=/docs/introduction--docs): граф переменных и как разрешается токен
 - [Начало работы](${SITE}/?path=/docs/getting-started--docs): установка, подключение мод, использование токенов
-- [Цвета](${SITE}/?path=/story/foundations-colors--palette): палитра, именованные шкалы, акцентные моды, семантика в светлой и тёмной темах, статусы
+- [Токены](${SITE}/?path=/story/tokens-primitives--color): все 15 коллекций Figma таблицами — значения по модам, code syntax, описания
+- [Цвета](${SITE}/?path=/story/foundations-colors--palette): палитра и семантика в светлой и тёмной темах рядом
 - [Шкалы](${SITE}/?path=/story/foundations-scales--spacing): отступы, скругления, размеры
 - [Типографика](${SITE}/?path=/story/foundations-typography--ramp): текстовая шкала и четыре гарнитуры
 - [UI Icons](${SITE}/?path=/story/icons-ui-icons--gallery): галерея с поиском

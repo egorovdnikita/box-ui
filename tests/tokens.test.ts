@@ -6,8 +6,8 @@ import { aliasesIn, parseDumps } from '../packages/tokens/scripts/parse-figma.mj
 const root = join(import.meta.dirname, '..');
 const css = (name: string) => readFileSync(join(root, 'packages/tokens/dist/css', name), 'utf8');
 
-const DEFINITION = /^\s*(--box-[a-z0-9-]+)\s*:/gim;
-const REFERENCE = /var\(\s*(--box-[a-z0-9-]+)/gi;
+const DEFINITION = /^\s*(--[a-z][a-z0-9-]*)\s*:/gim;
+const REFERENCE = /var\(\s*(--[a-z][a-z0-9-]*)/gi;
 
 /** Every attribute the generated CSS is expected to switch on. */
 const ATTRIBUTES = [
@@ -68,7 +68,7 @@ describe('generated CSS', () => {
     // Figma stores these as "that ramp step, at N%". Flattening them would
     // break the alias chain: changing the ramp would no longer move the tint.
     expect(css('primitives.css')).toContain(
-      '--box-palette-neutral-alpha-16: color-mix(in srgb, var(--box-palette-neutral-solid-500) 16%, transparent);',
+      '--color-neutral-alpha-16: color-mix(in srgb, var(--color-neutral-500) 16%, transparent);',
     );
   });
 
@@ -84,8 +84,8 @@ describe('generated CSS', () => {
     ]) {
       expect(controls, `${selector} is missing`).toContain(selector);
     }
-    expect(controls).toContain('--box-status-fill-solid: var(--box-status-color-solid-base);');
-    expect(controls).toContain('--box-status-fill-solid: var(--box-status-color-solid-low);');
+    expect(controls).toContain('--status-fill-solid: var(--status-color-solid-base);');
+    expect(controls).toContain('--status-fill-solid: var(--status-color-solid-low);');
   });
 
   it('drives control states from pseudo-classes as well as the attribute', () => {
@@ -149,6 +149,25 @@ describe('Figma dumps', () => {
       }
     }
     expect(broken).toEqual([]);
+  });
+
+  it('names every CSS variable after its Web code syntax in Figma', () => {
+    // A developer copies the name from Figma's Dev Mode; it has to exist in the
+    // stylesheet. The one sanctioned exception is a Figma name clash the build
+    // documents in NAME_OVERRIDES.
+    const model = JSON.parse(readFileSync(join(root, 'packages/tokens/dist/tokens.json'), 'utf8')) as {
+      collections: Record<string, { variables: { path: string; cssVar: string; codeSyntax: string }[] }>;
+    };
+    const differ: string[] = [];
+    let total = 0;
+    for (const [id, collection] of Object.entries(model.collections)) {
+      for (const v of collection.variables) {
+        total++;
+        if (`var(${v.cssVar})` !== v.codeSyntax) differ.push(`${id}/${v.path}`);
+      }
+    }
+    expect(total).toBe(collections.reduce((n, c) => n + Object.keys(c.variables).length, 0));
+    expect(differ).toEqual(['sys-responsive/rounding/base/full']);
   });
 
   it('has at least one path that two collections both use', () => {

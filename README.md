@@ -4,9 +4,9 @@
 **моду переменных** Figma — тему, акцент, плотность скруглений, гарнитуру, устройство,
 статус, вид контрола и его состояние — можно переключить вживую.
 
-| Файл Figma                                                                                     | Что даёт                                                                                         |
-| ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| [Box UI \| Components](https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Box-UI--Components) | 1118 переменных в 15 коллекциях, UI Icons (Solar) в 6 стилях, «Флаги / Платежи / Бренды», Button |
+| Файл Figma                                                                                 | Что даёт                                                                                         |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| [Foundation – Core](https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Foundation---Core) | 1118 переменных в 15 коллекциях, UI Icons (Solar) в 6 стилях, «Флаги / Платежи / Бренды», Button |
 
 Коллекции разложены на три слоя: `◉ Primitives` — сырые литералы, `☯︎ Brand` — то, что
 меняет бренд, `◑ System` — то, из чего собираются компоненты.
@@ -56,9 +56,9 @@ npm run storybook
 Один цвет от начала до конца:
 
 ```
---box-accent-fill-solid                   [data-theme]   System · Theme
-  └─ var(--box-brand-solid-500)           [data-accent]  Brand · Color
-       └─ var(--box-palette-indigo-solid-500)            Primitives · Color (фиксировано)
+--accent-fill-solid                   [data-theme]   System · Theme
+  └─ var(--brand-color-solid-500)           [data-accent]  Brand · Color
+       └─ var(--color-indigo-500)            Primitives · Color (фиксировано)
             └─ #6366f1
 ```
 
@@ -66,20 +66,20 @@ npm run storybook
 в CSS компонента повторно:
 
 ```
---box-state-accent-fill                             [data-state]       Controls · State
-  └─ var(--box-control-accent-fill-default)          [data-appearance]  Controls · Appearance
-       └─ var(--box-interaction-accent-solid-fill-default)  [data-theme]  System · Theme
-            └─ var(--box-accent-fill-solid)
-                 └─ var(--box-brand-solid-500)       [data-accent]      Brand · Color
-                      └─ var(--box-palette-indigo-solid-500)            → #6366f1
+--control-accent-fill                             [data-state]       Controls · State
+  └─ var(--control-appearance-accent-fill-default)          [data-appearance]  Controls · Appearance
+       └─ var(--interaction-accent-solid-fill-default)  [data-theme]  System · Theme
+            └─ var(--accent-fill-solid)
+                 └─ var(--brand-color-solid-500)       [data-accent]      Brand · Color
+                      └─ var(--color-indigo-500)            → #6366f1
 ```
 
 Радиус проходит через два переключаемых слоя:
 
 ```
---box-rounding-base-xl           [data-device]  System · Responsive  Desktop → xl · Mobile → l
-  └─ var(--box-radius-xl)        [data-radius]  Brand · Rounding     Low 20 · Medium 24 · High 32
-       └─ var(--box-rounding-20)                Primitives · Rounding
+--rounding-xl           [data-device]  System · Responsive  Desktop → xl · Mobile → l
+  └─ var(--brand-rounding-xl)        [data-radius]  Brand · Rounding     Low 20 · Medium 24 · High 32
+       └─ var(--rounding-20)                Primitives · Rounding
             └─ 20px
 ```
 
@@ -111,7 +111,7 @@ npm run storybook
 ### Переключение для части страницы
 
 Кастомное свойство подставляется **там, где объявлено**, а не там, где прочитано:
-`--box-accent-fill-solid: var(--box-brand-solid-500)` разрешается на том
+`--accent-fill-solid: var(--brand-color-solid-500)` разрешается на том
 элементе, который его объявил. Поэтому переопределение одного лишь `data-accent` у потомка
 не дотянется до токена Mode, который `<html>` уже разрешил.
 
@@ -176,8 +176,8 @@ import { Icon } from '@box-ui/icons';
   и перечитывается при смене любой моды.
 - **Светлая против тёмной.** Семантические цвета делят каждый образец пополам и разрешают
   обе темы на одной странице.
-- **Клик копирует** везде: образцы и строки шкал копируют `var(--box-…)`, иконки — своё имя
-  или готовый `<Icon …/>`.
+- **Клик копирует** везде: образцы и строки шкал копируют `var(--…)` — то же имя, что Code syntax в Figma, иконки —
+  своё имя или готовый `<Icon …/>`.
 - **Поиск на каждой странице**, `/` ставит в него фокус, группировка Figma сохранена в виде
   быстрых ссылок. Фильтры живут в адресе, поэтому отфильтрованный вид можно переслать.
 - **[Начало работы](https://egorovdnikita.github.io/box-ui/?path=/docs/getting-started--docs)** —
@@ -274,7 +274,7 @@ npm run check   # typecheck + lint + format:check + тесты + сборка St
   разрешается и что ни одна переменная не осталась без моды.
 - **Данные иконок.** Каталог и шесть постилевых наборов обязаны сходиться в обе стороны:
   у каждого заявленного стиля должна быть геометрия, а каждая геометрия должна быть заявлена.
-  Зашитый `fill="#…"` запрещён — он игнорировал бы токен `--box-content-*` вокруг.
+  Зашитый `fill="#…"` запрещён — он игнорировал бы токен `--surface-base-content-*` вокруг.
 - **`llms.txt`** сравнивается со свежим рендером, поэтому не может устареть незаметно.
 
 Плюс матчер поиска и вывод цвета — чистые функции с неочевидными правилами.

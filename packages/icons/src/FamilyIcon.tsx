@@ -17,13 +17,13 @@ export interface FamilyIconProps {
 }
 
 function dimension(size: IconSize): string {
-  return typeof size === 'number' ? `${size}px` : `var(--box-size-base-${size})`;
+  return typeof size === 'number' ? `${size}px` : `var(--size-${size})`;
 }
 
 const RADIUS: Record<FamilyShape, string> = {
-  natural: 'var(--box-rounding-base-none)',
-  rounded: 'var(--box-rounding-base-xs)',
-  circle: 'var(--box-rounding-base-full)',
+  natural: 'var(--rounding-none)',
+  rounded: 'var(--rounding-xs)',
+  circle: 'var(--rounding-base-full)',
 };
 
 /** Two letters, so an entry without upstream artwork still reads as itself. */
@@ -72,9 +72,9 @@ export function FamilyIcon({
         title={`${entry.name} — no bundled artwork`}
         style={{
           ...frame,
-          background: 'var(--box-interaction-neutral-grayscale-soft-fill-default)',
-          color: 'var(--box-surface-base-content-muted)',
-          border: '1px dashed var(--box-surface-base-border-strong)',
+          background: 'var(--interaction-neutral-grayscale-soft-fill-default)',
+          color: 'var(--surface-base-content-muted)',
+          border: '1px dashed var(--surface-base-border-strong)',
           fontSize: `calc(${box} * 0.3)`,
           fontWeight: 600,
           letterSpacing: '-0.02em',

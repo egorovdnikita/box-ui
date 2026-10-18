@@ -372,7 +372,7 @@ export type ModeGlobals = {
  * Scopes Box UI modes to a subtree.
  *
  * A custom property is substituted where it is *declared*, not where it is
- * read: `--box-accent-fill-solid: var(--box-brand-solid-500)` is resolved on
+ * read: `--accent-fill-solid: var(--brand-color-solid-500)` is resolved on
  * the element that declares it. So overriding only `data-accent` deeper in the
  * tree cannot reach a Theme token that `<html>` already resolved. Setting every
  * mode attribute together re-declares all eight layers on this one element, and
@@ -413,18 +413,18 @@ export function Scope({
  * foreground token, so a demo of the Light theme still reads on a dark canvas.
  */
 export const demoSurface: CSSProperties = {
-  background: 'var(--box-surface-base-fill-raised)',
-  color: 'var(--box-surface-base-content-strong)',
-  border: '1px solid var(--box-surface-base-border-default)',
-  borderRadius: 'var(--box-rounding-base-m)',
-  padding: 'var(--box-spacing-base-3xs)',
+  background: 'var(--surface-base-fill-raised)',
+  color: 'var(--surface-base-content-strong)',
+  border: '1px solid var(--surface-base-border-default)',
+  borderRadius: 'var(--rounding-m)',
+  padding: 'var(--spacing-3xs)',
 };
 
 // --- live token resolution ---------------------------------------------------
 
 /**
  * `getPropertyValue` on a custom property hands back the declaration
- * (`var(--box-palette-blue-solid-500)`), not the value it lands on. Assigning it
+ * (`var(--color-blue-500)`), not the value it lands on. Assigning it
  * to a real property on a probe element and reading *that* back is what forces
  * the whole alias chain to resolve.
  */

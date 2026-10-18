@@ -144,6 +144,31 @@ for (const f of fs.readdirSync("tokens/figma").filter(f=>f.endsWith(".txt")).sor
 без записи в `LAYERS`, если два пути претендуют на одно имя CSS-переменной или если алиас
 указывает в пустоту.
 
+## Code syntax и описания — `meta.json`
+
+Рядом с дампами значений лежит `meta.json`: для каждой переменной её **Web code syntax** и
+**описание** из Figma, дословно. Из code syntax сборка берёт имя CSS-переменной, поэтому то,
+что разработчик видит в Dev Mode, и есть имя в таблице стилей. Описания показывает Storybook.
+
+```
+{ "<коллекция>": { "d": ["описание", …], "v": [["путь", "--css-name", индекс-описания], …] } }
+```
+
+Выгрузка на коллекцию (тот же `MAP`, что выше):
+
+```js
+const col = await figma.variables.getVariableCollectionByIdAsync(ID);
+const all = await figma.variables.getLocalVariablesAsync();
+const vs = col.variableIds.map((id) => all.find((v) => v.id === id));
+const d = [...new Set(vs.map((v) => v.description))];
+return JSON.stringify({ d, v: vs.map((v) => [v.name, v.codeSyntax.WEB.slice(4, -1), d.indexOf(v.description)]) });
+```
+
+Сверка — та же FNV-сумма, но по `JSON.stringify` объекта коллекции: в Figma от результата
+скрипта выше, локально — от `meta[коллекция]`. При последней выгрузке совпали все 15.
+Сборка упадёт, если в `meta.json` нет переменной из дампа или если два пути получили одно
+имя.
+
 ## Компоненты и иконки
 
 Переменных в файле Figma касается только эта папка. Состав иконок и семейств лежит в

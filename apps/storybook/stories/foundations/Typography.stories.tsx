@@ -90,7 +90,7 @@ export const Typefaces: Story = {
           <Scope
             globals={globals as unknown as ModeGlobals}
             font={m.slug}
-            style={{ ...demoSurface, display: 'flex', flexDirection: 'column', gap: 'var(--box-spacing-base-4xs)' }}
+            style={{ ...demoSurface, display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4xs)' }}
           >
             <Text variant="h3" as="div">
               Box UI — {m.name}
@@ -103,9 +103,9 @@ export const Typefaces: Story = {
       ))}
       <Section
         title="Запасные шрифты"
-        description="Из Figma приходит только имя семейства. Сгенерированный CSS дописывает `var(--box-font-fallback)`, чтобы недоступная гарнитура падала в системный стек, а не в засечный шрифт по умолчанию."
+        description="Из Figma приходит только имя семейства. Сгенерированный CSS дописывает `var(--font-fallback)`, чтобы недоступная гарнитура падала в системный стек, а не в засечный шрифт по умолчанию."
       >
-        <Code>--box-typography-font-family-heading: "Inter Display", var(--box-font-fallback);</Code>
+        <Code>--brand-font-family-heading: "Inter Display", var(--font-fallback);</Code>
       </Section>
     </Page>
   ),

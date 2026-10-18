@@ -20,7 +20,7 @@
  *          ^-- ◑ System · Responsive  [data-device]      Desktop Mobile
  */
 
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { aliasesIn, parseDumps } from './parse-figma.mjs';
@@ -30,43 +30,39 @@ const pkg = join(here, '..');
 const repo = join(pkg, '..', '..');
 const dist = join(pkg, 'dist');
 
-const PREFIX = '--box';
-const SOURCE = 'https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Box-UI--Components';
+/** Not a Figma variable: the fallback stack appended to every brand typeface. */
+const FONT_FALLBACK = '--font-fallback';
+const SOURCE = 'https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Foundation---Core';
 
 /**
  * How each collection is rendered.
- *   varPrefix — inserted between `--box-` and the slugified variable path
- *   strip     — leading path segment removed before slugifying
+ *   strip     — leading path segment dropped when nesting the JS token trees
  *   switch    — the HTML attribute that selects a mode, plus its default mode
  *   fontStack — string values get the fallback font stack appended
  *
- * The prefixes exist to keep names unique: the same path now lives in several
- * collections, so `varName` asserts uniqueness and the build fails if a future
- * Figma edit introduces a clash.
+ * CSS names are not invented here: each variable's Web code syntax in Figma is
+ * its name, so what Dev Mode shows is what the stylesheet declares.
  */
 const LAYERS = {
-  'prim-color': { varPrefix: 'palette', strip: 'color', label: 'Палитра' },
+  'prim-color': { strip: 'color', label: 'Палитра' },
   'prim-spacing': { label: 'Отступы' },
   'prim-rounding': { label: 'Скругления' },
   'prim-size': { label: 'Размеры' },
-  'prim-type': { varPrefix: 'scale', strip: 'typography', label: 'Типографическая шкала' },
+  'prim-type': { strip: 'typography', label: 'Типографическая шкала' },
 
-  'sys-color': { varPrefix: 'color', strip: 'color', label: 'Именованные шкалы' },
+  'sys-color': { strip: 'color', label: 'Именованные шкалы' },
 
   'brand-color': {
-    varPrefix: 'brand',
     strip: 'color',
     label: 'Акцент',
     switch: { attr: 'data-accent', default: 'Deep' },
   },
   'brand-rounding': {
-    varPrefix: 'radius',
     strip: 'rounding',
     label: 'Скругления',
     switch: { attr: 'data-radius', default: 'Low' },
   },
   'brand-type': {
-    varPrefix: 'font',
     strip: 'font-family',
     label: 'Гарнитура',
     fontStack: true,
@@ -77,20 +73,30 @@ const LAYERS = {
   'sys-theme': { label: 'Тема', switch: { attr: 'data-theme', default: 'Light' } },
   'sys-responsive': { label: 'Устройство', switch: { attr: 'data-device', default: 'Desktop' } },
   'sys-status': {
-    varPrefix: 'status',
     label: 'Статус',
     switch: { attr: 'data-status', default: 'Positive' },
   },
   'sys-appearance': {
-    varPrefix: 'control',
     label: 'Вид контрола',
     switch: { attr: 'data-appearance', default: 'Solid' },
   },
   'sys-state': {
-    varPrefix: 'state',
     label: 'Состояние контрола',
     switch: { attr: 'data-state', default: 'Default' },
   },
+};
+
+/**
+ * Where Figma's code syntax cannot be used as-is. Figma gives
+ * `rounding/base/full` in System · Responsive the same Web name as
+ * `rounding/full` in Primitives · Rounding, and the first aliases the second
+ * through Brand · Rounding — one name would end up referring to itself. Its
+ * siblings keep their Figma names; this one gets the obvious distinct name
+ * until the code syntax is fixed in Figma, at which point the build fails here
+ * and the entry should go.
+ */
+const NAME_OVERRIDES = {
+  'sys-responsive/rounding/base/full': '--rounding-base-full',
 };
 
 /** Emission order. `var()` resolves at use time, so this is for readability. */
@@ -130,14 +136,37 @@ for (const id of Object.keys(LAYERS)) if (!byId[id]) throw new Error(`No dump fo
 for (const c of collections) if (!LAYERS[c.id]) throw new Error(`Dump "${c.id}" has no entry in LAYERS`);
 if (ORDER.length !== collections.length) throw new Error('ORDER does not cover every collection');
 
+/**
+ * Descriptions and Web code syntax, exported verbatim from Figma next to the
+ * value dumps: `{ [collection]: { d: [description…], v: [[path, cssName, d-index]…] } }`.
+ */
+const meta = JSON.parse(readFileSync(join(repo, 'tokens', 'figma', 'meta.json'), 'utf8'));
+const info = {};
+for (const c of collections) {
+  const m = meta[c.id];
+  if (!m) throw new Error(`tokens/figma/meta.json has no entry for "${c.id}"`);
+  for (const [path, css, d] of m.v) info[`${c.id}/${path}`] = { css, description: m.d[d] };
+  for (const path of Object.keys(c.variables))
+    if (!info[`${c.id}/${path}`]) throw new Error(`${c.id}/${path} has no code syntax in meta.json`);
+  if (m.v.length !== Object.keys(c.variables).length)
+    throw new Error(
+      `meta.json lists ${m.v.length} variables for "${c.id}", the dump has ${Object.keys(c.variables).length}`,
+    );
+}
+
+for (const key of Object.keys(NAME_OVERRIDES)) {
+  const figmaName = info[key]?.css;
+  const others = Object.entries(info).filter(([k, v]) => k !== key && v.css === figmaName);
+  if (!others.length)
+    throw new Error(`${key} no longer clashes in Figma ("${figmaName}") — remove it from NAME_OVERRIDES`);
+}
+
 /** css var name -> "<collection>/<path>", so a clash is a build failure. */
 const owners = new Map();
 
 function varName(collectionId, path) {
-  const layer = LAYERS[collectionId];
-  const cleaned = layer.strip ? path.replace(new RegExp(`^${layer.strip}/`), '') : path;
-  const name = [PREFIX, layer.varPrefix, slug(cleaned)].filter(Boolean).join('-');
   const owner = `${collectionId}/${path}`;
+  const name = NAME_OVERRIDES[owner] ?? info[owner].css;
   const existing = owners.get(name);
   if (existing && existing !== owner) throw new Error(`"${name}" is claimed by both ${existing} and ${owner}`);
   owners.set(name, owner);
@@ -161,7 +190,7 @@ function cssValue(collectionId, path, value) {
     case 'number':
       return UNITLESS.test(path) ? String(value.value) : `${value.value}px`;
     case 'string':
-      return LAYERS[collectionId].fontStack ? `"${value.value}", var(${PREFIX}-font-fallback)` : `"${value.value}"`;
+      return LAYERS[collectionId].fontStack ? `"${value.value}", var(${FONT_FALLBACK})` : `"${value.value}"`;
     case 'alias':
       return `var(${varName(value.collection, value.ref)})`;
     case 'alpha':
@@ -185,7 +214,7 @@ const header = (title) =>
 // --- primitives.css: every collection with a single "Value" mode ------------
 
 const primitiveCss = [header('Box UI — примитивы и именованные шкалы')];
-const primitiveLines = [`  ${PREFIX}-font-fallback: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;`];
+const primitiveLines = [`  ${FONT_FALLBACK}: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;`];
 
 for (const id of ORDER) {
   const c = byId[id];
@@ -330,6 +359,9 @@ for (const id of ORDER) {
     variables: Object.entries(c.variables).map(([path, v]) => ({
       path,
       cssVar: varName(id, path),
+      /** The Web code syntax exactly as Figma shows it in Dev Mode. */
+      codeSyntax: `var(${info[`${id}/${path}`].css})`,
+      description: info[`${id}/${path}`].description,
       values: Object.fromEntries(
         c.modes.map((m) => {
           const value = v.values[m];
@@ -426,6 +458,10 @@ ${Object.keys(TREES)
 export interface TokenVariable {
   path: string;
   cssVar: string;
+  /** Web code syntax as Figma shows it, e.g. \`var(--surface-base-fill-page)\`. */
+  codeSyntax: string;
+  /** The variable's description in Figma. */
+  description: string;
   values: Record<string, { value?: string | number; alias?: string; cssVar?: string; opacity?: number }>;
 }
 export interface TokenCollection {

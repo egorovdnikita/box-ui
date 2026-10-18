@@ -1,6 +1,6 @@
 # @box-ui/tokens
 
-Дизайн-токены, сгенерированные из переменных Figma «Box UI | Components» — 1118 переменных
+Дизайн-токены, сгенерированные из переменных Figma «Foundation – Core» — 1118 переменных
 в 15 коллекциях.
 
 ```bash
@@ -28,33 +28,39 @@ npm run build -w @box-ui/tokens
 @import '@box-ui/tokens/css/adaptive.css';
 ```
 
-Имена переменных повторяют пути Figma, но у каждого слоя свой префикс — чтобы коллекции,
-переиспользующие один и тот же путь, не сталкивались:
+Имя каждой CSS-переменной — это её **Code syntax (Web) в Figma**, дословно. Что
+разработчик видит в Dev Mode, то и объявлено в таблице стилей:
 
-| Figma                                                    | CSS                                     |
-| -------------------------------------------------------- | --------------------------------------- |
-| Primitives ・ Color · `color/indigo/solid/500`           | `--box-palette-indigo-solid-500`        |
-| Primitives ・ Spacing · `spacing/16`                     | `--box-spacing-16`                      |
-| Primitives ・ Rounding · `rounding/24`                   | `--box-rounding-24`                     |
-| Primitives ・ Typography · `typography/font-size/14`     | `--box-scale-font-size-14`              |
-| System ・ Color · `color/neutral/500`                    | `--box-color-neutral-500`               |
-| Brand ・ Color · `color/solid/500`                       | `--box-brand-solid-500`                 |
-| Brand ・ Rounding · `rounding/m`                         | `--box-radius-m`                        |
-| System ・ Theme · `surface/base/fill/page`               | `--box-surface-base-fill-page`          |
-| System ・ Status · `color/solid/base`                    | `--box-status-color-solid-base`         |
-| Controls ・ Appearance · `accent/fill/default`           | `--box-control-accent-fill-default`     |
-| Controls ・ State · `accent/fill`                        | `--box-state-accent-fill`               |
-| System ・ Responsive · `rounding/base/m`                 | `--box-rounding-base-m`                 |
-| System ・ Responsive · `typography/heading/H1/font-size` | `--box-typography-heading-h1-font-size` |
+| Figma                                                    | CSS                                        |
+| -------------------------------------------------------- | ------------------------------------------ |
+| Primitives ・ Color · `color/indigo/solid/500`           | `--color-indigo-500`                       |
+| Primitives ・ Spacing · `spacing/16`                     | `--spacing-16`                             |
+| Primitives ・ Rounding · `rounding/24`                   | `--rounding-24`                            |
+| Primitives ・ Typography · `typography/font-size/14`     | `--font-size-14`                           |
+| System ・ Color · `color/neutral/500`                    | `--system-color-neutral-500`               |
+| Brand ・ Color · `color/solid/500`                       | `--brand-color-solid-500`                  |
+| Brand ・ Rounding · `rounding/m`                         | `--brand-rounding-m`                       |
+| System ・ Theme · `surface/base/fill/page`               | `--surface-base-fill-page`                 |
+| System ・ Status · `color/solid/base`                    | `--status-color-solid-base`                |
+| Controls ・ Appearance · `accent/fill/default`           | `--control-appearance-accent-fill-default` |
+| Controls ・ State · `accent/fill`                        | `--control-accent-fill`                    |
+| System ・ Responsive · `rounding/base/m`                 | `--rounding-m`                             |
+| System ・ Responsive · `typography/heading/H1/font-size` | `--type-h1-font-size`                      |
 
-Префиксы не косметика: `rounding/base/m` в `System ・ Responsive` ссылается на `rounding/m`
-в `Brand ・ Rounding`, а `color/alpha/16` существует и в `Brand ・ Color`, и в
-`System ・ Status`. Сборка строит таблицу владельцев имён и падает, если два пути
-претендуют на одно имя CSS-переменной, — так что столкновение после правки в Figma не
-пройдёт незамеченным.
+Сам code syntax лежит в `tokens/figma/meta.json` вместе с описаниями переменных — это такая
+же дословная выгрузка, как и дампы значений. Сборка строит таблицу владельцев имён и
+падает, если два пути претендуют на одно имя, — так что столкновение после правки в Figma
+не пройдёт незамеченным.
+
+Одно такое столкновение в Figma есть сейчас: у `rounding/base/full` в `System ・ Responsive`
+тот же code syntax, что у `rounding/full` в `Primitives ・ Rounding` (`--rounding-full`), а
+первая через `Brand ・ Rounding` ссылается на вторую — имя ссылалось бы само на себя. Пока
+code syntax не поправят в Figma, сборка выводит её как `--rounding-base-full`
+(`NAME_OVERRIDES` в `scripts/build.mjs`) и сама подскажет убрать исключение, когда
+столкновение исчезнет.
 
 Единицы: длины получают `px`, `font-weight` остаётся безразмерным. Семейства шрифтов
-выводятся с запасным вариантом: `"Inter", var(--box-font-fallback)`. Прозрачные ступени
+выводятся с запасным вариантом: `"Inter", var(--font-fallback)`. Прозрачные ступени
 Figma хранит как «эта шкала на N%», и в CSS они выводятся через
 `color-mix(in srgb, … N%, transparent)`, а не схлопываются в отдельный hex, — поэтому
 правка базовой шкалы двигает за собой и все её полупрозрачные производные.
@@ -75,8 +81,8 @@ Figma хранит как «эта шкала на N%», и в CSS они выв
 ```ts
 import { layout, modes, model, theme } from '@box-ui/tokens';
 
-theme.surface.base.fill.page; // 'var(--box-surface-base-fill-page)'
-layout.spacing.base.m; // 'var(--box-spacing-base-m)'
+theme.surface.base.fill.page; // 'var(--surface-base-fill-page)'
+layout.spacing.base.m; // 'var(--spacing-m)'
 modes['brand-color']; // ['deep', 'bright', 'monochrome']
 model.collections['sys-theme'].variables; // каждый токен и его алиас в каждой моде
 ```

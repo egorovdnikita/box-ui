@@ -1,6 +1,6 @@
 # Box UI
 
-Дизайн-токены и иконки, сгенерированные из файла Figma «Box UI | Components». Каждая
+Дизайн-токены и иконки, сгенерированные из файла Figma «Foundation – Core». Каждая
 мода переменных Figma — тема, акцент, плотность скруглений, гарнитура, устройство,
 статус, вид контрола и его состояние — это переключатель на HTML-атрибуте, под которым
 заново разрешается вся цепочка алиасов.
@@ -12,7 +12,7 @@
 ## Токены
 
 Примитивных значений: 749. Семантических токенов: 369. Выводятся как
-CSS-переменные с префиксом `--box-`. Алиас Figma превращается в переход `var()`,
+CSS-переменные с теми же именами, что Code syntax в Figma (`var(--surface-base-fill-page)`). Алиас Figma превращается в переход `var()`,
 поэтому ничего не дублируется под каждую тему.
 
 ```
@@ -92,7 +92,8 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 
 - [Обзор](https://egorovdnikita.github.io/box-ui/?path=/docs/introduction--docs): граф переменных и как разрешается токен
 - [Начало работы](https://egorovdnikita.github.io/box-ui/?path=/docs/getting-started--docs): установка, подключение мод, использование токенов
-- [Цвета](https://egorovdnikita.github.io/box-ui/?path=/story/foundations-colors--palette): палитра, именованные шкалы, акцентные моды, семантика в светлой и тёмной темах, статусы
+- [Токены](https://egorovdnikita.github.io/box-ui/?path=/story/tokens-primitives--color): все 15 коллекций Figma таблицами — значения по модам, code syntax, описания
+- [Цвета](https://egorovdnikita.github.io/box-ui/?path=/story/foundations-colors--palette): палитра и семантика в светлой и тёмной темах рядом
 - [Шкалы](https://egorovdnikita.github.io/box-ui/?path=/story/foundations-scales--spacing): отступы, скругления, размеры
 - [Типографика](https://egorovdnikita.github.io/box-ui/?path=/story/foundations-typography--ramp): текстовая шкала и четыре гарнитуры
 - [UI Icons](https://egorovdnikita.github.io/box-ui/?path=/story/icons-ui-icons--gallery): галерея с поиском

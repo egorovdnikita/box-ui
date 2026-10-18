@@ -4,7 +4,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Box UI
 
-Дизайн-токены и иконки, сгенерированные прямо из файла Figma «Box UI | Components» —
+Дизайн-токены и иконки, сгенерированные прямо из файла Figma «Foundation – Core» —
 1118 переменных в 15 коллекциях. Каждая **мода переменных** выведена в переключатель на
 панели сверху.
 
@@ -29,9 +29,9 @@ import { Meta } from '@storybook/addon-docs/blocks';
 в самой Figma.
 
 ```
---box-accent-fill-solid   [data-theme]   System · Theme
-  └─ var(--box-brand-solid-500) [data-accent]  Brand · Color
-       └─ var(--box-palette-indigo-solid-500)          Primitives · Color (фиксировано)
+--accent-fill-solid   [data-theme]   System · Theme
+  └─ var(--brand-color-solid-500) [data-accent]  Brand · Color
+       └─ var(--color-indigo-500)          Primitives · Color (фиксировано)
             └─ #6366f1
 ```
 
@@ -39,18 +39,18 @@ import { Meta } from '@storybook/addon-docs/blocks';
 повторно:
 
 ```
---box-state-accent-fill   [data-state]   Controls · State
-  └─ var(--box-control-accent-fill-default)  [data-appearance]  Controls · Appearance
-       └─ var(--box-interaction-accent-solid-fill-default)  [data-theme]  System · Theme
-            └─ … → var(--box-palette-indigo-solid-500)
+--control-accent-fill   [data-state]   Controls · State
+  └─ var(--control-appearance-accent-fill-default)  [data-appearance]  Controls · Appearance
+       └─ var(--interaction-accent-solid-fill-default)  [data-theme]  System · Theme
+            └─ … → var(--color-indigo-500)
 ```
 
 С размерами то же самое, только со стороны скруглений на уровень глубже:
 
 ```
---box-rounding-base-xl   [data-device]  System · Responsive  Desktop → xl, Mobile → l
-  └─ var(--box-radius-xl)  [data-radius]  Brand · Rounding   Low 20 · Medium 24 · High 32
-       └─ var(--box-rounding-20)                             Primitives · Rounding
+--rounding-xl   [data-device]  System · Responsive  Desktop → xl, Mobile → l
+  └─ var(--brand-rounding-xl)  [data-radius]  Brand · Rounding   Low 20 · Medium 24 · High 32
+       └─ var(--rounding-20)                             Primitives · Rounding
             └─ 20px
 ```
 
@@ -101,7 +101,8 @@ import { Icon } from '@box-ui/icons';
 ## Куда смотреть
 
 - **Начало работы** — установка, подключение мод, использование токенов и иконок.
-- **Основы** — палитра, именованные шкалы, акцент, тема, статусы, текстовая шкала и шкалы отступов, скруглений и размеров.
+- **Токены** — все 15 коллекций Figma так же, как на страницах документации в файле: группы по пути, значение в каждой моде, code syntax и описание.
+- **Основы** — наглядно: палитра, светлая и тёмная тема рядом, текстовая шкала и шкалы отступов, скруглений и размеров.
 - **Иконки** — 1300+ иконок Solar в шести стилях и семейства «Флаги / Платежи / Бренды».
 
 Переключатели на панели управляют всеми токенами на этих страницах, поэтому любая история
