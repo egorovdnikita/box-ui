@@ -18,89 +18,56 @@ const go = (storyId: string) => addons.getChannel().emit(SELECT_STORY, { storyId
 const total = COLLECTION_ORDER.reduce((n, id) => n + collections[id].variables.length, 0);
 const switchable = COLLECTION_ORDER.filter((id) => collections[id].modes.length > 1);
 
-/** The headline numbers. */
-export function Stats() {
-  const items = [
-    [String(total), 'переменных Figma'],
-    [String(COLLECTION_ORDER.length), 'коллекций'],
-    [String(switchable.length), 'переключаемых мод'],
-    [String(catalog.icons.length), 'системных иконок'],
-  ];
-  return (
-    <div className="sb-stats">
-      {items.map(([value, label]) => (
-        <div key={label} className="sb-stats__item">
-          <span className="sb-stats__value">{value}</span>
-          <span className="sb-caption">{label}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-const LAYERS = [
-  {
-    prefix: 'prim',
-    title: 'Primitives',
-    note: 'Сырые значения без смысла: палитра, шкалы. В компонентах напрямую не используются.',
-  },
-  {
-    prefix: 'brand',
-    title: 'Brand',
-    note: 'Характер бренда: акцентный цвет, плотность скругления, гарнитура, стиль иконок.',
-  },
-  {
-    prefix: 'sys',
-    title: 'System',
-    note: 'Семантика, которой пользуются компоненты: темы, адаптив, статусы, состояния контролов.',
-  },
-];
+/** The headline numbers, as a sentence for a lead. */
+export const SUMMARY = `${total} переменных в ${COLLECTION_ORDER.length} коллекциях, ${switchable.length} переключаемых мод и ${catalog.icons.length} системных иконок.`;
 
 /**
- * The three layers side by side, each collection a link to its page — the
- * same Primitives → Brand → System order the aliases run in.
+ * Rows that open another page — collections of a layer, or next steps. One
+ * column of full-width rows, styled like the mode table, so the overview reads
+ * top to bottom like every other page.
  */
-export function LayerMap() {
+function LinkRows({ rows }: { rows: { story: string; title: string; text: string }[] }) {
   return (
-    <div className="sb-layers">
-      {LAYERS.map((layer, i) => (
-        <section key={layer.prefix} className="sb-layers__layer">
-          <div className="sb-layers__head">
-            <span className="sb-label">
-              {i + 1} · {layer.title}
-            </span>
-            <span className="sb-caption">{layer.note}</span>
-          </div>
-          {COLLECTION_ORDER.filter((id) => id.startsWith(`${layer.prefix}-`)).map((id) => {
-            const c = collections[id];
-            return (
-              <button key={id} type="button" className="sb-layers__item" onClick={() => go(STORY_OF[id])}>
-                <span className="sb-layers__name">{c.figmaName.replace(/^\S+\s+/, '')}</span>
-                <span className="sb-caption">
-                  {counted(c.variables.length, ['переменная', 'переменные', 'переменных'])}
-                  {c.attribute ? ` · [${c.attribute}]` : ''}
-                </span>
-              </button>
-            );
-          })}
-        </section>
-      ))}
-    </div>
-  );
-}
-
-/** Where to go next, as cards. */
-export function NextSteps({ items }: { items: { story: string; title: string; text: string }[] }) {
-  return (
-    <div className="sb-next">
-      {items.map((item) => (
-        <button key={item.story} type="button" className="sb-next__card" onClick={() => go(item.story)}>
-          <span className="sb-layers__name">{item.title} →</span>
-          <span className="sb-caption">{item.text}</span>
+    <div className="sb-modes">
+      {rows.map((row) => (
+        <button
+          key={row.story + row.title}
+          type="button"
+          className="sb-modes__row sb-modes__link"
+          onClick={() => go(row.story)}
+        >
+          <span className="sb-modes__name">{row.title}</span>
+          <span className="sb-caption">{row.text}</span>
+          <span className="sb-modes__arrow" aria-hidden="true">
+            →
+          </span>
         </button>
       ))}
     </div>
   );
+}
+
+/** The collections of one layer — `prim`, `brand` or `sys` — each opening its table. */
+export function LayerCollections({ prefix }: { prefix: 'prim' | 'brand' | 'sys' }) {
+  return (
+    <LinkRows
+      rows={COLLECTION_ORDER.filter((id) => id.startsWith(`${prefix}-`)).map((id) => {
+        const c = collections[id];
+        return {
+          story: STORY_OF[id],
+          title: c.figmaName.replace(/^\S+\s+/, ''),
+          text:
+            counted(c.variables.length, ['переменная', 'переменные', 'переменных']) +
+            (c.attribute ? ` · ${c.modes.map((m) => m.name).join(', ')} · [${c.attribute}]` : ''),
+        };
+      })}
+    />
+  );
+}
+
+/** Where to go next. */
+export function NextSteps({ items }: { items: { story: string; title: string; text: string }[] }) {
+  return <LinkRows rows={items} />;
 }
 
 /** Every switchable collection with its attribute, modes and default — from the model. */

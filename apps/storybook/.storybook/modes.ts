@@ -117,8 +117,12 @@ export const MODE_CONTROLS: ModeControl[] = [
   },
 ];
 
+/** Start on the reader's system theme, so the page matches the Storybook around it. */
+const systemTheme =
+  typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
 export const INITIAL_MODES: Record<string, string> = {
-  theme: 'light',
+  theme: systemTheme,
   accent: 'deep',
   radius: 'low',
   font: 'inter',

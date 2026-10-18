@@ -164,14 +164,6 @@ export function Section({
   );
 }
 
-export function Grid({ min = 200, gap = 8, children }: { min?: number; gap?: number; children: ReactNode }) {
-  return (
-    <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, minmax(${min}px, 1fr))`, gap }}>
-      {children}
-    </div>
-  );
-}
-
 // --- form controls -----------------------------------------------------------
 
 /**

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { C, CodeBlock, LayerMap, NextSteps, P, Stats } from './_docs';
+import { C, CodeBlock, LayerCollections, NextSteps, P, SUMMARY } from './_docs';
 import { Page, Section } from './_ui';
 
 /*
@@ -17,15 +17,27 @@ export const Docs: StoryObj = {
   render: () => (
     <Page
       title="Box UI"
-      lead="Дизайн-токены и иконки, сгенерированные прямо из файла Figma «Foundation – Core». Каждая переменная Figma становится CSS-переменной с тем же именем, что в её Code syntax, а каждая мода — атрибутом на <html>."
+      lead={`Дизайн-токены и иконки из файла Figma «Foundation – Core»: ${SUMMARY} Каждая переменная становится CSS-переменной с именем из её Code syntax, а каждая мода — атрибутом на <html>.`}
     >
-      <Stats />
+      <Section
+        title="1. Primitives"
+        description="Сырые значения без смысла: палитра и шкалы. В компонентах напрямую не используются — только через Brand и System."
+      >
+        <LayerCollections prefix="prim" />
+      </Section>
 
       <Section
-        title="Три слоя токенов"
-        description="Алиасы идут сверху вниз: компонент берёт семантический токен из System, тот ссылается на характер бренда в Brand, а бренд — на сырое значение в Primitives. Клик по коллекции открывает её таблицу."
+        title="2. Brand"
+        description="Характер бренда: акцентный цвет, плотность скругления, гарнитура и стиль иконок. Ссылается на Primitives."
       >
-        <LayerMap />
+        <LayerCollections prefix="brand" />
+      </Section>
+
+      <Section
+        title="3. System"
+        description="Семантика, которой пользуются компоненты: темы, адаптив, статусы и состояния контролов. Ссылается на Brand и Primitives."
+      >
+        <LayerCollections prefix="sys" />
       </Section>
 
       <Section

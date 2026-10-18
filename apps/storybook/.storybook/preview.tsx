@@ -7,14 +7,10 @@ import '@box-ui/react/styles.css';
 import './preview.css';
 
 /**
- * The docs chrome is Storybook's, not Box UI's — same background as the toolbar
- * above the canvas, same type, same borders. These are Storybook's own theme
- * values, read from `storybook/theming` rather than copied, so the canvas can
- * never drift from the manager around it.
- *
- * Box UI tokens still drive everything *inside* a demo: swatches, type samples,
- * the rounding cards. Those carry their own background and foreground, so they
- * keep reading correctly whichever chrome they sit on.
+ * The page chrome uses Storybook's own palette — its light or dark theme, read
+ * from `storybook/theming` rather than copied — and follows the Box UI "Тема"
+ * mode: switch Light / Dark and the page background and text switch with it,
+ * not only the swatches. Box UI tokens still drive everything inside a demo.
  */
 function chromeVars(theme: ThemeVars): Record<string, string> {
   const dark = theme.base === 'dark';
@@ -40,27 +36,19 @@ function chromeVars(theme: ThemeVars): Record<string, string> {
   };
 }
 
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-
-/** The Storybook theme the manager is currently on. */
-const storybookTheme = () => (prefersDark.matches ? themes.dark : themes.light);
-
-/**
- * Applied at preview boot rather than from a decorator: MDX pages with no
- * stories never run decorators, and they were the one surface still rendering
- * in Storybook's default light while the chrome around it was dark.
- */
-function applyChrome() {
-  for (const [name, value] of Object.entries(chromeVars(storybookTheme()))) {
+/** Paints the chrome in Storybook's light or dark theme. */
+function applyChrome(mode: string) {
+  const theme = mode === 'dark' ? themes.dark : themes.light;
+  for (const [name, value] of Object.entries(chromeVars(theme))) {
     document.documentElement.style.setProperty(name, value);
   }
   // Native parts — the scrollbar gutter, form controls — follow the chrome too;
   // left at the default they drew a white strip down the right of dark pages.
-  document.documentElement.style.colorScheme = storybookTheme().base;
+  document.documentElement.style.colorScheme = theme.base;
 }
 
-applyChrome();
-prefersDark.addEventListener('change', applyChrome);
+// Painted once at boot, before the first story decides the mode.
+applyChrome(INITIAL_MODES.theme);
 
 /**
  * One global per switchable Figma variable collection. They have no toolbar
@@ -79,6 +67,7 @@ const withBoxUiModes: Decorator = (Story, context) => {
   useEffect(() => {
     const root = document.documentElement;
     root.setAttribute('data-theme', theme);
+    applyChrome(theme);
     root.setAttribute('data-accent', accent);
     root.setAttribute('data-radius', radius);
     root.setAttribute('data-font', font);
@@ -105,8 +94,6 @@ const preview: Preview = {
   parameters: {
     layout: 'fullscreen',
     backgrounds: { disable: true },
-    // MDX pages render Storybook's docs chrome — hand it the same theme.
-    docs: { theme: storybookTheme() },
     // Every story here is a documentation page, not a component with args —
     // the addon panel only ever said "this story has no controls".
     options: {

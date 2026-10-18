@@ -4,14 +4,15 @@ import { useArgs, useGlobals } from 'storybook/preview-api';
 import {
   Icon,
   ICON_SIZES,
+  ICON_SIZE_PX,
   ICON_STYLES,
   ICON_STYLE_LABELS,
   catalog,
-  type IconCatalogEntry,
   type IconSizeToken,
   type IconStyle,
 } from '@box-ui/icons';
-import { Counts, Empty, Grid, Page, ResetFilters, Search, Select, ShareLink, counted, matches, useCopy } from '../_ui';
+import { Counts, Empty, Page, ResetFilters, Search, Select, ShareLink, counted, matches } from '../_ui';
+import { IconGrid, IconTile, Inspector } from './_browser';
 
 const meta: Meta = {
   // `id` is pinned so translating the title does not change the story URLs.
@@ -19,53 +20,6 @@ const meta: Meta = {
   title: 'Иконки/Системные',
 };
 export default meta;
-
-type Story = StoryObj;
-
-type CopyAs = 'name' | 'jsx';
-
-/** What lands on the clipboard when a tile is clicked. */
-function snippet(as: CopyAs, name: string, style: IconStyle, size: IconSizeToken): string {
-  return as === 'name' ? name : `<Icon name="${name}" iconStyle="${style}" size="${size}" />`;
-}
-
-/** One gallery tile. Below `<Page>`, so it can reach the copy context. */
-function IconTile({
-  icon,
-  style,
-  size,
-  copyAs,
-}: {
-  icon: IconCatalogEntry;
-  style: IconStyle;
-  size: IconSizeToken;
-  copyAs: CopyAs;
-}) {
-  const copy = useCopy();
-  const drawn = icon.styles.includes(style);
-
-  return (
-    <button
-      type="button"
-      className={drawn ? 'sb-cell' : 'sb-cell sb-cell--muted'}
-      title={
-        drawn
-          ? `${icon.name} · ${icon.category}`
-          : `${icon.name} · ${icon.category} — не нарисована в стиле ${ICON_STYLE_LABELS[style]}`
-      }
-      onClick={() => copy(snippet(copyAs, icon.name, drawn ? style : icon.styles[0], size), icon.name)}
-      style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 60px' }}
-    >
-      <Icon
-        name={icon.name}
-        iconStyle={drawn ? style : icon.styles[0]}
-        size={size}
-        style={drawn ? undefined : { opacity: 0.32 }}
-      />
-      <span className="sb-cell__label">{icon.name}</span>
-    </button>
-  );
-}
 
 /** The catalogue's own category names stay as Solar spells them. */
 const ALL_CATEGORIES = 'All';
@@ -75,34 +29,25 @@ interface GalleryArgs {
   category: string;
   size: IconSizeToken;
   onlyAvailable: boolean;
-  copyAs: CopyAs;
+  /** The icon open in the inspector — in the URL, so a link can point at one icon. */
+  icon: string;
 }
 
-const GALLERY_DEFAULTS: GalleryArgs = {
-  query: '',
-  category: ALL_CATEGORIES,
-  size: 'xs',
-  onlyAvailable: false,
-  copyAs: 'name',
-};
+const DEFAULTS: GalleryArgs = { query: '', category: ALL_CATEGORIES, size: 'xs', onlyAvailable: false, icon: '' };
 
-export const System: Story = {
+export const System: StoryObj<GalleryArgs> = {
   name: 'Системные',
-  // Filters live in args, so Storybook keeps them in the URL and a link to a
-  // filtered gallery survives being pasted to someone else.
-  args: GALLERY_DEFAULTS,
+  args: DEFAULTS,
   render: function Render(args) {
-    const [, updateArgs] = useArgs();
+    const [, updateArgs] = useArgs<GalleryArgs>();
     // The style is the "Иконки" mode, so choosing it here switches it everywhere.
     const [globals, updateGlobals] = useGlobals();
-    const current = args as unknown as GalleryArgs;
-    const { query, category, size, onlyAvailable, copyAs } = current;
+    const { query, category, size, onlyAvailable, icon: picked } = args;
     const set = (patch: Partial<GalleryArgs>) => updateArgs(patch);
-    const dirty = (Object.keys(GALLERY_DEFAULTS) as (keyof GalleryArgs)[]).some(
-      (key) => current[key] !== GALLERY_DEFAULTS[key],
-    );
-
     const style = (globals.iconStyle as IconStyle) ?? 'linear';
+    const dirty = (Object.keys(DEFAULTS) as (keyof GalleryArgs)[]).some(
+      (key) => key !== 'icon' && args[key] !== DEFAULTS[key],
+    );
 
     const filtered = useMemo(
       () =>
@@ -114,24 +59,24 @@ export const System: Story = {
         ),
       [query, category, onlyAvailable, style],
     );
-
-    // Solar does not draw every icon in every style; the gallery shows the whole
-    // roster and marks the gaps rather than silently dropping them.
+    // Solar does not draw every icon in every style; the gaps are shown dimmed
+    // in a style that exists rather than silently dropped.
     const missing = filtered.filter((icon) => !icon.styles.includes(style)).length;
+    const selected = catalog.icons.find((icon) => icon.name === picked);
 
     return (
       <Page
         title="Системные иконки"
-        lead={`${catalog.icons.length} иконок Solar в ${catalog.categories.length} категориях. Стиль — это мода «Brand · Icon», размеры — токены size/base/*, поэтому иконки слушаются и Device. Клик копирует имя или JSX.`}
+        lead={`${catalog.icons.length} иконок Solar в ${catalog.categories.length} категориях. Стиль — мода «Brand · Icon», размер — токены size/base/*. Выберите иконку, чтобы увидеть её крупно и скопировать.`}
         toolbar={
           <>
-            <Search value={query} onChange={(value) => set({ query: value })} placeholder="arrow up, shield, social…" />
+            <Search value={query} onChange={(value) => set({ query: value })} placeholder="arrow up, shield…" />
             <Select
               label="Категория"
               value={category}
               onChange={(value) => set({ category: value })}
               options={[
-                { value: ALL_CATEGORIES, label: 'Все' },
+                { value: ALL_CATEGORIES, label: 'все' },
                 ...catalog.categories.map((c) => ({ value: c, label: c })),
               ]}
             />
@@ -145,16 +90,7 @@ export const System: Story = {
               label="Размер"
               value={size}
               onChange={(value) => set({ size: value })}
-              options={ICON_SIZES.map((s) => ({ value: s, label: s }))}
-            />
-            <Select
-              label="Клик копирует"
-              value={copyAs}
-              onChange={(value) => set({ copyAs: value })}
-              options={[
-                { value: 'name' as CopyAs, label: 'имя' },
-                { value: 'jsx' as CopyAs, label: '<Icon …/>' },
-              ]}
+              options={ICON_SIZES.map((s) => ({ value: s, label: `${s} · ${ICON_SIZE_PX[s]}px` }))}
             />
             <label className="sb-control sb-check">
               <input
@@ -167,27 +103,75 @@ export const System: Story = {
             <Counts>
               <span className="sb-caption">
                 {counted(filtered.length, ['иконка', 'иконки', 'иконок'])}
-                {missing > 0 && (
-                  <span className="sb-warning">
-                    {' '}
-                    · {missing} нет в стиле {ICON_STYLE_LABELS[style]}
-                  </span>
-                )}
+                {missing > 0 && <span className="sb-warning"> · {missing} нет в этом стиле</span>}
               </span>
-              {dirty && <ResetFilters onReset={() => set(GALLERY_DEFAULTS)} />}
+              {dirty && <ResetFilters onReset={() => set({ ...DEFAULTS, icon: picked })} />}
               <ShareLink />
             </Counts>
           </>
         }
       >
         {filtered.length === 0 ? (
-          <Empty query={query || category} onClear={() => set(GALLERY_DEFAULTS)} />
+          <Empty query={query || category} onClear={() => set(DEFAULTS)} />
         ) : (
-          <Grid min={96} gap={4}>
-            {filtered.map((icon) => (
-              <IconTile key={icon.name} icon={icon} style={style} size={size} copyAs={copyAs} />
-            ))}
-          </Grid>
+          <IconGrid>
+            {filtered.map((icon) => {
+              const drawn = icon.styles.includes(style);
+              return (
+                <IconTile
+                  key={icon.name}
+                  label={icon.name}
+                  title={
+                    drawn ? `${icon.name} · ${icon.category}` : `${icon.name} — нет в стиле ${ICON_STYLE_LABELS[style]}`
+                  }
+                  selected={icon.name === picked}
+                  muted={!drawn}
+                  onSelect={() => set({ icon: icon.name === picked ? '' : icon.name })}
+                >
+                  <Icon name={icon.name} iconStyle={drawn ? style : icon.styles[0]} size={size} />
+                </IconTile>
+              );
+            })}
+          </IconGrid>
+        )}
+
+        {selected && (
+          <Inspector
+            title={selected.name}
+            meta={`${selected.category} · ${counted(selected.styles.length, ['стиль', 'стиля', 'стилей'])} из 6`}
+            preview={
+              <Icon
+                name={selected.name}
+                iconStyle={selected.styles.includes(style) ? style : selected.styles[0]}
+                size="max"
+              />
+            }
+            actions={[
+              { label: 'Имя', value: selected.name },
+              { label: 'JSX', value: `<Icon name="${selected.name}" size="${size}" />` },
+            ]}
+            onClose={() => set({ icon: '' })}
+          >
+            <div className="sb-inspector__styles" role="radiogroup" aria-label="Стиль">
+              {ICON_STYLES.map((s) => {
+                const has = selected.styles.includes(s);
+                return (
+                  <button
+                    key={s}
+                    type="button"
+                    role="radio"
+                    aria-checked={s === style}
+                    disabled={!has}
+                    className="sb-inspector__style"
+                    title={has ? ICON_STYLE_LABELS[s] : `${ICON_STYLE_LABELS[s]} — нет в Solar`}
+                    onClick={() => updateGlobals({ iconStyle: s })}
+                  >
+                    {has ? <Icon name={selected.name} iconStyle={s} size={20} /> : '—'}
+                  </button>
+                );
+              })}
+            </div>
+          </Inspector>
         )}
       </Page>
     );
