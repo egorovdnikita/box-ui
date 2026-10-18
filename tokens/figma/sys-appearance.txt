@@ -18,10 +18,10 @@ status/border/active :: Solid=@sys-color:color/transparent | Soft=@sys-color:col
 static/fill/default :: Solid=@sys-theme:interaction/static/solid/fill/default | Soft=@sys-theme:interaction/static/soft/fill/default | Outline=@sys-color:color/transparent
 static/fill/hover :: Solid=@sys-theme:interaction/static/solid/fill/hover | Soft=@sys-theme:interaction/static/soft/fill/hover | Outline=@sys-color:color/transparent
 static/fill/active :: Solid=@sys-theme:interaction/static/solid/fill/active | Soft=@sys-theme:interaction/static/soft/fill/active | Outline=@sys-color:color/transparent
-static/content/disabled :: Solid=@sys-theme:interaction/on-accent/control-alpha/48 | Soft=@sys-theme:interaction/on-accent/control-alpha/48 | Outline=@sys-theme:interaction/on-accent/control-alpha/48
 static/content/default :: Solid=@sys-theme:interaction/static/solid/content/default | Soft=@sys-theme:interaction/static/content/on-surface/enabled | Outline=@sys-theme:interaction/static/content/on-surface/enabled
 static/content/hover :: Solid=@sys-theme:interaction/static/solid/content/hover | Soft=@sys-theme:interaction/static/content/on-surface/enabled | Outline=@sys-theme:interaction/static/content/on-surface/enabled
 static/content/active :: Solid=@sys-theme:interaction/static/solid/content/active | Soft=@sys-theme:interaction/static/content/on-surface/enabled | Outline=@sys-theme:interaction/static/content/on-surface/enabled
+static/content/disabled :: Solid=@sys-theme:interaction/on-accent/control-alpha/48 | Soft=@sys-theme:interaction/on-accent/control-alpha/48 | Outline=@sys-theme:interaction/on-accent/control-alpha/48
 static/border/default :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/static/outline/border/default
 static/border/hover :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/static/outline/border/hover
 static/border/active :: Solid=@sys-color:color/transparent | Soft=@sys-color:color/transparent | Outline=@sys-theme:interaction/static/outline/border/active

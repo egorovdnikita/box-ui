@@ -2,7 +2,7 @@ import { useEffect, useMemo, type ReactNode } from 'react';
 import { IconStyleProvider, type IconStyle } from '@box-ui/icons';
 
 export type ThemeMode = 'light' | 'dark';
-export type AccentMode = 'indigo' | 'lime' | 'yellow' | 'pink' | 'monochrome';
+export type AccentMode = 'deep' | 'bright' | 'monochrome';
 export type RadiusMode = 'low' | 'medium' | 'high';
 export type FontMode = 'inter' | 'inter-display' | 'inter-tight' | 'inter-variable';
 export type DeviceMode = 'desktop' | 'mobile';

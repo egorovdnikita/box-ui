@@ -77,7 +77,7 @@ import { layout, modes, model, theme } from '@box-ui/tokens';
 
 theme.surface.base.fill.page; // 'var(--box-surface-base-fill-page)'
 layout.spacing.base.m; // 'var(--box-spacing-base-m)'
-modes['brand-color']; // ['indigo', 'lime', 'yellow', 'pink', 'monochrome']
+modes['brand-color']; // ['deep', 'bright', 'monochrome']
 model.collections['sys-theme'].variables; // каждый токен и его алиас в каждой моде
 ```
 

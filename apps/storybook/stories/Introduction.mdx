@@ -12,7 +12,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 | ----------------------------------- | --------------------------------------------------------- | ----------------- |
 | ◉ Primitives ・ Color / Spacing / Rounding / Size / Typography | только _Value_                 | —                 |
 | ◑ System ・ Color                   | только _Value_                                            | —                 |
-| ☯︎ Brand ・ Color                    | Indigo, Lime, Yellow, Pink, Monochrome                    | `data-accent`     |
+| ☯︎ Brand ・ Color                    | Deep, Bright, Monochrome                                  | `data-accent`     |
 | ☯︎ Brand ・ Rounding                 | Low, Medium, High                                         | `data-radius`     |
 | ☯︎ Brand ・ Typography               | Inter, Inter Display, Inter Tight, Inter Variable         | `data-font`       |
 | ☯︎ Brand ・ Icon                     | Bold, Bold Duotone, Broken, Line Duotone, Linear, Outline | `data-icon-style` |
@@ -61,7 +61,7 @@ import '@box-ui/tokens/css';
 import { Card, Text } from '@box-ui/react';
 import { Icon } from '@box-ui/icons';
 
-<html data-theme="dark" data-accent="pink" data-radius="high" data-device="mobile">
+<html data-theme="dark" data-accent="bright" data-radius="high" data-device="mobile">
   <Card>
     <Icon name="check-circle" size="m" />
     <Text variant="h4">Готово</Text>
@@ -79,7 +79,7 @@ import { Icon } from '@box-ui/icons';
 ```html
 <div
   data-theme="dark"
-  data-accent="pink"
+  data-accent="bright"
   data-radius="high"
   data-font="inter"
   data-device="desktop"

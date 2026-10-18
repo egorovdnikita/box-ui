@@ -10,7 +10,7 @@
  *   ◉ Primitives            raw literals, one "Value" mode
  *     ^-- ◑ System · Color       named ramps over the palette
  *          ^-- ◑ System · Status      [data-status]      Positive Warning Negative Information
- *     ^-- ☯︎ Brand · Color        [data-accent]      Indigo Lime Yellow Pink Monochrome
+ *     ^-- ☯︎ Brand · Color        [data-accent]      Deep Bright Monochrome
  *          ^-- ◑ System · Theme       [data-theme]       Light Dark
  *               ^-- ◑ System · Controls · Appearance  [data-appearance]  Solid Soft Outline
  *                    ^-- ◑ System · Controls · State  [data-state]       Default Hover Active Disabled
@@ -57,7 +57,7 @@ const LAYERS = {
     varPrefix: 'brand',
     strip: 'color',
     label: 'Акцент',
-    switch: { attr: 'data-accent', default: 'Indigo' },
+    switch: { attr: 'data-accent', default: 'Deep' },
   },
   'brand-rounding': {
     varPrefix: 'radius',

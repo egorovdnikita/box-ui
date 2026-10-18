@@ -198,7 +198,7 @@ export const Accents: Story = {
     return (
       <Page
         title="Акцентные цветовые моды"
-        lead={`В коллекции «☯︎ Brand · Color» ${accent.modes.length} мод. Переключите «Акцент» на панели — и каждый брендовый токен ниже начнёт указывать на другую примитивную шкалу, а семантические имена останутся прежними.`}
+        lead={`В коллекции «☯︎ Brand · Color» ${counted(accent.modes.length, ['мода', 'моды', 'мод'])}. Переключите «Акцент» на панели — и каждый брендовый токен ниже начнёт указывать на другую примитивную шкалу, а семантические имена останутся прежними.`}
         toolbar={
           <>
             <Search value={query} onChange={setQuery} placeholder="brand, neutral, positive…" />

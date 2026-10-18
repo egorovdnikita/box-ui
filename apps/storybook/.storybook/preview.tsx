@@ -86,7 +86,7 @@ const globalTypes: Preview['globalTypes'] = {
       title: 'Акцент',
       icon: 'paintbrush',
       dynamicTitle: true,
-      items: ['indigo', 'lime', 'yellow', 'pink', 'monochrome'].map((value) => ({
+      items: ['deep', 'bright', 'monochrome'].map((value) => ({
         value,
         title: value[0].toUpperCase() + value.slice(1),
       })),
@@ -214,7 +214,7 @@ const preview: Preview = {
   globalTypes,
   initialGlobals: {
     theme: 'light',
-    accent: 'indigo',
+    accent: 'deep',
     radius: 'low',
     font: 'inter',
     device: 'desktop',

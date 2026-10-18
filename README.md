@@ -38,7 +38,7 @@ npm run storybook
     │      │
     │      └─ ◑ System · Status    11  [data-status]  Positive · Warning · Negative · Information
     │               │
-    ├─ ☯︎ Brand · Color        47   [data-accent]  Indigo · Lime · Yellow · Pink · Monochrome
+    ├─ ☯︎ Brand · Color        47   [data-accent]  Deep · Bright · Monochrome
     │      │        │
     │      └────────┴─ ◑ System · Theme   96  [data-theme]  Light · Dark
     │                        │
@@ -88,7 +88,7 @@ npm run storybook
 | Атрибут           | Коллекция Figma       | Значения                                                         | По умолчанию |
 | ----------------- | --------------------- | ---------------------------------------------------------------- | ------------ |
 | `data-theme`      | System · Theme        | `light` `dark`                                                   | `light`      |
-| `data-accent`     | Brand · Color         | `indigo` `lime` `yellow` `pink` `monochrome`                     | `indigo`     |
+| `data-accent`     | Brand · Color         | `deep` `bright` `monochrome`                                     | `deep`       |
 | `data-radius`     | Brand · Rounding      | `low` `medium` `high`                                            | `low`        |
 | `data-font`       | Brand · Typography    | `inter` `inter-display` `inter-tight` `inter-variable`           | `inter`      |
 | `data-device`     | System · Responsive   | `desktop` `mobile`                                               | `desktop`    |
@@ -105,7 +105,7 @@ npm run storybook
 
 <!-- prettier-ignore -->
 ```html
-<html data-theme="dark" data-accent="pink" data-radius="high" data-device="mobile">
+<html data-theme="dark" data-accent="bright" data-radius="high" data-device="mobile">
 ```
 
 ### Переключение для части страницы
@@ -122,11 +122,11 @@ npm run storybook
 <!-- prettier-ignore -->
 ```html
 <!-- работает: вся цепочка переобъявляется здесь -->
-<div data-theme="dark" data-accent="pink" data-radius="high" data-font="inter" data-device="desktop"
+<div data-theme="dark" data-accent="bright" data-radius="high" data-font="inter" data-device="desktop"
      data-status="positive" data-appearance="solid" data-state="default">
 
 <!-- не работает: токены System · Theme уже разрешены выше -->
-<div data-accent="pink">
+<div data-accent="bright">
 ```
 
 `@box-ui/tokens/css/adaptive.css` необязателен: он берёт тёмную тему из
@@ -271,8 +271,7 @@ npm run check   # typecheck + lint + format:check + тесты + сборка St
 - **Конвейер токенов.** Каждый `var()` в сгенерированном CSS обязан попасть в существующую
   переменную: переход, ведущий в никуда, — это прозрачный цвет или схлопнутая длина, и до
   открытия страницы этого никто не заметит. Тот же набор проверяет, что каждый алиас Figma
-  разрешается, что ни одна переменная не осталась без моды и что написание `Hight`
-  по-прежнему принимается.
+  разрешается и что ни одна переменная не осталась без моды.
 - **Данные иконок.** Каталог и шесть постилевых наборов обязаны сходиться в обе стороны:
   у каждого заявленного стиля должна быть геометрия, а каждая геометрия должна быть заявлена.
   Зашитый `fill="#…"` запрещён — он игнорировал бы токен `--box-content-*` вокруг.
@@ -308,11 +307,6 @@ REST API) и пересоберите. Больше ничего трогать 
 
 Воспроизведены буквально, а не исправлены молча — чините в Figma и пересобирайте:
 
-- В коллекции **Color** мода `Teal` указывает на шкалу _green_, `Cyan` — на _pink_, а
-  `Yellow` — на _rose_. Storybook говорит об этом на странице _Основы → Цвета → Акцентные
-  моды_, выводя список из модели токенов, так что заметка исчезнет сама, когда Figma починят.
-- Самая сильная мода **Rounding** написана в Figma как `Hight`. Сгенерированный CSS использует
-  `data-radius="high"` и дополнительно принимает `data-radius="hight"`.
 - `background/base/primary` и `background/base/tertiary` в светлой теме совпадают.
 - На странице Payments четыре имени компонентов повторяются, поэтому её 679 компонентов —
   это 675 различимых записей.

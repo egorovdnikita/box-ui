@@ -26,7 +26,7 @@ import { model, attributes, defaults } from '@box-ui/tokens';
 
 ### Переключатели
 
-- `data-accent`: indigo | lime | yellow | pink | monochrome (по умолчанию `indigo`) — коллекция Figma «☯︎ Brand ・ Color»
+- `data-accent`: deep | bright | monochrome (по умолчанию `deep`) — коллекция Figma «☯︎ Brand ・ Color»
 - `data-radius`: low | medium | high (по умолчанию `low`) — коллекция Figma «☯︎ Brand ・ Rounding»
 - `data-font`: inter | inter-display | inter-tight | inter-variable (по умолчанию `inter`) — коллекция Figma «☯︎ Brand ・ Typography»
 - `data-icon-style`: bold | bold-duotone | broken | line-duotone | linear | outline (по умолчанию `bold`) — коллекция Figma «☯︎ Brand ・ Icon»
@@ -55,7 +55,7 @@ import { model, attributes, defaults } from '@box-ui/tokens';
 - `prim-size` — переменных: 29, мод: 1, из «◉ Primitives ・ Size»
 - `prim-type` — переменных: 75, мод: 1, из «◉ Primitives ・ Typography»
 - `sys-color` — переменных: 76, мод: 1, из «◑ System ・ Color»
-- `brand-color` — переменных: 47, мод: 5, из «☯︎ Brand ・ Color»
+- `brand-color` — переменных: 47, мод: 3, из «☯︎ Brand ・ Color»
 - `brand-rounding` — переменных: 11, мод: 3, из «☯︎ Brand ・ Rounding»
 - `brand-type` — переменных: 2, мод: 4, из «☯︎ Brand ・ Typography»
 - `brand-icon` — переменных: 1, мод: 6, из «☯︎ Brand ・ Icon»

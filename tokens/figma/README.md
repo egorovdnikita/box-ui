@@ -17,7 +17,7 @@
 | `sys-status.txt`     | ◑ System ・ Status                  |         11 | Positive, Warning, Negative, Information   |
 | `sys-appearance.txt` | ◑ System ・ Controls ・ Appearance  |         36 | Solid, Soft, Outline                       |
 | `sys-state.txt`      | ◑ System ・ Controls ・ State       |         16 | Default, Hover, Active, Disabled           |
-| `brand-color.txt`    | ☯︎ Brand ・ Color                    |         47 | Indigo, Lime, Yellow, Pink, Monochrome     |
+| `brand-color.txt`    | ☯︎ Brand ・ Color                    |         47 | Deep, Bright, Monochrome                   |
 | `brand-rounding.txt` | ☯︎ Brand ・ Rounding                 |         11 | Low, Medium, High                          |
 | `brand-type.txt`     | ☯︎ Brand ・ Typography               |          2 | Inter, Inter Display, Inter Tight, Variable |
 | `brand-icon.txt`     | ☯︎ Brand ・ Icon                     |          1 | Bold … Outline                             |
