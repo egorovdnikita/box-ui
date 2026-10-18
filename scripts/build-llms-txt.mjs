@@ -119,10 +119,7 @@ ${rosters}
 
 - [Обзор](${SITE}/?path=/docs/introduction--docs): граф переменных и как разрешается токен
 - [Начало работы](${SITE}/?path=/docs/getting-started--docs): установка, подключение мод, использование токенов
-- [Токены](${SITE}/?path=/story/tokens-primitives--color): все 15 коллекций Figma таблицами — значения по модам, code syntax, описания
-- [Цвета](${SITE}/?path=/story/foundations-colors--palette): палитра и семантика в светлой и тёмной темах рядом
-- [Шкалы](${SITE}/?path=/story/foundations-scales--spacing): отступы, скругления, размеры
-- [Типографика](${SITE}/?path=/story/foundations-typography--ramp): текстовая шкала и четыре гарнитуры
+- [Токены](${SITE}/?path=/story/tokens-search--search): поиск по всем 15 коллекциям Figma и их таблицы — значения и превью по модам, code syntax, описания
 - [UI Icons](${SITE}/?path=/story/icons-ui-icons--gallery): галерея с поиском
 - [Семейства Figma](${SITE}/?path=/story/icons-figma-families--flags): флаги, платежи, бренды
 `;

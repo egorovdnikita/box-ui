@@ -28,23 +28,6 @@ export function matches(query: string, ...fields: (string | null | undefined)[])
   return terms.every((term) => haystack.includes(term.replace(/[-_/]+/g, ' ')));
 }
 
-/** `rgb(59 130 246 / 0.4)` and `rgb(59, 130, 246)` alike -> `#3b82f6` (+ alpha). */
-export function toHex(value: string): string {
-  const parts = value.match(/[\d.]+/g);
-  if (!parts || parts.length < 3) return value;
-  const hex = parts
-    .slice(0, 3)
-    .map((part) => Math.round(Number(part)).toString(16).padStart(2, '0'))
-    .join('');
-  const alpha =
-    parts[3] !== undefined
-      ? Math.round(Number(parts[3]) * 255)
-          .toString(16)
-          .padStart(2, '0')
-      : '';
-  return `#${hex}${alpha === 'ff' ? '' : alpha}`;
-}
-
 /**
  * Russian plural agreement: `plural(1301, ['иконка', 'иконки', 'иконок'])`.
  *

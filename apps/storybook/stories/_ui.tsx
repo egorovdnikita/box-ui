@@ -9,7 +9,6 @@ import {
   type ReactNode,
 } from 'react';
 import { Icon, type IconProps } from '@box-ui/icons';
-import { toHex } from './_lib';
 
 export { matches, counted, plural } from './_lib';
 
@@ -96,6 +95,25 @@ export function Page({
 
   useEffect(() => () => (timer.current ? clearTimeout(timer.current) : undefined), []);
 
+  // Sticky things below the toolbar (table headers, the outline) start where it ends.
+  const bar = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const root = document.documentElement;
+    const node = bar.current;
+    if (!node) {
+      root.style.setProperty('--sb-sticky-top', '0px');
+      return;
+    }
+    const observer = new ResizeObserver(() =>
+      root.style.setProperty(
+        '--sb-sticky-top',
+        getComputedStyle(node).position === 'sticky' ? `${node.offsetHeight}px` : '0px',
+      ),
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <CopyContext.Provider value={copy}>
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
@@ -111,7 +129,11 @@ export function Page({
           {lead && <p className="sb-lead">{lead}</p>}
         </header>
 
-        {toolbar && <div className="sb-toolbar">{toolbar}</div>}
+        {toolbar && (
+          <div className="sb-toolbar" ref={bar}>
+            {toolbar}
+          </div>
+        )}
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>{children}</div>
       </div>
@@ -156,15 +178,10 @@ export function Grid({ min = 200, gap = 8, children }: { min?: number; gap?: num
 
 // --- form controls -----------------------------------------------------------
 
-function Field({ label, children }: { label: string; children: ReactNode }) {
-  return (
-    <label style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-      <span className="sb-label">{label}</span>
-      {children}
-    </label>
-  );
-}
-
+/**
+ * A select with its label inside the control, so every toolbar is one 28px
+ * row whatever it holds.
+ */
 export function Select<T extends string>({
   label,
   value,
@@ -177,15 +194,16 @@ export function Select<T extends string>({
   onChange: (value: T) => void;
 }) {
   return (
-    <Field label={label}>
-      <select className="sb-control" value={value} onChange={(e) => onChange(e.target.value as T)}>
+    <label className="sb-control sb-select">
+      <span className="sb-select__label">{label}</span>
+      <select value={value} onChange={(e) => onChange(e.target.value as T)}>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>
         ))}
       </select>
-    </Field>
+    </label>
   );
 }
 
@@ -218,8 +236,8 @@ export function Search({
   }, [onChange]);
 
   return (
-    <Field label={label}>
-      <div style={{ position: 'relative', display: 'flex', alignItems: 'center', minWidth: 240 }}>
+    <label aria-label={label} style={{ display: 'flex' }}>
+      <div style={{ position: 'relative', display: 'flex', alignItems: 'center', width: 220 }}>
         <span
           style={{
             position: 'absolute',
@@ -248,7 +266,7 @@ export function Search({
               right: 6,
               padding: '1px 5px',
               border: '1px solid var(--sb-border)',
-              borderRadius: 3,
+              borderRadius: 'var(--sb-radius-inner)',
               fontSize: 10,
               pointerEvents: 'none',
             }}
@@ -257,7 +275,7 @@ export function Search({
           </kbd>
         )}
       </div>
-    </Field>
+    </label>
   );
 }
 
@@ -280,38 +298,68 @@ export function ShareLink() {
   };
 
   return (
-    <button
-      type="button"
-      className="sb-control sb-button"
-      onClick={share}
-      title="Скопировать ссылку на эту страницу вместе с фильтрами"
-    >
-      <ChromeIcon name="link-round" size={14} />
-      Скопировать ссылку
-    </button>
+    <ToolbarButton icon="link-round" onClick={share} title="Скопировать ссылку на эту страницу вместе с фильтрами">
+      Ссылка
+    </ToolbarButton>
   );
 }
 
 /** Clears every filter back to the story's defaults. */
 export function ResetFilters({ onReset }: { onReset: () => void }) {
   return (
-    <button type="button" className="sb-control sb-button" onClick={onReset} title="Сбросить все фильтры">
-      <ChromeIcon name="restart" size={14} />
+    <ToolbarButton icon="restart" onClick={onReset} title="Сбросить все фильтры">
       Сбросить
+    </ToolbarButton>
+  );
+}
+
+export function ToolbarButton({
+  icon,
+  title,
+  onClick,
+  children,
+}: {
+  icon: string;
+  title: string;
+  onClick: () => void;
+  children: ReactNode;
+}) {
+  return (
+    <button type="button" className="sb-control sb-button" onClick={onClick} title={title}>
+      <ChromeIcon name={icon} size={14} />
+      {children}
     </button>
   );
 }
 
-/** Anchor chips for pages made of many groups. */
-export function JumpNav({ items }: { items: { id: string; label: string }[] }) {
+/** A row of mutually exclusive options, for short filters. */
+export function Segmented<T extends string>({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: T;
+  options: { value: T; label: string; icon?: string }[];
+  onChange: (value: T) => void;
+}) {
   return (
-    <nav style={{ display: 'flex', flexWrap: 'wrap', gap: 4, alignItems: 'center' }}>
-      {items.map((item) => (
-        <a key={item.id} className="sb-chip" href={`#${item.id}`}>
-          {item.label}
-        </a>
+    <div className="sb-segmented" role="radiogroup" aria-label={label}>
+      {options.map((option) => (
+        <button
+          key={option.value}
+          type="button"
+          role="radio"
+          aria-checked={option.value === value}
+          className="sb-segmented__item"
+          onClick={() => onChange(option.value)}
+        >
+          {option.icon && <ChromeIcon name={option.icon} size={14} />}
+          {option.label}
+        </button>
       ))}
-    </nav>
+    </div>
   );
 }
 
@@ -322,7 +370,7 @@ export function Count({ children, tone = 'neutral' }: { children: ReactNode; ton
 /** Right-aligned group of counts inside a toolbar. */
 export function Counts({ children }: { children: ReactNode }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 28, marginLeft: 'auto' }}>{children}</div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, height: 28, marginLeft: 'auto' }}>{children}</div>
   );
 }
 
@@ -419,162 +467,3 @@ export const demoSurface: CSSProperties = {
   borderRadius: 'var(--rounding-m)',
   padding: 'var(--spacing-3xs)',
 };
-
-// --- live token resolution ---------------------------------------------------
-
-/**
- * `getPropertyValue` on a custom property hands back the declaration
- * (`var(--color-blue-500)`), not the value it lands on. Assigning it
- * to a real property on a probe element and reading *that* back is what forces
- * the whole alias chain to resolve.
- */
-let probe: HTMLElement | null = null;
-
-function resolve(cssVar: string, kind: 'color' | 'length'): string {
-  if (!cssVar || typeof document === 'undefined') return '';
-  if (!probe) {
-    probe = document.createElement('div');
-    probe.setAttribute('aria-hidden', 'true');
-    probe.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;top:-9999px';
-    document.body.appendChild(probe);
-  }
-  if (kind === 'color') {
-    probe.style.backgroundColor = '';
-    probe.style.backgroundColor = `var(${cssVar})`;
-    return toHex(getComputedStyle(probe).backgroundColor);
-  }
-  probe.style.width = '';
-  probe.style.width = `var(${cssVar})`;
-  const width = getComputedStyle(probe).width;
-  return width === 'auto' ? '' : `${Math.round(parseFloat(width) * 100) / 100}px`;
-}
-
-/** Re-reads whenever a mode attribute on `<html>` changes. */
-export function useResolved(cssVar: string, kind: 'color' | 'length'): string {
-  const [value, setValue] = useState(() => resolve(cssVar, kind));
-
-  useEffect(() => {
-    const read = () => setValue(resolve(cssVar, kind));
-    read();
-    const observer = new MutationObserver(read);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme', 'data-accent', 'data-radius', 'data-font', 'data-device'],
-    });
-    return () => observer.disconnect();
-  }, [cssVar, kind]);
-
-  return value;
-}
-
-// --- token display -----------------------------------------------------------
-
-/**
- * One colour token. The whole tile is a button — clicking copies the CSS
- * variable, which is the thing you actually paste into code.
- */
-export function Swatch({
-  cssVar,
-  name,
-  meta,
-  /** Show what the alias chain resolves to right now, for this set of modes. */
-  live,
-}: {
-  cssVar: string;
-  name: string;
-  meta?: ReactNode;
-  live?: boolean;
-}) {
-  const copy = useCopy();
-  const resolved = useResolved(live ? cssVar : '', 'color');
-  return (
-    <button
-      type="button"
-      className="sb-tile"
-      onClick={() => copy(`var(${cssVar})`, cssVar)}
-      title={`Скопировать var(${cssVar})`}
-      style={{ display: 'flex', flexDirection: 'column', gap: 4 }}
-    >
-      <span
-        style={{
-          position: 'relative',
-          display: 'block',
-          height: 52,
-          overflow: 'hidden',
-          borderRadius: 'var(--sb-radius)',
-          border: '1px solid var(--sb-border)',
-        }}
-      >
-        {/* checkerboard, so alpha tokens read as translucent */}
-        <span
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage:
-              'linear-gradient(45deg, var(--sb-hover) 25%, transparent 25%, transparent 75%, var(--sb-hover) 75%), linear-gradient(45deg, var(--sb-hover) 25%, transparent 25%, transparent 75%, var(--sb-hover) 75%)',
-            backgroundSize: '12px 12px',
-            backgroundPosition: '0 0, 6px 6px',
-            backgroundColor: 'var(--sb-raised-bg)',
-          }}
-        />
-        <span style={{ position: 'absolute', inset: 0, background: `var(${cssVar})` }} />
-        <span className="sb-tile__hint">
-          <ChromeIcon name="copy" size={14} />
-        </span>
-      </span>
-      <span style={{ fontSize: 12, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
-      {(live || meta) && (
-        <span className="sb-code" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-          {live ? resolved : meta}
-        </span>
-      )}
-    </button>
-  );
-}
-
-/** One row of a scale: token name, what it resolves to, and the drawn value. */
-export function Row({
-  label,
-  value,
-  /** Also show the px the token resolves to under the current modes. */
-  live,
-  children,
-}: {
-  label: string;
-  value?: ReactNode;
-  live?: boolean;
-  children?: ReactNode;
-}) {
-  const copy = useCopy();
-  const resolved = useResolved(live ? label : '', 'length');
-
-  return (
-    <button
-      type="button"
-      className="sb-row"
-      onClick={() => copy(`var(${label})`, label)}
-      title={`Скопировать var(${label})`}
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'minmax(200px, 280px) minmax(150px, 210px) 1fr',
-        gap: 12,
-        alignItems: 'center',
-        width: '100%',
-        padding: '8px 6px',
-        border: 0,
-        borderBottom: '1px solid var(--sb-border)',
-        background: 'none',
-        font: 'inherit',
-        textAlign: 'left',
-        cursor: 'pointer',
-      }}
-    >
-      <Code>{label}</Code>
-      <Caption>
-        {value}
-        {live && resolved && <span style={{ opacity: 0.75 }}> · {resolved}</span>}
-      </Caption>
-      <div>{children}</div>
-    </button>
-  );
-}

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { counted, matches, plural, toHex } from '../apps/storybook/stories/_lib';
+import { counted, matches, plural } from '../apps/storybook/stories/_lib';
 
 describe('search', () => {
   it('matches terms across a hyphenated name', () => {
@@ -31,23 +31,6 @@ describe('search', () => {
 
   it('ignores empty fields', () => {
     expect(matches('bitcoin', 'Bitcoin', null, undefined)).toBe(true);
-  });
-});
-
-describe('colour readout', () => {
-  it('renders both rgb spellings as hex', () => {
-    expect(toHex('rgb(59, 130, 246)')).toBe('#3b82f6');
-    expect(toHex('rgb(59 130 246)')).toBe('#3b82f6');
-  });
-
-  it('keeps alpha, and drops it when opaque', () => {
-    expect(toHex('rgba(59, 130, 246, 0.4)')).toBe('#3b82f666');
-    expect(toHex('rgba(59, 130, 246, 1)')).toBe('#3b82f6');
-  });
-
-  it('passes anything it cannot read straight through', () => {
-    expect(toHex('')).toBe('');
-    expect(toHex('none')).toBe('none');
   });
 });
 

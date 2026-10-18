@@ -23,6 +23,8 @@ function chromeVars(theme: ThemeVars): Record<string, string> {
     '--sb-bar-bg': theme.barBg,
     '--sb-border': theme.appBorderColor,
     '--sb-radius': `${theme.appBorderRadius ?? 4}px`,
+    // Swatches, keys and segments nested inside a rounded control.
+    '--sb-radius-inner': `${Math.max(2, (theme.appBorderRadius ?? 4) / 2)}px`,
     '--sb-text': theme.textColor ?? '',
     '--sb-text-muted': theme.textMutedColor ?? '',
     '--sb-accent': theme.colorSecondary,
@@ -234,7 +236,7 @@ const preview: Preview = {
     options: {
       showPanel: false,
       storySort: {
-        order: ['Обзор', 'Начало работы', 'Токены', ['Primitives', 'Brand', 'System'], 'Основы', 'Иконки'],
+        order: ['Обзор', 'Начало работы', 'Токены', ['Поиск', 'Primitives', 'Brand', 'System'], 'Иконки'],
       },
     },
     controls: { disable: true },
