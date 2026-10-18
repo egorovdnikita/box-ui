@@ -1,0 +1,45 @@
+<!--
+  The sidebar and panels scroll with the same thin, trackless thumb as the
+  canvas (preview.css): a step brighter than the chrome in dark, darker in light.
+-->
+<style>
+  :root {
+    --sb-scrollbar: hsl(0 0% 0% / 0.14);
+    --sb-scrollbar-hover: hsl(0 0% 0% / 0.26);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --sb-scrollbar: hsl(0 0% 100% / 0.14);
+      --sb-scrollbar-hover: hsl(0 0% 100% / 0.26);
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 4px;
+    background: var(--sb-scrollbar) padding-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--sb-scrollbar-hover);
+  }
+
+  @supports not selector(::-webkit-scrollbar) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--sb-scrollbar) transparent;
+    }
+  }
+</style>

@@ -1,4 +1,5 @@
-import { Fragment, useEffect, useMemo, useState, type CSSProperties, type ReactNode } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 import { addons } from 'storybook/preview-api';
 import { SELECT_STORY } from 'storybook/internal/core-events';
 import { Icon, ICON_STYLES, type IconStyle } from '@box-ui/icons';
@@ -7,11 +8,13 @@ import { model, type TokenCollection, type TokenVariable } from '@box-ui/tokens'
 import {
   Counts,
   Empty,
+  MultiSelect,
   Page,
   ResetFilters,
   Scope,
   Search,
   Segmented,
+  Select,
   ShareLink,
   ToolbarButton,
   counted,
@@ -64,6 +67,9 @@ export const STORY_OF: Record<string, string> = {
   'sys-responsive': 'tokens-system--responsive',
 };
 
+/** Collections in the order of the sidebar: Primitives, Brand, System. */
+export const COLLECTION_ORDER = Object.keys(STORY_OF);
+
 function find(alias: string): { collection: string; variable: TokenVariable } | null {
   const [collection, path] = [alias.slice(0, alias.indexOf(':')), alias.slice(alias.indexOf(':') + 1)];
   const variable = collections[collection]?.variables.find((v) => v.path === path);
@@ -81,6 +87,16 @@ export function kindOf(variable: TokenVariable, depth = 0): Kind {
   if (first.opacity !== undefined) return 'color';
   if (typeof first.value === 'number') return 'number';
   return typeof first.value === 'string' && first.value.startsWith('#') ? 'color' : 'string';
+}
+
+/** The literal a variable lands on in `mode`, following aliases across collections. */
+function resolveLiteral(variable: TokenVariable, mode: string): string | number | undefined {
+  let value: Value | undefined = variable.values[mode] ?? Object.values(variable.values)[0];
+  for (let depth = 0; value?.alias && depth < 12; depth++) {
+    const target: TokenVariable | undefined = find(value.alias)?.variable;
+    value = target && (target.values[mode] ?? Object.values(target.values)[0]);
+  }
+  return value?.value;
 }
 
 export const KIND_ICON: Record<Kind, string> = { color: 'palette-round', number: 'ruler', string: 'text-square' };
@@ -230,7 +246,9 @@ function ValueCell({
           onClick={() => goToToken(alias)}
         >
           {swatch ?? <Icon name={KIND_ICON[kind]} size={14} iconStyle="linear" />}
-          <span className="sb-doc__chip-label">{target}</span>
+          <span className="sb-doc__chip-label">
+            <bdi>{target}</bdi>
+          </span>
           {value.opacity !== undefined && <span className="sb-doc__opacity">{value.opacity} %</span>}
         </button>
         {after}
@@ -274,7 +292,9 @@ function CodeCell({ variable }: { variable: TokenVariable }) {
           : `Скопировать ${actual}`
       }
     >
-      <span className="sb-doc__code-label">{actual}</span>
+      <span className="sb-doc__code-label">
+        <bdi>{actual}</bdi>
+      </span>
       {differs && <span className="sb-doc__flag">≠ Figma</span>}
     </button>
   );
@@ -312,6 +332,65 @@ function GroupHeading({
       ))}
       <span className="sb-doc__heading-count">{count}</span>
     </button>
+  );
+}
+
+/**
+ * A text style at table size — "Aa" and its size / line height — with the real
+ * thing in a popover on hover or focus, so a 72px display style does not blow
+ * up the row it sits in.
+ */
+function Specimen({
+  group,
+  variant,
+  mode,
+  scoped,
+}: {
+  group: DocGroup;
+  variant: TextVariant;
+  mode: string;
+  scoped: (node: ReactNode) => ReactNode;
+}) {
+  const anchor = useRef<HTMLButtonElement>(null);
+  const [at, setAt] = useState<{ left: number; top: number } | null>(null);
+  const metric = (leaf: string) => {
+    const v = group.variables.find((x) => x.path.endsWith(`/${leaf}`));
+    return v ? resolveLiteral(v, mode) : undefined;
+  };
+  const show = () => {
+    const rect = anchor.current?.getBoundingClientRect();
+    if (rect) setAt({ left: rect.left, top: rect.bottom + 6 });
+  };
+
+  return (
+    <>
+      <button
+        ref={anchor}
+        type="button"
+        className="sb-doc__specimen"
+        onMouseEnter={show}
+        onMouseLeave={() => setAt(null)}
+        onFocus={show}
+        onBlur={() => setAt(null)}
+        aria-label={`Образец ${variant}`}
+      >
+        <span className="sb-doc__aa">Aa</span>
+        <span className="sb-doc__mono sb-doc__muted">
+          {metric('font-size')} / {metric('line-height')}
+        </span>
+      </button>
+      {at &&
+        createPortal(
+          <div className="sb-popover" style={{ left: at.left, top: at.top }} role="tooltip">
+            {scoped(
+              <Text variant={variant} as="div" style={{ color: 'var(--sb-text)' }}>
+                {/^(display|h)/.test(variant) ? 'Съешь ещё булок' : 'Съешь же ещё этих мягких французских булок'}
+              </Text>,
+            )}
+          </div>,
+          document.body,
+        )}
+    </>
   );
 }
 
@@ -360,11 +439,13 @@ export function DocTable({
   const multi = collection.modes.length > 1;
   const scopeProp = SCOPE_PROP[collectionId];
 
+  // Minimums small enough that four mode columns still fit a laptop canvas;
+  // anything longer is cut with an ellipsis and spelled out in the tooltip.
   const columns = [
-    'minmax(120px, 0.7fr)',
-    `repeat(${modes.length}, minmax(${multi ? 150 : 180}px, 1fr))`,
-    'minmax(220px, 1.3fr)',
-    'minmax(160px, 1fr)',
+    'minmax(100px, 1fr)',
+    `repeat(${modes.length}, minmax(${multi ? 110 : 160}px, 1fr))`,
+    'minmax(160px, 1.3fr)',
+    'minmax(120px, 1fr)',
   ].join(' ');
 
   const scopedIn = (mode: string) => (node: ReactNode) =>
@@ -431,12 +512,8 @@ export function DocTable({
                         <span>образец</span>
                       </div>
                       {modes.map((m) => (
-                        <div key={m.slug} className="sb-doc__cell sb-doc__specimen">
-                          {scopedIn(m.slug)(
-                            <Text variant={variant} as="span" style={{ color: 'var(--sb-text)' }}>
-                              Aa Бб
-                            </Text>,
-                          )}
+                        <div key={m.slug} className="sb-doc__cell">
+                          <Specimen group={group} variant={variant} mode={m.slug} scoped={scopedIn(m.slug)} />
                         </div>
                       ))}
                       <div className="sb-doc__cell sb-doc__muted">
@@ -489,10 +566,20 @@ export function DocTable({
 // --- outline -----------------------------------------------------------------
 
 /**
- * The groups as a tree, sticky beside the table: the headings Figma has down
- * the page, one click from anywhere. The group in view is highlighted.
+ * The groups beside the table, in the table's order and spelled like its
+ * headings — one line each, the path dimmed and its last segment bright —
+ * under a label for each section. The group in view is highlighted.
  */
-function Outline({ groups, onJump }: { groups: DocGroup[]; onJump: (group: DocGroup) => void }) {
+function Outline({
+  groups,
+  depth,
+  onJump,
+}: {
+  groups: DocGroup[];
+  /** Path depth that names the sections, from the section filter. */
+  depth: number | null;
+  onJump: (group: DocGroup) => void;
+}) {
   const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
@@ -522,22 +609,20 @@ function Outline({ groups, onJump }: { groups: DocGroup[]; onJump: (group: DocGr
     document.querySelector(`[data-outline="${active}"]`)?.scrollIntoView({ block: 'nearest' });
   }, [active]);
 
-  let previous: string[] = [];
   const items: ReactNode[] = [];
+  let section: string | null = null;
   for (const group of groups) {
-    const shared = group.path.findIndex((part, i) => previous[i] !== part);
-    const from = shared === -1 ? group.path.length - 1 : shared;
-    for (let depth = from; depth < group.path.length - 1; depth++) {
+    const cut = depth !== null && group.path.length > depth + 1 ? depth + 1 : 0;
+    const name = group.path.slice(0, cut).join(' / ');
+    if (cut && name !== section) {
       items.push(
-        <div
-          key={`${group.path.slice(0, depth + 1).join('/')}#label`}
-          className="sb-outline__label"
-          style={{ paddingLeft: 8 + depth * 12 }}
-        >
-          {group.path[depth]}
-        </div>,
+        <button key={`${name}#section`} type="button" className="sb-outline__section" onClick={() => onJump(group)}>
+          {name}
+        </button>,
       );
     }
+    section = cut ? name : null;
+    const rest = group.path.slice(cut);
     const id = groupId(group.path);
     items.push(
       <button
@@ -546,20 +631,58 @@ function Outline({ groups, onJump }: { groups: DocGroup[]; onJump: (group: DocGr
         data-outline={id}
         className="sb-outline__item"
         aria-current={active === id ? 'true' : undefined}
-        style={{ paddingLeft: 8 + (group.path.length - 1) * 12 }}
+        title={group.path.join(' / ')}
         onClick={() => onJump(group)}
       >
-        <span>{group.path[group.path.length - 1]}</span>
+        <span className="sb-outline__path">
+          {rest.slice(0, -1).map((part, i) => (
+            <span key={i} className="sb-outline__muted">
+              {part} /{' '}
+            </span>
+          ))}
+          {rest[rest.length - 1]}
+        </span>
         <span className="sb-outline__count">{group.variables.length}</span>
       </button>,
     );
-    previous = group.path;
   }
 
   return (
     <nav className="sb-outline" aria-label="Группы на странице">
       <div className="sb-label sb-outline__title">На странице</div>
       <div className="sb-outline__list">{items}</div>
+    </nav>
+  );
+}
+
+/** Previous and next collection, in the sidebar's order. */
+function Pager({ collectionId }: { collectionId: string }) {
+  const index = COLLECTION_ORDER.indexOf(collectionId);
+  const links = [
+    { id: COLLECTION_ORDER[index - 1], label: 'Предыдущая', icon: 'alt-arrow-left' },
+    { id: COLLECTION_ORDER[index + 1], label: 'Следующая', icon: 'alt-arrow-right' },
+  ];
+  return (
+    <nav className="sb-pager" aria-label="Соседние коллекции">
+      {links.map((link, i) =>
+        link.id ? (
+          <button
+            key={link.label}
+            type="button"
+            className={`sb-pager__link${i ? ' sb-pager__link--next' : ''}`}
+            onClick={() => goToCollection(link.id)}
+          >
+            <span className="sb-caption">{link.label}</span>
+            <span className="sb-pager__name">
+              {i === 0 && <Icon name={link.icon} size={14} iconStyle="linear" />}
+              {collections[link.id].figmaName}
+              {i === 1 && <Icon name={link.icon} size={14} iconStyle="linear" />}
+            </span>
+          </button>
+        ) : (
+          <span key={link.label} />
+        ),
+      )}
     </nav>
   );
 }
@@ -574,6 +697,8 @@ function sectionDepth(variables: TokenVariable[]): number | null {
   }
   return null;
 }
+
+const OUTLINE_WIDTH = 220;
 
 const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
@@ -696,15 +821,22 @@ export function TokenPage({
       return next;
     });
   const allCollapsed = groups.length > 0 && groups.every((g) => collapsed.has(g.path.join('/')));
-  const toggleModes = (mode: string) =>
-    setHiddenModes((prev) => {
-      const next = new Set(prev);
-      if (next.has(mode)) next.delete(mode);
-      else if (collection.modes.length - next.size > 1) next.add(mode);
-      return next;
-    });
 
-  const outline = groups.length > 3;
+  // The outline goes beside the table only when both fit; otherwise the
+  // toolbar carries a "go to group" select instead.
+  const layout = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
+  useEffect(() => {
+    const node = layout.current;
+    if (!node) return;
+    const observer = new ResizeObserver(() => setWidth(node.clientWidth));
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+  // Widths at which nothing in the table needs cutting, not its minimums.
+  const tableComfort = 160 + modes.length * 230 + 300 + 220;
+  const navigable = groups.length > 3;
+  const outline = navigable && width >= tableComfort + OUTLINE_WIDTH + 24;
 
   return (
     <Page
@@ -718,19 +850,15 @@ export function TokenPage({
             placeholder="Имя, var(--…), описание"
           />
           {sections.length > 1 && (
-            <select
-              className="sb-control"
-              aria-label="Раздел"
+            <Select
+              label="Раздел"
               value={section}
-              onChange={(e) => onFilters({ section: e.target.value })}
-            >
-              <option value="">Все разделы</option>
-              {sections.map(([name, count]) => (
-                <option key={name} value={name}>
-                  {name} · {count}
-                </option>
-              ))}
-            </select>
+              onChange={(value) => onFilters({ section: value })}
+              options={[
+                { value: '', label: 'все' },
+                ...sections.map(([name, count]) => ({ value: name, label: `${name} · ${count}` })),
+              ]}
+            />
           )}
           {kinds.length > 1 && (
             <Segmented
@@ -744,38 +872,26 @@ export function TokenPage({
             />
           )}
           {collection.modes.length > 1 && (
-            <div className="sb-segmented" role="group" aria-label="Колонки мод">
-              {collection.modes.map((m) => (
-                <button
-                  key={m.slug}
-                  type="button"
-                  className="sb-segmented__item"
-                  aria-pressed={!hiddenModes.has(m.slug)}
-                  onClick={() => toggleModes(m.slug)}
-                  title={hiddenModes.has(m.slug) ? `Показать колонку ${m.name}` : `Скрыть колонку ${m.name}`}
-                >
-                  {m.name}
-                </button>
-              ))}
-            </div>
+            <MultiSelect
+              label="Колонки"
+              options={collection.modes.map((m) => ({ value: m.slug, label: m.name }))}
+              hidden={hiddenModes}
+              onChange={setHiddenModes}
+            />
           )}
-          {outline && (
-            <select
-              className="sb-control sb-outline-select"
-              aria-label="Перейти к группе"
+          {navigable && !outline && (
+            <Select
+              label="Группа"
               value=""
-              onChange={(e) => {
-                const group = groups.find((g) => groupId(g.path) === e.target.value);
+              onChange={(value) => {
+                const group = groups.find((g) => groupId(g.path) === value);
                 if (group) reveal(group);
               }}
-            >
-              <option value="">Перейти к группе…</option>
-              {groups.map((g) => (
-                <option key={groupId(g.path)} value={groupId(g.path)}>
-                  {g.path.join(' / ')}
-                </option>
-              ))}
-            </select>
+              options={[
+                { value: '', label: 'перейти…' },
+                ...groups.map((g) => ({ value: groupId(g.path), label: g.path.join(' / ') })),
+              ]}
+            />
           )}
           <Counts>
             <span className="sb-caption">
@@ -787,9 +903,7 @@ export function TokenPage({
                 icon={allCollapsed ? 'alt-arrow-down' : 'alt-arrow-up'}
                 onClick={() => setCollapsed(allCollapsed ? new Set() : new Set(groups.map((g) => g.path.join('/'))))}
                 title={allCollapsed ? 'Развернуть все группы' : 'Свернуть все группы'}
-              >
-                {allCollapsed ? 'Развернуть' : 'Свернуть'}
-              </ToolbarButton>
+              />
             )}
             {filtered && (
               <ResetFilters
@@ -808,7 +922,11 @@ export function TokenPage({
       {total === 0 ? (
         <Empty query={query || 'с этими фильтрами'} onClear={() => onFilters({ query: '', section: '', kind: '' })} />
       ) : (
-        <div className={outline ? 'sb-doc-layout' : undefined}>
+        <div
+          ref={layout}
+          className="sb-doc-layout"
+          style={{ gridTemplateColumns: outline ? `minmax(0, 1fr) ${OUTLINE_WIDTH}px` : 'minmax(0, 1fr)' }}
+        >
           <DocTable
             collectionId={collectionId}
             groups={groups}
@@ -818,9 +936,10 @@ export function TokenPage({
             onToggle={toggle}
             focused={focused}
           />
-          {outline && <Outline groups={groups} onJump={reveal} />}
+          {outline && <Outline groups={groups} depth={depth} onJump={reveal} />}
         </div>
       )}
+      <Pager collectionId={collectionId} />
     </Page>
   );
 }

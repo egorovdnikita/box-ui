@@ -207,6 +207,91 @@ export function Select<T extends string>({
   );
 }
 
+/**
+ * Several independent on/off options behind one 28px control — a menu of
+ * checkboxes, so it never reads as a segmented control that picks one.
+ * At least one option always stays on.
+ */
+export function MultiSelect({
+  label,
+  options,
+  hidden,
+  onChange,
+}: {
+  label: string;
+  options: { value: string; label: string }[];
+  /** Values switched off. */
+  hidden: Set<string>;
+  onChange: (hidden: Set<string>) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const close = (event: Event) => {
+      if (event instanceof KeyboardEvent ? event.key === 'Escape' : !root.current?.contains(event.target as Node))
+        setOpen(false);
+    };
+    document.addEventListener('pointerdown', close);
+    document.addEventListener('keydown', close);
+    return () => {
+      document.removeEventListener('pointerdown', close);
+      document.removeEventListener('keydown', close);
+    };
+  }, [open]);
+
+  const shown = options.length - hidden.size;
+  const toggle = (value: string) => {
+    const next = new Set(hidden);
+    if (next.has(value)) next.delete(value);
+    else if (shown > 1) next.add(value);
+    onChange(next);
+  };
+
+  return (
+    <div className="sb-menu" ref={root}>
+      <button
+        type="button"
+        className="sb-control sb-select"
+        aria-haspopup="true"
+        aria-expanded={open}
+        onClick={() => setOpen(!open)}
+      >
+        <span className="sb-select__label">{label}</span>
+        <span>{hidden.size === 0 ? 'все' : `${shown} из ${options.length}`}</span>
+        <ChromeIcon name="alt-arrow-down" size={12} />
+      </button>
+      {open && (
+        <div className="sb-menu__popover" role="menu">
+          {options.map((option) => {
+            const on = !hidden.has(option.value);
+            return (
+              <button
+                key={option.value}
+                type="button"
+                role="menuitemcheckbox"
+                aria-checked={on}
+                className="sb-menu__item"
+                disabled={on && shown === 1}
+                onClick={() => toggle(option.value)}
+              >
+                <span className="sb-menu__check" aria-hidden="true" />
+                {option.label}
+              </button>
+            );
+          })}
+          {hidden.size > 0 && (
+            <button type="button" className="sb-menu__item sb-menu__item--action" onClick={() => onChange(new Set())}>
+              Показать все
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 /** Search box; `/` focuses it from anywhere on the page, Esc clears it. */
 export function Search({
   value,
@@ -298,9 +383,7 @@ export function ShareLink() {
   };
 
   return (
-    <ToolbarButton icon="link-round" onClick={share} title="Скопировать ссылку на эту страницу вместе с фильтрами">
-      Ссылка
-    </ToolbarButton>
+    <ToolbarButton icon="link-round" onClick={share} title="Скопировать ссылку на эту страницу вместе с фильтрами" />
   );
 }
 
@@ -313,6 +396,7 @@ export function ResetFilters({ onReset }: { onReset: () => void }) {
   );
 }
 
+/** A toolbar action; without children it is a square icon button labelled by its title. */
 export function ToolbarButton({
   icon,
   title,
@@ -322,10 +406,16 @@ export function ToolbarButton({
   icon: string;
   title: string;
   onClick: () => void;
-  children: ReactNode;
+  children?: ReactNode;
 }) {
   return (
-    <button type="button" className="sb-control sb-button" onClick={onClick} title={title}>
+    <button
+      type="button"
+      className={children ? 'sb-control sb-button' : 'sb-control sb-button sb-button--icon'}
+      onClick={onClick}
+      title={title}
+      aria-label={children ? undefined : title}
+    >
       <ChromeIcon name={icon} size={14} />
       {children}
     </button>

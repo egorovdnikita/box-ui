@@ -34,6 +34,8 @@ function chromeVars(theme: ThemeVars): Record<string, string> {
     '--sb-font-code': theme.fontCode,
     '--sb-hover': dark ? 'hsl(0 0% 100% / 0.05)' : 'hsl(212 50% 30% / 0.05)',
     '--sb-shadow': dark ? 'hsl(0 0% 0% / 0.4)' : 'hsl(212 50% 30% / 0.12)',
+    '--sb-scrollbar': dark ? 'hsl(0 0% 100% / 0.14)' : 'hsl(0 0% 0% / 0.14)',
+    '--sb-scrollbar-hover': dark ? 'hsl(0 0% 100% / 0.26)' : 'hsl(0 0% 0% / 0.26)',
   };
 }
 
