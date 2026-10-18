@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { ModeTable, NextSteps } from './_docs';
 
 <Meta title="Начало работы" id="getting-started" />
 
@@ -7,48 +8,41 @@ import { Meta } from '@storybook/addon-docs/blocks';
 Три пакета, и ни в одном нет литерального цвета, радиуса или размера: всё приходит из
 переменных Figma через `@box-ui/tokens`.
 
+## 1. Установите
+
 ```bash
 npm i @box-ui/tokens @box-ui/icons @box-ui/react
 ```
 
-## 1. Подключите CSS
+## 2. Подключите CSS
 
 ```js
 import '@box-ui/tokens/css';
 ```
 
-Это `primitives.css` (777 фиксированных значений на `:root`) плюс `theme.css` (по блоку на
-каждую моду Figma, выбираются атрибутом `data-*`). Их можно импортировать по отдельности,
-если нужен только один.
+Это `primitives.css` — фиксированные значения на `:root` — и `theme.css`, по блоку на
+каждую моду Figma, которые выбираются атрибутами `data-*`. Их можно подключить и по
+отдельности.
 
-Дополнительно:
+Необязательно — моды из настроек системы:
 
 ```js
 import '@box-ui/tokens/css/adaptive.css';
 ```
 
-Он берёт тёмную тему из `prefers-color-scheme`, а Mobile — ниже 768px, **но только если
+Тёмная тема берётся из `prefers-color-scheme`, Mobile — ниже 768px, **но только если
 документ сам не выставил эти атрибуты**.
 
-## 2. Выберите моды
+## 3. Выберите моды
 
-Каждая переключаемая коллекция Figma соответствует одному атрибуту:
+Каждая переключаемая коллекция Figma — один атрибут. Выделено значение по умолчанию.
 
-| Атрибут | Коллекция Figma | Значения | По умолчанию |
-| --- | --- | --- | --- |
-| `data-theme` | System · Theme | `light` `dark` | `light` |
-| `data-accent` | Brand · Color | `deep` `bright` `monochrome` | `deep` |
-| `data-radius` | Brand · Rounding | `low` `medium` `high` | `low` |
-| `data-font` | Brand · Typography | `inter` `inter-display` `inter-tight` `inter-variable` | `inter` |
-| `data-device` | System · Responsive | `desktop` `mobile` | `desktop` |
-| `data-status` | System · Status | `positive` `warning` `negative` `information` | `positive` |
-| `data-appearance` | Controls · Appearance | `solid` `soft` `outline` | `solid` |
-| `data-state` | Controls · State | `default` `hover` `active` `disabled` | `default` |
+<ModeTable />
 
-Поставьте их на `<html>` — и за ними пойдёт весь документ:
+Поставьте атрибуты на `<html>` — и за ними пойдёт весь документ:
 
 ```html
-<html data-theme="dark" data-accent="bright" data-radius="high" data-font="inter" data-device="desktop">
+<html data-theme="dark" data-accent="bright" data-radius="high" data-device="mobile"></html>
 ```
 
 Или пусть это сделает провайдер:
@@ -56,17 +50,17 @@ import '@box-ui/tokens/css/adaptive.css';
 ```jsx
 import { BoxUIProvider } from '@box-ui/react';
 
-<BoxUIProvider target="root" theme="dark" accent="violet" radius="high">
+<BoxUIProvider target="root" theme="dark" accent="bright" radius="high">
   <App />
 </BoxUIProvider>;
 ```
 
-`target="local"` — значение по умолчанию — вместо этого оборачивает детей в `<div>`, и
-именно так две темы уживаются на одной странице.
+По умолчанию `target="local"`: провайдер оборачивает детей в `<div>` со всеми атрибутами —
+так две темы уживаются на одной странице.
 
-## 3. Пользуйтесь токенами
+## 4. Пользуйтесь токенами
 
-В CSS, по имени:
+В CSS — по имени из Code syntax в Figma:
 
 ```css
 .card {
@@ -77,19 +71,19 @@ import { BoxUIProvider } from '@box-ui/react';
 }
 ```
 
-Или из JS, если не хочется набирать имена руками:
+Или из JS, с автодополнением:
 
 ```js
-import { color, layout } from '@box-ui/tokens';
+import { theme, layout } from '@box-ui/tokens';
 
-color.background.base.secondary; // 'var(--surface-base-fill-raised)'
+theme.surface.base.fill.raised; // 'var(--surface-base-fill-raised)'
 layout.spacing.base.m; // 'var(--spacing-m)'
 ```
 
-В `model` лежит весь граф — коллекции, моды и то, на что ссылается каждая переменная.
-Именно из него собраны эти страницы документации.
+В `model` лежит весь граф — коллекции, моды и то, на что ссылается каждая переменная. Из
+него собраны таблицы этого Storybook.
 
-## 4. Иконки
+## 5. Иконки
 
 ```jsx
 import { Icon, IconStyleProvider } from '@box-ui/icons';
@@ -101,17 +95,18 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 </IconStyleProvider>;
 ```
 
-Размеры — токены `size/base/*`, поэтому иконка слушается `data-device` наравне со всем
-остальным, а геометрия красится `currentColor`. Каждый стиль — отдельный динамический
-`import()`, так что приложение везёт только то, что рисует.
-
-Без `title` иконка скрыта от вспомогательных технологий — это то, что нужно для
-декоративных; передавайте `title`, когда смысл несёт именно иконка.
+Размеры — токены `size/base/*`, поэтому иконка слушается `data-device`, а красится она
+`currentColor`. Каждый стиль — отдельный `import()`: приложение везёт только то, что рисует.
+Без `title` иконка скрыта от вспомогательных технологий — так и нужно для декоративных.
 
 ## Куда дальше
 
-- **Обзор** — как работает цепочка алиасов и почему при локальном переключении нужны все атрибуты.
-- **Токены** — таблицы всех коллекций: значения и превью по модам, code syntax из Figma, описания; поиск по всем коллекциям сразу.
-- **Иконки** — галерея с поиском и семейства «Флаги / Платежи / Бренды».
+<NextSteps
+  items={[
+    { story: 'introduction--docs', title: 'Обзор', text: 'Слои токенов, цепочки алиасов и моды для части страницы.' },
+    { story: 'tokens-search--search', title: 'Поиск токенов', text: 'Найти переменную по имени, CSS или описанию.' },
+    { story: 'icons-system--system', title: 'Иконки', text: 'Галерея с поиском, стилями и размерами.' },
+  ]}
+/>
 
 Машиночитаемая сводка всего перечисленного: <a href="llms.txt" target="_blank" rel="noreferrer">llms.txt</a>.

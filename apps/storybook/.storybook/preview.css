@@ -11,6 +11,7 @@ body,
 }
 
 html {
+  background: var(--sb-content-bg);
   scroll-behavior: smooth;
 }
 
@@ -91,9 +92,13 @@ body {
   color: var(--sb-text);
 }
 
+/*
+ * Leads run the width of the page, like the table under them: they are a
+ * sentence or two, so the long-line problem a measure guards against never
+ * arises, and a 76ch column left a ragged gap beside every wide table.
+ */
 .sb-lead {
   margin: 0;
-  max-width: 76ch;
   font-size: 14px;
   line-height: 1.6;
   color: var(--sb-text-muted);
@@ -226,6 +231,26 @@ body {
   justify-content: center;
   width: 28px;
   padding: 0;
+}
+
+/* A checkbox dressed as a 28px control, so it lines up with the selects. */
+.sb-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--sb-text);
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.sb-check input {
+  margin: 0;
+  accent-color: var(--sb-accent);
+}
+
+.sb-warning {
+  color: #e69d00;
 }
 
 /* Short exclusive (or toggled) options in one 28px control. */
@@ -364,9 +389,9 @@ button.sb-select svg {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   min-width: 0;
-  padding: 10px 8px;
+  padding: 8px 4px 6px;
   border: 1px solid var(--sb-border);
   border-radius: var(--sb-radius);
   background: var(--sb-raised-bg);
@@ -394,7 +419,7 @@ button.sb-select svg {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 11px;
+  font-size: 10px;
   color: var(--sb-text-muted);
 }
 
@@ -426,61 +451,6 @@ button.sb-select svg {
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 3px;
-}
-
-.sb-count {
-  display: inline-flex;
-  align-items: center;
-  height: 22px;
-  padding: 0 8px;
-  border-radius: var(--sb-radius);
-  background: var(--sb-hover);
-  color: var(--sb-text-muted);
-  font-size: 11px;
-  white-space: nowrap;
-}
-
-.sb-count--warning {
-  background: color-mix(in srgb, #e69d00 20%, transparent);
-  color: #e69d00;
-}
-
-/* --- tables --------------------------------------------------------------- */
-
-.sb-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 12px;
-}
-
-.sb-table th,
-.sb-table td {
-  padding: 8px;
-  border-bottom: 1px solid var(--sb-border);
-  text-align: left;
-  white-space: nowrap;
-}
-
-.sb-table thead th {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: var(--sb-raised-bg);
-}
-
-.sb-table tbody tr:hover td {
-  background: var(--sb-hover);
-}
-
-.sb-table .sb-table__lead {
-  position: sticky;
-  left: 0;
-  z-index: 1;
-  background: var(--sb-raised-bg);
-}
-
-.sb-table thead .sb-table__lead {
-  z-index: 3;
 }
 
 /* --- token tables (after the Figma documentation pages) ------------------- */
@@ -973,6 +943,159 @@ button.sb-select svg {
   pointer-events: none;
 }
 
+/* --- overview blocks (Introduction.mdx, GettingStarted.mdx) --------------- */
+
+.sb-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+  margin: 24px 0;
+}
+
+.sb-stats__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1px solid var(--sb-border);
+  border-radius: var(--sb-radius);
+  background: var(--sb-raised-bg);
+}
+
+.sb-stats__value {
+  color: var(--sb-text);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.sb-layers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 16px 0 24px;
+}
+
+.sb-layers__layer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.sb-layers__head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 52px;
+  margin-bottom: 4px;
+}
+
+.sb-layers__item,
+.sb-next__card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--sb-border);
+  border-radius: var(--sb-radius);
+  background: var(--sb-raised-bg);
+  color: var(--sb-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sb-layers__item:hover,
+.sb-next__card:hover {
+  border-color: var(--sb-accent);
+}
+
+.sb-layers__name {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sb-next {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px;
+  margin: 16px 0 24px;
+}
+
+.sb-next__card {
+  padding: 12px 14px;
+}
+
+.sb-modes {
+  display: grid;
+  margin: 16px 0 24px;
+  border: 1px solid var(--sb-border);
+  border-radius: var(--sb-radius);
+  background: var(--sb-raised-bg);
+  overflow: hidden;
+  font-size: 13px;
+}
+
+.sb-modes__row {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.8fr) minmax(160px, 1fr) minmax(0, 2fr);
+  gap: 12px;
+  align-items: center;
+  min-height: 36px;
+  padding: 4px 12px;
+  border-top: 1px solid var(--sb-border);
+  color: var(--sb-text);
+}
+
+/* Storybook's docs styles size bare spans in MDX; keep the table at table size. */
+.sb-modes__row > span,
+.sb-layers__item > span,
+.sb-next__card > span,
+.sb-stats__item > span:not(.sb-stats__value) {
+  font-size: 13px;
+}
+
+.sb-modes__row--head > span {
+  font-size: 11px;
+}
+
+.sb-layers__item > .sb-caption,
+.sb-next__card > .sb-caption,
+.sb-stats__item > .sb-caption {
+  font-size: 12px;
+}
+
+.sb-modes__row--head {
+  min-height: 32px;
+  border-top: 0;
+  background: var(--sb-bar-bg);
+  color: var(--sb-text-muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.sb-modes__values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.sb-modes__value {
+  padding: 1px 6px;
+  border: 1px solid var(--sb-border);
+  border-radius: var(--sb-radius-inner);
+  color: var(--sb-text-muted);
+  font-family: var(--sb-font-code);
+  font-size: 12px;
+}
+
+.sb-modes__value.is-default {
+  border-color: var(--sb-accent);
+  color: var(--sb-accent);
+}
+
 /* --- token index and cross-collection search ------------------------------ */
 
 .sb-index {
@@ -1082,27 +1205,6 @@ button.sb-select svg {
 .sb-results__more {
   padding: 8px 10px;
   text-align: left;
-}
-
-/* --- scrollers ------------------------------------------------------------ */
-
-.sb-scroller {
-  overflow-x: auto;
-  border: 1px solid var(--sb-border);
-  border-radius: var(--sb-radius);
-  background: var(--sb-raised-bg);
-}
-
-/* --- callout -------------------------------------------------------------- */
-
-.sb-callout {
-  display: flex;
-  gap: 10px;
-  padding: 12px 14px;
-  border: 1px solid var(--sb-border);
-  border-left: 3px solid var(--sb-accent);
-  border-radius: var(--sb-radius);
-  background: var(--sb-raised-bg);
 }
 
 .sb-callout__icon {

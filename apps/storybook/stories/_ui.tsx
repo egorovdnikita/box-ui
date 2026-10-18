@@ -50,10 +50,6 @@ function Toast({ message }: { message: string | null }) {
 
 // --- type --------------------------------------------------------------------
 
-export function Caption({ children }: { children: ReactNode }) {
-  return <span className="sb-caption">{children}</span>;
-}
-
 export function Code({ children, copyable }: { children: ReactNode; copyable?: string }) {
   const copy = useCopy();
   if (!copyable) return <code className="sb-code">{children}</code>;
@@ -453,10 +449,6 @@ export function Segmented<T extends string>({
   );
 }
 
-export function Count({ children, tone = 'neutral' }: { children: ReactNode; tone?: 'neutral' | 'warning' }) {
-  return <span className={tone === 'warning' ? 'sb-count sb-count--warning' : 'sb-count'}>{children}</span>;
-}
-
 /** Right-aligned group of counts inside a toolbar. */
 export function Counts({ children }: { children: ReactNode }) {
   return (
@@ -545,15 +537,3 @@ export function Scope({
     </div>
   );
 }
-
-/**
- * A Box UI surface inside the Storybook chrome. Carries both a background and a
- * foreground token, so a demo of the Light theme still reads on a dark canvas.
- */
-export const demoSurface: CSSProperties = {
-  background: 'var(--surface-base-fill-raised)',
-  color: 'var(--surface-base-content-strong)',
-  border: '1px solid var(--surface-base-border-default)',
-  borderRadius: 'var(--rounding-m)',
-  padding: 'var(--spacing-3xs)',
-};

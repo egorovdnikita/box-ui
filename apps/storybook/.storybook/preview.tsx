@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import type { Decorator, Preview } from '@storybook/react-vite';
 import { themes, type ThemeVars } from 'storybook/theming';
-import { IconStyleProvider, ICON_STYLES, ICON_STYLE_LABELS, type IconStyle } from '@box-ui/icons';
+import { IconStyleProvider, type IconStyle } from '@box-ui/icons';
+import { INITIAL_MODES, MODE_CONTROLS } from './modes';
 import '@box-ui/react/styles.css';
 import './preview.css';
 
@@ -53,139 +54,21 @@ function applyChrome() {
   for (const [name, value] of Object.entries(chromeVars(storybookTheme()))) {
     document.documentElement.style.setProperty(name, value);
   }
+  // Native parts — the scrollbar gutter, form controls — follow the chrome too;
+  // left at the default they drew a white strip down the right of dark pages.
+  document.documentElement.style.colorScheme = storybookTheme().base;
 }
 
 applyChrome();
 prefersDark.addEventListener('change', applyChrome);
 
 /**
- * One toolbar control per switchable Figma variable collection.
- *
- *   Theme       -> ◑ System · Theme                  [data-theme]
- *   Accent      -> ☯︎ Brand · Color                   [data-accent]
- *   Radius      -> ☯︎ Brand · Rounding                [data-radius]
- *   Type        -> ☯︎ Brand · Typography              [data-font]
- *   Device      -> ◑ System · Responsive             [data-device]
- *   Status      -> ◑ System · Status                 [data-status]
- *   Appearance  -> ◑ System · Controls · Appearance  [data-appearance]
- *   State       -> ◑ System · Controls · State       [data-state]
- *   Icons       -> ☯︎ Brand · Icon                    (icon-style)
+ * One global per switchable Figma variable collection. They have no toolbar
+ * entries of their own: manager.tsx draws them together as the "Моды" panel.
  */
-const globalTypes: Preview['globalTypes'] = {
-  theme: {
-    description: 'Коллекция Figma «System · Theme»',
-    toolbar: {
-      title: 'Тема',
-      icon: 'contrast',
-      dynamicTitle: true,
-      items: [
-        { value: 'light', title: 'Light' },
-        { value: 'dark', title: 'Dark' },
-      ],
-    },
-  },
-  accent: {
-    description: 'Коллекция Figma «Brand · Color»',
-    toolbar: {
-      title: 'Акцент',
-      icon: 'paintbrush',
-      dynamicTitle: true,
-      items: ['deep', 'bright', 'monochrome'].map((value) => ({
-        value,
-        title: value[0].toUpperCase() + value.slice(1),
-      })),
-    },
-  },
-  radius: {
-    description: 'Коллекция Figma «Brand · Rounding»',
-    toolbar: {
-      title: 'Скругление',
-      icon: 'component',
-      dynamicTitle: true,
-      items: [
-        { value: 'low', title: 'Low' },
-        { value: 'medium', title: 'Medium' },
-        { value: 'high', title: 'High' },
-      ],
-    },
-  },
-  font: {
-    description: 'Коллекция Figma «Brand · Typography»',
-    toolbar: {
-      title: 'Гарнитура',
-      icon: 'type',
-      dynamicTitle: true,
-      items: [
-        { value: 'inter', title: 'Inter' },
-        { value: 'inter-display', title: 'Inter Display' },
-        { value: 'inter-tight', title: 'Inter Tight' },
-        { value: 'inter-variable', title: 'Inter Variable' },
-      ],
-    },
-  },
-  device: {
-    description: 'Коллекция Figma «System · Responsive»',
-    toolbar: {
-      title: 'Устройство',
-      icon: 'mobile',
-      dynamicTitle: true,
-      items: [
-        { value: 'desktop', title: 'Desktop' },
-        { value: 'mobile', title: 'Mobile' },
-      ],
-    },
-  },
-  status: {
-    description: 'Коллекция Figma «System · Status»',
-    toolbar: {
-      title: 'Статус',
-      icon: 'bell',
-      dynamicTitle: true,
-      items: [
-        { value: 'positive', title: 'Positive' },
-        { value: 'warning', title: 'Warning' },
-        { value: 'negative', title: 'Negative' },
-        { value: 'information', title: 'Information' },
-      ],
-    },
-  },
-  appearance: {
-    description: 'Коллекция Figma «Controls · Appearance»',
-    toolbar: {
-      title: 'Вид контрола',
-      icon: 'box',
-      dynamicTitle: true,
-      items: [
-        { value: 'solid', title: 'Solid' },
-        { value: 'soft', title: 'Soft' },
-        { value: 'outline', title: 'Outline' },
-      ],
-    },
-  },
-  state: {
-    description: 'Коллекция Figma «Controls · State» — обычно её ведут :hover/:active/:disabled',
-    toolbar: {
-      title: 'Состояние',
-      icon: 'pointerhand',
-      dynamicTitle: true,
-      items: [
-        { value: 'default', title: 'Default' },
-        { value: 'hover', title: 'Hover' },
-        { value: 'active', title: 'Active' },
-        { value: 'disabled', title: 'Disabled' },
-      ],
-    },
-  },
-  iconStyle: {
-    description: 'Коллекция Figma «Brand · Icon»',
-    toolbar: {
-      title: 'Стиль иконок',
-      icon: 'star',
-      dynamicTitle: true,
-      items: ICON_STYLES.map((value) => ({ value, title: ICON_STYLE_LABELS[value] })),
-    },
-  },
-};
+const globalTypes: Preview['globalTypes'] = Object.fromEntries(
+  MODE_CONTROLS.map((control) => [control.id, { description: `Коллекция Figma «${control.collection}»` }]),
+);
 
 const withBoxUiModes: Decorator = (Story, context) => {
   const { theme, accent, radius, font, device, status, appearance, state, iconStyle } = context.globals as Record<
@@ -216,17 +99,8 @@ const withBoxUiModes: Decorator = (Story, context) => {
 
 const preview: Preview = {
   globalTypes,
-  initialGlobals: {
-    theme: 'light',
-    accent: 'deep',
-    radius: 'low',
-    font: 'inter',
-    device: 'desktop',
-    status: 'positive',
-    appearance: 'solid',
-    state: 'default',
-    iconStyle: 'linear',
-  },
+  initialGlobals: INITIAL_MODES,
+
   decorators: [withBoxUiModes],
   parameters: {
     layout: 'fullscreen',
@@ -238,7 +112,14 @@ const preview: Preview = {
     options: {
       showPanel: false,
       storySort: {
-        order: ['Обзор', 'Начало работы', 'Токены', ['Поиск', 'Primitives', 'Brand', 'System'], 'Иконки'],
+        order: [
+          'Обзор',
+          'Начало работы',
+          'Токены',
+          ['Поиск', 'Primitives', 'Brand', 'System'],
+          'Иконки',
+          ['Системные', 'Флаги', 'Платежи', 'Бренды'],
+        ],
       },
     },
     controls: { disable: true },

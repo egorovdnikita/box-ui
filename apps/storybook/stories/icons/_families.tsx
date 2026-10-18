@@ -1,5 +1,6 @@
+/* The Figma icon families — flags, payments, brands — one story each, in Icons.stories.tsx. */
 import { useMemo } from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { StoryObj } from '@storybook/react-vite';
 import { useArgs } from 'storybook/preview-api';
 import {
   FAMILY_SHAPE_LABELS,
@@ -15,7 +16,6 @@ import {
 } from '@box-ui/icons';
 import {
   Code,
-  Count,
   Counts,
   Empty,
   Grid,
@@ -29,21 +29,6 @@ import {
   matches,
   useCopy,
 } from '../_ui';
-
-const meta: Meta = {
-  // `id` is pinned so translating the title does not change the story URLs.
-  id: 'icons-figma-families',
-  title: 'Иконки/Семейства Figma',
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'Кроме Solar UI Icons в `Box UI | Icons` лежат ещё три семейства. Состав и свойства вариантов считаны из файла Figma; сама графика берётся из канонических открытых поставок тех же знаков.',
-      },
-    },
-  },
-};
-export default meta;
 
 type Story = StoryObj;
 
@@ -159,8 +144,10 @@ function Family({
             options={ICON_SIZES.map((s) => ({ value: s, label: `size/base/${s}` }))}
           />
           <Counts>
-            <Count>показано: {items.length}</Count>
-            {monograms > 0 && <Count tone="warning">монограммой: {monograms}</Count>}
+            <span className="sb-caption">
+              {counted(items.length, ['знак', 'знака', 'знаков'])}
+              {monograms > 0 && <span className="sb-warning"> · {monograms} монограммой</span>}
+            </span>
             {dirty && <ResetFilters onReset={() => set(defaults)} />}
             <ShareLink />
           </Counts>
@@ -172,7 +159,7 @@ function Family({
       ) : items.length === 0 ? (
         <Empty query={query} onClear={() => set(defaults)} />
       ) : (
-        <Grid min={148} gap={6}>
+        <Grid min={104} gap={4}>
           {items.map((item) => (
             <FamilyTile key={item.slug} item={item} shape={shape} tone={tone} size={size} />
           ))}
@@ -205,11 +192,11 @@ function Family({
  * Filters live in args so Storybook keeps them in the URL — `useArgs` has to be
  * called from the story's own render, not from a component nested inside it.
  */
-function story(id: IconFamily, shapes: FamilyShape[]): Story {
+export function familyStory(id: IconFamily, shapes: FamilyShape[]): Story {
   const defaults: FamilyArgs = { query: '', shape: shapes[0], tone: 'original', size: 'max' };
   return {
     args: defaults,
-    render: (args) => {
+    render: function Render(args) {
       const [, updateArgs] = useArgs();
       return (
         <Family
@@ -223,7 +210,3 @@ function story(id: IconFamily, shapes: FamilyShape[]): Story {
     },
   };
 }
-
-export const Flags = { ...story('flags', ['natural', 'rounded', 'circle']), name: 'Флаги' };
-export const Payments = { ...story('payments', ['natural']), name: 'Платежи' };
-export const Brands = { ...story('brands', ['natural', 'circle']), name: 'Бренды' };

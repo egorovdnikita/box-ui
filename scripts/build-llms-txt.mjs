@@ -120,8 +120,8 @@ ${rosters}
 - [Обзор](${SITE}/?path=/docs/introduction--docs): граф переменных и как разрешается токен
 - [Начало работы](${SITE}/?path=/docs/getting-started--docs): установка, подключение мод, использование токенов
 - [Токены](${SITE}/?path=/story/tokens-search--search): поиск по всем 15 коллекциям Figma и их таблицы — значения и превью по модам, code syntax, описания
-- [UI Icons](${SITE}/?path=/story/icons-ui-icons--gallery): галерея с поиском
-- [Семейства Figma](${SITE}/?path=/story/icons-figma-families--flags): флаги, платежи, бренды
+- [Иконки](${SITE}/?path=/story/icons-system--system): системные иконки с поиском, стилями и размерами
+- [Флаги](${SITE}/?path=/story/icons-flags--flags), [Платежи](${SITE}/?path=/story/icons-payments--payments), [Бренды](${SITE}/?path=/story/icons-brands--brands): семейства из Figma
 `;
 }
 
