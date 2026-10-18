@@ -121,9 +121,23 @@ export function CodeBlock({ code, label }: { code: string; label?: string }) {
     <div className="sb-codeblock">
       {label && <span className="sb-codeblock__label">{label}</span>}
       <pre>{code}</pre>
-      <button type="button" className="sb-codeblock__copy" onClick={() => copy(code, 'код скопирован')}>
+      <button type="button" className="sb-codeblock__copy" onClick={() => copy(code, 'код')}>
         Копировать
       </button>
+    </div>
+  );
+}
+
+/** Name–text rows, e.g. the section cards of a Figma page. */
+export function Notes({ rows }: { rows: [string, string][] }) {
+  return (
+    <div className="sb-modes">
+      {rows.map(([name, text]) => (
+        <div key={name} className="sb-modes__row sb-modes__note">
+          <code className="sb-code">{name}</code>
+          <span className="sb-caption">{text}</span>
+        </div>
+      ))}
     </div>
   );
 }

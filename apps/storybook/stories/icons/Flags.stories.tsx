@@ -5,4 +5,4 @@ import { familyStory } from './_families';
 const meta: Meta = { id: 'icons-flags', title: 'Иконки/Флаги' };
 export default meta;
 
-export const Flags = { ...familyStory('flags', ['natural', 'rounded', 'circle']), name: 'Флаги' };
+export const Flags = { ...familyStory('flags', ['circle', 'rounded', 'natural']), name: 'Флаги' };

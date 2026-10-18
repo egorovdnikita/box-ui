@@ -26,13 +26,21 @@ interface FamilyArgs {
   icon: string;
 }
 
-/** One or two sentences each: what is on the page and where the artwork comes from. */
+/**
+ * Each lead opens with the text of the page's card in Figma, verbatim, and
+ * goes on with a sentence about this page in Storybook.
+ */
 const LEAD: Record<IconFamily, string> = {
-  flags: 'Флаги стран по ISO 3166-1 в трёх формах из Figma. Графика — flag-icons (MIT).',
+  flags:
+    'Набор иконок флагов стран для использования в интерфейсе. Формы Circle, Rounded и Shape — те же варианты, что в Figma; графика — flag-icons (MIT).',
   payments:
-    'Криптовалюты и платёжные системы; ищутся по названию и тикеру. Графика — web3icons и cryptocurrency-icons.',
-  brands: 'Фирменные знаки в оригинальном цвете или монохромом. Графика — simple-icons (CC0).',
+    'Набор иконок платёжных систем и сервисов для использования в интерфейсе. Поиск понимает название и тикер; графика — web3icons и cryptocurrency-icons.',
+  brands:
+    'Набор иконок популярных брендов и продуктов для использования в интерфейсе. Знаки бывают в оригинальном цвете и монохромные; графика — simple-icons (CC0).',
 };
+
+/** Page titles, as in the sidebar. */
+const TITLE: Record<IconFamily, string> = { flags: 'Флаги', payments: 'Платежи', brands: 'Бренды' };
 
 const NOUN: Record<IconFamily, [string, string, string]> = {
   flags: ['флаг', 'флага', 'флагов'],
@@ -69,14 +77,14 @@ function Family({
 
   return (
     <Page
-      title={meta.figmaPage}
+      title={TITLE[id]}
       lead={LEAD[id]}
       toolbar={
         <>
           <Search
             value={query}
             onChange={(value) => set({ query: value })}
-            placeholder={id === 'payments' ? 'bitcoin, BTC…' : 'название…'}
+            placeholder={id === 'payments' ? 'Название или тикер' : 'Название'}
           />
           {shapes.length > 1 && (
             <Select
@@ -107,7 +115,7 @@ function Family({
             <span className="sb-caption">
               {counted(items.length, NOUN[id])}
               {monograms > 0 && (
-                <span className="sb-warning" title="Для них нет графики в источнике — рисуется монограмма">
+                <span className="sb-warning" title="Графики для них нет в источнике, поэтому рисуется монограмма">
                   {' '}
                   · {monograms} монограммой
                 </span>
@@ -120,7 +128,7 @@ function Family({
       }
     >
       {!data ? (
-        <p className="sb-lead">Загружаем {meta.figmaPage.toLowerCase()}…</p>
+        <p className="sb-lead">Загружаем {TITLE[id].toLowerCase()}…</p>
       ) : items.length === 0 ? (
         <Empty query={query} onClear={() => set(defaults)} />
       ) : (
@@ -147,7 +155,7 @@ function Family({
             [
               selected.ticker,
               selected.code?.toUpperCase(),
-              selected.body ? null : 'монограмма — графики нет в источнике',
+              selected.body ? null : 'монограмма: графики нет в источнике',
             ]
               .filter(Boolean)
               .join(' · ') || `Figma: ${meta.figmaNaming}`

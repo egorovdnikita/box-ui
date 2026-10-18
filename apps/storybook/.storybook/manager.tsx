@@ -162,7 +162,7 @@ function ModesPanel({
         </Group>
       ))}
       <Footer>
-        <span>Моды меняют только Box UI, не саму документацию</span>
+        <span>Тема перекрашивает и страницы, остальные моды — только Box UI</span>
         <Reset type="button" disabled={!changed} onClick={() => update({ ...INITIAL_MODES })}>
           Сбросить
         </Reset>

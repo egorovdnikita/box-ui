@@ -44,7 +44,7 @@ export const System: StoryObj<GalleryArgs> = {
     const [globals, updateGlobals] = useGlobals();
     const { query, category, size, onlyAvailable, icon: picked } = args;
     const set = (patch: Partial<GalleryArgs>) => updateArgs(patch);
-    const style = (globals.iconStyle as IconStyle) ?? 'linear';
+    const style = (globals.iconStyle as IconStyle) ?? 'bold';
     const dirty = (Object.keys(DEFAULTS) as (keyof GalleryArgs)[]).some(
       (key) => key !== 'icon' && args[key] !== DEFAULTS[key],
     );
@@ -67,10 +67,10 @@ export const System: StoryObj<GalleryArgs> = {
     return (
       <Page
         title="Системные иконки"
-        lead={`${catalog.icons.length} иконок Solar в ${catalog.categories.length} категориях. Стиль — мода «Brand · Icon», размер — токены size/base/*. Выберите иконку, чтобы увидеть её крупно и скопировать.`}
+        lead="Solar — это большая библиотека иконок, состоящая из пиктограмм, выполненных в современном стиле. Стиль переключает «Иконки» в «Модах», размер — токены size/base/*; выберите иконку, чтобы увидеть её крупно и скопировать."
         toolbar={
           <>
-            <Search value={query} onChange={(value) => set({ query: value })} placeholder="arrow up, shield…" />
+            <Search value={query} onChange={(value) => set({ query: value })} placeholder="Имя или категория" />
             <Select
               label="Категория"
               value={category}
@@ -103,7 +103,7 @@ export const System: StoryObj<GalleryArgs> = {
             <Counts>
               <span className="sb-caption">
                 {counted(filtered.length, ['иконка', 'иконки', 'иконок'])}
-                {missing > 0 && <span className="sb-warning"> · {missing} нет в этом стиле</span>}
+                {missing > 0 && <span className="sb-warning"> · {missing} не нарисованы в этом стиле</span>}
               </span>
               {dirty && <ResetFilters onReset={() => set({ ...DEFAULTS, icon: picked })} />}
               <ShareLink />
@@ -122,7 +122,9 @@ export const System: StoryObj<GalleryArgs> = {
                   key={icon.name}
                   label={icon.name}
                   title={
-                    drawn ? `${icon.name} · ${icon.category}` : `${icon.name} — нет в стиле ${ICON_STYLE_LABELS[style]}`
+                    drawn
+                      ? `${icon.name} · ${icon.category}`
+                      : `${icon.name} · не нарисована в стиле ${ICON_STYLE_LABELS[style]}`
                   }
                   selected={icon.name === picked}
                   muted={!drawn}
@@ -138,7 +140,7 @@ export const System: StoryObj<GalleryArgs> = {
         {selected && (
           <Inspector
             title={selected.name}
-            meta={`${selected.category} · ${counted(selected.styles.length, ['стиль', 'стиля', 'стилей'])} из 6`}
+            meta={`${selected.category} · ${selected.styles.length} из 6 стилей`}
             preview={
               <Icon
                 name={selected.name}
@@ -163,7 +165,7 @@ export const System: StoryObj<GalleryArgs> = {
                     aria-checked={s === style}
                     disabled={!has}
                     className="sb-inspector__style"
-                    title={has ? ICON_STYLE_LABELS[s] : `${ICON_STYLE_LABELS[s]} — нет в Solar`}
+                    title={has ? ICON_STYLE_LABELS[s] : `${ICON_STYLE_LABELS[s]} · не нарисована в Solar`}
                     onClick={() => updateGlobals({ iconStyle: s })}
                   >
                     {has ? <Icon name={selected.name} iconStyle={s} size={20} /> : '—'}

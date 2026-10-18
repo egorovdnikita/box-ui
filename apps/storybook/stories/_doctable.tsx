@@ -100,7 +100,7 @@ function resolveLiteral(variable: TokenVariable, mode: string): string | number 
 }
 
 export const KIND_ICON: Record<Kind, string> = { color: 'palette-round', number: 'ruler', string: 'text-square' };
-const KIND_LABEL: Record<Kind, string> = { color: 'Цвет', number: 'Число', string: 'Строка' };
+const KIND_LABEL: Record<Kind, string> = { color: 'цвет', number: 'число', string: 'строка' };
 
 const slug = (parts: string[]) =>
   parts
@@ -242,7 +242,7 @@ function ValueCell({
         <button
           type="button"
           className="sb-doc__chip"
-          title={`${alias}\nКлик — перейти к переменной`}
+          title={`${alias} · перейти к переменной`}
           onClick={() => goToToken(alias)}
         >
           {swatch ?? <Icon name={KIND_ICON[kind]} size={14} iconStyle="linear" />}
@@ -530,7 +530,7 @@ export function DocTable({
                         <div
                           id={rowId(v.cssVar)}
                           className={`sb-doc__cell sb-doc__name${flash}`}
-                          title={`${v.path} · ${KIND_LABEL[kind].toLowerCase()}`}
+                          title={`${v.path} · ${KIND_LABEL[kind]}`}
                         >
                           <Icon name={KIND_ICON[kind]} size={16} iconStyle="linear" />
                           <span className="sb-doc__name-label">{leafOf(v)}</span>
@@ -847,7 +847,7 @@ export function TokenPage({
           <Search
             value={query}
             onChange={(value) => onFilters({ query: value })}
-            placeholder="Имя, var(--…), описание"
+            placeholder="Имя, var(--…) или описание"
           />
           {sections.length > 1 && (
             <Select
@@ -866,7 +866,7 @@ export function TokenPage({
               value={kind}
               onChange={(value) => onFilters({ kind: value })}
               options={[
-                { value: '', label: 'Все' },
+                { value: '', label: 'все' },
                 ...kinds.map(([k]) => ({ value: k, label: KIND_LABEL[k], icon: KIND_ICON[k] })),
               ]}
             />
@@ -920,7 +920,7 @@ export function TokenPage({
     >
       {children}
       {total === 0 ? (
-        <Empty query={query || 'с этими фильтрами'} onClear={() => onFilters({ query: '', section: '', kind: '' })} />
+        <Empty query={query} onClear={() => onFilters({ query: '', section: '', kind: '' })} />
       ) : (
         <div
           ref={layout}

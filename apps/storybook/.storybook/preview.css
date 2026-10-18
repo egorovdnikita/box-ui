@@ -1185,6 +1185,10 @@ button.sb-select svg {
   color: var(--sb-text-muted);
 }
 
+.sb-modes__note {
+  grid-template-columns: minmax(130px, 0.3fr) minmax(0, 1.7fr);
+}
+
 .sb-modes__values {
   display: flex;
   flex-wrap: wrap;

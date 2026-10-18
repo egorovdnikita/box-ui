@@ -127,7 +127,7 @@ export const INITIAL_MODES: Record<string, string> = {
   radius: 'low',
   font: 'inter',
   device: 'desktop',
-  iconStyle: 'linear',
+  iconStyle: 'bold',
   status: 'positive',
   appearance: 'solid',
   state: 'default',

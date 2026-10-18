@@ -102,8 +102,8 @@ export const Search: StoryObj<Filters> = {
 
     return (
       <Page
-        title="Токены"
-        lead="Все пятнадцать коллекций Figma в одном поиске: по пути переменной, по её имени в CSS и по описанию. Клик по строке открывает страницу коллекции на этой переменной."
+        title="Поиск токенов"
+        lead="Все 15 коллекций Figma в одном поиске: по пути переменной, имени в CSS и описанию. Клик по строке открывает страницу коллекции на этой переменной."
         toolbar={
           <>
             <SearchField
@@ -112,13 +112,13 @@ export const Search: StoryObj<Filters> = {
                 setLimit(LIMIT);
                 updateArgs({ query: value });
               }}
-              placeholder="Например, page или --spacing-m"
+              placeholder="Имя, var(--…) или описание"
             />
             <Segmented
               label="Слой"
               value={layer}
               onChange={(value) => updateArgs({ layer: value })}
-              options={[{ value: '', label: 'Все слои' }, ...LAYERS]}
+              options={[{ value: '', label: 'все' }, ...LAYERS]}
             />
             <Counts>
               <span className="sb-caption">

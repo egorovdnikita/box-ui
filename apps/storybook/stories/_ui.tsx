@@ -84,7 +84,7 @@ export function Page({
 
   const copy = useCallback((value: string, label?: string) => {
     void navigator.clipboard?.writeText(value);
-    setMessage(label ?? value);
+    setMessage(`Скопировано: ${label ?? value}`);
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(() => setMessage(null), 1600);
   }, []);
@@ -367,7 +367,7 @@ export function ShareLink() {
     } catch {
       /* cross-origin — the iframe URL is still a working link */
     }
-    copy(href, 'ссылка на этот вид');
+    copy(href, 'ссылка на страницу');
   };
 
   return (
@@ -469,9 +469,9 @@ export function Empty({ query, onClear }: { query: string; onClear: () => void }
   return (
     <div className="sb-empty">
       <ChromeIcon name="magnifer" size={28} />
-      <div>Ничего не найдено по запросу «{query}»</div>
+      <div>{query ? `Ничего не найдено по запросу «${query}»` : 'Ничего не найдено с этими фильтрами'}</div>
       <button type="button" onClick={onClear} className="sb-link">
-        Очистить поиск
+        Сбросить фильтры
       </button>
     </div>
   );
