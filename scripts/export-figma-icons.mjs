@@ -66,6 +66,20 @@ async function figma(path) {
   return response.json();
 }
 
+/** Fetches a rendered SVG, retrying the occasional dropped connection. */
+async function download(url, attempts = 4) {
+  for (let i = 1; ; i++) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`${response.status}`);
+      return await response.text();
+    } catch (error) {
+      if (i >= attempts) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 1000 * i));
+    }
+  }
+}
+
 const chunk = (items, size) =>
   Array.from({ length: Math.ceil(items.length / size) }, (_, i) => items.slice(i * size, (i + 1) * size));
 
@@ -84,15 +98,19 @@ function collect(node, family, out, setName = null) {
 }
 
 console.log(`Reading ${FILE_KEY} …`);
-const file = await figma(`/files/${FILE_KEY}?geometry=paths`);
+// The whole file is far past what one response can hold (Node caps a string at
+// 512 MB), so read the page list first and then only the pages we export.
+// Geometry is not needed here: the SVG comes from the images endpoint.
+const { document } = await figma(`/files/${FILE_KEY}?depth=1`);
 
 for (const familyName of selected) {
   const family = FAMILIES[familyName];
-  const page = file.document.children.find((p) => p.name.trim() === family.page);
-  if (!page) {
+  const stub = document.children.find((p) => p.name.trim() === family.page);
+  if (!stub) {
     console.warn(`  page "${family.page}" not found, skipping ${familyName}`);
     continue;
   }
+  const page = (await figma(`/files/${FILE_KEY}/nodes?ids=${encodeURIComponent(stub.id)}`)).nodes[stub.id].document;
 
   const nodes = [];
   collect(page, family, nodes);
@@ -118,16 +136,20 @@ for (const familyName of selected) {
       `/images/${FILE_KEY}?ids=${encodeURIComponent(ids)}&format=svg&svg_outline_text=true`,
     );
 
-    await Promise.all(
-      batch.map(async (node) => {
-        const url = images[node.id];
-        if (!url) return;
-        const svg = await (await fetch(url)).text();
-        const slug = slugOf(node);
-        await writeFile(join(outDir, `${slug}.svg`), svg);
-        manifest.push({ slug, name: node.name, base: node.base, variant: node.variant, figmaId: node.id });
-      }),
-    );
+    // The rendered SVGs live on S3; a whole batch at once times out, so fetch
+    // a few at a time.
+    for (const group of chunk(batch, 8)) {
+      await Promise.all(
+        group.map(async (node) => {
+          const url = images[node.id];
+          if (!url) return;
+          const svg = await download(url);
+          const slug = slugOf(node);
+          await writeFile(join(outDir, `${slug}.svg`), svg);
+          manifest.push({ slug, name: node.name, base: node.base, variant: node.variant, figmaId: node.id });
+        }),
+      );
+    }
 
     done += batch.length;
     process.stdout.write(`  ${done}/${nodes.length}\r`);
