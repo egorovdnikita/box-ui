@@ -52,12 +52,9 @@ npm run build -w @box-ui/tokens
 падает, если два пути претендуют на одно имя, — так что столкновение после правки в Figma
 не пройдёт незамеченным.
 
-Одно такое столкновение в Figma есть сейчас: у `rounding/base/full` в `System ・ Responsive`
-тот же code syntax, что у `rounding/full` в `Primitives ・ Rounding` (`--rounding-full`), а
-первая через `Brand ・ Rounding` ссылается на вторую — имя ссылалось бы само на себя. Пока
-code syntax не поправят в Figma, сборка выводит её как `--rounding-base-full`
-(`NAME_OVERRIDES` в `scripts/build.mjs`) и сама подскажет убрать исключение, когда
-столкновение исчезнет.
+Исключений нет: каждое имя в CSS — дословно code syntax из Figma. Полное скругление
+примитивов называется `--rounding-9999`, поэтому `--rounding-full` свободно для
+семантического `rounding/base/full` из `System ・ Responsive`.
 
 Единицы: длины получают `px`, `font-weight` остаётся безразмерным. Семейства шрифтов
 выводятся с запасным вариантом: `"Inter", var(--font-fallback)`. Прозрачные ступени

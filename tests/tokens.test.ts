@@ -153,8 +153,7 @@ describe('Figma dumps', () => {
 
   it('names every CSS variable after its Web code syntax in Figma', () => {
     // A developer copies the name from Figma's Dev Mode; it has to exist in the
-    // stylesheet. The one sanctioned exception is a Figma name clash the build
-    // documents in NAME_OVERRIDES.
+    // stylesheet, with no exceptions.
     const model = JSON.parse(readFileSync(join(root, 'packages/tokens/dist/tokens.json'), 'utf8')) as {
       collections: Record<string, { variables: { path: string; cssVar: string; codeSyntax: string }[] }>;
     };
@@ -167,7 +166,7 @@ describe('Figma dumps', () => {
       }
     }
     expect(total).toBe(collections.reduce((n, c) => n + Object.keys(c.variables).length, 0));
-    expect(differ).toEqual(['sys-responsive/rounding/base/full']);
+    expect(differ).toEqual([]);
   });
 
   it('has at least one path that two collections both use', () => {

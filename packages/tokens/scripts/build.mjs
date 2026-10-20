@@ -86,19 +86,6 @@ const LAYERS = {
   },
 };
 
-/**
- * Where Figma's code syntax cannot be used as-is. Figma gives
- * `rounding/base/full` in System · Responsive the same Web name as
- * `rounding/full` in Primitives · Rounding, and the first aliases the second
- * through Brand · Rounding — one name would end up referring to itself. Its
- * siblings keep their Figma names; this one gets the obvious distinct name
- * until the code syntax is fixed in Figma, at which point the build fails here
- * and the entry should go.
- */
-const NAME_OVERRIDES = {
-  'sys-responsive/rounding/base/full': '--rounding-base-full',
-};
-
 /** Emission order. `var()` resolves at use time, so this is for readability. */
 const ORDER = [
   'prim-color',
@@ -154,19 +141,12 @@ for (const c of collections) {
     );
 }
 
-for (const key of Object.keys(NAME_OVERRIDES)) {
-  const figmaName = info[key]?.css;
-  const others = Object.entries(info).filter(([k, v]) => k !== key && v.css === figmaName);
-  if (!others.length)
-    throw new Error(`${key} no longer clashes in Figma ("${figmaName}") — remove it from NAME_OVERRIDES`);
-}
-
 /** css var name -> "<collection>/<path>", so a clash is a build failure. */
 const owners = new Map();
 
 function varName(collectionId, path) {
   const owner = `${collectionId}/${path}`;
-  const name = NAME_OVERRIDES[owner] ?? info[owner].css;
+  const name = info[owner].css;
   const existing = owners.get(name);
   if (existing && existing !== owner) throw new Error(`"${name}" is claimed by both ${existing} and ${owner}`);
   owners.set(name, owner);

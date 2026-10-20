@@ -23,7 +23,7 @@ function dimension(size: IconSize): string {
 const RADIUS: Record<FamilyShape, string> = {
   natural: 'var(--rounding-none)',
   rounded: 'var(--rounding-xs)',
-  circle: 'var(--rounding-base-full)',
+  circle: 'var(--rounding-full)',
 };
 
 /** Two letters, so an entry without upstream artwork still reads as itself. */
