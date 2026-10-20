@@ -81,8 +81,7 @@ describe('family data', () => {
   it('reports counts that match the Figma roster', () => {
     expect(families.flags.total).toBe(197);
     expect(families.brands.total).toBe(24);
-    // 678 icons on the page; "Augur (REP)" and "Augur (Rep)" share a slug.
-    expect(families.payments.total).toBe(677);
+    expect(families.payments.total).toBe(678);
   });
 
   it('never claims more artwork than it holds', () => {

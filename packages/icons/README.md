@@ -63,7 +63,7 @@ Figma; `scripts/build-families.mjs` подбирает каждой записи
 | Семейство | Страница Figma | Записей | С графикой | Варианты                                                  |
 | --------- | -------------- | ------- | ---------- | --------------------------------------------------------- |
 | Flags     | Flags          | 197     | 197        | `Style` = Circle · Rounded · Shape                        |
-| Payments  | Payments       | 677     | 541        | нет                                                       |
+| Payments  | Payments       | 678     | 542        | нет                                                       |
 | Brands    | Brands         | 24      | 21         | `Style` = Original · Solid, `Circle Shape` = True · False |
 
 ```tsx
