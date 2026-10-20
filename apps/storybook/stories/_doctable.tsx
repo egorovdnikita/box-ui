@@ -5,6 +5,7 @@ import { SELECT_STORY } from 'storybook/internal/core-events';
 import { Icon, ICON_STYLES, type IconStyle } from '@box-ui/icons';
 import { Text, type TextVariant } from '@box-ui/react';
 import { model, type TokenCollection, type TokenVariable } from '@box-ui/tokens';
+import figmaGroups from '../../../tokens/figma/docs.json';
 import {
   Counts,
   Empty,
@@ -399,22 +400,45 @@ function Specimen({
 export interface DocGroup {
   path: string[];
   variables: TokenVariable[];
+  /** The group's description from the Figma table; null where Figma describes each row. */
+  description: string | null;
 }
 
-/** Groups variables by every path segment but the last, keeping Figma's order. */
-export function groupVariables(variables: TokenVariable[]): DocGroup[] {
-  const groups = new Map<string, DocGroup>();
+/**
+ * The groups of each documentation table in Figma — heading path and the one
+ * description written for the group — in the order the Figma page has them.
+ * Exported from the file next to the value dumps (tokens/figma/docs.json).
+ */
+const FIGMA_GROUPS = figmaGroups as unknown as Record<string, [string, string | null][]>;
+
+/**
+ * Groups variables the way the Figma table does: each one goes to the deepest
+ * Figma group whose heading is a prefix of its path, groups keep Figma's order,
+ * rows keep the variables' order.
+ */
+export function groupVariables(collectionId: string, variables: TokenVariable[]): DocGroup[] {
+  const defs = FIGMA_GROUPS[collectionId] ?? [];
+  const groups = defs.map(([path, description]) => ({
+    path: path.split('/'),
+    variables: [] as TokenVariable[],
+    description,
+  }));
   for (const v of variables) {
-    const parts = v.path.split('/');
-    const path = parts.length > 1 ? parts.slice(0, -1) : parts;
-    const key = path.join('/');
-    if (!groups.has(key)) groups.set(key, { path, variables: [] });
-    groups.get(key)!.variables.push(v);
+    let best = -1;
+    defs.forEach(([path], i) => {
+      if ((v.path === path || v.path.startsWith(`${path}/`)) && (best < 0 || path.length > defs[best][0].length))
+        best = i;
+    });
+    if (best >= 0) groups[best].variables.push(v);
   }
-  return [...groups.values()];
+  return groups.filter((g) => g.variables.length);
 }
 
-const leafOf = (v: TokenVariable) => (v.path.includes('/') ? v.path.split('/').pop()! : v.path);
+/** A row's name relative to its group heading, e.g. `static/content/default` under `color`. */
+const nameIn = (group: DocGroup, v: TokenVariable) => {
+  const head = group.path.join('/');
+  return v.path === head ? v.path.split('/').pop()! : v.path.slice(head.length + 1);
+};
 
 export function DocTable({
   collectionId,
@@ -472,8 +496,9 @@ export function DocTable({
         {groups.map((group) => {
           const key = group.path.join('/');
           const isCollapsed = collapsed.has(key);
-          const descriptions = [...new Set(group.variables.map((v) => v.description))];
-          const shared = descriptions.length === 1;
+          // Figma writes one description per group; where it describes rows
+          // one by one instead, each row shows its variable's own.
+          const shared = group.description !== null;
           const variant = textVariant(group.path);
           const rows = (variant ? 1 : 0) + group.variables.length;
           // A shared description spans the group and may wrap as far as its rows
@@ -484,9 +509,9 @@ export function DocTable({
                 <div
                   className="sb-doc__cell sb-doc__description sb-doc__description--group"
                   style={{ gridRow: `span ${rows}`, WebkitLineClamp: rows * 2 - 1 } as CSSProperties}
-                  title={descriptions[0]}
+                  title={group.description ?? ''}
                 >
-                  <span>{descriptions[0]}</span>
+                  <span>{group.description}</span>
                 </div>
               )
             ) : (
@@ -533,7 +558,7 @@ export function DocTable({
                           title={`${v.path} · ${KIND_LABEL[kind]}`}
                         >
                           <Icon name={KIND_ICON[kind]} size={16} iconStyle="linear" />
-                          <span className="sb-doc__name-label">{leafOf(v)}</span>
+                          <span className="sb-doc__name-label">{nameIn(group, v)}</span>
                         </div>
                         {modes.map((m) => (
                           <div key={m.slug} className={`sb-doc__cell${flash}`}>
@@ -549,7 +574,7 @@ export function DocTable({
                         <div className={`sb-doc__cell${flash}`}>
                           <CodeCell variable={v} />
                         </div>
-                        {description(i + (variant ? 1 : 0), v.description)}
+                        {description(i + (variant ? 1 : 0), group.description ?? v.description)}
                       </Fragment>
                     );
                   })}
@@ -763,8 +788,8 @@ export function TokenPage({
         (!section || depth === null || v.path.split('/')[depth] === section) &&
         (!kind || kindOf(v) === kind),
     );
-    return groupVariables(variables);
-  }, [collection, query, section, kind, depth]);
+    return groupVariables(collectionId, variables);
+  }, [collection, collectionId, query, section, kind, depth]);
   const total = groups.reduce((n, g) => n + g.variables.length, 0);
   const filtered = Boolean(query || section || kind || hiddenModes.size);
 

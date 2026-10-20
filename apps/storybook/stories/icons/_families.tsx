@@ -26,17 +26,11 @@ interface FamilyArgs {
   icon: string;
 }
 
-/**
- * Each lead opens with the text of the page's card in Figma, verbatim, and
- * goes on with a sentence about this page in Storybook.
- */
+/** Each lead is the text of the page's card in Figma, verbatim. */
 const LEAD: Record<IconFamily, string> = {
-  flags:
-    'Набор иконок флагов стран для использования в интерфейсе. Формы Circle, Rounded и Shape — те же варианты, что в Figma; графика — flag-icons (MIT).',
-  payments:
-    'Набор иконок платёжных систем и сервисов для использования в интерфейсе. Поиск понимает название и тикер; графика — web3icons и cryptocurrency-icons.',
-  brands:
-    'Набор иконок популярных брендов и продуктов для использования в интерфейсе. Знаки бывают в оригинальном цвете и монохромные; графика — simple-icons (CC0).',
+  flags: 'Набор иконок флагов стран для использования в интерфейсе.',
+  payments: 'Набор иконок платёжных систем и сервисов для использования в интерфейсе.',
+  brands: 'Набор иконок популярных брендов и продуктов для использования в интерфейсе.',
 };
 
 /** Page titles, as in the sidebar. */

@@ -101,9 +101,8 @@ const preview: Preview = {
       storySort: {
         order: [
           'Обзор',
-          'Начало работы',
           'Токены',
-          ['Поиск', 'Primitives', 'Brand', 'System'],
+          ['Primitives', 'Brand', 'System'],
           'Иконки',
           ['Системные', 'Флаги', 'Платежи', 'Бренды'],
         ],

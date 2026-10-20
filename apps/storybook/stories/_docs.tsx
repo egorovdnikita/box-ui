@@ -1,28 +1,21 @@
 import type { ReactNode } from 'react';
 import { addons } from 'storybook/preview-api';
 import { SELECT_STORY } from 'storybook/internal/core-events';
-import { catalog } from '@box-ui/icons';
 import { attributes, defaults } from '@box-ui/tokens';
-import { COLLECTION_ORDER, STORY_OF, collections } from './_doctable';
-import { counted } from './_lib';
+import { COLLECTION_ORDER, collections } from './_doctable';
 import { useCopy } from './_ui';
 
 /*
- * Blocks for the Overview and Getting Started pages. Every number and every list here is read from
- * the token model and the icon catalogue, so the overview cannot drift from
- * what the packages actually ship.
+ * Blocks for the Overview page and the token pages. Lists here are read from
+ * the token model, so the overview cannot drift from what the packages ship.
  */
 
 const go = (storyId: string) => addons.getChannel().emit(SELECT_STORY, { storyId });
 
-const total = COLLECTION_ORDER.reduce((n, id) => n + collections[id].variables.length, 0);
 const switchable = COLLECTION_ORDER.filter((id) => collections[id].modes.length > 1);
 
-/** The headline numbers, as a sentence for a lead. */
-export const SUMMARY = `${total} переменных в ${COLLECTION_ORDER.length} коллекциях, ${switchable.length} переключаемых мод и ${catalog.icons.length} системных иконок.`;
-
 /**
- * Rows that open another page — collections of a layer, or next steps. One
+ * Rows that open another page. One
  * column of full-width rows, styled like the mode table, so the overview reads
  * top to bottom like every other page.
  */
@@ -44,24 +37,6 @@ function LinkRows({ rows }: { rows: { story: string; title: string; text: string
         </button>
       ))}
     </div>
-  );
-}
-
-/** The collections of one layer — `prim`, `brand` or `sys` — each opening its table. */
-export function LayerCollections({ prefix }: { prefix: 'prim' | 'brand' | 'sys' }) {
-  return (
-    <LinkRows
-      rows={COLLECTION_ORDER.filter((id) => id.startsWith(`${prefix}-`)).map((id) => {
-        const c = collections[id];
-        return {
-          story: STORY_OF[id],
-          title: c.figmaName.replace(/^\S+\s+/, ''),
-          text:
-            counted(c.variables.length, ['переменная', 'переменные', 'переменных']) +
-            (c.attribute ? ` · ${c.modes.map((m) => m.name).join(', ')} · [${c.attribute}]` : ''),
-        };
-      })}
-    />
   );
 }
 

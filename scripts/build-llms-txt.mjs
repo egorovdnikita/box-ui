@@ -117,9 +117,8 @@ ${rosters}
 
 ## Страницы
 
-- [Обзор](${SITE}/?path=/story/introduction--docs): граф переменных и как разрешается токен
-- [Начало работы](${SITE}/?path=/story/getting-started--docs): установка, подключение мод, использование токенов
-- [Токены](${SITE}/?path=/story/tokens-search--search): поиск по всем 15 коллекциям Figma и их таблицы — значения и превью по модам, code syntax, описания
+- [Обзор](${SITE}/?path=/story/introduction--docs): что такое Box UI, что в этом Storybook и как начать
+- [Токены](${SITE}/?path=/story/tokens-primitives--color): все 15 коллекций Figma таблицами, как на страницах документации в Figma — значения по модам, code syntax, описания групп
 - [Иконки](${SITE}/?path=/story/icons-system--system): системные иконки с поиском, стилями и размерами
 - [Флаги](${SITE}/?path=/story/icons-flags--flags), [Платежи](${SITE}/?path=/story/icons-payments--payments), [Бренды](${SITE}/?path=/story/icons-brands--brands): семейства из Figma
 `;
