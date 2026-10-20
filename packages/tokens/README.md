@@ -45,7 +45,7 @@ npm run build -w @box-ui/tokens
 | Controls ・ Appearance · `accent/fill/default`           | `--control-appearance-accent-fill-default` |
 | Controls ・ State · `accent/fill`                        | `--control-accent-fill`                    |
 | System ・ Responsive · `rounding/base/m`                 | `--rounding-m`                             |
-| System ・ Responsive · `typography/heading/H1/font-size` | `--type-h1-font-size`                      |
+| System ・ Responsive · `typography/heading/h1/font-size` | `--type-h1-font-size`                      |
 
 Сам code syntax лежит в `tokens/figma/meta.json` вместе с описаниями переменных — это такая
 же дословная выгрузка, как и дампы значений. Сборка строит таблицу владельцев имён и

@@ -151,7 +151,7 @@ export function goToCollection(collection: string) {
 
 // --- previews ----------------------------------------------------------------
 
-/** `typography/heading/H1` -> `h1`, `typography/body/l` -> `body-l`. */
+/** `typography/heading/h1` -> `h1`, `typography/body/l` -> `body-l`. */
 function textVariant(group: string[]): TextVariant | null {
   const [root, kind, step] = group;
   if (root !== 'typography' || !step) return null;
