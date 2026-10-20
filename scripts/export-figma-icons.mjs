@@ -74,7 +74,8 @@ function collect(node, family, out, setName = null) {
   if (node.type === 'COMPONENT') {
     const variant = setName ? node.name.replace(/^[^=]+=/, '') : null;
     const base = (setName ?? node.name).replace(family.strip ?? /^$/, '').trim();
-    if (base.toLowerCase() === 'master') return;
+    // Service components, not icons: `Master` and the `Wrapper` every page carries.
+    if (['master', 'wrapper'].includes(base.toLowerCase())) return;
     out.push({ id: node.id, base, variant, name: variant ? `${base} / ${variant}` : base });
     return;
   }
@@ -103,6 +104,14 @@ for (const familyName of selected) {
   const manifest = [];
   let done = 0;
 
+  // Names that differ only in case or punctuation land on one file; say so
+  // rather than let one overwrite the other unnoticed.
+  const slugOf = (node) => [slugify(node.base), node.variant && slugify(node.variant)].filter(Boolean).join('--');
+  const bySlug = Map.groupBy(nodes, slugOf);
+  for (const [slug, same] of bySlug)
+    if (same.length > 1)
+      console.warn(`  ${slug}.svg: ${same.map((n) => `“${n.name}”`).join(', ')} — one file overwrites the other`);
+
   for (const batch of chunk(nodes, BATCH)) {
     const ids = batch.map((n) => n.id).join(',');
     const { images } = await figma(
@@ -114,7 +123,7 @@ for (const familyName of selected) {
         const url = images[node.id];
         if (!url) return;
         const svg = await (await fetch(url)).text();
-        const slug = [slugify(node.base), node.variant && slugify(node.variant)].filter(Boolean).join('--');
+        const slug = slugOf(node);
         await writeFile(join(outDir, `${slug}.svg`), svg);
         manifest.push({ slug, name: node.name, base: node.base, variant: node.variant, figmaId: node.id });
       }),
