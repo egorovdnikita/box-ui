@@ -14,3 +14,6 @@ tokens/figma/
 # Prettier reads `{/* … */}` in MDX as emphasis and rewrites it to `{/_ … _/}`,
 # which Storybook's indexer cannot parse — it broke the build once already.
 *.mdx
+
+# Claude skills are kept verbatim, as written
+.claude/

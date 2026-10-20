@@ -303,6 +303,19 @@ REST API) и пересоберите. Больше ничего трогать 
 
 ---
 
+## Работа с Claude
+
+Figma и этот репозиторий ведёт один агент в Claude Code: правит переменные и документацию в
+Figma через Figma MCP и в той же сессии синхронизирует код, проверяет и публикует Storybook.
+
+- [`CLAUDE.md`](CLAUDE.md) — правила: источники, карта коллекций, конвенции переменных,
+  протокол любой правки и что считается breaking.
+- [`docs/audit.md`](docs/audit.md) — текущее состояние, принятые решения и открытые пункты.
+- [`.claude/skills/sync-variable-documentation`](.claude/skills/sync-variable-documentation/SKILL.md)
+  — скилл синхронизации таблиц документации в Figma с Variables.
+
+---
+
 ## Лицензии
 
 Код в этом репозитории — MIT. Набор иконок Solar — © 480 Design,
