@@ -18,6 +18,7 @@ color/inverse/solid/500 :: Deep=@brand-color:color/solid/500 | Bright=@prim-colo
 color/inverse/solid/550 :: Deep=@brand-color:color/solid/550 | Bright=@prim-color:color/lime/solid/550 | Monochrome=@sys-color:color/white/base
 color/inverse/alpha/8 :: Deep=@brand-color:color/alpha/8 | Bright=@prim-color:color/lime/alpha/8 | Monochrome=@sys-color:color/white/alpha-8
 color/inverse/alpha/16 :: Deep=@brand-color:color/alpha/16 | Bright=@prim-color:color/lime/alpha/16 | Monochrome=@sys-color:color/white/alpha-16
+color/inverse/alpha/24 :: Deep=@prim-color:color/indigo/alpha/24 | Bright=@prim-color:color/lime/alpha/24 | Monochrome=@sys-color:color/white/alpha-24
 color/inverse/alpha/48 :: Deep=@brand-color:color/alpha/48 | Bright=@prim-color:color/lime/alpha/48 | Monochrome=@sys-color:color/white/alpha-48
 color/inverse/alpha/64 :: Deep=@brand-color:color/alpha/64 | Bright=@prim-color:color/lime/alpha/64 | Monochrome=@sys-color:color/white/alpha-64
 color/inverse/alpha/80 :: Deep=@brand-color:color/alpha/80 | Bright=@prim-color:color/lime/alpha/80 | Monochrome=@sys-color:color/white/alpha-80
@@ -25,7 +26,8 @@ color/inverse/contrast :: Deep=@brand-color:color/contrast | Bright=@sys-color:c
 color/inverse/on-solid :: Deep=@brand-color:color/on-solid | Bright=@sys-color:color/neutral/800 | Monochrome=@sys-color:color/black/base
 color/inverse/on-solid-muted :: Deep=@brand-color:color/on-solid-muted | Bright=@sys-color:color/black/alpha-48 | Monochrome=@sys-color:color/black/alpha-48
 color/solid/600 :: Deep=@prim-color:color/indigo/solid/600 | Bright=@prim-color:color/lime/solid/800 | Monochrome=@sys-color:color/black/base
-color/inverse/alpha/24 :: Deep=@prim-color:color/indigo/alpha/24 | Bright=@prim-color:color/lime/alpha/24 | Monochrome=@sys-color:color/white/alpha-24
+color/on-solid-alpha/16 :: Deep=@sys-color:color/white/alpha-16 | Bright=@sys-color:color/black/alpha-8 | Monochrome=@sys-color:color/white/alpha-16
+color/inverse/on-solid-alpha/16 :: Deep=@sys-color:color/white/alpha-16 | Bright=@sys-color:color/black/alpha-8 | Monochrome=@sys-color:color/black/alpha-16
 color/on-solid-alpha/24 :: Deep=@sys-color:color/white/alpha-24 | Bright=@sys-color:color/black/alpha-16 | Monochrome=@sys-color:color/white/alpha-24
 color/inverse/on-solid-alpha/24 :: Deep=@sys-color:color/white/alpha-24 | Bright=@sys-color:color/black/alpha-16 | Monochrome=@sys-color:color/black/alpha-24
 color/on-solid-alpha/32 :: Deep=@sys-color:color/white/alpha-32 | Bright=@sys-color:color/black/alpha-24 | Monochrome=@sys-color:color/white/alpha-32
@@ -46,5 +48,3 @@ color/static/content/hover :: Deep=@brand-color:color/solid/550 | Bright=@sys-co
 color/static/content/active :: Deep=@brand-color:color/solid/500 | Bright=@sys-color:color/white/base | Monochrome=@sys-color:color/black/base
 color/inverse/static/content/hover :: Deep=@brand-color:color/solid/550 | Bright=@sys-color:color/white/base | Monochrome=@sys-color:color/white/base
 color/inverse/static/content/active :: Deep=@brand-color:color/solid/500 | Bright=@sys-color:color/white/base | Monochrome=@sys-color:color/white/base
-color/on-solid-alpha/16 :: Deep=@sys-color:color/white/alpha-16 | Bright=@sys-color:color/black/alpha-8 | Monochrome=@sys-color:color/white/alpha-16
-color/inverse/on-solid-alpha/16 :: Deep=@sys-color:color/white/alpha-16 | Bright=@sys-color:color/black/alpha-8 | Monochrome=@sys-color:color/black/alpha-16
