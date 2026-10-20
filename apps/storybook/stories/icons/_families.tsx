@@ -8,6 +8,7 @@ import {
   ICON_SIZES,
   ICON_SIZE_PX,
   familyIndex,
+  hasArtwork,
   useFamily,
   type BrandTone,
   type FamilyShape,
@@ -63,7 +64,7 @@ function Family({
     () => (data ? data.items.filter((item) => matches(query, item.name, item.slug, item.ticker, item.code)) : []),
     [data, query],
   );
-  const monograms = items.filter((item) => !item.body).length;
+  const monograms = items.filter((item) => !hasArtwork(item)).length;
   const selected = data?.items.find((item) => item.slug === picked);
   const dirty = (Object.keys(defaults) as (keyof FamilyArgs)[]).some(
     (key) => key !== 'icon' && args[key] !== defaults[key],
@@ -133,7 +134,7 @@ function Family({
               label={item.name}
               title={[item.name, item.ticker, item.code?.toUpperCase()].filter(Boolean).join(' · ')}
               selected={item.slug === picked}
-              muted={!item.body}
+              muted={!hasArtwork(item)}
               onSelect={() => set({ icon: item.slug === picked ? '' : item.slug })}
             >
               <FamilyIcon entry={item} shape={shape} tone={tone} size={size} />
@@ -149,7 +150,9 @@ function Family({
             [
               selected.ticker,
               selected.code?.toUpperCase(),
-              selected.body ? null : 'монограмма: графики нет в источнике',
+              hasArtwork(selected) ? null : 'монограмма: графики нет в источнике',
+              // Over the export's size budget in Figma, so drawn from an open set for now.
+              selected.source && selected.source !== 'figma' ? `графика из ${selected.source}` : null,
             ]
               .filter(Boolean)
               .join(' · ') || `Figma: ${meta.figmaNaming}`

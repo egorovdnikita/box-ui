@@ -14,10 +14,12 @@ export {
 export { catalog, families, type IconCatalog, type IconCatalogEntry } from './catalog';
 export {
   familyIndex,
+  hasArtwork,
   ICON_FAMILIES,
   ICON_FAMILY_LABELS,
   FAMILY_SHAPE_LABELS,
   type BrandTone,
+  type FamilyArtwork,
   type FamilyData,
   type FamilyIconEntry,
   type FamilyMeta,

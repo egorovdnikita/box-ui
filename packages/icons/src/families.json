@@ -11,7 +11,8 @@
     "variantProperties": null,
     "note": "\"Mali\" and \"Solomon Islands\" spell their variants \"Flag Circle\" / \"Flag Rounded\" / \"Flag Shape\" in Figma.",
     "total": 197,
-    "resolved": 197
+    "resolved": 197,
+    "fromFigma": 179
   },
   "payments": {
     "figmaPage": "Payments",
@@ -21,7 +22,8 @@
     "variantProperties": null,
     "note": "Standalone 24×24 components, no variant property.",
     "total": 678,
-    "resolved": 542
+    "resolved": 678,
+    "fromFigma": 677
   },
   "brands": {
     "figmaPage": "Brands",
@@ -40,6 +42,7 @@
     },
     "note": null,
     "total": 24,
-    "resolved": 21
+    "resolved": 24,
+    "fromFigma": 24
   }
 }

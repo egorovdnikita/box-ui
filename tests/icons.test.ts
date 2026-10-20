@@ -9,6 +9,10 @@ import broken from '../packages/icons/src/data/broken.json';
 import lineDuotone from '../packages/icons/src/data/line-duotone.json';
 import linear from '../packages/icons/src/data/linear.json';
 import outline from '../packages/icons/src/data/outline.json';
+import brandData from '../packages/icons/src/data/families/brands.json';
+import flagData from '../packages/icons/src/data/families/flags.json';
+import paymentData from '../packages/icons/src/data/families/payments.json';
+import flagExport from '../packages/icons/figma/flags/manifest.json';
 
 const sets: Record<string, Record<string, string>> = {
   bold,
@@ -88,7 +92,52 @@ describe('family data', () => {
     for (const [name, meta] of Object.entries(families)) {
       expect(meta.resolved, name).toBeLessThanOrEqual(meta.total);
       expect(meta.resolved, name).toBeGreaterThan(0);
+      expect(meta.fromFigma, name).toBeLessThanOrEqual(meta.resolved);
     }
+  });
+});
+
+describe('family artwork from Figma', () => {
+  type Artwork = { viewBox: string | null; body: string };
+  type Entry = { slug: string; source?: string | null; body: string | null; variants?: Record<string, Artwork> | null };
+  const drawn = (items: Entry[], family: string) =>
+    items
+      .filter((item) => item.source === 'figma')
+      .flatMap((item) =>
+        (item.variants ? Object.values(item.variants) : [item as Artwork]).map((art) => ({ family, item, art })),
+      );
+  const all = [
+    ...drawn(flagData.items as Entry[], 'flags'),
+    ...drawn(paymentData.items as Entry[], 'payments'),
+    ...drawn(brandData.items as Entry[], 'brands'),
+  ];
+
+  it('draws most entries from the Figma export', () => {
+    expect(families.payments.fromFigma).toBeGreaterThan(670);
+    expect(families.brands.fromFigma).toBe(24);
+    expect(families.flags.fromFigma).toBeGreaterThan(170);
+  });
+
+  it('gives every variant its own ids, so icons can share a page', () => {
+    // SVGO shortens ids to "a", "b", …; without the per-file prefix two flags
+    // on one page would clip each other.
+    const bare = all.flatMap(({ family, item, art }) =>
+      [...art.body.matchAll(/\bid="([^"]+)"/g)]
+        .filter(([, id]) => !id.startsWith(`${family}-${item.slug}--`) && !id.startsWith(`${family}-${item.slug}__`))
+        .map(([, id]) => `${item.slug}: ${id}`),
+    );
+    expect(bare).toEqual([]);
+  });
+
+  it('hands monochrome brand marks back to the theme', () => {
+    const baked = (brandData.items as Entry[]).filter((item) => JSON.stringify(item.variants).match(/#fafafa/i));
+    expect(baked.map((item) => item.slug)).toEqual([]);
+  });
+
+  it('leaves flags over the size budget to the fallback', () => {
+    const over = new Set(flagExport.overBudget.map((o) => o.slug.split('--')[0]));
+    const shipped = (flagData.items as Entry[]).filter((item) => over.has(item.slug) && item.source === 'figma');
+    expect(shipped.map((item) => item.slug)).toEqual([]);
   });
 });
 

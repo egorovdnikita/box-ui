@@ -1,0 +1,4093 @@
+{
+  "family": "flags",
+  "figmaPage": "Flags",
+  "budget": 50000,
+  "icons": [
+    {
+      "slug": "albania--circle",
+      "name": "Albania / Circle",
+      "base": "Albania",
+      "variant": "Circle",
+      "figmaId": "6570:38320"
+    },
+    {
+      "slug": "albania--rounded",
+      "name": "Albania / Rounded",
+      "base": "Albania",
+      "variant": "Rounded",
+      "figmaId": "6570:38325"
+    },
+    {
+      "slug": "albania--shape",
+      "name": "Albania / Shape",
+      "base": "Albania",
+      "variant": "Shape",
+      "figmaId": "6570:38330"
+    },
+    {
+      "slug": "algeria--circle",
+      "name": "Algeria / Circle",
+      "base": "Algeria",
+      "variant": "Circle",
+      "figmaId": "6570:38336"
+    },
+    {
+      "slug": "algeria--rounded",
+      "name": "Algeria / Rounded",
+      "base": "Algeria",
+      "variant": "Rounded",
+      "figmaId": "6570:38342"
+    },
+    {
+      "slug": "algeria--shape",
+      "name": "Algeria / Shape",
+      "base": "Algeria",
+      "variant": "Shape",
+      "figmaId": "6570:38348"
+    },
+    {
+      "slug": "andorra--circle",
+      "name": "Andorra / Circle",
+      "base": "Andorra",
+      "variant": "Circle",
+      "figmaId": "6570:38355"
+    },
+    {
+      "slug": "andorra--rounded",
+      "name": "Andorra / Rounded",
+      "base": "Andorra",
+      "variant": "Rounded",
+      "figmaId": "6570:38486"
+    },
+    {
+      "slug": "andorra--shape",
+      "name": "Andorra / Shape",
+      "base": "Andorra",
+      "variant": "Shape",
+      "figmaId": "6570:38617"
+    },
+    {
+      "slug": "angola--circle",
+      "name": "Angola / Circle",
+      "base": "Angola",
+      "variant": "Circle",
+      "figmaId": "6570:38749"
+    },
+    {
+      "slug": "angola--rounded",
+      "name": "Angola / Rounded",
+      "base": "Angola",
+      "variant": "Rounded",
+      "figmaId": "6570:38755"
+    },
+    {
+      "slug": "angola--shape",
+      "name": "Angola / Shape",
+      "base": "Angola",
+      "variant": "Shape",
+      "figmaId": "6570:38761"
+    },
+    {
+      "slug": "antigua-and-barbuda--circle",
+      "name": "Antigua and Barbuda / Circle",
+      "base": "Antigua and Barbuda",
+      "variant": "Circle",
+      "figmaId": "6570:38768"
+    },
+    {
+      "slug": "antigua-and-barbuda--rounded",
+      "name": "Antigua and Barbuda / Rounded",
+      "base": "Antigua and Barbuda",
+      "variant": "Rounded",
+      "figmaId": "6570:38776"
+    },
+    {
+      "slug": "antigua-and-barbuda--shape",
+      "name": "Antigua and Barbuda / Shape",
+      "base": "Antigua and Barbuda",
+      "variant": "Shape",
+      "figmaId": "6570:38784"
+    },
+    {
+      "slug": "argentina--circle",
+      "name": "Argentina / Circle",
+      "base": "Argentina",
+      "variant": "Circle",
+      "figmaId": "6570:38793"
+    },
+    {
+      "slug": "argentina--rounded",
+      "name": "Argentina / Rounded",
+      "base": "Argentina",
+      "variant": "Rounded",
+      "figmaId": "6570:38863"
+    },
+    {
+      "slug": "argentina--shape",
+      "name": "Argentina / Shape",
+      "base": "Argentina",
+      "variant": "Shape",
+      "figmaId": "6570:38933"
+    },
+    {
+      "slug": "armenia--circle",
+      "name": "Armenia / Circle",
+      "base": "Armenia",
+      "variant": "Circle",
+      "figmaId": "6570:39004"
+    },
+    {
+      "slug": "armenia--rounded",
+      "name": "Armenia / Rounded",
+      "base": "Armenia",
+      "variant": "Rounded",
+      "figmaId": "6570:39010"
+    },
+    {
+      "slug": "armenia--shape",
+      "name": "Armenia / Shape",
+      "base": "Armenia",
+      "variant": "Shape",
+      "figmaId": "6570:39016"
+    },
+    {
+      "slug": "australia--circle",
+      "name": "Australia / Circle",
+      "base": "Australia",
+      "variant": "Circle",
+      "figmaId": "6570:39023"
+    },
+    {
+      "slug": "australia--rounded",
+      "name": "Australia / Rounded",
+      "base": "Australia",
+      "variant": "Rounded",
+      "figmaId": "6570:39032"
+    },
+    {
+      "slug": "australia--shape",
+      "name": "Australia / Shape",
+      "base": "Australia",
+      "variant": "Shape",
+      "figmaId": "6570:39041"
+    },
+    {
+      "slug": "austria--circle",
+      "name": "Austria / Circle",
+      "base": "Austria",
+      "variant": "Circle",
+      "figmaId": "6570:39051"
+    },
+    {
+      "slug": "austria--rounded",
+      "name": "Austria / Rounded",
+      "base": "Austria",
+      "variant": "Rounded",
+      "figmaId": "6570:39056"
+    },
+    {
+      "slug": "austria--shape",
+      "name": "Austria / Shape",
+      "base": "Austria",
+      "variant": "Shape",
+      "figmaId": "6570:39061"
+    },
+    {
+      "slug": "azerbaijan--circle",
+      "name": "Azerbaijan / Circle",
+      "base": "Azerbaijan",
+      "variant": "Circle",
+      "figmaId": "6570:39067"
+    },
+    {
+      "slug": "azerbaijan--rounded",
+      "name": "Azerbaijan / Rounded",
+      "base": "Azerbaijan",
+      "variant": "Rounded",
+      "figmaId": "6570:39076"
+    },
+    {
+      "slug": "azerbaijan--shape",
+      "name": "Azerbaijan / Shape",
+      "base": "Azerbaijan",
+      "variant": "Shape",
+      "figmaId": "6570:39085"
+    },
+    {
+      "slug": "bahamas--circle",
+      "name": "Bahamas / Circle",
+      "base": "Bahamas",
+      "variant": "Circle",
+      "figmaId": "6570:39095"
+    },
+    {
+      "slug": "bahamas--rounded",
+      "name": "Bahamas / Rounded",
+      "base": "Bahamas",
+      "variant": "Rounded",
+      "figmaId": "6570:39101"
+    },
+    {
+      "slug": "bahamas--shape",
+      "name": "Bahamas / Shape",
+      "base": "Bahamas",
+      "variant": "Shape",
+      "figmaId": "6570:39107"
+    },
+    {
+      "slug": "bahrain--circle",
+      "name": "Bahrain / Circle",
+      "base": "Bahrain",
+      "variant": "Circle",
+      "figmaId": "6570:39114"
+    },
+    {
+      "slug": "bahrain--rounded",
+      "name": "Bahrain / Rounded",
+      "base": "Bahrain",
+      "variant": "Rounded",
+      "figmaId": "6570:39119"
+    },
+    {
+      "slug": "bahrain--shape",
+      "name": "Bahrain / Shape",
+      "base": "Bahrain",
+      "variant": "Shape",
+      "figmaId": "6570:39124"
+    },
+    {
+      "slug": "bangladesh--circle",
+      "name": "Bangladesh / Circle",
+      "base": "Bangladesh",
+      "variant": "Circle",
+      "figmaId": "6570:39130"
+    },
+    {
+      "slug": "bangladesh--rounded",
+      "name": "Bangladesh / Rounded",
+      "base": "Bangladesh",
+      "variant": "Rounded",
+      "figmaId": "6570:39135"
+    },
+    {
+      "slug": "bangladesh--shape",
+      "name": "Bangladesh / Shape",
+      "base": "Bangladesh",
+      "variant": "Shape",
+      "figmaId": "6570:39140"
+    },
+    {
+      "slug": "barbados--circle",
+      "name": "Barbados / Circle",
+      "base": "Barbados",
+      "variant": "Circle",
+      "figmaId": "6570:39146"
+    },
+    {
+      "slug": "barbados--rounded",
+      "name": "Barbados / Rounded",
+      "base": "Barbados",
+      "variant": "Rounded",
+      "figmaId": "6570:39152"
+    },
+    {
+      "slug": "barbados--shape",
+      "name": "Barbados / Shape",
+      "base": "Barbados",
+      "variant": "Shape",
+      "figmaId": "6570:39158"
+    },
+    {
+      "slug": "belarus--circle",
+      "name": "Belarus / Circle",
+      "base": "Belarus",
+      "variant": "Circle",
+      "figmaId": "6570:39165"
+    },
+    {
+      "slug": "belarus--rounded",
+      "name": "Belarus / Rounded",
+      "base": "Belarus",
+      "variant": "Rounded",
+      "figmaId": "6570:39172"
+    },
+    {
+      "slug": "belarus--shape",
+      "name": "Belarus / Shape",
+      "base": "Belarus",
+      "variant": "Shape",
+      "figmaId": "6570:39179"
+    },
+    {
+      "slug": "belgium--circle",
+      "name": "Belgium / Circle",
+      "base": "Belgium",
+      "variant": "Circle",
+      "figmaId": "6570:39187"
+    },
+    {
+      "slug": "belgium--rounded",
+      "name": "Belgium / Rounded",
+      "base": "Belgium",
+      "variant": "Rounded",
+      "figmaId": "6570:39193"
+    },
+    {
+      "slug": "belgium--shape",
+      "name": "Belgium / Shape",
+      "base": "Belgium",
+      "variant": "Shape",
+      "figmaId": "6570:39199"
+    },
+    {
+      "slug": "benin--circle",
+      "name": "Benin / Circle",
+      "base": "Benin",
+      "variant": "Circle",
+      "figmaId": "6570:39648"
+    },
+    {
+      "slug": "benin--rounded",
+      "name": "Benin / Rounded",
+      "base": "Benin",
+      "variant": "Rounded",
+      "figmaId": "6570:39654"
+    },
+    {
+      "slug": "benin--shape",
+      "name": "Benin / Shape",
+      "base": "Benin",
+      "variant": "Shape",
+      "figmaId": "6570:39660"
+    },
+    {
+      "slug": "bosnia-and-herzegovina--circle",
+      "name": "Bosnia and Herzegovina / Circle",
+      "base": "Bosnia and Herzegovina",
+      "variant": "Circle",
+      "figmaId": "6570:43530"
+    },
+    {
+      "slug": "bosnia-and-herzegovina--rounded",
+      "name": "Bosnia and Herzegovina / Rounded",
+      "base": "Bosnia and Herzegovina",
+      "variant": "Rounded",
+      "figmaId": "6570:43536"
+    },
+    {
+      "slug": "bosnia-and-herzegovina--shape",
+      "name": "Bosnia and Herzegovina / Shape",
+      "base": "Bosnia and Herzegovina",
+      "variant": "Shape",
+      "figmaId": "6570:43542"
+    },
+    {
+      "slug": "botswana--circle",
+      "name": "Botswana / Circle",
+      "base": "Botswana",
+      "variant": "Circle",
+      "figmaId": "6570:43549"
+    },
+    {
+      "slug": "botswana--rounded",
+      "name": "Botswana / Rounded",
+      "base": "Botswana",
+      "variant": "Rounded",
+      "figmaId": "6570:43555"
+    },
+    {
+      "slug": "botswana--shape",
+      "name": "Botswana / Shape",
+      "base": "Botswana",
+      "variant": "Shape",
+      "figmaId": "6570:43561"
+    },
+    {
+      "slug": "brazil--circle",
+      "name": "Brazil / Circle",
+      "base": "Brazil",
+      "variant": "Circle",
+      "figmaId": "6570:43568"
+    },
+    {
+      "slug": "brazil--rounded",
+      "name": "Brazil / Rounded",
+      "base": "Brazil",
+      "variant": "Rounded",
+      "figmaId": "6570:43577"
+    },
+    {
+      "slug": "brazil--shape",
+      "name": "Brazil / Shape",
+      "base": "Brazil",
+      "variant": "Shape",
+      "figmaId": "6570:43586"
+    },
+    {
+      "slug": "brunei--circle",
+      "name": "Brunei / Circle",
+      "base": "Brunei",
+      "variant": "Circle",
+      "figmaId": "6570:43596"
+    },
+    {
+      "slug": "brunei--rounded",
+      "name": "Brunei / Rounded",
+      "base": "Brunei",
+      "variant": "Rounded",
+      "figmaId": "6570:43609"
+    },
+    {
+      "slug": "brunei--shape",
+      "name": "Brunei / Shape",
+      "base": "Brunei",
+      "variant": "Shape",
+      "figmaId": "6570:43622"
+    },
+    {
+      "slug": "bulgaria--circle",
+      "name": "Bulgaria / Circle",
+      "base": "Bulgaria",
+      "variant": "Circle",
+      "figmaId": "6570:43636"
+    },
+    {
+      "slug": "bulgaria--rounded",
+      "name": "Bulgaria / Rounded",
+      "base": "Bulgaria",
+      "variant": "Rounded",
+      "figmaId": "6570:43642"
+    },
+    {
+      "slug": "bulgaria--shape",
+      "name": "Bulgaria / Shape",
+      "base": "Bulgaria",
+      "variant": "Shape",
+      "figmaId": "6570:43648"
+    },
+    {
+      "slug": "burkina-faso--circle",
+      "name": "Burkina Faso / Circle",
+      "base": "Burkina Faso",
+      "variant": "Circle",
+      "figmaId": "6570:43655"
+    },
+    {
+      "slug": "burkina-faso--rounded",
+      "name": "Burkina Faso / Rounded",
+      "base": "Burkina Faso",
+      "variant": "Rounded",
+      "figmaId": "6570:43661"
+    },
+    {
+      "slug": "burkina-faso--shape",
+      "name": "Burkina Faso / Shape",
+      "base": "Burkina Faso",
+      "variant": "Shape",
+      "figmaId": "6570:43667"
+    },
+    {
+      "slug": "burundi--circle",
+      "name": "Burundi / Circle",
+      "base": "Burundi",
+      "variant": "Circle",
+      "figmaId": "6570:43674"
+    },
+    {
+      "slug": "burundi--rounded",
+      "name": "Burundi / Rounded",
+      "base": "Burundi",
+      "variant": "Rounded",
+      "figmaId": "6570:43683"
+    },
+    {
+      "slug": "burundi--shape",
+      "name": "Burundi / Shape",
+      "base": "Burundi",
+      "variant": "Shape",
+      "figmaId": "6570:43692"
+    },
+    {
+      "slug": "cabo-verde--circle",
+      "name": "Cabo Verde / Circle",
+      "base": "Cabo Verde",
+      "variant": "Circle",
+      "figmaId": "6570:43703"
+    },
+    {
+      "slug": "cabo-verde--rounded",
+      "name": "Cabo Verde / Rounded",
+      "base": "Cabo Verde",
+      "variant": "Rounded",
+      "figmaId": "6570:43710"
+    },
+    {
+      "slug": "cabo-verde--shape",
+      "name": "Cabo Verde / Shape",
+      "base": "Cabo Verde",
+      "variant": "Shape",
+      "figmaId": "6570:43717"
+    },
+    {
+      "slug": "cambodia--circle",
+      "name": "Cambodia / Circle",
+      "base": "Cambodia",
+      "variant": "Circle",
+      "figmaId": "6570:43725"
+    },
+    {
+      "slug": "cambodia--rounded",
+      "name": "Cambodia / Rounded",
+      "base": "Cambodia",
+      "variant": "Rounded",
+      "figmaId": "6570:43861"
+    },
+    {
+      "slug": "cambodia--shape",
+      "name": "Cambodia / Shape",
+      "base": "Cambodia",
+      "variant": "Shape",
+      "figmaId": "6570:43997"
+    },
+    {
+      "slug": "cameroon--circle",
+      "name": "Cameroon / Circle",
+      "base": "Cameroon",
+      "variant": "Circle",
+      "figmaId": "6570:44134"
+    },
+    {
+      "slug": "cameroon--rounded",
+      "name": "Cameroon / Rounded",
+      "base": "Cameroon",
+      "variant": "Rounded",
+      "figmaId": "6570:44141"
+    },
+    {
+      "slug": "cameroon--shape",
+      "name": "Cameroon / Shape",
+      "base": "Cameroon",
+      "variant": "Shape",
+      "figmaId": "6570:44148"
+    },
+    {
+      "slug": "canada--circle",
+      "name": "Canada / Circle",
+      "base": "Canada",
+      "variant": "Circle",
+      "figmaId": "6570:44156"
+    },
+    {
+      "slug": "canada--rounded",
+      "name": "Canada / Rounded",
+      "base": "Canada",
+      "variant": "Rounded",
+      "figmaId": "6570:44161"
+    },
+    {
+      "slug": "canada--shape",
+      "name": "Canada / Shape",
+      "base": "Canada",
+      "variant": "Shape",
+      "figmaId": "6570:44166"
+    },
+    {
+      "slug": "central-african-republic--circle",
+      "name": "Central African Republic / Circle",
+      "base": "Central African Republic",
+      "variant": "Circle",
+      "figmaId": "6570:44172"
+    },
+    {
+      "slug": "central-african-republic--rounded",
+      "name": "Central African Republic / Rounded",
+      "base": "Central African Republic",
+      "variant": "Rounded",
+      "figmaId": "6570:44181"
+    },
+    {
+      "slug": "central-african-republic--shape",
+      "name": "Central African Republic / Shape",
+      "base": "Central African Republic",
+      "variant": "Shape",
+      "figmaId": "6570:44190"
+    },
+    {
+      "slug": "chad--circle",
+      "name": "Chad / Circle",
+      "base": "Chad",
+      "variant": "Circle",
+      "figmaId": "6570:44200"
+    },
+    {
+      "slug": "chad--rounded",
+      "name": "Chad / Rounded",
+      "base": "Chad",
+      "variant": "Rounded",
+      "figmaId": "6570:44206"
+    },
+    {
+      "slug": "chad--shape",
+      "name": "Chad / Shape",
+      "base": "Chad",
+      "variant": "Shape",
+      "figmaId": "6570:44212"
+    },
+    {
+      "slug": "chile--circle",
+      "name": "Chile / Circle",
+      "base": "Chile",
+      "variant": "Circle",
+      "figmaId": "6570:44219"
+    },
+    {
+      "slug": "chile--rounded",
+      "name": "Chile / Rounded",
+      "base": "Chile",
+      "variant": "Rounded",
+      "figmaId": "6570:44226"
+    },
+    {
+      "slug": "chile--shape",
+      "name": "Chile / Shape",
+      "base": "Chile",
+      "variant": "Shape",
+      "figmaId": "6570:44233"
+    },
+    {
+      "slug": "china--circle",
+      "name": "China / Circle",
+      "base": "China",
+      "variant": "Circle",
+      "figmaId": "6570:44241"
+    },
+    {
+      "slug": "china--rounded",
+      "name": "China / Rounded",
+      "base": "China",
+      "variant": "Rounded",
+      "figmaId": "6570:44246"
+    },
+    {
+      "slug": "china--shape",
+      "name": "China / Shape",
+      "base": "China",
+      "variant": "Shape",
+      "figmaId": "6570:44251"
+    },
+    {
+      "slug": "colombia--circle",
+      "name": "Colombia / Circle",
+      "base": "Colombia",
+      "variant": "Circle",
+      "figmaId": "6570:44257"
+    },
+    {
+      "slug": "colombia--rounded",
+      "name": "Colombia / Rounded",
+      "base": "Colombia",
+      "variant": "Rounded",
+      "figmaId": "6570:44263"
+    },
+    {
+      "slug": "colombia--shape",
+      "name": "Colombia / Shape",
+      "base": "Colombia",
+      "variant": "Shape",
+      "figmaId": "6570:44269"
+    },
+    {
+      "slug": "comoros--circle",
+      "name": "Comoros / Circle",
+      "base": "Comoros",
+      "variant": "Circle",
+      "figmaId": "6570:44276"
+    },
+    {
+      "slug": "comoros--rounded",
+      "name": "Comoros / Rounded",
+      "base": "Comoros",
+      "variant": "Rounded",
+      "figmaId": "6570:44285"
+    },
+    {
+      "slug": "comoros--shape",
+      "name": "Comoros / Shape",
+      "base": "Comoros",
+      "variant": "Shape",
+      "figmaId": "6570:44294"
+    },
+    {
+      "slug": "congo-democratic--circle",
+      "name": "Congo Democratic / Circle",
+      "base": "Congo Democratic",
+      "variant": "Circle",
+      "figmaId": "6570:44304"
+    },
+    {
+      "slug": "congo-democratic--rounded",
+      "name": "Congo Democratic / Rounded",
+      "base": "Congo Democratic",
+      "variant": "Rounded",
+      "figmaId": "6570:44310"
+    },
+    {
+      "slug": "congo-democratic--shape",
+      "name": "Congo Democratic / Shape",
+      "base": "Congo Democratic",
+      "variant": "Shape",
+      "figmaId": "6570:44316"
+    },
+    {
+      "slug": "congo-republic--circle",
+      "name": "Congo Republic / Circle",
+      "base": "Congo Republic",
+      "variant": "Circle",
+      "figmaId": "6570:44323"
+    },
+    {
+      "slug": "congo-republic--rounded",
+      "name": "Congo Republic / Rounded",
+      "base": "Congo Republic",
+      "variant": "Rounded",
+      "figmaId": "6570:44329"
+    },
+    {
+      "slug": "congo-republic--shape",
+      "name": "Congo Republic / Shape",
+      "base": "Congo Republic",
+      "variant": "Shape",
+      "figmaId": "6570:44335"
+    },
+    {
+      "slug": "costa-rica--circle",
+      "name": "Costa Rica / Circle",
+      "base": "Costa Rica",
+      "variant": "Circle",
+      "figmaId": "6570:44342"
+    },
+    {
+      "slug": "costa-rica--rounded",
+      "name": "Costa Rica / Rounded",
+      "base": "Costa Rica",
+      "variant": "Rounded",
+      "figmaId": "6570:44348"
+    },
+    {
+      "slug": "costa-rica--shape",
+      "name": "Costa Rica / Shape",
+      "base": "Costa Rica",
+      "variant": "Shape",
+      "figmaId": "6570:44354"
+    },
+    {
+      "slug": "cote-d-lvoire--circle",
+      "name": "Cote d'lvoire / Circle",
+      "base": "Cote d'lvoire",
+      "variant": "Circle",
+      "figmaId": "6570:44361"
+    },
+    {
+      "slug": "cote-d-lvoire--rounded",
+      "name": "Cote d'lvoire / Rounded",
+      "base": "Cote d'lvoire",
+      "variant": "Rounded",
+      "figmaId": "6570:44367"
+    },
+    {
+      "slug": "cote-d-lvoire--shape",
+      "name": "Cote d'lvoire / Shape",
+      "base": "Cote d'lvoire",
+      "variant": "Shape",
+      "figmaId": "6570:44373"
+    },
+    {
+      "slug": "croatia--circle",
+      "name": "Croatia / Circle",
+      "base": "Croatia",
+      "variant": "Circle",
+      "figmaId": "6570:44380"
+    },
+    {
+      "slug": "croatia--rounded",
+      "name": "Croatia / Rounded",
+      "base": "Croatia",
+      "variant": "Rounded",
+      "figmaId": "6570:44440"
+    },
+    {
+      "slug": "croatia--shape",
+      "name": "Croatia / Shape",
+      "base": "Croatia",
+      "variant": "Shape",
+      "figmaId": "6570:44500"
+    },
+    {
+      "slug": "cuba--circle",
+      "name": "Cuba / Circle",
+      "base": "Cuba",
+      "variant": "Circle",
+      "figmaId": "6570:44561"
+    },
+    {
+      "slug": "cuba--rounded",
+      "name": "Cuba / Rounded",
+      "base": "Cuba",
+      "variant": "Rounded",
+      "figmaId": "6570:44568"
+    },
+    {
+      "slug": "cuba--shape",
+      "name": "Cuba / Shape",
+      "base": "Cuba",
+      "variant": "Shape",
+      "figmaId": "6570:44575"
+    },
+    {
+      "slug": "cyprus--circle",
+      "name": "Cyprus / Circle",
+      "base": "Cyprus",
+      "variant": "Circle",
+      "figmaId": "6570:44583"
+    },
+    {
+      "slug": "cyprus--rounded",
+      "name": "Cyprus / Rounded",
+      "base": "Cyprus",
+      "variant": "Rounded",
+      "figmaId": "6570:44590"
+    },
+    {
+      "slug": "cyprus--shape",
+      "name": "Cyprus / Shape",
+      "base": "Cyprus",
+      "variant": "Shape",
+      "figmaId": "6570:44597"
+    },
+    {
+      "slug": "czech-republic--circle",
+      "name": "Czech Republic / Circle",
+      "base": "Czech Republic",
+      "variant": "Circle",
+      "figmaId": "6570:44605"
+    },
+    {
+      "slug": "czech-republic--rounded",
+      "name": "Czech Republic / Rounded",
+      "base": "Czech Republic",
+      "variant": "Rounded",
+      "figmaId": "6570:44611"
+    },
+    {
+      "slug": "czech-republic--shape",
+      "name": "Czech Republic / Shape",
+      "base": "Czech Republic",
+      "variant": "Shape",
+      "figmaId": "6570:44618"
+    },
+    {
+      "slug": "denmark--circle",
+      "name": "Denmark / Circle",
+      "base": "Denmark",
+      "variant": "Circle",
+      "figmaId": "6570:44625"
+    },
+    {
+      "slug": "denmark--rounded",
+      "name": "Denmark / Rounded",
+      "base": "Denmark",
+      "variant": "Rounded",
+      "figmaId": "6570:44630"
+    },
+    {
+      "slug": "denmark--shape",
+      "name": "Denmark / Shape",
+      "base": "Denmark",
+      "variant": "Shape",
+      "figmaId": "6570:44636"
+    },
+    {
+      "slug": "dijbouti--circle",
+      "name": "Dijbouti / Circle",
+      "base": "Dijbouti",
+      "variant": "Circle",
+      "figmaId": "6570:44643"
+    },
+    {
+      "slug": "dijbouti--rounded",
+      "name": "Dijbouti / Rounded",
+      "base": "Dijbouti",
+      "variant": "Rounded",
+      "figmaId": "6570:44650"
+    },
+    {
+      "slug": "dijbouti--shape",
+      "name": "Dijbouti / Shape",
+      "base": "Dijbouti",
+      "variant": "Shape",
+      "figmaId": "6570:44658"
+    },
+    {
+      "slug": "dominica--shape",
+      "name": "Dominica / Shape",
+      "base": "Dominica",
+      "variant": "Shape",
+      "figmaId": "6570:44964"
+    },
+    {
+      "slug": "egypt--circle",
+      "name": "Egypt / Circle",
+      "base": "Egypt",
+      "variant": "Circle",
+      "figmaId": "6570:60614"
+    },
+    {
+      "slug": "egypt--rounded",
+      "name": "Egypt / Rounded",
+      "base": "Egypt",
+      "variant": "Rounded",
+      "figmaId": "6570:60657"
+    },
+    {
+      "slug": "egypt--shape",
+      "name": "Egypt / Shape",
+      "base": "Egypt",
+      "variant": "Shape",
+      "figmaId": "6570:60700"
+    },
+    {
+      "slug": "eritrea--circle",
+      "name": "Eritrea / Circle",
+      "base": "Eritrea",
+      "variant": "Circle",
+      "figmaId": "6570:63812"
+    },
+    {
+      "slug": "eritrea--rounded",
+      "name": "Eritrea / Rounded",
+      "base": "Eritrea",
+      "variant": "Rounded",
+      "figmaId": "6570:63819"
+    },
+    {
+      "slug": "eritrea--shape",
+      "name": "Eritrea / Shape",
+      "base": "Eritrea",
+      "variant": "Shape",
+      "figmaId": "6570:63826"
+    },
+    {
+      "slug": "estonia--circle",
+      "name": "Estonia / Circle",
+      "base": "Estonia",
+      "variant": "Circle",
+      "figmaId": "6570:63834"
+    },
+    {
+      "slug": "estonia--rounded",
+      "name": "Estonia / Rounded",
+      "base": "Estonia",
+      "variant": "Rounded",
+      "figmaId": "6570:63840"
+    },
+    {
+      "slug": "estonia--shape",
+      "name": "Estonia / Shape",
+      "base": "Estonia",
+      "variant": "Shape",
+      "figmaId": "6570:63846"
+    },
+    {
+      "slug": "eswatini--circle",
+      "name": "Eswatini / Circle",
+      "base": "Eswatini",
+      "variant": "Circle",
+      "figmaId": "6570:63853"
+    },
+    {
+      "slug": "eswatini--rounded",
+      "name": "Eswatini / Rounded",
+      "base": "Eswatini",
+      "variant": "Rounded",
+      "figmaId": "6570:63901"
+    },
+    {
+      "slug": "eswatini--shape",
+      "name": "Eswatini / Shape",
+      "base": "Eswatini",
+      "variant": "Shape",
+      "figmaId": "6570:63949"
+    },
+    {
+      "slug": "ethiopia--circle",
+      "name": "Ethiopia / Circle",
+      "base": "Ethiopia",
+      "variant": "Circle",
+      "figmaId": "6570:63998"
+    },
+    {
+      "slug": "ethiopia--rounded",
+      "name": "Ethiopia / Rounded",
+      "base": "Ethiopia",
+      "variant": "Rounded",
+      "figmaId": "6570:64006"
+    },
+    {
+      "slug": "ethiopia--shape",
+      "name": "Ethiopia / Shape",
+      "base": "Ethiopia",
+      "variant": "Shape",
+      "figmaId": "6570:64014"
+    },
+    {
+      "slug": "fiji--circle",
+      "name": "Fiji / Circle",
+      "base": "Fiji",
+      "variant": "Circle",
+      "figmaId": "6570:64023"
+    },
+    {
+      "slug": "fiji--rounded",
+      "name": "Fiji / Rounded",
+      "base": "Fiji",
+      "variant": "Rounded",
+      "figmaId": "6570:64278"
+    },
+    {
+      "slug": "fiji--shape",
+      "name": "Fiji / Shape",
+      "base": "Fiji",
+      "variant": "Shape",
+      "figmaId": "6570:64534"
+    },
+    {
+      "slug": "finland--circle",
+      "name": "Finland / Circle",
+      "base": "Finland",
+      "variant": "Circle",
+      "figmaId": "6570:64791"
+    },
+    {
+      "slug": "finland--rounded",
+      "name": "Finland / Rounded",
+      "base": "Finland",
+      "variant": "Rounded",
+      "figmaId": "6570:64796"
+    },
+    {
+      "slug": "finland--shape",
+      "name": "Finland / Shape",
+      "base": "Finland",
+      "variant": "Shape",
+      "figmaId": "6570:64802"
+    },
+    {
+      "slug": "france--circle",
+      "name": "France / Circle",
+      "base": "France",
+      "variant": "Circle",
+      "figmaId": "6570:64809"
+    },
+    {
+      "slug": "france--rounded",
+      "name": "France / Rounded",
+      "base": "France",
+      "variant": "Rounded",
+      "figmaId": "6570:64815"
+    },
+    {
+      "slug": "france--shape",
+      "name": "France / Shape",
+      "base": "France",
+      "variant": "Shape",
+      "figmaId": "6570:64821"
+    },
+    {
+      "slug": "gabon--circle",
+      "name": "Gabon / Circle",
+      "base": "Gabon",
+      "variant": "Circle",
+      "figmaId": "6570:64828"
+    },
+    {
+      "slug": "gabon--rounded",
+      "name": "Gabon / Rounded",
+      "base": "Gabon",
+      "variant": "Rounded",
+      "figmaId": "6570:64834"
+    },
+    {
+      "slug": "gabon--shape",
+      "name": "Gabon / Shape",
+      "base": "Gabon",
+      "variant": "Shape",
+      "figmaId": "6570:64840"
+    },
+    {
+      "slug": "gambia--circle",
+      "name": "Gambia / Circle",
+      "base": "Gambia",
+      "variant": "Circle",
+      "figmaId": "6570:64847"
+    },
+    {
+      "slug": "gambia--rounded",
+      "name": "Gambia / Rounded",
+      "base": "Gambia",
+      "variant": "Rounded",
+      "figmaId": "6570:64855"
+    },
+    {
+      "slug": "gambia--shape",
+      "name": "Gambia / Shape",
+      "base": "Gambia",
+      "variant": "Shape",
+      "figmaId": "6570:64863"
+    },
+    {
+      "slug": "georgia--circle",
+      "name": "Georgia / Circle",
+      "base": "Georgia",
+      "variant": "Circle",
+      "figmaId": "6570:64872"
+    },
+    {
+      "slug": "georgia--rounded",
+      "name": "Georgia / Rounded",
+      "base": "Georgia",
+      "variant": "Rounded",
+      "figmaId": "6570:64877"
+    },
+    {
+      "slug": "georgia--shape",
+      "name": "Georgia / Shape",
+      "base": "Georgia",
+      "variant": "Shape",
+      "figmaId": "6570:64882"
+    },
+    {
+      "slug": "germany--circle",
+      "name": "Germany / Circle",
+      "base": "Germany",
+      "variant": "Circle",
+      "figmaId": "6570:64888"
+    },
+    {
+      "slug": "germany--rounded",
+      "name": "Germany / Rounded",
+      "base": "Germany",
+      "variant": "Rounded",
+      "figmaId": "6570:64894"
+    },
+    {
+      "slug": "germany--shape",
+      "name": "Germany / Shape",
+      "base": "Germany",
+      "variant": "Shape",
+      "figmaId": "6570:64900"
+    },
+    {
+      "slug": "ghana--circle",
+      "name": "Ghana / Circle",
+      "base": "Ghana",
+      "variant": "Circle",
+      "figmaId": "6570:64907"
+    },
+    {
+      "slug": "ghana--rounded",
+      "name": "Ghana / Rounded",
+      "base": "Ghana",
+      "variant": "Rounded",
+      "figmaId": "6570:64914"
+    },
+    {
+      "slug": "ghana--shape",
+      "name": "Ghana / Shape",
+      "base": "Ghana",
+      "variant": "Shape",
+      "figmaId": "6570:64921"
+    },
+    {
+      "slug": "greece--circle",
+      "name": "Greece / Circle",
+      "base": "Greece",
+      "variant": "Circle",
+      "figmaId": "6570:64929"
+    },
+    {
+      "slug": "greece--rounded",
+      "name": "Greece / Rounded",
+      "base": "Greece",
+      "variant": "Rounded",
+      "figmaId": "6570:64943"
+    },
+    {
+      "slug": "greece--shape",
+      "name": "Greece / Shape",
+      "base": "Greece",
+      "variant": "Shape",
+      "figmaId": "6570:64958"
+    },
+    {
+      "slug": "grenada--circle",
+      "name": "Grenada / Circle",
+      "base": "Grenada",
+      "variant": "Circle",
+      "figmaId": "6570:64974"
+    },
+    {
+      "slug": "grenada--rounded",
+      "name": "Grenada / Rounded",
+      "base": "Grenada",
+      "variant": "Rounded",
+      "figmaId": "6570:64990"
+    },
+    {
+      "slug": "grenada--shape",
+      "name": "Grenada / Shape",
+      "base": "Grenada",
+      "variant": "Shape",
+      "figmaId": "6570:65006"
+    },
+    {
+      "slug": "guinea--circle",
+      "name": "Guinea / Circle",
+      "base": "Guinea",
+      "variant": "Circle",
+      "figmaId": "6570:79394"
+    },
+    {
+      "slug": "guinea--rounded",
+      "name": "Guinea / Rounded",
+      "base": "Guinea",
+      "variant": "Rounded",
+      "figmaId": "6570:79400"
+    },
+    {
+      "slug": "guinea--shape",
+      "name": "Guinea / Shape",
+      "base": "Guinea",
+      "variant": "Shape",
+      "figmaId": "6570:79406"
+    },
+    {
+      "slug": "guinea-bissau--circle",
+      "name": "Guinea Bissau / Circle",
+      "base": "Guinea Bissau",
+      "variant": "Circle",
+      "figmaId": "6570:79413"
+    },
+    {
+      "slug": "guinea-bissau--rounded",
+      "name": "Guinea Bissau / Rounded",
+      "base": "Guinea Bissau",
+      "variant": "Rounded",
+      "figmaId": "6570:79420"
+    },
+    {
+      "slug": "guinea-bissau--shape",
+      "name": "Guinea Bissau / Shape",
+      "base": "Guinea Bissau",
+      "variant": "Shape",
+      "figmaId": "6570:79427"
+    },
+    {
+      "slug": "guyana--circle",
+      "name": "Guyana / Circle",
+      "base": "Guyana",
+      "variant": "Circle",
+      "figmaId": "6570:79435"
+    },
+    {
+      "slug": "guyana--rounded",
+      "name": "Guyana / Rounded",
+      "base": "Guyana",
+      "variant": "Rounded",
+      "figmaId": "6570:79443"
+    },
+    {
+      "slug": "guyana--shape",
+      "name": "Guyana / Shape",
+      "base": "Guyana",
+      "variant": "Shape",
+      "figmaId": "6570:79451"
+    },
+    {
+      "slug": "honduras--circle",
+      "name": "Honduras / Circle",
+      "base": "Honduras",
+      "variant": "Circle",
+      "figmaId": "6570:81750"
+    },
+    {
+      "slug": "honduras--rounded",
+      "name": "Honduras / Rounded",
+      "base": "Honduras",
+      "variant": "Rounded",
+      "figmaId": "6570:81756"
+    },
+    {
+      "slug": "honduras--shape",
+      "name": "Honduras / Shape",
+      "base": "Honduras",
+      "variant": "Shape",
+      "figmaId": "6570:81762"
+    },
+    {
+      "slug": "hungary--circle",
+      "name": "Hungary / Circle",
+      "base": "Hungary",
+      "variant": "Circle",
+      "figmaId": "6570:81769"
+    },
+    {
+      "slug": "hungary--rounded",
+      "name": "Hungary / Rounded",
+      "base": "Hungary",
+      "variant": "Rounded",
+      "figmaId": "6570:81775"
+    },
+    {
+      "slug": "hungary--shape",
+      "name": "Hungary / Shape",
+      "base": "Hungary",
+      "variant": "Shape",
+      "figmaId": "6570:81781"
+    },
+    {
+      "slug": "iceland--circle",
+      "name": "Iceland / Circle",
+      "base": "Iceland",
+      "variant": "Circle",
+      "figmaId": "6570:81788"
+    },
+    {
+      "slug": "iceland--rounded",
+      "name": "Iceland / Rounded",
+      "base": "Iceland",
+      "variant": "Rounded",
+      "figmaId": "6570:81794"
+    },
+    {
+      "slug": "iceland--shape",
+      "name": "Iceland / Shape",
+      "base": "Iceland",
+      "variant": "Shape",
+      "figmaId": "6570:81800"
+    },
+    {
+      "slug": "india--circle",
+      "name": "India / Circle",
+      "base": "India",
+      "variant": "Circle",
+      "figmaId": "6570:81807"
+    },
+    {
+      "slug": "india--rounded",
+      "name": "India / Rounded",
+      "base": "India",
+      "variant": "Rounded",
+      "figmaId": "6570:81817"
+    },
+    {
+      "slug": "india--shape",
+      "name": "India / Shape",
+      "base": "India",
+      "variant": "Shape",
+      "figmaId": "6570:81827"
+    },
+    {
+      "slug": "indonesia--circle",
+      "name": "Indonesia / Circle",
+      "base": "Indonesia",
+      "variant": "Circle",
+      "figmaId": "6570:81838"
+    },
+    {
+      "slug": "indonesia--rounded",
+      "name": "Indonesia / Rounded",
+      "base": "Indonesia",
+      "variant": "Rounded",
+      "figmaId": "6570:81843"
+    },
+    {
+      "slug": "indonesia--shape",
+      "name": "Indonesia / Shape",
+      "base": "Indonesia",
+      "variant": "Shape",
+      "figmaId": "6570:81848"
+    },
+    {
+      "slug": "iran--circle",
+      "name": "Iran / Circle",
+      "base": "Iran",
+      "variant": "Circle",
+      "figmaId": "6570:81854"
+    },
+    {
+      "slug": "iran--rounded",
+      "name": "Iran / Rounded",
+      "base": "Iran",
+      "variant": "Rounded",
+      "figmaId": "6570:81868"
+    },
+    {
+      "slug": "iran--shape",
+      "name": "Iran / Shape",
+      "base": "Iran",
+      "variant": "Shape",
+      "figmaId": "6570:82007"
+    },
+    {
+      "slug": "iraq--circle",
+      "name": "Iraq / Circle",
+      "base": "Iraq",
+      "variant": "Circle",
+      "figmaId": "6570:82147"
+    },
+    {
+      "slug": "iraq--rounded",
+      "name": "Iraq / Rounded",
+      "base": "Iraq",
+      "variant": "Rounded",
+      "figmaId": "6570:82156"
+    },
+    {
+      "slug": "iraq--shape",
+      "name": "Iraq / Shape",
+      "base": "Iraq",
+      "variant": "Shape",
+      "figmaId": "6570:82165"
+    },
+    {
+      "slug": "ireland--circle",
+      "name": "Ireland / Circle",
+      "base": "Ireland",
+      "variant": "Circle",
+      "figmaId": "6570:82175"
+    },
+    {
+      "slug": "ireland--rounded",
+      "name": "Ireland / Rounded",
+      "base": "Ireland",
+      "variant": "Rounded",
+      "figmaId": "6570:82181"
+    },
+    {
+      "slug": "ireland--shape",
+      "name": "Ireland / Shape",
+      "base": "Ireland",
+      "variant": "Shape",
+      "figmaId": "6570:82187"
+    },
+    {
+      "slug": "israel--circle",
+      "name": "Israel / Circle",
+      "base": "Israel",
+      "variant": "Circle",
+      "figmaId": "6570:82194"
+    },
+    {
+      "slug": "israel--rounded",
+      "name": "Israel / Rounded",
+      "base": "Israel",
+      "variant": "Rounded",
+      "figmaId": "6570:82202"
+    },
+    {
+      "slug": "israel--shape",
+      "name": "Israel / Shape",
+      "base": "Israel",
+      "variant": "Shape",
+      "figmaId": "6570:82210"
+    },
+    {
+      "slug": "italy--circle",
+      "name": "Italy / Circle",
+      "base": "Italy",
+      "variant": "Circle",
+      "figmaId": "6570:82219"
+    },
+    {
+      "slug": "italy--rounded",
+      "name": "Italy / Rounded",
+      "base": "Italy",
+      "variant": "Rounded",
+      "figmaId": "6570:82225"
+    },
+    {
+      "slug": "italy--shape",
+      "name": "Italy / Shape",
+      "base": "Italy",
+      "variant": "Shape",
+      "figmaId": "6570:82231"
+    },
+    {
+      "slug": "jamaica--circle",
+      "name": "Jamaica / Circle",
+      "base": "Jamaica",
+      "variant": "Circle",
+      "figmaId": "6570:82238"
+    },
+    {
+      "slug": "jamaica--rounded",
+      "name": "Jamaica / Rounded",
+      "base": "Jamaica",
+      "variant": "Rounded",
+      "figmaId": "6570:82245"
+    },
+    {
+      "slug": "jamaica--shape",
+      "name": "Jamaica / Shape",
+      "base": "Jamaica",
+      "variant": "Shape",
+      "figmaId": "6570:82252"
+    },
+    {
+      "slug": "japan--circle",
+      "name": "Japan / Circle",
+      "base": "Japan",
+      "variant": "Circle",
+      "figmaId": "6570:82260"
+    },
+    {
+      "slug": "japan--rounded",
+      "name": "Japan / Rounded",
+      "base": "Japan",
+      "variant": "Rounded",
+      "figmaId": "6570:82265"
+    },
+    {
+      "slug": "japan--shape",
+      "name": "Japan / Shape",
+      "base": "Japan",
+      "variant": "Shape",
+      "figmaId": "6570:82270"
+    },
+    {
+      "slug": "jordan--circle",
+      "name": "Jordan / Circle",
+      "base": "Jordan",
+      "variant": "Circle",
+      "figmaId": "6570:82276"
+    },
+    {
+      "slug": "jordan--rounded",
+      "name": "Jordan / Rounded",
+      "base": "Jordan",
+      "variant": "Rounded",
+      "figmaId": "6570:82284"
+    },
+    {
+      "slug": "jordan--shape",
+      "name": "Jordan / Shape",
+      "base": "Jordan",
+      "variant": "Shape",
+      "figmaId": "6570:82292"
+    },
+    {
+      "slug": "kazakhstan--circle",
+      "name": "Kazakhstan / Circle",
+      "base": "Kazakhstan",
+      "variant": "Circle",
+      "figmaId": "6570:82301"
+    },
+    {
+      "slug": "kazakhstan--rounded",
+      "name": "Kazakhstan / Rounded",
+      "base": "Kazakhstan",
+      "variant": "Rounded",
+      "figmaId": "6570:82313"
+    },
+    {
+      "slug": "kazakhstan--shape",
+      "name": "Kazakhstan / Shape",
+      "base": "Kazakhstan",
+      "variant": "Shape",
+      "figmaId": "6570:82325"
+    },
+    {
+      "slug": "kenya--circle",
+      "name": "Kenya / Circle",
+      "base": "Kenya",
+      "variant": "Circle",
+      "figmaId": "6570:82338"
+    },
+    {
+      "slug": "kenya--rounded",
+      "name": "Kenya / Rounded",
+      "base": "Kenya",
+      "variant": "Rounded",
+      "figmaId": "6570:82358"
+    },
+    {
+      "slug": "kenya--shape",
+      "name": "Kenya / Shape",
+      "base": "Kenya",
+      "variant": "Shape",
+      "figmaId": "6570:82378"
+    },
+    {
+      "slug": "kiribati--circle",
+      "name": "Kiribati / Circle",
+      "base": "Kiribati",
+      "variant": "Circle",
+      "figmaId": "6570:82399"
+    },
+    {
+      "slug": "kiribati--rounded",
+      "name": "Kiribati / Rounded",
+      "base": "Kiribati",
+      "variant": "Rounded",
+      "figmaId": "6570:82450"
+    },
+    {
+      "slug": "kiribati--shape",
+      "name": "Kiribati / Shape",
+      "base": "Kiribati",
+      "variant": "Shape",
+      "figmaId": "6570:82502"
+    },
+    {
+      "slug": "kosovo--circle",
+      "name": "Kosovo / Circle",
+      "base": "Kosovo",
+      "variant": "Circle",
+      "figmaId": "6570:82555"
+    },
+    {
+      "slug": "kosovo--rounded",
+      "name": "Kosovo / Rounded",
+      "base": "Kosovo",
+      "variant": "Rounded",
+      "figmaId": "6570:82561"
+    },
+    {
+      "slug": "kosovo--shape",
+      "name": "Kosovo / Shape",
+      "base": "Kosovo",
+      "variant": "Shape",
+      "figmaId": "6570:82567"
+    },
+    {
+      "slug": "kuwait--circle",
+      "name": "Kuwait / Circle",
+      "base": "Kuwait",
+      "variant": "Circle",
+      "figmaId": "6570:82574"
+    },
+    {
+      "slug": "kuwait--rounded",
+      "name": "Kuwait / Rounded",
+      "base": "Kuwait",
+      "variant": "Rounded",
+      "figmaId": "6570:82581"
+    },
+    {
+      "slug": "kuwait--shape",
+      "name": "Kuwait / Shape",
+      "base": "Kuwait",
+      "variant": "Shape",
+      "figmaId": "6570:82588"
+    },
+    {
+      "slug": "kyrgyzstan--circle",
+      "name": "Kyrgyzstan / Circle",
+      "base": "Kyrgyzstan",
+      "variant": "Circle",
+      "figmaId": "6570:82596"
+    },
+    {
+      "slug": "kyrgyzstan--rounded",
+      "name": "Kyrgyzstan / Rounded",
+      "base": "Kyrgyzstan",
+      "variant": "Rounded",
+      "figmaId": "6570:82605"
+    },
+    {
+      "slug": "kyrgyzstan--shape",
+      "name": "Kyrgyzstan / Shape",
+      "base": "Kyrgyzstan",
+      "variant": "Shape",
+      "figmaId": "6570:82614"
+    },
+    {
+      "slug": "laos--circle",
+      "name": "Laos / Circle",
+      "base": "Laos",
+      "variant": "Circle",
+      "figmaId": "6570:82624"
+    },
+    {
+      "slug": "laos--rounded",
+      "name": "Laos / Rounded",
+      "base": "Laos",
+      "variant": "Rounded",
+      "figmaId": "6570:82630"
+    },
+    {
+      "slug": "laos--shape",
+      "name": "Laos / Shape",
+      "base": "Laos",
+      "variant": "Shape",
+      "figmaId": "6570:82636"
+    },
+    {
+      "slug": "latvia--circle",
+      "name": "Latvia / Circle",
+      "base": "Latvia",
+      "variant": "Circle",
+      "figmaId": "6570:82643"
+    },
+    {
+      "slug": "latvia--rounded",
+      "name": "Latvia / Rounded",
+      "base": "Latvia",
+      "variant": "Rounded",
+      "figmaId": "6570:82648"
+    },
+    {
+      "slug": "latvia--shape",
+      "name": "Latvia / Shape",
+      "base": "Latvia",
+      "variant": "Shape",
+      "figmaId": "6570:82653"
+    },
+    {
+      "slug": "lebanon--circle",
+      "name": "Lebanon / Circle",
+      "base": "Lebanon",
+      "variant": "Circle",
+      "figmaId": "6570:82659"
+    },
+    {
+      "slug": "lebanon--rounded",
+      "name": "Lebanon / Rounded",
+      "base": "Lebanon",
+      "variant": "Rounded",
+      "figmaId": "6570:82666"
+    },
+    {
+      "slug": "lebanon--shape",
+      "name": "Lebanon / Shape",
+      "base": "Lebanon",
+      "variant": "Shape",
+      "figmaId": "6570:82673"
+    },
+    {
+      "slug": "lesotho--circle",
+      "name": "Lesotho / Circle",
+      "base": "Lesotho",
+      "variant": "Circle",
+      "figmaId": "6570:82681"
+    },
+    {
+      "slug": "lesotho--rounded",
+      "name": "Lesotho / Rounded",
+      "base": "Lesotho",
+      "variant": "Rounded",
+      "figmaId": "6570:82691"
+    },
+    {
+      "slug": "lesotho--shape",
+      "name": "Lesotho / Shape",
+      "base": "Lesotho",
+      "variant": "Shape",
+      "figmaId": "6570:82701"
+    },
+    {
+      "slug": "liberia--circle",
+      "name": "Liberia / Circle",
+      "base": "Liberia",
+      "variant": "Circle",
+      "figmaId": "6570:82712"
+    },
+    {
+      "slug": "liberia--rounded",
+      "name": "Liberia / Rounded",
+      "base": "Liberia",
+      "variant": "Rounded",
+      "figmaId": "6570:82719"
+    },
+    {
+      "slug": "liberia--shape",
+      "name": "Liberia / Shape",
+      "base": "Liberia",
+      "variant": "Shape",
+      "figmaId": "6570:82726"
+    },
+    {
+      "slug": "libya--circle",
+      "name": "Libya / Circle",
+      "base": "Libya",
+      "variant": "Circle",
+      "figmaId": "6570:82734"
+    },
+    {
+      "slug": "libya--rounded",
+      "name": "Libya / Rounded",
+      "base": "Libya",
+      "variant": "Rounded",
+      "figmaId": "6570:82741"
+    },
+    {
+      "slug": "libya--shape",
+      "name": "Libya / Shape",
+      "base": "Libya",
+      "variant": "Shape",
+      "figmaId": "6570:82748"
+    },
+    {
+      "slug": "liechtenstein--circle",
+      "name": "Liechtenstein / Circle",
+      "base": "Liechtenstein",
+      "variant": "Circle",
+      "figmaId": "6570:82756"
+    },
+    {
+      "slug": "liechtenstein--rounded",
+      "name": "Liechtenstein / Rounded",
+      "base": "Liechtenstein",
+      "variant": "Rounded",
+      "figmaId": "6570:82846"
+    },
+    {
+      "slug": "liechtenstein--shape",
+      "name": "Liechtenstein / Shape",
+      "base": "Liechtenstein",
+      "variant": "Shape",
+      "figmaId": "6570:82936"
+    },
+    {
+      "slug": "lithuania--circle",
+      "name": "Lithuania / Circle",
+      "base": "Lithuania",
+      "variant": "Circle",
+      "figmaId": "6570:83027"
+    },
+    {
+      "slug": "lithuania--rounded",
+      "name": "Lithuania / Rounded",
+      "base": "Lithuania",
+      "variant": "Rounded",
+      "figmaId": "6570:83033"
+    },
+    {
+      "slug": "lithuania--shape",
+      "name": "Lithuania / Shape",
+      "base": "Lithuania",
+      "variant": "Shape",
+      "figmaId": "6570:83039"
+    },
+    {
+      "slug": "luxembourg--circle",
+      "name": "Luxembourg / Circle",
+      "base": "Luxembourg",
+      "variant": "Circle",
+      "figmaId": "6570:83046"
+    },
+    {
+      "slug": "luxembourg--rounded",
+      "name": "Luxembourg / Rounded",
+      "base": "Luxembourg",
+      "variant": "Rounded",
+      "figmaId": "6570:83052"
+    },
+    {
+      "slug": "luxembourg--shape",
+      "name": "Luxembourg / Shape",
+      "base": "Luxembourg",
+      "variant": "Shape",
+      "figmaId": "6570:83058"
+    },
+    {
+      "slug": "madagascar--circle",
+      "name": "Madagascar / Circle",
+      "base": "Madagascar",
+      "variant": "Circle",
+      "figmaId": "6570:83065"
+    },
+    {
+      "slug": "madagascar--rounded",
+      "name": "Madagascar / Rounded",
+      "base": "Madagascar",
+      "variant": "Rounded",
+      "figmaId": "6570:83071"
+    },
+    {
+      "slug": "madagascar--shape",
+      "name": "Madagascar / Shape",
+      "base": "Madagascar",
+      "variant": "Shape",
+      "figmaId": "6570:83077"
+    },
+    {
+      "slug": "malawi--circle",
+      "name": "Malawi / Circle",
+      "base": "Malawi",
+      "variant": "Circle",
+      "figmaId": "6570:83084"
+    },
+    {
+      "slug": "malawi--rounded",
+      "name": "Malawi / Rounded",
+      "base": "Malawi",
+      "variant": "Rounded",
+      "figmaId": "6570:83093"
+    },
+    {
+      "slug": "malawi--shape",
+      "name": "Malawi / Shape",
+      "base": "Malawi",
+      "variant": "Shape",
+      "figmaId": "6570:83102"
+    },
+    {
+      "slug": "malaysia--circle",
+      "name": "Malaysia / Circle",
+      "base": "Malaysia",
+      "variant": "Circle",
+      "figmaId": "6570:83112"
+    },
+    {
+      "slug": "malaysia--rounded",
+      "name": "Malaysia / Rounded",
+      "base": "Malaysia",
+      "variant": "Rounded",
+      "figmaId": "6570:83121"
+    },
+    {
+      "slug": "malaysia--shape",
+      "name": "Malaysia / Shape",
+      "base": "Malaysia",
+      "variant": "Shape",
+      "figmaId": "6570:83140"
+    },
+    {
+      "slug": "maldives--circle",
+      "name": "Maldives / Circle",
+      "base": "Maldives",
+      "variant": "Circle",
+      "figmaId": "6570:83161"
+    },
+    {
+      "slug": "maldives--rounded",
+      "name": "Maldives / Rounded",
+      "base": "Maldives",
+      "variant": "Rounded",
+      "figmaId": "6570:83167"
+    },
+    {
+      "slug": "maldives--shape",
+      "name": "Maldives / Shape",
+      "base": "Maldives",
+      "variant": "Shape",
+      "figmaId": "6570:83173"
+    },
+    {
+      "slug": "mali--circle",
+      "name": "Mali / Circle",
+      "base": "Mali",
+      "variant": "Circle",
+      "figmaId": "6570:83180"
+    },
+    {
+      "slug": "mali--rounded",
+      "name": "Mali / Rounded",
+      "base": "Mali",
+      "variant": "Rounded",
+      "figmaId": "6570:83186"
+    },
+    {
+      "slug": "mali--shape",
+      "name": "Mali / Shape",
+      "base": "Mali",
+      "variant": "Shape",
+      "figmaId": "6570:83192"
+    },
+    {
+      "slug": "malta--circle",
+      "name": "Malta / Circle",
+      "base": "Malta",
+      "variant": "Circle",
+      "figmaId": "6570:83199"
+    },
+    {
+      "slug": "malta--rounded",
+      "name": "Malta / Rounded",
+      "base": "Malta",
+      "variant": "Rounded",
+      "figmaId": "6570:83310"
+    },
+    {
+      "slug": "malta--shape",
+      "name": "Malta / Shape",
+      "base": "Malta",
+      "variant": "Shape",
+      "figmaId": "6570:83421"
+    },
+    {
+      "slug": "marshall-islands--circle",
+      "name": "Marshall Islands / Circle",
+      "base": "Marshall Islands",
+      "variant": "Circle",
+      "figmaId": "6570:83533"
+    },
+    {
+      "slug": "marshall-islands--rounded",
+      "name": "Marshall Islands / Rounded",
+      "base": "Marshall Islands",
+      "variant": "Rounded",
+      "figmaId": "6570:83539"
+    },
+    {
+      "slug": "marshall-islands--shape",
+      "name": "Marshall Islands / Shape",
+      "base": "Marshall Islands",
+      "variant": "Shape",
+      "figmaId": "6570:83545"
+    },
+    {
+      "slug": "mauritania--circle",
+      "name": "Mauritania / Circle",
+      "base": "Mauritania",
+      "variant": "Circle",
+      "figmaId": "6570:83552"
+    },
+    {
+      "slug": "mauritania--rounded",
+      "name": "Mauritania / Rounded",
+      "base": "Mauritania",
+      "variant": "Rounded",
+      "figmaId": "6570:83559"
+    },
+    {
+      "slug": "mauritania--shape",
+      "name": "Mauritania / Shape",
+      "base": "Mauritania",
+      "variant": "Shape",
+      "figmaId": "6570:83566"
+    },
+    {
+      "slug": "mauritius--circle",
+      "name": "Mauritius / Circle",
+      "base": "Mauritius",
+      "variant": "Circle",
+      "figmaId": "6570:83574"
+    },
+    {
+      "slug": "mauritius--rounded",
+      "name": "Mauritius / Rounded",
+      "base": "Mauritius",
+      "variant": "Rounded",
+      "figmaId": "6570:83581"
+    },
+    {
+      "slug": "mauritius--shape",
+      "name": "Mauritius / Shape",
+      "base": "Mauritius",
+      "variant": "Shape",
+      "figmaId": "6570:83588"
+    },
+    {
+      "slug": "micronesia--circle",
+      "name": "Micronesia / Circle",
+      "base": "Micronesia",
+      "variant": "Circle",
+      "figmaId": "6570:85100"
+    },
+    {
+      "slug": "micronesia--rounded",
+      "name": "Micronesia / Rounded",
+      "base": "Micronesia",
+      "variant": "Rounded",
+      "figmaId": "6570:85105"
+    },
+    {
+      "slug": "micronesia--shape",
+      "name": "Micronesia / Shape",
+      "base": "Micronesia",
+      "variant": "Shape",
+      "figmaId": "6570:85110"
+    },
+    {
+      "slug": "moldova--circle",
+      "name": "Moldova / Circle",
+      "base": "Moldova",
+      "variant": "Circle",
+      "figmaId": "6570:85116"
+    },
+    {
+      "slug": "moldova--rounded",
+      "name": "Moldova / Rounded",
+      "base": "Moldova",
+      "variant": "Rounded",
+      "figmaId": "6570:85166"
+    },
+    {
+      "slug": "moldova--shape",
+      "name": "Moldova / Shape",
+      "base": "Moldova",
+      "variant": "Shape",
+      "figmaId": "6570:85216"
+    },
+    {
+      "slug": "monaco--circle",
+      "name": "Monaco / Circle",
+      "base": "Monaco",
+      "variant": "Circle",
+      "figmaId": "6570:85267"
+    },
+    {
+      "slug": "monaco--rounded",
+      "name": "Monaco / Rounded",
+      "base": "Monaco",
+      "variant": "Rounded",
+      "figmaId": "6570:85272"
+    },
+    {
+      "slug": "monaco--shape",
+      "name": "Monaco / Shape",
+      "base": "Monaco",
+      "variant": "Shape",
+      "figmaId": "6570:85277"
+    },
+    {
+      "slug": "mongolia--circle",
+      "name": "Mongolia / Circle",
+      "base": "Mongolia",
+      "variant": "Circle",
+      "figmaId": "6570:85283"
+    },
+    {
+      "slug": "mongolia--rounded",
+      "name": "Mongolia / Rounded",
+      "base": "Mongolia",
+      "variant": "Rounded",
+      "figmaId": "6570:85292"
+    },
+    {
+      "slug": "mongolia--shape",
+      "name": "Mongolia / Shape",
+      "base": "Mongolia",
+      "variant": "Shape",
+      "figmaId": "6570:85301"
+    },
+    {
+      "slug": "montenegro--circle",
+      "name": "Montenegro / Circle",
+      "base": "Montenegro",
+      "variant": "Circle",
+      "figmaId": "6570:85311"
+    },
+    {
+      "slug": "montenegro--rounded",
+      "name": "Montenegro / Rounded",
+      "base": "Montenegro",
+      "variant": "Rounded",
+      "figmaId": "6570:85428"
+    },
+    {
+      "slug": "montenegro--shape",
+      "name": "Montenegro / Shape",
+      "base": "Montenegro",
+      "variant": "Shape",
+      "figmaId": "6570:85545"
+    },
+    {
+      "slug": "morocco--circle",
+      "name": "Morocco / Circle",
+      "base": "Morocco",
+      "variant": "Circle",
+      "figmaId": "6570:85663"
+    },
+    {
+      "slug": "morocco--rounded",
+      "name": "Morocco / Rounded",
+      "base": "Morocco",
+      "variant": "Rounded",
+      "figmaId": "6570:85668"
+    },
+    {
+      "slug": "morocco--shape",
+      "name": "Morocco / Shape",
+      "base": "Morocco",
+      "variant": "Shape",
+      "figmaId": "6570:85673"
+    },
+    {
+      "slug": "mozambique--circle",
+      "name": "Mozambique / Circle",
+      "base": "Mozambique",
+      "variant": "Circle",
+      "figmaId": "6570:85679"
+    },
+    {
+      "slug": "mozambique--rounded",
+      "name": "Mozambique / Rounded",
+      "base": "Mozambique",
+      "variant": "Rounded",
+      "figmaId": "6570:85697"
+    },
+    {
+      "slug": "mozambique--shape",
+      "name": "Mozambique / Shape",
+      "base": "Mozambique",
+      "variant": "Shape",
+      "figmaId": "6570:85715"
+    },
+    {
+      "slug": "myanmar--circle",
+      "name": "Myanmar / Circle",
+      "base": "Myanmar",
+      "variant": "Circle",
+      "figmaId": "6570:85734"
+    },
+    {
+      "slug": "myanmar--rounded",
+      "name": "Myanmar / Rounded",
+      "base": "Myanmar",
+      "variant": "Rounded",
+      "figmaId": "6570:85741"
+    },
+    {
+      "slug": "myanmar--shape",
+      "name": "Myanmar / Shape",
+      "base": "Myanmar",
+      "variant": "Shape",
+      "figmaId": "6570:85748"
+    },
+    {
+      "slug": "namibia--circle",
+      "name": "Namibia / Circle",
+      "base": "Namibia",
+      "variant": "Circle",
+      "figmaId": "6570:85756"
+    },
+    {
+      "slug": "namibia--rounded",
+      "name": "Namibia / Rounded",
+      "base": "Namibia",
+      "variant": "Rounded",
+      "figmaId": "6570:85767"
+    },
+    {
+      "slug": "namibia--shape",
+      "name": "Namibia / Shape",
+      "base": "Namibia",
+      "variant": "Shape",
+      "figmaId": "6570:85777"
+    },
+    {
+      "slug": "nauru--circle",
+      "name": "Nauru / Circle",
+      "base": "Nauru",
+      "variant": "Circle",
+      "figmaId": "6570:85788"
+    },
+    {
+      "slug": "nauru--rounded",
+      "name": "Nauru / Rounded",
+      "base": "Nauru",
+      "variant": "Rounded",
+      "figmaId": "6570:85794"
+    },
+    {
+      "slug": "nauru--shape",
+      "name": "Nauru / Shape",
+      "base": "Nauru",
+      "variant": "Shape",
+      "figmaId": "6570:85800"
+    },
+    {
+      "slug": "nepal--circle",
+      "name": "Nepal / Circle",
+      "base": "Nepal",
+      "variant": "Circle",
+      "figmaId": "6570:85807"
+    },
+    {
+      "slug": "nepal--rounded",
+      "name": "Nepal / Rounded",
+      "base": "Nepal",
+      "variant": "Rounded",
+      "figmaId": "6570:85814"
+    },
+    {
+      "slug": "nepal--shape",
+      "name": "Nepal / Shape",
+      "base": "Nepal",
+      "variant": "Shape",
+      "figmaId": "6570:85821"
+    },
+    {
+      "slug": "netherlands--circle",
+      "name": "Netherlands / Circle",
+      "base": "Netherlands",
+      "variant": "Circle",
+      "figmaId": "6570:85829"
+    },
+    {
+      "slug": "netherlands--rounded",
+      "name": "Netherlands / Rounded",
+      "base": "Netherlands",
+      "variant": "Rounded",
+      "figmaId": "6570:85835"
+    },
+    {
+      "slug": "netherlands--shape",
+      "name": "Netherlands / Shape",
+      "base": "Netherlands",
+      "variant": "Shape",
+      "figmaId": "6570:85841"
+    },
+    {
+      "slug": "new-zealand--circle",
+      "name": "New Zealand / Circle",
+      "base": "New Zealand",
+      "variant": "Circle",
+      "figmaId": "6570:85848"
+    },
+    {
+      "slug": "new-zealand--rounded",
+      "name": "New Zealand / Rounded",
+      "base": "New Zealand",
+      "variant": "Rounded",
+      "figmaId": "6570:85867"
+    },
+    {
+      "slug": "new-zealand--shape",
+      "name": "New Zealand / Shape",
+      "base": "New Zealand",
+      "variant": "Shape",
+      "figmaId": "6570:85884"
+    },
+    {
+      "slug": "niger--circle",
+      "name": "Niger / Circle",
+      "base": "Niger",
+      "variant": "Circle",
+      "figmaId": "6570:87640"
+    },
+    {
+      "slug": "niger--rounded",
+      "name": "Niger / Rounded",
+      "base": "Niger",
+      "variant": "Rounded",
+      "figmaId": "6570:87647"
+    },
+    {
+      "slug": "niger--shape",
+      "name": "Niger / Shape",
+      "base": "Niger",
+      "variant": "Shape",
+      "figmaId": "6570:87654"
+    },
+    {
+      "slug": "nigeria--circle",
+      "name": "Nigeria / Circle",
+      "base": "Nigeria",
+      "variant": "Circle",
+      "figmaId": "6570:87662"
+    },
+    {
+      "slug": "nigeria--rounded",
+      "name": "Nigeria / Rounded",
+      "base": "Nigeria",
+      "variant": "Rounded",
+      "figmaId": "6570:87667"
+    },
+    {
+      "slug": "nigeria--shape",
+      "name": "Nigeria / Shape",
+      "base": "Nigeria",
+      "variant": "Shape",
+      "figmaId": "6570:87672"
+    },
+    {
+      "slug": "north-korea--circle",
+      "name": "North Korea / Circle",
+      "base": "North Korea",
+      "variant": "Circle",
+      "figmaId": "6570:87678"
+    },
+    {
+      "slug": "north-korea--rounded",
+      "name": "North Korea / Rounded",
+      "base": "North Korea",
+      "variant": "Rounded",
+      "figmaId": "6570:87687"
+    },
+    {
+      "slug": "north-korea--shape",
+      "name": "North Korea / Shape",
+      "base": "North Korea",
+      "variant": "Shape",
+      "figmaId": "6570:87695"
+    },
+    {
+      "slug": "north-macedonia--circle",
+      "name": "North Macedonia / Circle",
+      "base": "North Macedonia",
+      "variant": "Circle",
+      "figmaId": "6570:87704"
+    },
+    {
+      "slug": "north-macedonia--rounded",
+      "name": "North Macedonia / Rounded",
+      "base": "North Macedonia",
+      "variant": "Rounded",
+      "figmaId": "6570:87709"
+    },
+    {
+      "slug": "north-macedonia--shape",
+      "name": "North Macedonia / Shape",
+      "base": "North Macedonia",
+      "variant": "Shape",
+      "figmaId": "6570:87714"
+    },
+    {
+      "slug": "norway--circle",
+      "name": "Norway / Circle",
+      "base": "Norway",
+      "variant": "Circle",
+      "figmaId": "6570:87720"
+    },
+    {
+      "slug": "norway--rounded",
+      "name": "Norway / Rounded",
+      "base": "Norway",
+      "variant": "Rounded",
+      "figmaId": "6570:87726"
+    },
+    {
+      "slug": "norway--shape",
+      "name": "Norway / Shape",
+      "base": "Norway",
+      "variant": "Shape",
+      "figmaId": "6570:87734"
+    },
+    {
+      "slug": "oman--circle",
+      "name": "Oman / Circle",
+      "base": "Oman",
+      "variant": "Circle",
+      "figmaId": "6570:87743"
+    },
+    {
+      "slug": "oman--rounded",
+      "name": "Oman / Rounded",
+      "base": "Oman",
+      "variant": "Rounded",
+      "figmaId": "6570:87907"
+    },
+    {
+      "slug": "oman--shape",
+      "name": "Oman / Shape",
+      "base": "Oman",
+      "variant": "Shape",
+      "figmaId": "6570:88071"
+    },
+    {
+      "slug": "pakistan--circle",
+      "name": "Pakistan / Circle",
+      "base": "Pakistan",
+      "variant": "Circle",
+      "figmaId": "6570:88236"
+    },
+    {
+      "slug": "pakistan--rounded",
+      "name": "Pakistan / Rounded",
+      "base": "Pakistan",
+      "variant": "Rounded",
+      "figmaId": "6570:88243"
+    },
+    {
+      "slug": "pakistan--shape",
+      "name": "Pakistan / Shape",
+      "base": "Pakistan",
+      "variant": "Shape",
+      "figmaId": "6570:88250"
+    },
+    {
+      "slug": "palau--circle",
+      "name": "Palau / Circle",
+      "base": "Palau",
+      "variant": "Circle",
+      "figmaId": "6570:88258"
+    },
+    {
+      "slug": "palau--rounded",
+      "name": "Palau / Rounded",
+      "base": "Palau",
+      "variant": "Rounded",
+      "figmaId": "6570:88263"
+    },
+    {
+      "slug": "palau--shape",
+      "name": "Palau / Shape",
+      "base": "Palau",
+      "variant": "Shape",
+      "figmaId": "6570:88268"
+    },
+    {
+      "slug": "palestine--circle",
+      "name": "Palestine / Circle",
+      "base": "Palestine",
+      "variant": "Circle",
+      "figmaId": "6570:88274"
+    },
+    {
+      "slug": "palestine--rounded",
+      "name": "Palestine / Rounded",
+      "base": "Palestine",
+      "variant": "Rounded",
+      "figmaId": "6570:88281"
+    },
+    {
+      "slug": "palestine--shape",
+      "name": "Palestine / Shape",
+      "base": "Palestine",
+      "variant": "Shape",
+      "figmaId": "6570:88288"
+    },
+    {
+      "slug": "panama--circle",
+      "name": "Panama / Circle",
+      "base": "Panama",
+      "variant": "Circle",
+      "figmaId": "6570:88296"
+    },
+    {
+      "slug": "panama--rounded",
+      "name": "Panama / Rounded",
+      "base": "Panama",
+      "variant": "Rounded",
+      "figmaId": "6570:88302"
+    },
+    {
+      "slug": "panama--shape",
+      "name": "Panama / Shape",
+      "base": "Panama",
+      "variant": "Shape",
+      "figmaId": "6570:88308"
+    },
+    {
+      "slug": "papua-new-guinea--circle",
+      "name": "Papua New Guinea / Circle",
+      "base": "Papua New Guinea",
+      "variant": "Circle",
+      "figmaId": "6570:88315"
+    },
+    {
+      "slug": "papua-new-guinea--rounded",
+      "name": "Papua New Guinea / Rounded",
+      "base": "Papua New Guinea",
+      "variant": "Rounded",
+      "figmaId": "6570:88323"
+    },
+    {
+      "slug": "papua-new-guinea--shape",
+      "name": "Papua New Guinea / Shape",
+      "base": "Papua New Guinea",
+      "variant": "Shape",
+      "figmaId": "6570:88331"
+    },
+    {
+      "slug": "paraguay--circle",
+      "name": "Paraguay / Circle",
+      "base": "Paraguay",
+      "variant": "Circle",
+      "figmaId": "6570:88340"
+    },
+    {
+      "slug": "paraguay--rounded",
+      "name": "Paraguay / Rounded",
+      "base": "Paraguay",
+      "variant": "Rounded",
+      "figmaId": "6570:88407"
+    },
+    {
+      "slug": "paraguay--shape",
+      "name": "Paraguay / Shape",
+      "base": "Paraguay",
+      "variant": "Shape",
+      "figmaId": "6570:88474"
+    },
+    {
+      "slug": "philippines--circle",
+      "name": "Philippines / Circle",
+      "base": "Philippines",
+      "variant": "Circle",
+      "figmaId": "6570:97768"
+    },
+    {
+      "slug": "philippines--rounded",
+      "name": "Philippines / Rounded",
+      "base": "Philippines",
+      "variant": "Rounded",
+      "figmaId": "6570:97775"
+    },
+    {
+      "slug": "philippines--shape",
+      "name": "Philippines / Shape",
+      "base": "Philippines",
+      "variant": "Shape",
+      "figmaId": "6570:97783"
+    },
+    {
+      "slug": "poland--circle",
+      "name": "Poland / Circle",
+      "base": "Poland",
+      "variant": "Circle",
+      "figmaId": "6570:97791"
+    },
+    {
+      "slug": "poland--rounded",
+      "name": "Poland / Rounded",
+      "base": "Poland",
+      "variant": "Rounded",
+      "figmaId": "6570:97796"
+    },
+    {
+      "slug": "poland--shape",
+      "name": "Poland / Shape",
+      "base": "Poland",
+      "variant": "Shape",
+      "figmaId": "6570:97801"
+    },
+    {
+      "slug": "portugal--circle",
+      "name": "Portugal / Circle",
+      "base": "Portugal",
+      "variant": "Circle",
+      "figmaId": "6570:97807"
+    },
+    {
+      "slug": "portugal--rounded",
+      "name": "Portugal / Rounded",
+      "base": "Portugal",
+      "variant": "Rounded",
+      "figmaId": "6570:98086"
+    },
+    {
+      "slug": "portugal--shape",
+      "name": "Portugal / Shape",
+      "base": "Portugal",
+      "variant": "Shape",
+      "figmaId": "6570:98365"
+    },
+    {
+      "slug": "qatar--circle",
+      "name": "Qatar / Circle",
+      "base": "Qatar",
+      "variant": "Circle",
+      "figmaId": "6570:98645"
+    },
+    {
+      "slug": "qatar--rounded",
+      "name": "Qatar / Rounded",
+      "base": "Qatar",
+      "variant": "Rounded",
+      "figmaId": "6570:98650"
+    },
+    {
+      "slug": "qatar--shape",
+      "name": "Qatar / Shape",
+      "base": "Qatar",
+      "variant": "Shape",
+      "figmaId": "6570:98655"
+    },
+    {
+      "slug": "romania--circle",
+      "name": "Romania / Circle",
+      "base": "Romania",
+      "variant": "Circle",
+      "figmaId": "6570:98661"
+    },
+    {
+      "slug": "romania--rounded",
+      "name": "Romania / Rounded",
+      "base": "Romania",
+      "variant": "Rounded",
+      "figmaId": "6570:98667"
+    },
+    {
+      "slug": "romania--shape",
+      "name": "Romania / Shape",
+      "base": "Romania",
+      "variant": "Shape",
+      "figmaId": "6570:98673"
+    },
+    {
+      "slug": "russia--circle",
+      "name": "Russia / Circle",
+      "base": "Russia",
+      "variant": "Circle",
+      "figmaId": "6570:98680"
+    },
+    {
+      "slug": "russia--rounded",
+      "name": "Russia / Rounded",
+      "base": "Russia",
+      "variant": "Rounded",
+      "figmaId": "6570:98686"
+    },
+    {
+      "slug": "russia--shape",
+      "name": "Russia / Shape",
+      "base": "Russia",
+      "variant": "Shape",
+      "figmaId": "6570:98692"
+    },
+    {
+      "slug": "rwanda--circle",
+      "name": "Rwanda / Circle",
+      "base": "Rwanda",
+      "variant": "Circle",
+      "figmaId": "6570:98699"
+    },
+    {
+      "slug": "rwanda--rounded",
+      "name": "Rwanda / Rounded",
+      "base": "Rwanda",
+      "variant": "Rounded",
+      "figmaId": "6570:98706"
+    },
+    {
+      "slug": "rwanda--shape",
+      "name": "Rwanda / Shape",
+      "base": "Rwanda",
+      "variant": "Shape",
+      "figmaId": "6570:98713"
+    },
+    {
+      "slug": "saint-kitts-and-nevis--circle",
+      "name": "Saint Kitts and Nevis / Circle",
+      "base": "Saint Kitts and Nevis",
+      "variant": "Circle",
+      "figmaId": "6570:98721"
+    },
+    {
+      "slug": "saint-kitts-and-nevis--rounded",
+      "name": "Saint Kitts and Nevis / Rounded",
+      "base": "Saint Kitts and Nevis",
+      "variant": "Rounded",
+      "figmaId": "6570:98729"
+    },
+    {
+      "slug": "saint-kitts-and-nevis--shape",
+      "name": "Saint Kitts and Nevis / Shape",
+      "base": "Saint Kitts and Nevis",
+      "variant": "Shape",
+      "figmaId": "6570:98737"
+    },
+    {
+      "slug": "saint-lucia--circle",
+      "name": "Saint Lucia / Circle",
+      "base": "Saint Lucia",
+      "variant": "Circle",
+      "figmaId": "6570:98746"
+    },
+    {
+      "slug": "saint-lucia--rounded",
+      "name": "Saint Lucia / Rounded",
+      "base": "Saint Lucia",
+      "variant": "Rounded",
+      "figmaId": "6570:98753"
+    },
+    {
+      "slug": "saint-lucia--shape",
+      "name": "Saint Lucia / Shape",
+      "base": "Saint Lucia",
+      "variant": "Shape",
+      "figmaId": "6570:98760"
+    },
+    {
+      "slug": "saint-vincent-and-the-grenadines--circle",
+      "name": "Saint Vincent and the Grenadines / Circle",
+      "base": "Saint Vincent and the Grenadines",
+      "variant": "Circle",
+      "figmaId": "6570:98768"
+    },
+    {
+      "slug": "saint-vincent-and-the-grenadines--rounded",
+      "name": "Saint Vincent and the Grenadines / Rounded",
+      "base": "Saint Vincent and the Grenadines",
+      "variant": "Rounded",
+      "figmaId": "6570:98775"
+    },
+    {
+      "slug": "saint-vincent-and-the-grenadines--shape",
+      "name": "Saint Vincent and the Grenadines / Shape",
+      "base": "Saint Vincent and the Grenadines",
+      "variant": "Shape",
+      "figmaId": "6570:98782"
+    },
+    {
+      "slug": "samoa--circle",
+      "name": "Samoa / Circle",
+      "base": "Samoa",
+      "variant": "Circle",
+      "figmaId": "6570:98790"
+    },
+    {
+      "slug": "samoa--rounded",
+      "name": "Samoa / Rounded",
+      "base": "Samoa",
+      "variant": "Rounded",
+      "figmaId": "6570:98796"
+    },
+    {
+      "slug": "samoa--shape",
+      "name": "Samoa / Shape",
+      "base": "Samoa",
+      "variant": "Shape",
+      "figmaId": "6570:98802"
+    },
+    {
+      "slug": "sao-tome-and-principe--circle",
+      "name": "Sao Tome and Principe / Circle",
+      "base": "Sao Tome and Principe",
+      "variant": "Circle",
+      "figmaId": "6570:101339"
+    },
+    {
+      "slug": "sao-tome-and-principe--rounded",
+      "name": "Sao Tome and Principe / Rounded",
+      "base": "Sao Tome and Principe",
+      "variant": "Rounded",
+      "figmaId": "6570:101346"
+    },
+    {
+      "slug": "sao-tome-and-principe--shape",
+      "name": "Sao Tome and Principe / Shape",
+      "base": "Sao Tome and Principe",
+      "variant": "Shape",
+      "figmaId": "6570:101353"
+    },
+    {
+      "slug": "saudi-arabia--circle",
+      "name": "Saudi Arabia / Circle",
+      "base": "Saudi Arabia",
+      "variant": "Circle",
+      "figmaId": "6570:101361"
+    },
+    {
+      "slug": "saudi-arabia--rounded",
+      "name": "Saudi Arabia / Rounded",
+      "base": "Saudi Arabia",
+      "variant": "Rounded",
+      "figmaId": "6570:101381"
+    },
+    {
+      "slug": "saudi-arabia--shape",
+      "name": "Saudi Arabia / Shape",
+      "base": "Saudi Arabia",
+      "variant": "Shape",
+      "figmaId": "6570:101401"
+    },
+    {
+      "slug": "senegal--circle",
+      "name": "Senegal / Circle",
+      "base": "Senegal",
+      "variant": "Circle",
+      "figmaId": "6570:101422"
+    },
+    {
+      "slug": "senegal--rounded",
+      "name": "Senegal / Rounded",
+      "base": "Senegal",
+      "variant": "Rounded",
+      "figmaId": "6570:101429"
+    },
+    {
+      "slug": "senegal--shape",
+      "name": "Senegal / Shape",
+      "base": "Senegal",
+      "variant": "Shape",
+      "figmaId": "6570:101436"
+    },
+    {
+      "slug": "seychelles--circle",
+      "name": "Seychelles / Circle",
+      "base": "Seychelles",
+      "variant": "Circle",
+      "figmaId": "6570:104088"
+    },
+    {
+      "slug": "seychelles--rounded",
+      "name": "Seychelles / Rounded",
+      "base": "Seychelles",
+      "variant": "Rounded",
+      "figmaId": "6570:104096"
+    },
+    {
+      "slug": "seychelles--shape",
+      "name": "Seychelles / Shape",
+      "base": "Seychelles",
+      "variant": "Shape",
+      "figmaId": "6570:104104"
+    },
+    {
+      "slug": "sierra-leone--circle",
+      "name": "Sierra Leone / Circle",
+      "base": "Sierra Leone",
+      "variant": "Circle",
+      "figmaId": "6570:104113"
+    },
+    {
+      "slug": "sierra-leone--rounded",
+      "name": "Sierra Leone / Rounded",
+      "base": "Sierra Leone",
+      "variant": "Rounded",
+      "figmaId": "6570:104119"
+    },
+    {
+      "slug": "sierra-leone--shape",
+      "name": "Sierra Leone / Shape",
+      "base": "Sierra Leone",
+      "variant": "Shape",
+      "figmaId": "6570:104125"
+    },
+    {
+      "slug": "singapore--circle",
+      "name": "Singapore / Circle",
+      "base": "Singapore",
+      "variant": "Circle",
+      "figmaId": "6570:104132"
+    },
+    {
+      "slug": "singapore--rounded",
+      "name": "Singapore / Rounded",
+      "base": "Singapore",
+      "variant": "Rounded",
+      "figmaId": "6570:104139"
+    },
+    {
+      "slug": "singapore--shape",
+      "name": "Singapore / Shape",
+      "base": "Singapore",
+      "variant": "Shape",
+      "figmaId": "6570:104146"
+    },
+    {
+      "slug": "slovakia--circle",
+      "name": "Slovakia / Circle",
+      "base": "Slovakia",
+      "variant": "Circle",
+      "figmaId": "6570:104154"
+    },
+    {
+      "slug": "slovakia--rounded",
+      "name": "Slovakia / Rounded",
+      "base": "Slovakia",
+      "variant": "Rounded",
+      "figmaId": "6570:104164"
+    },
+    {
+      "slug": "slovakia--shape",
+      "name": "Slovakia / Shape",
+      "base": "Slovakia",
+      "variant": "Shape",
+      "figmaId": "6570:104174"
+    },
+    {
+      "slug": "slovenia--circle",
+      "name": "Slovenia / Circle",
+      "base": "Slovenia",
+      "variant": "Circle",
+      "figmaId": "6570:104185"
+    },
+    {
+      "slug": "slovenia--rounded",
+      "name": "Slovenia / Rounded",
+      "base": "Slovenia",
+      "variant": "Rounded",
+      "figmaId": "6570:104197"
+    },
+    {
+      "slug": "slovenia--shape",
+      "name": "Slovenia / Shape",
+      "base": "Slovenia",
+      "variant": "Shape",
+      "figmaId": "6570:104209"
+    },
+    {
+      "slug": "solomon-islands--circle",
+      "name": "Solomon Islands / Circle",
+      "base": "Solomon Islands",
+      "variant": "Circle",
+      "figmaId": "6570:104222"
+    },
+    {
+      "slug": "solomon-islands--rounded",
+      "name": "Solomon Islands / Rounded",
+      "base": "Solomon Islands",
+      "variant": "Rounded",
+      "figmaId": "6570:104229"
+    },
+    {
+      "slug": "solomon-islands--shape",
+      "name": "Solomon Islands / Shape",
+      "base": "Solomon Islands",
+      "variant": "Shape",
+      "figmaId": "6570:104236"
+    },
+    {
+      "slug": "somalia--circle",
+      "name": "Somalia / Circle",
+      "base": "Somalia",
+      "variant": "Circle",
+      "figmaId": "6570:104244"
+    },
+    {
+      "slug": "somalia--rounded",
+      "name": "Somalia / Rounded",
+      "base": "Somalia",
+      "variant": "Rounded",
+      "figmaId": "6570:104249"
+    },
+    {
+      "slug": "somalia--shape",
+      "name": "Somalia / Shape",
+      "base": "Somalia",
+      "variant": "Shape",
+      "figmaId": "6570:104254"
+    },
+    {
+      "slug": "south-africa--circle",
+      "name": "South Africa / Circle",
+      "base": "South Africa",
+      "variant": "Circle",
+      "figmaId": "6570:104260"
+    },
+    {
+      "slug": "south-africa--rounded",
+      "name": "South Africa / Rounded",
+      "base": "South Africa",
+      "variant": "Rounded",
+      "figmaId": "6570:104269"
+    },
+    {
+      "slug": "south-africa--shape",
+      "name": "South Africa / Shape",
+      "base": "South Africa",
+      "variant": "Shape",
+      "figmaId": "6570:104278"
+    },
+    {
+      "slug": "south-korea--circle",
+      "name": "South Korea / Circle",
+      "base": "South Korea",
+      "variant": "Circle",
+      "figmaId": "6570:104288"
+    },
+    {
+      "slug": "south-korea--rounded",
+      "name": "South Korea / Rounded",
+      "base": "South Korea",
+      "variant": "Rounded",
+      "figmaId": "6570:104297"
+    },
+    {
+      "slug": "south-korea--shape",
+      "name": "South Korea / Shape",
+      "base": "South Korea",
+      "variant": "Shape",
+      "figmaId": "6570:104306"
+    },
+    {
+      "slug": "south-sudan--circle",
+      "name": "South Sudan / Circle",
+      "base": "South Sudan",
+      "variant": "Circle",
+      "figmaId": "6570:104317"
+    },
+    {
+      "slug": "south-sudan--rounded",
+      "name": "South Sudan / Rounded",
+      "base": "South Sudan",
+      "variant": "Rounded",
+      "figmaId": "6570:104326"
+    },
+    {
+      "slug": "south-sudan--shape",
+      "name": "South Sudan / Shape",
+      "base": "South Sudan",
+      "variant": "Shape",
+      "figmaId": "6570:104335"
+    },
+    {
+      "slug": "sri-lanka--circle",
+      "name": "Sri Lanka / Circle",
+      "base": "Sri Lanka",
+      "variant": "Circle",
+      "figmaId": "6570:108901"
+    },
+    {
+      "slug": "sri-lanka--rounded",
+      "name": "Sri Lanka / Rounded",
+      "base": "Sri Lanka",
+      "variant": "Rounded",
+      "figmaId": "6570:108930"
+    },
+    {
+      "slug": "sri-lanka--shape",
+      "name": "Sri Lanka / Shape",
+      "base": "Sri Lanka",
+      "variant": "Shape",
+      "figmaId": "6570:108959"
+    },
+    {
+      "slug": "sudan--circle",
+      "name": "Sudan / Circle",
+      "base": "Sudan",
+      "variant": "Circle",
+      "figmaId": "6570:108989"
+    },
+    {
+      "slug": "sudan--rounded",
+      "name": "Sudan / Rounded",
+      "base": "Sudan",
+      "variant": "Rounded",
+      "figmaId": "6570:108996"
+    },
+    {
+      "slug": "sudan--shape",
+      "name": "Sudan / Shape",
+      "base": "Sudan",
+      "variant": "Shape",
+      "figmaId": "6570:109003"
+    },
+    {
+      "slug": "suriname--circle",
+      "name": "Suriname / Circle",
+      "base": "Suriname",
+      "variant": "Circle",
+      "figmaId": "6570:109011"
+    },
+    {
+      "slug": "suriname--rounded",
+      "name": "Suriname / Rounded",
+      "base": "Suriname",
+      "variant": "Rounded",
+      "figmaId": "6570:109018"
+    },
+    {
+      "slug": "suriname--shape",
+      "name": "Suriname / Shape",
+      "base": "Suriname",
+      "variant": "Shape",
+      "figmaId": "6570:109025"
+    },
+    {
+      "slug": "sweden--circle",
+      "name": "Sweden / Circle",
+      "base": "Sweden",
+      "variant": "Circle",
+      "figmaId": "6570:109033"
+    },
+    {
+      "slug": "sweden--rounded",
+      "name": "Sweden / Rounded",
+      "base": "Sweden",
+      "variant": "Rounded",
+      "figmaId": "6570:109038"
+    },
+    {
+      "slug": "sweden--shape",
+      "name": "Sweden / Shape",
+      "base": "Sweden",
+      "variant": "Shape",
+      "figmaId": "6570:109043"
+    },
+    {
+      "slug": "switzerland--circle",
+      "name": "Switzerland / Circle",
+      "base": "Switzerland",
+      "variant": "Circle",
+      "figmaId": "6570:109049"
+    },
+    {
+      "slug": "switzerland--rounded",
+      "name": "Switzerland / Rounded",
+      "base": "Switzerland",
+      "variant": "Rounded",
+      "figmaId": "6570:109055"
+    },
+    {
+      "slug": "switzerland--shape",
+      "name": "Switzerland / Shape",
+      "base": "Switzerland",
+      "variant": "Shape",
+      "figmaId": "6570:109061"
+    },
+    {
+      "slug": "syria--circle",
+      "name": "Syria / Circle",
+      "base": "Syria",
+      "variant": "Circle",
+      "figmaId": "6570:109068"
+    },
+    {
+      "slug": "syria--rounded",
+      "name": "Syria / Rounded",
+      "base": "Syria",
+      "variant": "Rounded",
+      "figmaId": "6570:109075"
+    },
+    {
+      "slug": "syria--shape",
+      "name": "Syria / Shape",
+      "base": "Syria",
+      "variant": "Shape",
+      "figmaId": "6570:109082"
+    },
+    {
+      "slug": "taiwan--circle",
+      "name": "Taiwan / Circle",
+      "base": "Taiwan",
+      "variant": "Circle",
+      "figmaId": "6570:109090"
+    },
+    {
+      "slug": "taiwan--rounded",
+      "name": "Taiwan / Rounded",
+      "base": "Taiwan",
+      "variant": "Rounded",
+      "figmaId": "6570:109118"
+    },
+    {
+      "slug": "taiwan--shape",
+      "name": "Taiwan / Shape",
+      "base": "Taiwan",
+      "variant": "Shape",
+      "figmaId": "6570:109146"
+    },
+    {
+      "slug": "tajikistan--circle",
+      "name": "Tajikistan / Circle",
+      "base": "Tajikistan",
+      "variant": "Circle",
+      "figmaId": "6570:109175"
+    },
+    {
+      "slug": "tajikistan--rounded",
+      "name": "Tajikistan / Rounded",
+      "base": "Tajikistan",
+      "variant": "Rounded",
+      "figmaId": "6570:109196"
+    },
+    {
+      "slug": "tajikistan--shape",
+      "name": "Tajikistan / Shape",
+      "base": "Tajikistan",
+      "variant": "Shape",
+      "figmaId": "6570:109217"
+    },
+    {
+      "slug": "tanzania--circle",
+      "name": "Tanzania / Circle",
+      "base": "Tanzania",
+      "variant": "Circle",
+      "figmaId": "6570:109239"
+    },
+    {
+      "slug": "tanzania--rounded",
+      "name": "Tanzania / Rounded",
+      "base": "Tanzania",
+      "variant": "Rounded",
+      "figmaId": "6570:109246"
+    },
+    {
+      "slug": "tanzania--shape",
+      "name": "Tanzania / Shape",
+      "base": "Tanzania",
+      "variant": "Shape",
+      "figmaId": "6570:109253"
+    },
+    {
+      "slug": "thailand--circle",
+      "name": "Thailand / Circle",
+      "base": "Thailand",
+      "variant": "Circle",
+      "figmaId": "6570:109261"
+    },
+    {
+      "slug": "thailand--rounded",
+      "name": "Thailand / Rounded",
+      "base": "Thailand",
+      "variant": "Rounded",
+      "figmaId": "6570:109267"
+    },
+    {
+      "slug": "thailand--shape",
+      "name": "Thailand / Shape",
+      "base": "Thailand",
+      "variant": "Shape",
+      "figmaId": "6570:109273"
+    },
+    {
+      "slug": "timor-leste--circle",
+      "name": "Timor Leste / Circle",
+      "base": "Timor Leste",
+      "variant": "Circle",
+      "figmaId": "6570:109280"
+    },
+    {
+      "slug": "timor-leste--rounded",
+      "name": "Timor Leste / Rounded",
+      "base": "Timor Leste",
+      "variant": "Rounded",
+      "figmaId": "6570:109287"
+    },
+    {
+      "slug": "timor-leste--shape",
+      "name": "Timor Leste / Shape",
+      "base": "Timor Leste",
+      "variant": "Shape",
+      "figmaId": "6570:109294"
+    },
+    {
+      "slug": "togo--circle",
+      "name": "Togo / Circle",
+      "base": "Togo",
+      "variant": "Circle",
+      "figmaId": "6570:109302"
+    },
+    {
+      "slug": "togo--rounded",
+      "name": "Togo / Rounded",
+      "base": "Togo",
+      "variant": "Rounded",
+      "figmaId": "6570:109309"
+    },
+    {
+      "slug": "togo--shape",
+      "name": "Togo / Shape",
+      "base": "Togo",
+      "variant": "Shape",
+      "figmaId": "6570:109316"
+    },
+    {
+      "slug": "tonga--circle",
+      "name": "Tonga / Circle",
+      "base": "Tonga",
+      "variant": "Circle",
+      "figmaId": "6570:109324"
+    },
+    {
+      "slug": "tonga--rounded",
+      "name": "Tonga / Rounded",
+      "base": "Tonga",
+      "variant": "Rounded",
+      "figmaId": "6570:109331"
+    },
+    {
+      "slug": "tonga--shape",
+      "name": "Tonga / Shape",
+      "base": "Tonga",
+      "variant": "Shape",
+      "figmaId": "6570:109338"
+    },
+    {
+      "slug": "trinidad-and-tobago--circle",
+      "name": "Trinidad and Tobago / Circle",
+      "base": "Trinidad and Tobago",
+      "variant": "Circle",
+      "figmaId": "6570:109346"
+    },
+    {
+      "slug": "trinidad-and-tobago--rounded",
+      "name": "Trinidad and Tobago / Rounded",
+      "base": "Trinidad and Tobago",
+      "variant": "Rounded",
+      "figmaId": "6570:109352"
+    },
+    {
+      "slug": "trinidad-and-tobago--shape",
+      "name": "Trinidad and Tobago / Shape",
+      "base": "Trinidad and Tobago",
+      "variant": "Shape",
+      "figmaId": "6570:109358"
+    },
+    {
+      "slug": "tunisia--circle",
+      "name": "Tunisia / Circle",
+      "base": "Tunisia",
+      "variant": "Circle",
+      "figmaId": "6570:109365"
+    },
+    {
+      "slug": "tunisia--rounded",
+      "name": "Tunisia / Rounded",
+      "base": "Tunisia",
+      "variant": "Rounded",
+      "figmaId": "6570:109370"
+    },
+    {
+      "slug": "tunisia--shape",
+      "name": "Tunisia / Shape",
+      "base": "Tunisia",
+      "variant": "Shape",
+      "figmaId": "6570:109375"
+    },
+    {
+      "slug": "turkey--circle",
+      "name": "Turkey / Circle",
+      "base": "Turkey",
+      "variant": "Circle",
+      "figmaId": "6570:109381"
+    },
+    {
+      "slug": "turkey--rounded",
+      "name": "Turkey / Rounded",
+      "base": "Turkey",
+      "variant": "Rounded",
+      "figmaId": "6570:109387"
+    },
+    {
+      "slug": "turkey--shape",
+      "name": "Turkey / Shape",
+      "base": "Turkey",
+      "variant": "Shape",
+      "figmaId": "6570:109393"
+    },
+    {
+      "slug": "turkmenistan--circle",
+      "name": "Turkmenistan / Circle",
+      "base": "Turkmenistan",
+      "variant": "Circle",
+      "figmaId": "6570:109400"
+    },
+    {
+      "slug": "turkmenistan--rounded",
+      "name": "Turkmenistan / Rounded",
+      "base": "Turkmenistan",
+      "variant": "Rounded",
+      "figmaId": "6570:109599"
+    },
+    {
+      "slug": "turkmenistan--shape",
+      "name": "Turkmenistan / Shape",
+      "base": "Turkmenistan",
+      "variant": "Shape",
+      "figmaId": "6570:109817"
+    },
+    {
+      "slug": "tuvalu--circle",
+      "name": "Tuvalu / Circle",
+      "base": "Tuvalu",
+      "variant": "Circle",
+      "figmaId": "6570:110036"
+    },
+    {
+      "slug": "tuvalu--rounded",
+      "name": "Tuvalu / Rounded",
+      "base": "Tuvalu",
+      "variant": "Rounded",
+      "figmaId": "6570:110046"
+    },
+    {
+      "slug": "tuvalu--shape",
+      "name": "Tuvalu / Shape",
+      "base": "Tuvalu",
+      "variant": "Shape",
+      "figmaId": "6570:110056"
+    },
+    {
+      "slug": "uganda--circle",
+      "name": "Uganda / Circle",
+      "base": "Uganda",
+      "variant": "Circle",
+      "figmaId": "6570:110067"
+    },
+    {
+      "slug": "uganda--rounded",
+      "name": "Uganda / Rounded",
+      "base": "Uganda",
+      "variant": "Rounded",
+      "figmaId": "6570:110120"
+    },
+    {
+      "slug": "uganda--shape",
+      "name": "Uganda / Shape",
+      "base": "Uganda",
+      "variant": "Shape",
+      "figmaId": "6570:110173"
+    },
+    {
+      "slug": "ukraine--circle",
+      "name": "Ukraine / Circle",
+      "base": "Ukraine",
+      "variant": "Circle",
+      "figmaId": "6570:110227"
+    },
+    {
+      "slug": "ukraine--rounded",
+      "name": "Ukraine / Rounded",
+      "base": "Ukraine",
+      "variant": "Rounded",
+      "figmaId": "6570:110232"
+    },
+    {
+      "slug": "ukraine--shape",
+      "name": "Ukraine / Shape",
+      "base": "Ukraine",
+      "variant": "Shape",
+      "figmaId": "6570:110237"
+    },
+    {
+      "slug": "united-arab-emirates--circle",
+      "name": "United Arab Emirates / Circle",
+      "base": "United Arab Emirates",
+      "variant": "Circle",
+      "figmaId": "6570:110243"
+    },
+    {
+      "slug": "united-arab-emirates--rounded",
+      "name": "United Arab Emirates / Rounded",
+      "base": "United Arab Emirates",
+      "variant": "Rounded",
+      "figmaId": "6570:110250"
+    },
+    {
+      "slug": "united-arab-emirates--shape",
+      "name": "United Arab Emirates / Shape",
+      "base": "United Arab Emirates",
+      "variant": "Shape",
+      "figmaId": "6570:110257"
+    },
+    {
+      "slug": "united-kingdom--circle",
+      "name": "United Kingdom / Circle",
+      "base": "United Kingdom",
+      "variant": "Circle",
+      "figmaId": "6570:110265"
+    },
+    {
+      "slug": "united-kingdom--rounded",
+      "name": "United Kingdom / Rounded",
+      "base": "United Kingdom",
+      "variant": "Rounded",
+      "figmaId": "6570:110273"
+    },
+    {
+      "slug": "united-kingdom--shape",
+      "name": "United Kingdom / Shape",
+      "base": "United Kingdom",
+      "variant": "Shape",
+      "figmaId": "6570:110281"
+    },
+    {
+      "slug": "united-states-of-america--circle",
+      "name": "United States of America / Circle",
+      "base": "United States of America",
+      "variant": "Circle",
+      "figmaId": "6570:110290"
+    },
+    {
+      "slug": "united-states-of-america--rounded",
+      "name": "United States of America / Rounded",
+      "base": "United States of America",
+      "variant": "Rounded",
+      "figmaId": "6570:110300"
+    },
+    {
+      "slug": "united-states-of-america--shape",
+      "name": "United States of America / Shape",
+      "base": "United States of America",
+      "variant": "Shape",
+      "figmaId": "6570:110307"
+    },
+    {
+      "slug": "uruguay--circle",
+      "name": "Uruguay / Circle",
+      "base": "Uruguay",
+      "variant": "Circle",
+      "figmaId": "6570:110315"
+    },
+    {
+      "slug": "uruguay--rounded",
+      "name": "Uruguay / Rounded",
+      "base": "Uruguay",
+      "variant": "Rounded",
+      "figmaId": "6570:110369"
+    },
+    {
+      "slug": "uruguay--shape",
+      "name": "Uruguay / Shape",
+      "base": "Uruguay",
+      "variant": "Shape",
+      "figmaId": "6570:110423"
+    },
+    {
+      "slug": "uzbekistan--circle",
+      "name": "Uzbekistan / Circle",
+      "base": "Uzbekistan",
+      "variant": "Circle",
+      "figmaId": "6570:110478"
+    },
+    {
+      "slug": "uzbekistan--rounded",
+      "name": "Uzbekistan / Rounded",
+      "base": "Uzbekistan",
+      "variant": "Rounded",
+      "figmaId": "6570:110487"
+    },
+    {
+      "slug": "uzbekistan--shape",
+      "name": "Uzbekistan / Shape",
+      "base": "Uzbekistan",
+      "variant": "Shape",
+      "figmaId": "6570:110496"
+    },
+    {
+      "slug": "vanuatu--circle",
+      "name": "Vanuatu / Circle",
+      "base": "Vanuatu",
+      "variant": "Circle",
+      "figmaId": "6570:110506"
+    },
+    {
+      "slug": "vanuatu--rounded",
+      "name": "Vanuatu / Rounded",
+      "base": "Vanuatu",
+      "variant": "Rounded",
+      "figmaId": "6570:110521"
+    },
+    {
+      "slug": "vanuatu--shape",
+      "name": "Vanuatu / Shape",
+      "base": "Vanuatu",
+      "variant": "Shape",
+      "figmaId": "6570:110536"
+    },
+    {
+      "slug": "venezuela--circle",
+      "name": "Venezuela / Circle",
+      "base": "Venezuela",
+      "variant": "Circle",
+      "figmaId": "6570:113742"
+    },
+    {
+      "slug": "venezuela--rounded",
+      "name": "Venezuela / Rounded",
+      "base": "Venezuela",
+      "variant": "Rounded",
+      "figmaId": "6570:113749"
+    },
+    {
+      "slug": "venezuela--shape",
+      "name": "Venezuela / Shape",
+      "base": "Venezuela",
+      "variant": "Shape",
+      "figmaId": "6570:113756"
+    },
+    {
+      "slug": "vietnam--circle",
+      "name": "Vietnam / Circle",
+      "base": "Vietnam",
+      "variant": "Circle",
+      "figmaId": "6570:113764"
+    },
+    {
+      "slug": "vietnam--rounded",
+      "name": "Vietnam / Rounded",
+      "base": "Vietnam",
+      "variant": "Rounded",
+      "figmaId": "6570:113769"
+    },
+    {
+      "slug": "vietnam--shape",
+      "name": "Vietnam / Shape",
+      "base": "Vietnam",
+      "variant": "Shape",
+      "figmaId": "6570:113774"
+    },
+    {
+      "slug": "yemen--circle",
+      "name": "Yemen / Circle",
+      "base": "Yemen",
+      "variant": "Circle",
+      "figmaId": "6570:113780"
+    },
+    {
+      "slug": "yemen--rounded",
+      "name": "Yemen / Rounded",
+      "base": "Yemen",
+      "variant": "Rounded",
+      "figmaId": "6570:113786"
+    },
+    {
+      "slug": "yemen--shape",
+      "name": "Yemen / Shape",
+      "base": "Yemen",
+      "variant": "Shape",
+      "figmaId": "6570:113792"
+    },
+    {
+      "slug": "zambia--circle",
+      "name": "Zambia / Circle",
+      "base": "Zambia",
+      "variant": "Circle",
+      "figmaId": "6570:113799"
+    },
+    {
+      "slug": "zambia--rounded",
+      "name": "Zambia / Rounded",
+      "base": "Zambia",
+      "variant": "Rounded",
+      "figmaId": "6570:113814"
+    },
+    {
+      "slug": "zambia--shape",
+      "name": "Zambia / Shape",
+      "base": "Zambia",
+      "variant": "Shape",
+      "figmaId": "6570:113828"
+    },
+    {
+      "slug": "zimbabwe--circle",
+      "name": "Zimbabwe / Circle",
+      "base": "Zimbabwe",
+      "variant": "Circle",
+      "figmaId": "6570:113843"
+    },
+    {
+      "slug": "zimbabwe--rounded",
+      "name": "Zimbabwe / Rounded",
+      "base": "Zimbabwe",
+      "variant": "Rounded",
+      "figmaId": "6570:113858"
+    },
+    {
+      "slug": "zimbabwe--shape",
+      "name": "Zimbabwe / Shape",
+      "base": "Zimbabwe",
+      "variant": "Shape",
+      "figmaId": "6570:113873"
+    }
+  ],
+  "overBudget": [
+    {
+      "slug": "afghanistan--circle",
+      "name": "Afghanistan / Circle",
+      "bytes": 378432,
+      "figmaId": "6570:38292"
+    },
+    {
+      "slug": "afghanistan--rounded",
+      "name": "Afghanistan / Rounded",
+      "bytes": 378321,
+      "figmaId": "6570:38301"
+    },
+    {
+      "slug": "afghanistan--shape",
+      "name": "Afghanistan / Shape",
+      "bytes": 377694,
+      "figmaId": "6570:38310"
+    },
+    {
+      "slug": "belize--circle",
+      "name": "Belize / Circle",
+      "bytes": 87572,
+      "figmaId": "6570:39206"
+    },
+    {
+      "slug": "belize--rounded",
+      "name": "Belize / Rounded",
+      "bytes": 87499,
+      "figmaId": "6570:39353"
+    },
+    {
+      "slug": "belize--shape",
+      "name": "Belize / Shape",
+      "bytes": 87295,
+      "figmaId": "6570:39500"
+    },
+    {
+      "slug": "bhutan--circle",
+      "name": "Bhutan / Circle",
+      "bytes": 68665,
+      "figmaId": "6570:39667"
+    },
+    {
+      "slug": "bhutan--rounded",
+      "name": "Bhutan / Rounded",
+      "bytes": 68787,
+      "figmaId": "6570:39794"
+    },
+    {
+      "slug": "bhutan--shape",
+      "name": "Bhutan / Shape",
+      "bytes": 68435,
+      "figmaId": "6570:39921"
+    },
+    {
+      "slug": "bolivia--circle",
+      "name": "Bolivia / Circle",
+      "bytes": 784262,
+      "figmaId": "6570:40049"
+    },
+    {
+      "slug": "bolivia--rounded",
+      "name": "Bolivia / Rounded",
+      "bytes": 784012,
+      "figmaId": "6570:41209"
+    },
+    {
+      "slug": "bolivia--shape",
+      "name": "Bolivia / Shape",
+      "bytes": 783939,
+      "figmaId": "6570:42369"
+    },
+    {
+      "slug": "dominica--circle",
+      "name": "Dominica / Circle",
+      "bytes": 84233,
+      "figmaId": "6570:44666"
+    },
+    {
+      "slug": "dominica--rounded",
+      "name": "Dominica / Rounded",
+      "bytes": 83301,
+      "figmaId": "6570:44815"
+    },
+    {
+      "slug": "dominican-republic--circle",
+      "name": "Dominican Republic / Circle",
+      "bytes": 345501,
+      "figmaId": "6570:45114"
+    },
+    {
+      "slug": "dominican-republic--rounded",
+      "name": "Dominican Republic / Rounded",
+      "bytes": 344952,
+      "figmaId": "6570:45259"
+    },
+    {
+      "slug": "dominican-republic--shape",
+      "name": "Dominican Republic / Shape",
+      "bytes": 345967,
+      "figmaId": "6570:45404"
+    },
+    {
+      "slug": "ecuador--circle",
+      "name": "Ecuador / Circle",
+      "bytes": 556239,
+      "figmaId": "6570:45550"
+    },
+    {
+      "slug": "ecuador--rounded",
+      "name": "Ecuador / Rounded",
+      "bytes": 557237,
+      "figmaId": "6570:50571"
+    },
+    {
+      "slug": "ecuador--shape",
+      "name": "Ecuador / Shape",
+      "bytes": 554978,
+      "figmaId": "6570:55592"
+    },
+    {
+      "slug": "el-salvador--circle",
+      "name": "El Salvador / Circle",
+      "bytes": 683992,
+      "figmaId": "6570:60744"
+    },
+    {
+      "slug": "el-salvador--rounded",
+      "name": "El Salvador / Rounded",
+      "bytes": 683608,
+      "figmaId": "6570:61724"
+    },
+    {
+      "slug": "el-salvador--shape",
+      "name": "El Salvador / Shape",
+      "bytes": 683260,
+      "figmaId": "6570:62704"
+    },
+    {
+      "slug": "equatorial-guinea--circle",
+      "name": "Equatorial Guinea / Circle",
+      "bytes": 53931,
+      "figmaId": "6570:63685"
+    },
+    {
+      "slug": "equatorial-guinea--rounded",
+      "name": "Equatorial Guinea / Rounded",
+      "bytes": 53518,
+      "figmaId": "6570:63727"
+    },
+    {
+      "slug": "equatorial-guinea--shape",
+      "name": "Equatorial Guinea / Shape",
+      "bytes": 52947,
+      "figmaId": "6570:63769"
+    },
+    {
+      "slug": "guatemala--circle",
+      "name": "Guatemala / Circle",
+      "bytes": 434941,
+      "figmaId": "6570:65023"
+    },
+    {
+      "slug": "guatemala--rounded",
+      "name": "Guatemala / Rounded",
+      "bytes": 436821,
+      "figmaId": "6570:69813"
+    },
+    {
+      "slug": "guatemala--shape",
+      "name": "Guatemala / Shape",
+      "bytes": 432546,
+      "figmaId": "6570:74603"
+    },
+    {
+      "slug": "haiti--circle",
+      "name": "Haiti / Circle",
+      "bytes": 69832,
+      "figmaId": "6570:79460"
+    },
+    {
+      "slug": "haiti--rounded",
+      "name": "Haiti / Rounded",
+      "bytes": 69730,
+      "figmaId": "6570:80223"
+    },
+    {
+      "slug": "haiti--shape",
+      "name": "Haiti / Shape",
+      "bytes": 69511,
+      "figmaId": "6570:80986"
+    },
+    {
+      "slug": "mexico--circle",
+      "name": "Mexico / Circle",
+      "bytes": 93684,
+      "figmaId": "6570:83596"
+    },
+    {
+      "slug": "mexico--rounded",
+      "name": "Mexico / Rounded",
+      "bytes": 93564,
+      "figmaId": "6570:84097"
+    },
+    {
+      "slug": "mexico--shape",
+      "name": "Mexico / Shape",
+      "bytes": 93357,
+      "figmaId": "6570:84598"
+    },
+    {
+      "slug": "nicaragua--circle",
+      "name": "Nicaragua / Circle",
+      "bytes": 54037,
+      "figmaId": "6570:85902"
+    },
+    {
+      "slug": "nicaragua--rounded",
+      "name": "Nicaragua / Rounded",
+      "bytes": 54132,
+      "figmaId": "6570:86481"
+    },
+    {
+      "slug": "nicaragua--shape",
+      "name": "Nicaragua / Shape",
+      "bytes": 53453,
+      "figmaId": "6570:87060"
+    },
+    {
+      "slug": "peru--circle",
+      "name": "Peru / Circle",
+      "bytes": 154280,
+      "figmaId": "6570:88542"
+    },
+    {
+      "slug": "peru--rounded",
+      "name": "Peru / Rounded",
+      "bytes": 154360,
+      "figmaId": "6570:91617"
+    },
+    {
+      "slug": "peru--shape",
+      "name": "Peru / Shape",
+      "bytes": 154118,
+      "figmaId": "6570:94692"
+    },
+    {
+      "slug": "san-marino--circle",
+      "name": "San Marino / Circle",
+      "bytes": 442465,
+      "figmaId": "6570:98809"
+    },
+    {
+      "slug": "san-marino--rounded",
+      "name": "San Marino / Rounded",
+      "bytes": 442227,
+      "figmaId": "6570:99652"
+    },
+    {
+      "slug": "san-marino--shape",
+      "name": "San Marino / Shape",
+      "bytes": 441852,
+      "figmaId": "6570:100495"
+    },
+    {
+      "slug": "serbia--circle",
+      "name": "Serbia / Circle",
+      "bytes": 359853,
+      "figmaId": "6570:101444"
+    },
+    {
+      "slug": "serbia--rounded",
+      "name": "Serbia / Rounded",
+      "bytes": 359401,
+      "figmaId": "6570:102325"
+    },
+    {
+      "slug": "serbia--shape",
+      "name": "Serbia / Shape",
+      "bytes": 359026,
+      "figmaId": "6570:103206"
+    },
+    {
+      "slug": "spain--circle",
+      "name": "Spain / Circle",
+      "bytes": 578637,
+      "figmaId": "6570:104345"
+    },
+    {
+      "slug": "spain--rounded",
+      "name": "Spain / Rounded",
+      "bytes": 579156,
+      "figmaId": "6570:105862"
+    },
+    {
+      "slug": "spain--shape",
+      "name": "Spain / Shape",
+      "bytes": 578699,
+      "figmaId": "6570:107381"
+    },
+    {
+      "slug": "vatican--circle",
+      "name": "Vatican / Circle",
+      "bytes": 591366,
+      "figmaId": "6570:110552"
+    },
+    {
+      "slug": "vatican--rounded",
+      "name": "Vatican / Rounded",
+      "bytes": 591109,
+      "figmaId": "6570:111615"
+    },
+    {
+      "slug": "vatican--shape",
+      "name": "Vatican / Shape",
+      "bytes": 590784,
+      "figmaId": "6570:112678"
+    }
+  ]
+}

@@ -221,17 +221,19 @@ const flags = useFamily('flags');
 <FamilyIcon entry={flags.items[0]} shape="circle" size="max" />;
 ```
 
-Состав задаёт файл Figma; графика берётся из канонической открытой поставки тех же знаков —
-ровно так же, как UI Icons берут Solar из `@iconify-json/solar`: `flag-icons` (MIT),
-`@web3icons/core` (MIT) вместе с `cryptocurrency-icons` (CC0) и `simple-icons` (CC0).
-Записи без соответствия в источнике (134 токена, 3 бренда) рисуются плиткой-монограммой, а
-не пустотой.
+И состав, и графику задаёт файл Figma: экспорт лежит в `packages/icons/figma/<семейство>/`,
+пропущенный через SVGO, каждый вариант — как в Figma. Иконку тяжелее 50 КБ экспорт не
+берёт, и для неё сборка подставляет открытую поставку того же знака: сейчас это 18 флагов с
+детальными гербами (`flag-icons`, MIT) и Curve DAO Token (`@web3icons/core`, MIT). Список
+лежит в `overBudget` манифеста; когда герб в Figma упростят, флаг перейдёт на Figma при
+следующей выгрузке.
 
-Чтобы заменить всё это дословными экспортами из Figma:
+Обновить экспорт после правок в Figma:
 
 ```bash
 FIGMA_TOKEN=figd_xxx npm run icons:figma                      # флаги + платежи + бренды
 FIGMA_TOKEN=figd_xxx npm run icons:figma -- --family flags     # одно семейство
+npm run build:icons
 ```
 
 Токен со скоупом `file_content:read` создаётся на

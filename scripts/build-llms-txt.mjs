@@ -45,7 +45,7 @@ export function render(model, catalog, families) {
   const rosters = Object.entries(families)
     .map(
       ([id, meta]) =>
-        `- \`${id}\` — записей: ${meta.total} со страницы Figma «${meta.figmaPage}», из них с графикой: ${meta.resolved}`,
+        `- \`${id}\` — записей: ${meta.total} со страницы Figma «${meta.figmaPage}», из них с графикой: ${meta.resolved}, из Figma: ${meta.fromFigma}`,
     )
     .join('\n');
 

@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import { paint } from './color';
-import type { BrandTone, FamilyIconEntry, FamilyShape } from './families';
+import type { BrandTone, FamilyArtwork, FamilyIconEntry, FamilyShape } from './families';
 import type { IconSize } from './types';
 
 export interface FamilyIconProps {
@@ -8,7 +8,7 @@ export interface FamilyIconProps {
   entry: FamilyIconEntry;
   /** `Style` variant: `Shape`, `Rounded` or `Circle` in Figma. */
   shape?: FamilyShape;
-  /** Brands only — `Original` paints the brand colour, `Solid` uses `currentColor`. */
+  /** Brands only — `Original` or `Solid`; monochrome marks paint with `currentColor`. */
   tone?: BrandTone;
   /** `size/base/*` token, or a raw pixel number. */
   size?: IconSize;
@@ -26,6 +26,17 @@ const RADIUS: Record<FamilyShape, string> = {
   circle: 'var(--rounding-full)',
 };
 
+/**
+ * The Figma artwork for a shape and tone: flags key their variants by shape,
+ * brands by tone (+ `-circle`), and a Payments mark has just the one.
+ */
+function variantOf(entry: FamilyIconEntry, shape: FamilyShape, tone: BrandTone): FamilyArtwork | null {
+  const variants = entry.variants;
+  if (!variants) return entry.source === 'figma' && entry.body ? { viewBox: entry.viewBox, body: entry.body } : null;
+  if (variants.natural) return variants[shape] ?? variants.natural;
+  return variants[shape === 'circle' ? `${tone}-circle` : tone] ?? null;
+}
+
 /** Two letters, so an entry without upstream artwork still reads as itself. */
 function monogram(entry: FamilyIconEntry): string {
   const source = entry.ticker ?? entry.name;
@@ -38,9 +49,11 @@ function monogram(entry: FamilyIconEntry): string {
 /**
  * Renders one Flags / Payments / Brands entry.
  *
- * Flags are 4:3 artwork, so `circle` and `rounded` crop them the way the Figma
- * variants do; `natural` keeps the full rectangle. Entries with no geometry
- * fall back to a monogram tile rather than an empty box.
+ * Entries drawn from Figma carry every variant, already in its shape, and are
+ * shown as exported. Fallback artwork is masked instead: a 4:3 flag sits in the
+ * square as Figma draws it — whole for `natural`, with rounded corners for
+ * `rounded`, cropped to a disc for `circle`. Entries with no
+ * geometry fall back to a monogram tile rather than an empty box.
  */
 export function FamilyIcon({
   entry,
@@ -51,15 +64,52 @@ export function FamilyIcon({
   style,
 }: FamilyIconProps) {
   const box = dimension(size);
-  const wide = shape === 'natural' && entry.code != null;
+  const drawn = variantOf(entry, shape, tone);
+
+  if (drawn) {
+    return (
+      <span
+        className={className}
+        style={{
+          display: 'inline-flex',
+          flex: 'none',
+          width: box,
+          height: box,
+          // Monochrome brand marks paint with currentColor — Figma's surface/base/content/strong.
+          color: 'var(--surface-base-content-strong)',
+          ...style,
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox={drawn.viewBox ?? '0 0 24 24'}
+          width="100%"
+          height="100%"
+          fill="none"
+          role="img"
+          aria-label={entry.name}
+          focusable="false"
+          data-family-icon={entry.slug}
+          style={{ display: 'block' }}
+          // The bodies come from the generated data files, not from user input.
+          dangerouslySetInnerHTML={{ __html: drawn.body }}
+        />
+      </span>
+    );
+  }
+
+  // A fallback flag keeps the Figma geometry: Shape and Rounded are a 4:3 flag
+  // centred in the square, Circle fills it.
+  const flat = entry.code != null && shape !== 'circle';
 
   const frame: CSSProperties = {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 'none',
-    width: wide ? `calc(${box} * 4 / 3)` : box,
-    height: box,
+    width: box,
+    height: flat ? `calc(${box} * 3 / 4)` : box,
+    marginBlock: flat ? `calc(${box} / 8)` : undefined,
     borderRadius: RADIUS[shape],
     overflow: 'hidden',
     ...style,
@@ -94,7 +144,7 @@ export function FamilyIcon({
         viewBox={entry.viewBox ?? '0 0 24 24'}
         width="100%"
         height="100%"
-        preserveAspectRatio={shape === 'natural' ? 'xMidYMid meet' : 'xMidYMid slice'}
+        preserveAspectRatio={shape === 'natural' && !flat ? 'xMidYMid meet' : 'xMidYMid slice'}
         role="img"
         aria-label={entry.name}
         focusable="false"

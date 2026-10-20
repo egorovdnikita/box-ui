@@ -1,0 +1,4754 @@
+{
+  "family": "payments",
+  "figmaPage": "Payments",
+  "budget": 50000,
+  "icons": [
+    {
+      "slug": "0x-zrx",
+      "name": "0x (ZRX)",
+      "base": "0x (ZRX)",
+      "variant": null,
+      "figmaId": "6585:10451"
+    },
+    {
+      "slug": "1inch-1inch",
+      "name": "1inch (1INCH)",
+      "base": "1inch (1INCH)",
+      "variant": null,
+      "figmaId": "6585:12128"
+    },
+    {
+      "slug": "2key-network-2key",
+      "name": "2key Network (2key)",
+      "base": "2key Network (2key)",
+      "variant": null,
+      "figmaId": "6585:26747"
+    },
+    {
+      "slug": "88mph-mph",
+      "name": "88mph (Mph)",
+      "base": "88mph (Mph)",
+      "variant": null,
+      "figmaId": "6585:26758"
+    },
+    {
+      "slug": "aave-aave",
+      "name": "Aave (AAVE)",
+      "base": "Aave (AAVE)",
+      "variant": null,
+      "figmaId": "6585:9656"
+    },
+    {
+      "slug": "aavegotchi-ghst",
+      "name": "Aavegotchi (GHST)",
+      "base": "Aavegotchi (GHST)",
+      "variant": null,
+      "figmaId": "6585:25645"
+    },
+    {
+      "slug": "abbc-coin-abbc",
+      "name": "ABBC Coin (ABBC)",
+      "base": "ABBC Coin (ABBC)",
+      "variant": null,
+      "figmaId": "6585:23484"
+    },
+    {
+      "slug": "achain-act",
+      "name": "Achain (Act)",
+      "base": "Achain (Act)",
+      "variant": null,
+      "figmaId": "6585:26765"
+    },
+    {
+      "slug": "add-xyz-plt",
+      "name": "Add Xyz (Plt)",
+      "base": "Add Xyz (Plt)",
+      "variant": null,
+      "figmaId": "6585:26785"
+    },
+    {
+      "slug": "adex-network-adx",
+      "name": "AdEx Network (ADX)",
+      "base": "AdEx Network (ADX)",
+      "variant": null,
+      "figmaId": "6585:25867"
+    },
+    {
+      "slug": "aelf-elf",
+      "name": "aelf (ELF)",
+      "base": "aelf (ELF)",
+      "variant": null,
+      "figmaId": "6585:24338"
+    },
+    {
+      "slug": "aeon-aeon",
+      "name": "Aeon (Aeon)",
+      "base": "Aeon (Aeon)",
+      "variant": null,
+      "figmaId": "6585:27374"
+    },
+    {
+      "slug": "aergo-aergo",
+      "name": "Aergo (AERGO)",
+      "base": "Aergo (AERGO)",
+      "variant": null,
+      "figmaId": "6585:25954"
+    },
+    {
+      "slug": "aeron-arnx",
+      "name": "Aeron (Arnx)",
+      "base": "Aeron (Arnx)",
+      "variant": null,
+      "figmaId": "6585:27391"
+    },
+    {
+      "slug": "aeternity-ae",
+      "name": "Aeternity (AE)",
+      "base": "Aeternity (AE)",
+      "variant": null,
+      "figmaId": "6585:26465"
+    },
+    {
+      "slug": "agoras-tokens-agrs",
+      "name": "Agoras Tokens (Agrs)",
+      "base": "Agoras Tokens (Agrs)",
+      "variant": null,
+      "figmaId": "6585:27398"
+    },
+    {
+      "slug": "agrello-delta-dlt",
+      "name": "Agrello Delta (Dlt)",
+      "base": "Agrello Delta (Dlt)",
+      "variant": null,
+      "figmaId": "6585:27403"
+    },
+    {
+      "slug": "aidos-kuneen-adk",
+      "name": "Aidos Kuneen (Adk)",
+      "base": "Aidos Kuneen (Adk)",
+      "variant": null,
+      "figmaId": "6585:26851"
+    },
+    {
+      "slug": "aion-aion",
+      "name": "Aion (AION)",
+      "base": "Aion (AION)",
+      "variant": null,
+      "figmaId": "6585:25195"
+    },
+    {
+      "slug": "airswap-ast",
+      "name": "Airswap (Ast)",
+      "base": "Airswap (Ast)",
+      "variant": null,
+      "figmaId": "6585:26860"
+    },
+    {
+      "slug": "akash-network-akt",
+      "name": "Akash Network (AKT)",
+      "base": "Akash Network (AKT)",
+      "variant": null,
+      "figmaId": "6585:24088"
+    },
+    {
+      "slug": "akropolis-akro",
+      "name": "Akropolis (AKRO)",
+      "base": "Akropolis (AKRO)",
+      "variant": null,
+      "figmaId": "6585:25134"
+    },
+    {
+      "slug": "algorand-algo",
+      "name": "Algorand (ALGO)",
+      "base": "Algorand (ALGO)",
+      "variant": null,
+      "figmaId": "6585:9726"
+    },
+    {
+      "slug": "alien-worlds-tlm",
+      "name": "Alien Worlds (TLM)",
+      "base": "Alien Worlds (TLM)",
+      "variant": null,
+      "figmaId": "6585:24065"
+    },
+    {
+      "slug": "alitas-alt",
+      "name": "Alitas (ALT)",
+      "base": "Alitas (ALT)",
+      "variant": null,
+      "figmaId": "6585:25459"
+    },
+    {
+      "slug": "all-sports-soc",
+      "name": "All Sports (Soc)",
+      "base": "All Sports (Soc)",
+      "variant": null,
+      "figmaId": "6585:26871"
+    },
+    {
+      "slug": "allsafe-asafe",
+      "name": "Allsafe (Asafe)",
+      "base": "Allsafe (Asafe)",
+      "variant": null,
+      "figmaId": "6585:26880"
+    },
+    {
+      "slug": "alpha-finance-lab-alpha",
+      "name": "Alpha Finance Lab (ALPHA)",
+      "base": "Alpha Finance Lab (ALPHA)",
+      "variant": null,
+      "figmaId": "6585:12721"
+    },
+    {
+      "slug": "amp-amp",
+      "name": "Amp (AMP)",
+      "base": "Amp (AMP)",
+      "variant": null,
+      "figmaId": "6585:9839"
+    },
+    {
+      "slug": "ampleforth-ampl",
+      "name": "Ampleforth (AMPL)",
+      "base": "Ampleforth (AMPL)",
+      "variant": null,
+      "figmaId": "6585:23582"
+    },
+    {
+      "slug": "ampleforth-governance-token-forth",
+      "name": "Ampleforth Governance Token (FORTH)",
+      "base": "Ampleforth Governance Token (FORTH)",
+      "variant": null,
+      "figmaId": "6585:24178"
+    },
+    {
+      "slug": "anchor-protocol-anc",
+      "name": "Anchor Protocol (ANC)",
+      "base": "Anchor Protocol (ANC)",
+      "variant": null,
+      "figmaId": "6585:24104"
+    },
+    {
+      "slug": "ankr-ankr",
+      "name": "Ankr (ANKR)",
+      "base": "Ankr (ANKR)",
+      "variant": null,
+      "figmaId": "6585:12071"
+    },
+    {
+      "slug": "ankreth-aeth",
+      "name": "ankrETH (aEth)",
+      "base": "ankrETH (aEth)",
+      "variant": null,
+      "figmaId": "6585:25364"
+    },
+    {
+      "slug": "apenft-nft",
+      "name": "APENFT (NFT)",
+      "base": "APENFT (NFT)",
+      "variant": null,
+      "figmaId": "6585:25746"
+    },
+    {
+      "slug": "apollo-currency-apl",
+      "name": "Apollo Currency (APL)",
+      "base": "Apollo Currency (APL)",
+      "variant": null,
+      "figmaId": "6585:26008"
+    },
+    {
+      "slug": "appcoins-appc",
+      "name": "Appcoins (Appc)",
+      "base": "Appcoins (Appc)",
+      "variant": null,
+      "figmaId": "6585:27412"
+    },
+    {
+      "slug": "aragon-ant",
+      "name": "Aragon (ANT)",
+      "base": "Aragon (ANT)",
+      "variant": null,
+      "figmaId": "6585:23424"
+    },
+    {
+      "slug": "arcblock-abt",
+      "name": "Arcblock (Abt)",
+      "base": "Arcblock (Abt)",
+      "variant": null,
+      "figmaId": "6585:26898"
+    },
+    {
+      "slug": "ardor-ardr",
+      "name": "Ardor (ARDR)",
+      "base": "Ardor (ARDR)",
+      "variant": null,
+      "figmaId": "6585:12821"
+    },
+    {
+      "slug": "ark-ark",
+      "name": "Ark (ARK)",
+      "base": "Ark (ARK)",
+      "variant": null,
+      "figmaId": "6585:23521"
+    },
+    {
+      "slug": "arpa-chain-arpa",
+      "name": "ARPA Chain (ARPA)",
+      "base": "ARPA Chain (ARPA)",
+      "variant": null,
+      "figmaId": "6585:26306"
+    },
+    {
+      "slug": "arweave-ar",
+      "name": "Arweave (AR)",
+      "base": "Arweave (AR)",
+      "variant": null,
+      "figmaId": "6585:12205"
+    },
+    {
+      "slug": "asch-xas",
+      "name": "Asch (Xas)",
+      "base": "Asch (Xas)",
+      "variant": null,
+      "figmaId": "6585:26910"
+    },
+    {
+      "slug": "asd-btmx",
+      "name": "ASD (BTMX)",
+      "base": "ASD (BTMX)",
+      "variant": null,
+      "figmaId": "6585:12254"
+    },
+    {
+      "slug": "asta-asta",
+      "name": "ASTA (ASTA)",
+      "base": "ASTA (ASTA)",
+      "variant": null,
+      "figmaId": "6585:25430"
+    },
+    {
+      "slug": "atari-token-atri",
+      "name": "Atari Token (ATRI)",
+      "base": "Atari Token (ATRI)",
+      "variant": null,
+      "figmaId": "6585:25653"
+    },
+    {
+      "slug": "audius-audio",
+      "name": "Audius (AUDIO)",
+      "base": "Audius (AUDIO)",
+      "variant": null,
+      "figmaId": "6585:24144"
+    },
+    {
+      "slug": "augur-rep",
+      "name": "Augur (REP)",
+      "base": "Augur (REP)",
+      "variant": null,
+      "figmaId": "6585:12474"
+    },
+    {
+      "slug": "augur-v2-repv2",
+      "name": "Augur v2 (REPv2)",
+      "base": "Augur v2 (REPv2)",
+      "variant": null,
+      "figmaId": "6585:26916"
+    },
+    {
+      "slug": "aurora-aoa",
+      "name": "Aurora (Aoa)",
+      "base": "Aurora (Aoa)",
+      "variant": null,
+      "figmaId": "6585:26933"
+    },
+    {
+      "slug": "auto-auto",
+      "name": "Auto (AUTO)",
+      "base": "Auto (AUTO)",
+      "variant": null,
+      "figmaId": "6585:26072"
+    },
+    {
+      "slug": "avalanche-avax",
+      "name": "Avalanche (AVAX)",
+      "base": "Avalanche (AVAX)",
+      "variant": null,
+      "figmaId": "6585:9826"
+    },
+    {
+      "slug": "axel-axel",
+      "name": "AXEL (AXEL)",
+      "base": "AXEL (AXEL)",
+      "variant": null,
+      "figmaId": "6585:25833"
+    },
+    {
+      "slug": "axie-infinity-axs",
+      "name": "Axie Infinity (AXS)",
+      "base": "Axie Infinity (AXS)",
+      "variant": null,
+      "figmaId": "6585:9930"
+    },
+    {
+      "slug": "bakerytoken-bake",
+      "name": "BakeryToken (BAKE)",
+      "base": "BakeryToken (BAKE)",
+      "variant": null,
+      "figmaId": "6585:10365"
+    },
+    {
+      "slug": "balancer-bal",
+      "name": "Balancer (BAL)",
+      "base": "Balancer (BAL)",
+      "variant": null,
+      "figmaId": "6585:23512"
+    },
+    {
+      "slug": "bancor-bnt",
+      "name": "Bancor (BNT)",
+      "base": "Bancor (BNT)",
+      "variant": null,
+      "figmaId": "6585:10316"
+    },
+    {
+      "slug": "band-protocol-band",
+      "name": "Band Protocol (BAND)",
+      "base": "Band Protocol (BAND)",
+      "variant": null,
+      "figmaId": "6585:12551"
+    },
+    {
+      "slug": "bankera-bnk",
+      "name": "Bankera (Bnk)",
+      "base": "Bankera (Bnk)",
+      "variant": null,
+      "figmaId": "6585:27029"
+    },
+    {
+      "slug": "barnbridge-bond",
+      "name": "BarnBridge (BOND)",
+      "base": "BarnBridge (BOND)",
+      "variant": null,
+      "figmaId": "6585:24531"
+    },
+    {
+      "slug": "basic-attention-token-bat",
+      "name": "Basic Attention Token (BAT)",
+      "base": "Basic Attention Token (BAT)",
+      "variant": null,
+      "figmaId": "6585:10253"
+    },
+    {
+      "slug": "basic-basic",
+      "name": "BASIC (BASIC)",
+      "base": "BASIC (BASIC)",
+      "variant": null,
+      "figmaId": "6585:26288"
+    },
+    {
+      "slug": "beam-beam",
+      "name": "Beam (BEAM)",
+      "base": "Beam (BEAM)",
+      "variant": null,
+      "figmaId": "6585:25908"
+    },
+    {
+      "slug": "beefy-finance-bifi",
+      "name": "Beefy.Finance (BIFI)",
+      "base": "Beefy.Finance (BIFI)",
+      "variant": null,
+      "figmaId": "6585:25170"
+    },
+    {
+      "slug": "belacoin-bela",
+      "name": "Belacoin (Bela)",
+      "base": "Belacoin (Bela)",
+      "variant": null,
+      "figmaId": "6585:27036"
+    },
+    {
+      "slug": "belt-finance-belt",
+      "name": "Belt Finance (BELT)",
+      "base": "Belt Finance (BELT)",
+      "variant": null,
+      "figmaId": "6585:25536"
+    },
+    {
+      "slug": "bibox-token-bix",
+      "name": "Bibox Token (Bix)",
+      "base": "Bibox Token (Bix)",
+      "variant": null,
+      "figmaId": "6585:27045"
+    },
+    {
+      "slug": "binance-coin-bnb",
+      "name": "Binance Coin (BNB)",
+      "base": "Binance Coin (BNB)",
+      "variant": null,
+      "figmaId": "6585:9261"
+    },
+    {
+      "slug": "binance-usd-busd",
+      "name": "Binance USD (BUSD)",
+      "base": "Binance USD (BUSD)",
+      "variant": null,
+      "figmaId": "6585:9487"
+    },
+    {
+      "slug": "bitcoin-bep2-btcb",
+      "name": "Bitcoin BEP2 (BTCB)",
+      "base": "Bitcoin BEP2 (BTCB)",
+      "variant": null,
+      "figmaId": "6585:9778"
+    },
+    {
+      "slug": "bitcoin-btc",
+      "name": "Bitcoin (BTC)",
+      "base": "Bitcoin (BTC)",
+      "variant": null,
+      "figmaId": "6585:9240"
+    },
+    {
+      "slug": "bitcoin-cash-abc-bcha",
+      "name": "Bitcoin Cash ABC (BCHA)",
+      "base": "Bitcoin Cash ABC (BCHA)",
+      "variant": null,
+      "figmaId": "6585:23917"
+    },
+    {
+      "slug": "bitcoin-cash-bch",
+      "name": "Bitcoin Cash (BCH)",
+      "base": "Bitcoin Cash (BCH)",
+      "variant": null,
+      "figmaId": "6585:9513"
+    },
+    {
+      "slug": "bitcoin-diamond-bcd",
+      "name": "Bitcoin Diamond (BCD)",
+      "base": "Bitcoin Diamond (BCD)",
+      "variant": null,
+      "figmaId": "6585:12153"
+    },
+    {
+      "slug": "bitcoin-gold-btg",
+      "name": "Bitcoin Gold (BTG)",
+      "base": "Bitcoin Gold (BTG)",
+      "variant": null,
+      "figmaId": "6585:10299"
+    },
+    {
+      "slug": "bitcoin-plus-xbc",
+      "name": "Bitcoin Plus (Xbc)",
+      "base": "Bitcoin Plus (Xbc)",
+      "variant": null,
+      "figmaId": "6585:27054"
+    },
+    {
+      "slug": "bitcoin-private-btcp",
+      "name": "Bitcoin Private (Btcp)",
+      "base": "Bitcoin Private (Btcp)",
+      "variant": null,
+      "figmaId": "6585:27062"
+    },
+    {
+      "slug": "bitcoin-standard-hashrate-token-btcst",
+      "name": "Bitcoin Standard Hashrate Token (BTCST)",
+      "base": "Bitcoin Standard Hashrate Token (BTCST)",
+      "variant": null,
+      "figmaId": "6585:12581"
+    },
+    {
+      "slug": "bitcoin-sv-bsv",
+      "name": "Bitcoin SV (BSV)",
+      "base": "Bitcoin SV (BSV)",
+      "variant": null,
+      "figmaId": "6585:9761"
+    },
+    {
+      "slug": "bitcoinz-btcz",
+      "name": "Bitcoinz (Btcz)",
+      "base": "Bitcoinz (Btcz)",
+      "variant": null,
+      "figmaId": "6585:27080"
+    },
+    {
+      "slug": "bitcore-btx",
+      "name": "Bitcore (Btx)",
+      "base": "Bitcore (Btx)",
+      "variant": null,
+      "figmaId": "6585:27095"
+    },
+    {
+      "slug": "bitforex-token-bf",
+      "name": "Bitforex Token (Bf)",
+      "base": "Bitforex Token (Bf)",
+      "variant": null,
+      "figmaId": "6585:27103"
+    },
+    {
+      "slug": "bitmart-token-bmx",
+      "name": "BitMart Token (BMX)",
+      "base": "BitMart Token (BMX)",
+      "variant": null,
+      "figmaId": "6585:26423"
+    },
+    {
+      "slug": "bitpanda-ecosystem-token-best",
+      "name": "Bitpanda Ecosystem Token (BEST)",
+      "base": "Bitpanda Ecosystem Token (BEST)",
+      "variant": null,
+      "figmaId": "6585:23965"
+    },
+    {
+      "slug": "bitsend-bsd",
+      "name": "Bitsend (Bsd)",
+      "base": "Bitsend (Bsd)",
+      "variant": null,
+      "figmaId": "6585:27110"
+    },
+    {
+      "slug": "bitshares-bts",
+      "name": "BitShares (BTS)",
+      "base": "BitShares (BTS)",
+      "variant": null,
+      "figmaId": "6585:23568"
+    },
+    {
+      "slug": "bittorrent-btt",
+      "name": "BitTorrent (BTT)",
+      "base": "BitTorrent (BTT)",
+      "variant": null,
+      "figmaId": "6585:9956"
+    },
+    {
+      "slug": "blackmoon-bmc",
+      "name": "Blackmoon (Bmc)",
+      "base": "Blackmoon (Bmc)",
+      "variant": null,
+      "figmaId": "6585:27420"
+    },
+    {
+      "slug": "blocknet-block",
+      "name": "Blocknet (Block)",
+      "base": "Blocknet (Block)",
+      "variant": null,
+      "figmaId": "6585:27429"
+    },
+    {
+      "slug": "blockstamp-bst",
+      "name": "Blockstamp (Bst)",
+      "base": "Blockstamp (Bst)",
+      "variant": null,
+      "figmaId": "6585:27445"
+    },
+    {
+      "slug": "blocktix-tix",
+      "name": "Blocktix (Tix)",
+      "base": "Blocktix (Tix)",
+      "variant": null,
+      "figmaId": "6585:27118"
+    },
+    {
+      "slug": "blockv-vee",
+      "name": "BLOCKv (VEE)",
+      "base": "BLOCKv (VEE)",
+      "variant": null,
+      "figmaId": "6585:26367"
+    },
+    {
+      "slug": "bluzelle-blz",
+      "name": "Bluzelle (BLZ)",
+      "base": "Bluzelle (BLZ)",
+      "variant": null,
+      "figmaId": "6585:25946"
+    },
+    {
+      "slug": "bonfida-fida",
+      "name": "Bonfida (FIDA)",
+      "base": "Bonfida (FIDA)",
+      "variant": null,
+      "figmaId": "6585:25022"
+    },
+    {
+      "slug": "bora-bora",
+      "name": "BORA (BORA)",
+      "base": "BORA (BORA)",
+      "variant": null,
+      "figmaId": "6585:24459"
+    },
+    {
+      "slug": "boscoin-bos",
+      "name": "Boscoin (Bos)",
+      "base": "Boscoin (Bos)",
+      "variant": null,
+      "figmaId": "6585:27125"
+    },
+    {
+      "slug": "bottos-bto",
+      "name": "Bottos (Bto)",
+      "base": "Bottos (Bto)",
+      "variant": null,
+      "figmaId": "6585:27347"
+    },
+    {
+      "slug": "botxcoin-botx",
+      "name": "botXcoin (BOTX)",
+      "base": "botXcoin (BOTX)",
+      "variant": null,
+      "figmaId": "6585:23664"
+    },
+    {
+      "slug": "bounce-token-auction",
+      "name": "Bounce Token (AUCTION)",
+      "base": "Bounce Token (AUCTION)",
+      "variant": null,
+      "figmaId": "6585:26338"
+    },
+    {
+      "slug": "bounty0x-bnty",
+      "name": "Bounty0x (Bnty)",
+      "base": "Bounty0x (Bnty)",
+      "variant": null,
+      "figmaId": "6585:27354"
+    },
+    {
+      "slug": "btu-protocol-btu",
+      "name": "BTU Protocol (BTU)",
+      "base": "BTU Protocol (BTU)",
+      "variant": null,
+      "figmaId": "6585:26033"
+    },
+    {
+      "slug": "burger-swap-burger",
+      "name": "Burger Swap (BURGER)",
+      "base": "Burger Swap (BURGER)",
+      "variant": null,
+      "figmaId": "6585:25497"
+    },
+    {
+      "slug": "burst-burst",
+      "name": "Burst (Burst)",
+      "base": "Burst (Burst)",
+      "variant": null,
+      "figmaId": "6585:27362"
+    },
+    {
+      "slug": "bytecoin-bcn",
+      "name": "Bytecoin (BCN)",
+      "base": "Bytecoin (BCN)",
+      "variant": null,
+      "figmaId": "6585:24034"
+    },
+    {
+      "slug": "bytom-btm",
+      "name": "Bytom (BTM)",
+      "base": "Bytom (BTM)",
+      "variant": null,
+      "figmaId": "6585:24659"
+    },
+    {
+      "slug": "bzx-protocol-bzrx",
+      "name": "bZx Protocol (BZRX)",
+      "base": "bZx Protocol (BZRX)",
+      "variant": null,
+      "figmaId": "6585:25603"
+    },
+    {
+      "slug": "cardano-ada",
+      "name": "Cardano (ADA)",
+      "base": "Cardano (ADA)",
+      "variant": null,
+      "figmaId": "6585:9296"
+    },
+    {
+      "slug": "cargox-cxo",
+      "name": "CargoX (CXO)",
+      "base": "CargoX (CXO)",
+      "variant": null,
+      "figmaId": "6585:25970"
+    },
+    {
+      "slug": "carry-cre",
+      "name": "Carry (CRE)",
+      "base": "Carry (CRE)",
+      "variant": null,
+      "figmaId": "6585:25269"
+    },
+    {
+      "slug": "cartesi-ctsi",
+      "name": "Cartesi (CTSI)",
+      "base": "Cartesi (CTSI)",
+      "variant": null,
+      "figmaId": "6585:12731"
+    },
+    {
+      "slug": "casper-cspr",
+      "name": "Casper (CSPR)",
+      "base": "Casper (CSPR)",
+      "variant": null,
+      "figmaId": "6585:25176"
+    },
+    {
+      "slug": "celer-network-celr",
+      "name": "Celer Network (CELR)",
+      "base": "Celer Network (CELR)",
+      "variant": null,
+      "figmaId": "6585:23414"
+    },
+    {
+      "slug": "celo-celo",
+      "name": "Celo (CELO)",
+      "base": "Celo (CELO)",
+      "variant": null,
+      "figmaId": "6585:10330"
+    },
+    {
+      "slug": "celo-dollar-cusd",
+      "name": "Celo Dollar (CUSD)",
+      "base": "Celo Dollar (CUSD)",
+      "variant": null,
+      "figmaId": "6585:25515"
+    },
+    {
+      "slug": "celsius-cel",
+      "name": "Celsius (CEL)",
+      "base": "Celsius (CEL)",
+      "variant": null,
+      "figmaId": "6585:10042"
+    },
+    {
+      "slug": "centrality-cennz",
+      "name": "Centrality (CENNZ)",
+      "base": "Centrality (CENNZ)",
+      "variant": null,
+      "figmaId": "6585:24347"
+    },
+    {
+      "slug": "certik-ctk",
+      "name": "CertiK (CTK)",
+      "base": "CertiK (CTK)",
+      "variant": null,
+      "figmaId": "6585:25396"
+    },
+    {
+      "slug": "chainlink-link",
+      "name": "Chainlink (LINK)",
+      "base": "Chainlink (LINK)",
+      "variant": null,
+      "figmaId": "6585:9536"
+    },
+    {
+      "slug": "chainx-pcx",
+      "name": "Chainx (Pcx)",
+      "base": "Chainx (Pcx)",
+      "variant": null,
+      "figmaId": "6585:27454"
+    },
+    {
+      "slug": "chatcoin-chat",
+      "name": "Chatcoin (Chat)",
+      "base": "Chatcoin (Chat)",
+      "variant": null,
+      "figmaId": "6585:27467"
+    },
+    {
+      "slug": "chiliz-chz",
+      "name": "Chiliz (CHZ)",
+      "base": "Chiliz (CHZ)",
+      "variant": null,
+      "figmaId": "6585:10013"
+    },
+    {
+      "slug": "chimpion-bnana",
+      "name": "Chimpion (BNANA)",
+      "base": "Chimpion (BNANA)",
+      "variant": null,
+      "figmaId": "6585:25122"
+    },
+    {
+      "slug": "chromia-chr",
+      "name": "Chromia (CHR)",
+      "base": "Chromia (CHR)",
+      "variant": null,
+      "figmaId": "6585:24365"
+    },
+    {
+      "slug": "cindicator-cnd",
+      "name": "Cindicator (Cnd)",
+      "base": "Cindicator (Cnd)",
+      "variant": null,
+      "figmaId": "6585:27476"
+    },
+    {
+      "slug": "civic-cvc",
+      "name": "Civic (CVC)",
+      "base": "Civic (CVC)",
+      "variant": null,
+      "figmaId": "6585:12869"
+    },
+    {
+      "slug": "clams-clam",
+      "name": "Clams (Clam)",
+      "base": "Clams (Clam)",
+      "variant": null,
+      "figmaId": "6585:27492"
+    },
+    {
+      "slug": "cloakcoin-cloak",
+      "name": "Cloakcoin (Cloak)",
+      "base": "Cloakcoin (Cloak)",
+      "variant": null,
+      "figmaId": "6585:27501"
+    },
+    {
+      "slug": "cloudcoin-cce",
+      "name": "Cloudcoin (Cce)",
+      "base": "Cloudcoin (Cce)",
+      "variant": null,
+      "figmaId": "6585:27514"
+    },
+    {
+      "slug": "cobinhood-cob",
+      "name": "Cobinhood (Cob)",
+      "base": "Cobinhood (Cob)",
+      "variant": null,
+      "figmaId": "6585:27525"
+    },
+    {
+      "slug": "coinex-token-cet",
+      "name": "CoinEx Token (CET)",
+      "base": "CoinEx Token (CET)",
+      "variant": null,
+      "figmaId": "6585:26266"
+    },
+    {
+      "slug": "coinmetro-token-xcm",
+      "name": "Coinmetro Token (Xcm)",
+      "base": "Coinmetro Token (Xcm)",
+      "variant": null,
+      "figmaId": "6585:27558"
+    },
+    {
+      "slug": "colossusxt-colx",
+      "name": "Colossusxt (Colx)",
+      "base": "Colossusxt (Colx)",
+      "variant": null,
+      "figmaId": "6585:27566"
+    },
+    {
+      "slug": "commercium-cmm",
+      "name": "Commercium (Cmm)",
+      "base": "Commercium (Cmm)",
+      "variant": null,
+      "figmaId": "6585:27573"
+    },
+    {
+      "slug": "compound-comp",
+      "name": "Compound (COMP)",
+      "base": "Compound (COMP)",
+      "variant": null,
+      "figmaId": "6585:9808"
+    },
+    {
+      "slug": "compound-dai-cdai",
+      "name": "Compound Dai (Cdai)",
+      "base": "Compound Dai (Cdai)",
+      "variant": null,
+      "figmaId": "6585:27586"
+    },
+    {
+      "slug": "compound-ether-ceth",
+      "name": "Compound Ether (Ceth)",
+      "base": "Compound Ether (Ceth)",
+      "variant": null,
+      "figmaId": "6585:27600"
+    },
+    {
+      "slug": "compound-usd-coin-cusdc",
+      "name": "Compound Usd Coin (Cusdc)",
+      "base": "Compound Usd Coin (Cusdc)",
+      "variant": null,
+      "figmaId": "6585:27611"
+    },
+    {
+      "slug": "compound-usdt-cusdt",
+      "name": "Compound Usdt (Cusdt)",
+      "base": "Compound Usdt (Cusdt)",
+      "variant": null,
+      "figmaId": "6585:27622"
+    },
+    {
+      "slug": "conflux-network-cfx",
+      "name": "Conflux Network (CFX)",
+      "base": "Conflux Network (CFX)",
+      "variant": null,
+      "figmaId": "6585:12573"
+    },
+    {
+      "slug": "constellation-dag",
+      "name": "Constellation (DAG)",
+      "base": "Constellation (DAG)",
+      "variant": null,
+      "figmaId": "6585:12428"
+    },
+    {
+      "slug": "cortex-ctxc",
+      "name": "Cortex (Ctxc)",
+      "base": "Cortex (Ctxc)",
+      "variant": null,
+      "figmaId": "6585:27630"
+    },
+    {
+      "slug": "cosmos-atom",
+      "name": "Cosmos (ATOM)",
+      "base": "Cosmos (ATOM)",
+      "variant": null,
+      "figmaId": "6585:9744"
+    },
+    {
+      "slug": "coti-coti",
+      "name": "COTI (COTI)",
+      "base": "COTI (COTI)",
+      "variant": null,
+      "figmaId": "6585:24666"
+    },
+    {
+      "slug": "counos-x-ccxx",
+      "name": "Counos X (CCXX)",
+      "base": "Counos X (CCXX)",
+      "variant": null,
+      "figmaId": "6585:23747"
+    },
+    {
+      "slug": "counterparty-xcp",
+      "name": "Counterparty (Xcp)",
+      "base": "Counterparty (Xcp)",
+      "variant": null,
+      "figmaId": "6585:27636"
+    },
+    {
+      "slug": "cream-finance-cream",
+      "name": "Cream Finance (CREAM)",
+      "base": "Cream Finance (CREAM)",
+      "variant": null,
+      "figmaId": "6585:24238"
+    },
+    {
+      "slug": "creditcoin-ctc",
+      "name": "Creditcoin (CTC)",
+      "base": "Creditcoin (CTC)",
+      "variant": null,
+      "figmaId": "6585:23779"
+    },
+    {
+      "slug": "credits-cs",
+      "name": "Credits (Cs)",
+      "base": "Credits (Cs)",
+      "variant": null,
+      "figmaId": "6585:27646"
+    },
+    {
+      "slug": "crown-crw",
+      "name": "Crown (Crw)",
+      "base": "Crown (Crw)",
+      "variant": null,
+      "figmaId": "6585:27655"
+    },
+    {
+      "slug": "crpt-crpt",
+      "name": "Crpt (Crpt)",
+      "base": "Crpt (Crpt)",
+      "variant": null,
+      "figmaId": "6585:27666"
+    },
+    {
+      "slug": "crust-network-cru",
+      "name": "Crust Network (CRU)",
+      "base": "Crust Network (CRU)",
+      "variant": null,
+      "figmaId": "6585:25815"
+    },
+    {
+      "slug": "cryptaldash-crd",
+      "name": "Cryptaldash (Crd)",
+      "base": "Cryptaldash (Crd)",
+      "variant": null,
+      "figmaId": "6585:27674"
+    },
+    {
+      "slug": "crypto-com-coin-cro",
+      "name": "Crypto.com Coin (CRO)",
+      "base": "Crypto.com Coin (CRO)",
+      "variant": null,
+      "figmaId": "6585:9670"
+    },
+    {
+      "slug": "cube-cube",
+      "name": "Cube (Cube)",
+      "base": "Cube (Cube)",
+      "variant": null,
+      "figmaId": "6585:24450"
+    },
+    {
+      "slug": "cybermiles-cmt",
+      "name": "Cybermiles (Cmt)",
+      "base": "Cybermiles (Cmt)",
+      "variant": null,
+      "figmaId": "6585:27682"
+    },
+    {
+      "slug": "cybervein-cvt",
+      "name": "Cybervein (Cvt)",
+      "base": "Cybervein (Cvt)",
+      "variant": null,
+      "figmaId": "6585:27698"
+    },
+    {
+      "slug": "dai-dai",
+      "name": "Dai (DAI)",
+      "base": "Dai (DAI)",
+      "variant": null,
+      "figmaId": "6585:9575"
+    },
+    {
+      "slug": "dao-maker-dao",
+      "name": "DAO Maker (DAO)",
+      "base": "DAO Maker (DAO)",
+      "variant": null,
+      "figmaId": "6585:25356"
+    },
+    {
+      "slug": "dash-dash",
+      "name": "Dash (DASH)",
+      "base": "Dash (DASH)",
+      "variant": null,
+      "figmaId": "6585:10057"
+    },
+    {
+      "slug": "datum-dat",
+      "name": "Datum (Dat)",
+      "base": "Datum (Dat)",
+      "variant": null,
+      "figmaId": "6585:27705"
+    },
+    {
+      "slug": "dawn-protocol-dawn",
+      "name": "Dawn Protocol (DAWN)",
+      "base": "Dawn Protocol (DAWN)",
+      "variant": null,
+      "figmaId": "6585:24080"
+    },
+    {
+      "slug": "decentraland-mana",
+      "name": "Decentraland (MANA)",
+      "base": "Decentraland (MANA)",
+      "variant": null,
+      "figmaId": "6585:10102"
+    },
+    {
+      "slug": "decred-dcr",
+      "name": "Decred (DCR)",
+      "base": "Decred (DCR)",
+      "variant": null,
+      "figmaId": "6585:9964"
+    },
+    {
+      "slug": "deepbrain-chain-dbc",
+      "name": "Deepbrain Chain (Dbc)",
+      "base": "Deepbrain Chain (Dbc)",
+      "variant": null,
+      "figmaId": "6585:27723"
+    },
+    {
+      "slug": "defichain-dfi",
+      "name": "DeFiChain (DFI)",
+      "base": "DeFiChain (DFI)",
+      "variant": null,
+      "figmaId": "6585:23859"
+    },
+    {
+      "slug": "dego-finance-dego",
+      "name": "Dego Finance (DEGO)",
+      "base": "Dego Finance (DEGO)",
+      "variant": null,
+      "figmaId": "6585:25325"
+    },
+    {
+      "slug": "dent-dent",
+      "name": "Dent (DENT)",
+      "base": "Dent (DENT)",
+      "variant": null,
+      "figmaId": "6585:12529"
+    },
+    {
+      "slug": "dentacoin-dcn",
+      "name": "Dentacoin (Dcn)",
+      "base": "Dentacoin (Dcn)",
+      "variant": null,
+      "figmaId": "6585:27732"
+    },
+    {
+      "slug": "derivadao-ddx",
+      "name": "DerivaDAO (DDX)",
+      "base": "DerivaDAO (DDX)",
+      "variant": null,
+      "figmaId": "6585:25228"
+    },
+    {
+      "slug": "dether-dth",
+      "name": "Dether (Dth)",
+      "base": "Dether (Dth)",
+      "variant": null,
+      "figmaId": "6585:27741"
+    },
+    {
+      "slug": "dia-dia",
+      "name": "DIA (DIA)",
+      "base": "DIA (DIA)",
+      "variant": null,
+      "figmaId": "6585:25438"
+    },
+    {
+      "slug": "digibyte-dgb",
+      "name": "DigiByte (DGB)",
+      "base": "DigiByte (DGB)",
+      "variant": null,
+      "figmaId": "6585:10442"
+    },
+    {
+      "slug": "digital-reserve-currency-drc",
+      "name": "Digital Reserve Currency (Drc)",
+      "base": "Digital Reserve Currency (Drc)",
+      "variant": null,
+      "figmaId": "6585:27747"
+    },
+    {
+      "slug": "digitalbits-xdb",
+      "name": "DigitalBits (XDB)",
+      "base": "DigitalBits (XDB)",
+      "variant": null,
+      "figmaId": "6585:25312"
+    },
+    {
+      "slug": "digitalnote-xdn",
+      "name": "Digitalnote (Xdn)",
+      "base": "Digitalnote (Xdn)",
+      "variant": null,
+      "figmaId": "6585:27761"
+    },
+    {
+      "slug": "digixdao-dgd",
+      "name": "DigixDAO (DGD)",
+      "base": "DigixDAO (DGD)",
+      "variant": null,
+      "figmaId": "6585:26531"
+    },
+    {
+      "slug": "district0x-dnt",
+      "name": "district0x (DNT)",
+      "base": "district0x (DNT)",
+      "variant": null,
+      "figmaId": "6585:24995"
+    },
+    {
+      "slug": "divi-divi",
+      "name": "Divi (DIVI)",
+      "base": "Divi (DIVI)",
+      "variant": null,
+      "figmaId": "6585:24312"
+    },
+    {
+      "slug": "dmarket-dmt",
+      "name": "Dmarket (Dmt)",
+      "base": "Dmarket (Dmt)",
+      "variant": null,
+      "figmaId": "6585:27770"
+    },
+    {
+      "slug": "dock-dock",
+      "name": "Dock (DOCK)",
+      "base": "Dock (DOCK)",
+      "variant": null,
+      "figmaId": "6585:25854"
+    },
+    {
+      "slug": "doctors-coin-drs",
+      "name": "Doctors Coin (DRS)",
+      "base": "Doctors Coin (DRS)",
+      "variant": null,
+      "figmaId": "6585:24110"
+    },
+    {
+      "slug": "dodo-dodo",
+      "name": "DODO (DODO)",
+      "base": "DODO (DODO)",
+      "variant": null,
+      "figmaId": "6585:23599"
+    },
+    {
+      "slug": "dogecoin-doge",
+      "name": "Dogecoin (DOGE)",
+      "base": "Dogecoin (DOGE)",
+      "variant": null,
+      "figmaId": "6585:9472"
+    },
+    {
+      "slug": "dragon-coins-drg",
+      "name": "Dragon Coins (Drg)",
+      "base": "Dragon Coins (Drg)",
+      "variant": null,
+      "figmaId": "6585:27776"
+    },
+    {
+      "slug": "dusk-network-dusk",
+      "name": "Dusk Network (DUSK)",
+      "base": "Dusk Network (DUSK)",
+      "variant": null,
+      "figmaId": "6585:26054"
+    },
+    {
+      "slug": "dvision-network-dvi",
+      "name": "Dvision Network (DVI)",
+      "base": "Dvision Network (DVI)",
+      "variant": null,
+      "figmaId": "6585:25375"
+    },
+    {
+      "slug": "eboostcoin-ebst",
+      "name": "Eboostcoin (Ebst)",
+      "base": "Eboostcoin (Ebst)",
+      "variant": null,
+      "figmaId": "6585:27784"
+    },
+    {
+      "slug": "edgeless-edg",
+      "name": "Edgeless (Edg)",
+      "base": "Edgeless (Edg)",
+      "variant": null,
+      "figmaId": "6585:27793"
+    },
+    {
+      "slug": "educare-ekt",
+      "name": "Educare (Ekt)",
+      "base": "Educare (Ekt)",
+      "variant": null,
+      "figmaId": "6585:27806"
+    },
+    {
+      "slug": "efforce-wozx",
+      "name": "EFFORCE (WOZX)",
+      "base": "EFFORCE (WOZX)",
+      "variant": null,
+      "figmaId": "6585:24975"
+    },
+    {
+      "slug": "egoras-egr",
+      "name": "Egoras (EGR)",
+      "base": "Egoras (EGR)",
+      "variant": null,
+      "figmaId": "6585:23716"
+    },
+    {
+      "slug": "egretia-egt",
+      "name": "Egretia (Egt)",
+      "base": "Egretia (Egt)",
+      "variant": null,
+      "figmaId": "6585:27821"
+    },
+    {
+      "slug": "einsteinium-emc2",
+      "name": "Einsteinium (Emc2)",
+      "base": "Einsteinium (Emc2)",
+      "variant": null,
+      "figmaId": "6585:27838"
+    },
+    {
+      "slug": "elastos-ela",
+      "name": "Elastos (ELA)",
+      "base": "Elastos (ELA)",
+      "variant": null,
+      "figmaId": "6585:25993"
+    },
+    {
+      "slug": "electra-eca",
+      "name": "Electra (Eca)",
+      "base": "Electra (Eca)",
+      "variant": null,
+      "figmaId": "6585:27852"
+    },
+    {
+      "slug": "electroneum-etn",
+      "name": "Electroneum (ETN)",
+      "base": "Electroneum (ETN)",
+      "variant": null,
+      "figmaId": "6585:24307"
+    },
+    {
+      "slug": "elitium-eum",
+      "name": "Elitium (EUM)",
+      "base": "Elitium (EUM)",
+      "variant": null,
+      "figmaId": "6585:24729"
+    },
+    {
+      "slug": "ellaism-ella",
+      "name": "Ellaism (Ella)",
+      "base": "Ellaism (Ella)",
+      "variant": null,
+      "figmaId": "6585:27862"
+    },
+    {
+      "slug": "elrond-egld",
+      "name": "Elrond (EGLD)",
+      "base": "Elrond (EGLD)",
+      "variant": null,
+      "figmaId": "6585:10002"
+    },
+    {
+      "slug": "emercoin-emc",
+      "name": "Emercoin (Emc)",
+      "base": "Emercoin (Emc)",
+      "variant": null,
+      "figmaId": "6585:27867"
+    },
+    {
+      "slug": "empty-set-dollar-esd",
+      "name": "Empty Set Dollar (ESD)",
+      "base": "Empty Set Dollar (ESD)",
+      "variant": null,
+      "figmaId": "6585:24940"
+    },
+    {
+      "slug": "energi-nrg",
+      "name": "Energi (NRG)",
+      "base": "Energi (NRG)",
+      "variant": null,
+      "figmaId": "6585:25052"
+    },
+    {
+      "slug": "energy-web-token-ewt",
+      "name": "Energy Web Token (EWT)",
+      "base": "Energy Web Token (EWT)",
+      "variant": null,
+      "figmaId": "6585:12813"
+    },
+    {
+      "slug": "enigma-eng",
+      "name": "Enigma (Eng)",
+      "base": "Enigma (Eng)",
+      "variant": null,
+      "figmaId": "6585:27893"
+    },
+    {
+      "slug": "enjin-coin-enj",
+      "name": "Enjin Coin (ENJ)",
+      "base": "Enjin Coin (ENJ)",
+      "variant": null,
+      "figmaId": "6585:10111"
+    },
+    {
+      "slug": "enzyme-mln",
+      "name": "Enzyme (MLN)",
+      "base": "Enzyme (MLN)",
+      "variant": null,
+      "figmaId": "6585:23437"
+    },
+    {
+      "slug": "eos-eos",
+      "name": "EOS (EOS)",
+      "base": "EOS (EOS)",
+      "variant": null,
+      "figmaId": "6585:9644"
+    },
+    {
+      "slug": "ergo-erg",
+      "name": "Ergo (ERG)",
+      "base": "Ergo (ERG)",
+      "variant": null,
+      "figmaId": "6585:12603"
+    },
+    {
+      "slug": "esbc-esbc",
+      "name": "Esbc (Esbc)",
+      "base": "Esbc (Esbc)",
+      "variant": null,
+      "figmaId": "6585:27908"
+    },
+    {
+      "slug": "ether-zero-etz",
+      "name": "Ether Zero (Etz)",
+      "base": "Ether Zero (Etz)",
+      "variant": null,
+      "figmaId": "6585:27915"
+    },
+    {
+      "slug": "ethereum-classic-etc",
+      "name": "Ethereum Classic (ETC)",
+      "base": "Ethereum Classic (ETC)",
+      "variant": null,
+      "figmaId": "6585:9590"
+    },
+    {
+      "slug": "ethereum-eth",
+      "name": "Ethereum (ETH)",
+      "base": "Ethereum (ETH)",
+      "variant": null,
+      "figmaId": "6585:9251"
+    },
+    {
+      "slug": "ethernity-chain-ern",
+      "name": "Ethernity Chain (ERN)",
+      "base": "Ethernity Chain (ERN)",
+      "variant": null,
+      "figmaId": "6585:24413"
+    },
+    {
+      "slug": "etherparty-fuel",
+      "name": "Etherparty (Fuel)",
+      "base": "Etherparty (Fuel)",
+      "variant": null,
+      "figmaId": "6585:27922"
+    },
+    {
+      "slug": "everex-evx",
+      "name": "Everex(Evx)",
+      "base": "Everex(Evx)",
+      "variant": null,
+      "figmaId": "6585:27931"
+    },
+    {
+      "slug": "everipedia-iq",
+      "name": "Everipedia (IQ)",
+      "base": "Everipedia (IQ)",
+      "variant": null,
+      "figmaId": "6585:23624"
+    },
+    {
+      "slug": "exchange-union-xuc",
+      "name": "Exchange Union (Xuc)",
+      "base": "Exchange Union (Xuc)",
+      "variant": null,
+      "figmaId": "6585:27939"
+    },
+    {
+      "slug": "expanse-exp",
+      "name": "Expanse (Exp)",
+      "base": "Expanse (Exp)",
+      "variant": null,
+      "figmaId": "6585:27951"
+    },
+    {
+      "slug": "faceter-face",
+      "name": "Faceter (Face)",
+      "base": "Faceter (Face)",
+      "variant": null,
+      "figmaId": "6585:27960"
+    },
+    {
+      "slug": "factom-fct",
+      "name": "Factom (Fct)",
+      "base": "Factom (Fct)",
+      "variant": null,
+      "figmaId": "6585:27988"
+    },
+    {
+      "slug": "fantom-ftm",
+      "name": "Fantom (FTM)",
+      "base": "Fantom (FTM)",
+      "variant": null,
+      "figmaId": "6585:12013"
+    },
+    {
+      "slug": "fc-barcelona-fan-token-bar-a",
+      "name": "FC Barcelona Fan Token (BAR)a",
+      "base": "FC Barcelona Fan Token (BAR)a",
+      "variant": null,
+      "figmaId": "6585:25714"
+    },
+    {
+      "slug": "feathercoin-ftc",
+      "name": "Feathercoin (Ftc)",
+      "base": "Feathercoin (Ftc)",
+      "variant": null,
+      "figmaId": "6585:27999"
+    },
+    {
+      "slug": "fei-protocol-fei",
+      "name": "Fei Protocol (FEI)",
+      "base": "Fei Protocol (FEI)",
+      "variant": null,
+      "figmaId": "6585:23672"
+    },
+    {
+      "slug": "fetch-ai-fet",
+      "name": "Fetch.ai (FET)",
+      "base": "Fetch.ai (FET)",
+      "variant": null,
+      "figmaId": "6585:12709"
+    },
+    {
+      "slug": "filecoin-fil",
+      "name": "Filecoin (FIL)",
+      "base": "Filecoin (FIL)",
+      "variant": null,
+      "figmaId": "6585:9623"
+    },
+    {
+      "slug": "fio-protocol-fio",
+      "name": "FIO Protocol (FIO)",
+      "base": "FIO Protocol (FIO)",
+      "variant": null,
+      "figmaId": "6585:25188"
+    },
+    {
+      "slug": "firo-firo",
+      "name": "Firo (FIRO)",
+      "base": "Firo (FIRO)",
+      "variant": null,
+      "figmaId": "6585:25279"
+    },
+    {
+      "slug": "flamingo-flm",
+      "name": "Flamingo (FLM)",
+      "base": "Flamingo (FLM)",
+      "variant": null,
+      "figmaId": "6585:25478"
+    },
+    {
+      "slug": "flow-flow",
+      "name": "Flow (FLOW)",
+      "base": "Flow (FLOW)",
+      "variant": null,
+      "figmaId": "6585:10142"
+    },
+    {
+      "slug": "frax-frax",
+      "name": "Frax (FRAX)",
+      "base": "Frax (FRAX)",
+      "variant": null,
+      "figmaId": "6585:24027"
+    },
+    {
+      "slug": "frax-share-fxs",
+      "name": "Frax Share (FXS)",
+      "base": "Frax Share (FXS)",
+      "variant": null,
+      "figmaId": "6585:25541"
+    },
+    {
+      "slug": "ftx-token-ftt",
+      "name": "FTX Token (FTT)",
+      "base": "FTX Token (FTT)",
+      "variant": null,
+      "figmaId": "6585:9770"
+    },
+    {
+      "slug": "fujicoin-fjc",
+      "name": "Fujicoin (Fjc)",
+      "base": "Fujicoin (Fjc)",
+      "variant": null,
+      "figmaId": "6585:28018"
+    },
+    {
+      "slug": "function-x-fx",
+      "name": "Function X (FX)",
+      "base": "Function X (FX)",
+      "variant": null,
+      "figmaId": "6585:24922"
+    },
+    {
+      "slug": "funtoken-fun",
+      "name": "FUNToken (FUN)",
+      "base": "FUNToken (FUN)",
+      "variant": null,
+      "figmaId": "6585:12805"
+    },
+    {
+      "slug": "fusion-fsn",
+      "name": "Fusion (Fsn)",
+      "base": "Fusion (Fsn)",
+      "variant": null,
+      "figmaId": "6585:28027"
+    },
+    {
+      "slug": "gala-gala",
+      "name": "Gala (GALA)",
+      "base": "Gala (GALA)",
+      "variant": null,
+      "figmaId": "6585:24379"
+    },
+    {
+      "slug": "galatasaray-fan-token-gal",
+      "name": "Galatasaray Fan Token (GAL)",
+      "base": "Galatasaray Fan Token (GAL)",
+      "variant": null,
+      "figmaId": "6585:26251"
+    },
+    {
+      "slug": "gamecredits-game",
+      "name": "Gamecredits (Game)",
+      "base": "Gamecredits (Game)",
+      "variant": null,
+      "figmaId": "6585:28034"
+    },
+    {
+      "slug": "gas-gas",
+      "name": "Gas (GAS)",
+      "base": "Gas (GAS)",
+      "variant": null,
+      "figmaId": "6585:25031"
+    },
+    {
+      "slug": "gatetoken-gt",
+      "name": "GateToken (GT)",
+      "base": "GateToken (GT)",
+      "variant": null,
+      "figmaId": "6585:12396"
+    },
+    {
+      "slug": "gemini-dollar-gusd",
+      "name": "Gemini Dollar (GUSD)",
+      "base": "Gemini Dollar (GUSD)",
+      "variant": null,
+      "figmaId": "6585:12197"
+    },
+    {
+      "slug": "genesis-vision-gvt",
+      "name": "Genesis Vision (Gvt)",
+      "base": "Genesis Vision (Gvt)",
+      "variant": null,
+      "figmaId": "6585:28039"
+    },
+    {
+      "slug": "gincoin-gin",
+      "name": "Gincoin (Gin)",
+      "base": "Gincoin (Gin)",
+      "variant": null,
+      "figmaId": "6585:28050"
+    },
+    {
+      "slug": "gitcoin-gtc",
+      "name": "Gitcoin (GTC)",
+      "base": "Gitcoin (GTC)",
+      "variant": null,
+      "figmaId": "6585:24932"
+    },
+    {
+      "slug": "global-social-chain-gsc",
+      "name": "Global Social Chain (Gsc)",
+      "base": "Global Social Chain (Gsc)",
+      "variant": null,
+      "figmaId": "6585:28055"
+    },
+    {
+      "slug": "gnosis-gno",
+      "name": "Gnosis (GNO)",
+      "base": "Gnosis (GNO)",
+      "variant": null,
+      "figmaId": "6585:12292"
+    },
+    {
+      "slug": "gobyte-gbx",
+      "name": "Gobyte (Gbx)",
+      "base": "Gobyte (Gbx)",
+      "variant": null,
+      "figmaId": "6585:28139"
+    },
+    {
+      "slug": "golem-glm",
+      "name": "Golem (GLM)",
+      "base": "Golem (GLM)",
+      "variant": null,
+      "figmaId": "6585:12229"
+    },
+    {
+      "slug": "golos-blockchain-gls",
+      "name": "Golos Blockchain (Gls)",
+      "base": "Golos Blockchain (Gls)",
+      "variant": null,
+      "figmaId": "6585:28149"
+    },
+    {
+      "slug": "gridcoin-grc",
+      "name": "Gridcoin (Grc)",
+      "base": "Gridcoin (Grc)",
+      "variant": null,
+      "figmaId": "6585:28157"
+    },
+    {
+      "slug": "grin-grin",
+      "name": "Grin (Grin)",
+      "base": "Grin (Grin)",
+      "variant": null,
+      "figmaId": "6585:28166"
+    },
+    {
+      "slug": "groestlcoin-grs",
+      "name": "Groestlcoin (GRS)",
+      "base": "Groestlcoin (GRS)",
+      "variant": null,
+      "figmaId": "6585:25580"
+    },
+    {
+      "slug": "gulden-nlg",
+      "name": "Gulden (Nlg)",
+      "base": "Gulden (Nlg)",
+      "variant": null,
+      "figmaId": "6585:28171"
+    },
+    {
+      "slug": "gxchain-gxc",
+      "name": "Gxchain (Gxc)",
+      "base": "Gxchain (Gxc)",
+      "variant": null,
+      "figmaId": "6585:28179"
+    },
+    {
+      "slug": "hacken-token-hai",
+      "name": "Hacken Token (HAI)",
+      "base": "Hacken Token (HAI)",
+      "variant": null,
+      "figmaId": "6585:26328"
+    },
+    {
+      "slug": "handshake-hns",
+      "name": "Handshake (HNS)",
+      "base": "Handshake (HNS)",
+      "variant": null,
+      "figmaId": "6585:25009"
+    },
+    {
+      "slug": "harmony-one",
+      "name": "Harmony (ONE)",
+      "base": "Harmony (ONE)",
+      "variant": null,
+      "figmaId": "6585:10279"
+    },
+    {
+      "slug": "hathor-htr",
+      "name": "Hathor (HTR)",
+      "base": "Hathor (HTR)",
+      "variant": null,
+      "figmaId": "6585:24967"
+    },
+    {
+      "slug": "haven-protocol-xhv",
+      "name": "Haven Protocol (XHV)",
+      "base": "Haven Protocol (XHV)",
+      "variant": null,
+      "figmaId": "6585:25385"
+    },
+    {
+      "slug": "hedera-hashgraph-hbar",
+      "name": "Hedera Hashgraph (HBAR)",
+      "base": "Hedera Hashgraph (HBAR)",
+      "variant": null,
+      "figmaId": "6585:9923"
+    },
+    {
+      "slug": "hedgetrade-hedg",
+      "name": "HedgeTrade (HEDG)",
+      "base": "HedgeTrade (HEDG)",
+      "variant": null,
+      "figmaId": "6585:23978"
+    },
+    {
+      "slug": "helium-hnt",
+      "name": "Helium (HNT)",
+      "base": "Helium (HNT)",
+      "variant": null,
+      "figmaId": "6585:10134"
+    },
+    {
+      "slug": "hex-hex",
+      "name": "HEX (HEX)",
+      "base": "HEX (HEX)",
+      "variant": null,
+      "figmaId": "6585:23648"
+    },
+    {
+      "slug": "hifi-finance-mft",
+      "name": "Hifi Finance (MFT)",
+      "base": "Hifi Finance (MFT)",
+      "variant": null,
+      "figmaId": "6585:24984"
+    },
+    {
+      "slug": "high-performance-blockchain-hpp",
+      "name": "High Performance Blockchain (Hpp)",
+      "base": "High Performance Blockchain (Hpp)",
+      "variant": null,
+      "figmaId": "6585:28201"
+    },
+    {
+      "slug": "hive-hive",
+      "name": "Hive (HIVE)",
+      "base": "Hive (HIVE)",
+      "variant": null,
+      "figmaId": "6585:23495"
+    },
+    {
+      "slug": "hkka-finance-hakka",
+      "name": "Hkka Finance (Hakka)",
+      "base": "Hkka Finance (Hakka)",
+      "variant": null,
+      "figmaId": "6585:28188"
+    },
+    {
+      "slug": "hoge-finance-hoge",
+      "name": "Hoge Finance (HOGE)",
+      "base": "Hoge Finance (HOGE)",
+      "variant": null,
+      "figmaId": "6585:26450"
+    },
+    {
+      "slug": "holo-hot",
+      "name": "Holo (HOT)",
+      "base": "Holo (HOT)",
+      "variant": null,
+      "figmaId": "6585:10148"
+    },
+    {
+      "slug": "horizen-zen",
+      "name": "Horizen (ZEN)",
+      "base": "Horizen (ZEN)",
+      "variant": null,
+      "figmaId": "6585:10374"
+    },
+    {
+      "slug": "html-coin-html",
+      "name": "Html Coin (Html)",
+      "base": "Html Coin (Html)",
+      "variant": null,
+      "figmaId": "6585:28211"
+    },
+    {
+      "slug": "humanscape-hum",
+      "name": "Humanscape (HUM)",
+      "base": "Humanscape (HUM)",
+      "variant": null,
+      "figmaId": "6585:25808"
+    },
+    {
+      "slug": "huobi-btc-hbtc",
+      "name": "Huobi BTC (HBTC)",
+      "base": "Huobi BTC (HBTC)",
+      "variant": null,
+      "figmaId": "6585:23769"
+    },
+    {
+      "slug": "huobi-token-ht",
+      "name": "Huobi Token (HT)",
+      "base": "Huobi Token (HT)",
+      "variant": null,
+      "figmaId": "6585:9937"
+    },
+    {
+      "slug": "husd-husd",
+      "name": "HUSD (HUSD)",
+      "base": "HUSD (HUSD)",
+      "variant": null,
+      "figmaId": "6585:12053"
+    },
+    {
+      "slug": "hush-hush",
+      "name": "Hush (Hush)",
+      "base": "Hush (Hush)",
+      "variant": null,
+      "figmaId": "6585:28226"
+    },
+    {
+      "slug": "hxro-hxro",
+      "name": "Hxro (HXRO)",
+      "base": "Hxro (HXRO)",
+      "variant": null,
+      "figmaId": "6585:23532"
+    },
+    {
+      "slug": "hydro-hydro",
+      "name": "Hydro (Hydro)",
+      "base": "Hydro (Hydro)",
+      "variant": null,
+      "figmaId": "6585:28235"
+    },
+    {
+      "slug": "hypercash-hc",
+      "name": "Hypercash (Hc)",
+      "base": "Hypercash (Hc)",
+      "variant": null,
+      "figmaId": "6585:28245"
+    },
+    {
+      "slug": "icon-icx",
+      "name": "ICON (ICX)",
+      "base": "ICON (ICX)",
+      "variant": null,
+      "figmaId": "6585:12062"
+    },
+    {
+      "slug": "idex-idex",
+      "name": "Idex (Idex)",
+      "base": "Idex (Idex)",
+      "variant": null,
+      "figmaId": "6585:28295"
+    },
+    {
+      "slug": "iexec-rlc-rlc",
+      "name": "iExec RLC (RLC)",
+      "base": "iExec RLC (RLC)",
+      "variant": null,
+      "figmaId": "6585:12467"
+    },
+    {
+      "slug": "ignis-ignis",
+      "name": "Ignis (Ignis)",
+      "base": "Ignis (Ignis)",
+      "variant": null,
+      "figmaId": "6585:28303"
+    },
+    {
+      "slug": "injective-protocol-inj",
+      "name": "Injective Protocol (INJ)",
+      "base": "Injective Protocol (INJ)",
+      "variant": null,
+      "figmaId": "6585:12498"
+    },
+    {
+      "slug": "ink-ink",
+      "name": "Ink (Ink)",
+      "base": "Ink (Ink)",
+      "variant": null,
+      "figmaId": "6585:28312"
+    },
+    {
+      "slug": "ino-coin-ino",
+      "name": "INO COIN (INO)",
+      "base": "INO COIN (INO)",
+      "variant": null,
+      "figmaId": "6585:23817"
+    },
+    {
+      "slug": "insight-chain-inb",
+      "name": "Insight Chain (Inb)",
+      "base": "Insight Chain (Inb)",
+      "variant": null,
+      "figmaId": "6585:28323"
+    },
+    {
+      "slug": "internet-computer-icp",
+      "name": "Internet Computer (ICP)",
+      "base": "Internet Computer (ICP)",
+      "variant": null,
+      "figmaId": "6585:9610"
+    },
+    {
+      "slug": "internet-of-people-iop",
+      "name": "Internet Of People (Iop)",
+      "base": "Internet Of People (Iop)",
+      "variant": null,
+      "figmaId": "6585:28332"
+    },
+    {
+      "slug": "invictus-hyperion-fund-ihf",
+      "name": "Invictus Hyperion Fund (IHF)",
+      "base": "Invictus Hyperion Fund (IHF)",
+      "variant": null,
+      "figmaId": "6585:26472"
+    },
+    {
+      "slug": "ion-ion",
+      "name": "Ion (Ion)",
+      "base": "Ion (Ion)",
+      "variant": null,
+      "figmaId": "6585:28340"
+    },
+    {
+      "slug": "iost-iost",
+      "name": "IOST (IOST)",
+      "base": "IOST (IOST)",
+      "variant": null,
+      "figmaId": "6585:12186"
+    },
+    {
+      "slug": "iot-chain-itc",
+      "name": "Iot Chain (Itc)",
+      "base": "Iot Chain (Itc)",
+      "variant": null,
+      "figmaId": "6585:28351"
+    },
+    {
+      "slug": "iota-miota",
+      "name": "IOTA (MIOTA)",
+      "base": "IOTA (MIOTA)",
+      "variant": null,
+      "figmaId": "6585:9899"
+    },
+    {
+      "slug": "iotex-iotx",
+      "name": "IoTeX (IOTX)",
+      "base": "IoTeX (IOTX)",
+      "variant": null,
+      "figmaId": "6585:12633"
+    },
+    {
+      "slug": "iqeon-iqn",
+      "name": "Iqeon (Iqn)",
+      "base": "Iqeon (Iqn)",
+      "variant": null,
+      "figmaId": "6585:28359"
+    },
+    {
+      "slug": "irisnet-iris",
+      "name": "IRISnet (IRIS)",
+      "base": "IRISnet (IRIS)",
+      "variant": null,
+      "figmaId": "6585:24717"
+    },
+    {
+      "slug": "just-jst",
+      "name": "JUST (JST)",
+      "base": "JUST (JST)",
+      "variant": null,
+      "figmaId": "6585:24387"
+    },
+    {
+      "slug": "kambria-kat",
+      "name": "Kambria (Kat)",
+      "base": "Kambria (Kat)",
+      "variant": null,
+      "figmaId": "6585:28365"
+    },
+    {
+      "slug": "kanadecoin-kndc",
+      "name": "Kanadecoin (Kndc)",
+      "base": "Kanadecoin (Kndc)",
+      "variant": null,
+      "figmaId": "6585:28441"
+    },
+    {
+      "slug": "karatgold-coin-kbc",
+      "name": "KaratGold Coin (KBC)",
+      "base": "KaratGold Coin (KBC)",
+      "variant": null,
+      "figmaId": "6585:28452"
+    },
+    {
+      "slug": "karbo-krb",
+      "name": "Karbo (Krb)",
+      "base": "Karbo (Krb)",
+      "variant": null,
+      "figmaId": "6585:28457"
+    },
+    {
+      "slug": "kardiachain-kai",
+      "name": "KardiaChain (KAI)",
+      "base": "KardiaChain (KAI)",
+      "variant": null,
+      "figmaId": "6585:24231"
+    },
+    {
+      "slug": "karma-karma",
+      "name": "KARMA (KARMA)",
+      "base": "KARMA (KARMA)",
+      "variant": null,
+      "figmaId": "6585:25506"
+    },
+    {
+      "slug": "kava-io-kava",
+      "name": "Kava.io (KAVA)",
+      "base": "Kava.io (KAVA)",
+      "variant": null,
+      "figmaId": "6585:12279"
+    },
+    {
+      "slug": "keep-network-keep",
+      "name": "Keep Network (KEEP)",
+      "base": "Keep Network (KEEP)",
+      "variant": null,
+      "figmaId": "6585:24133"
+    },
+    {
+      "slug": "kin-kin",
+      "name": "Kin (KIN)",
+      "base": "Kin (KIN)",
+      "variant": null,
+      "figmaId": "6585:24773"
+    },
+    {
+      "slug": "klayswap-protocol-ksp",
+      "name": "KLAYswap Protocol (KSP)",
+      "base": "KLAYswap Protocol (KSP)",
+      "variant": null,
+      "figmaId": "6585:24172"
+    },
+    {
+      "slug": "klaytn-klay",
+      "name": "Klaytn (KLAY)",
+      "base": "Klaytn (KLAY)",
+      "variant": null,
+      "figmaId": "6585:9787"
+    },
+    {
+      "slug": "kleros-pnk",
+      "name": "Kleros (PNK)",
+      "base": "Kleros (PNK)",
+      "variant": null,
+      "figmaId": "6585:25423"
+    },
+    {
+      "slug": "klever-klv",
+      "name": "Klever (KLV)",
+      "base": "Klever (KLV)",
+      "variant": null,
+      "figmaId": "6585:24126"
+    },
+    {
+      "slug": "kok-kok",
+      "name": "KOK (KOK)",
+      "base": "KOK (KOK)",
+      "variant": null,
+      "figmaId": "6585:24039"
+    },
+    {
+      "slug": "komodo-kmd",
+      "name": "Komodo (KMD)",
+      "base": "Komodo (KMD)",
+      "variant": null,
+      "figmaId": "6585:24523"
+    },
+    {
+      "slug": "kucoin-token-kcs",
+      "name": "KuCoin Token (KCS)",
+      "base": "KuCoin Token (KCS)",
+      "variant": null,
+      "figmaId": "6585:10168"
+    },
+    {
+      "slug": "kusama-ksm",
+      "name": "Kusama (KSM)",
+      "base": "Kusama (KSM)",
+      "variant": null,
+      "figmaId": "6585:9916"
+    },
+    {
+      "slug": "kyber-network-crystal-legacy-knc",
+      "name": "Kyber Network Crystal Legacy (KNC)",
+      "base": "Kyber Network Crystal Legacy (KNC)",
+      "variant": null,
+      "figmaId": "6585:12248"
+    },
+    {
+      "slug": "lamden-tau",
+      "name": "Lamden (Tau)",
+      "base": "Lamden (Tau)",
+      "variant": null,
+      "figmaId": "6585:28488"
+    },
+    {
+      "slug": "largo-coin-lrg",
+      "name": "Largo Coin (Lrg)",
+      "base": "Largo Coin (Lrg)",
+      "variant": null,
+      "figmaId": "6585:28498"
+    },
+    {
+      "slug": "latoken-la",
+      "name": "Latoken (La)",
+      "base": "Latoken (La)",
+      "variant": null,
+      "figmaId": "6585:28507"
+    },
+    {
+      "slug": "library-credit-lbc",
+      "name": "Library Credit (Lbc)",
+      "base": "Library Credit (Lbc)",
+      "variant": null,
+      "figmaId": "6585:28516"
+    },
+    {
+      "slug": "lido-dao-token-ldo",
+      "name": "Lido DAO Token (LDO)",
+      "base": "Lido DAO Token (LDO)",
+      "variant": null,
+      "figmaId": "6585:26260"
+    },
+    {
+      "slug": "likecoin-like",
+      "name": "Likecoin (Like)",
+      "base": "Likecoin (Like)",
+      "variant": null,
+      "figmaId": "6585:28557"
+    },
+    {
+      "slug": "linear-lina",
+      "name": "Linear (LINA)",
+      "base": "Linear (LINA)",
+      "variant": null,
+      "figmaId": "6585:24187"
+    },
+    {
+      "slug": "liquity-lqty",
+      "name": "Liquity (LQTY)",
+      "base": "Liquity (LQTY)",
+      "variant": null,
+      "figmaId": "6585:26480"
+    },
+    {
+      "slug": "liquity-usd-lusd",
+      "name": "Liquity USD (LUSD)",
+      "base": "Liquity USD (LUSD)",
+      "variant": null,
+      "figmaId": "6585:23827"
+    },
+    {
+      "slug": "lisk-lsk",
+      "name": "Lisk (LSK)",
+      "base": "Lisk (LSK)",
+      "variant": null,
+      "figmaId": "6585:12212"
+    },
+    {
+      "slug": "litecoin-ltc",
+      "name": "Litecoin (LTC)",
+      "base": "Litecoin (LTC)",
+      "variant": null,
+      "figmaId": "6585:9520"
+    },
+    {
+      "slug": "livepeer-lpt",
+      "name": "Livepeer (LPT)",
+      "base": "Livepeer (LPT)",
+      "variant": null,
+      "figmaId": "6585:12240"
+    },
+    {
+      "slug": "loom-network-loom",
+      "name": "Loom Network (LOOM)",
+      "base": "Loom Network (LOOM)",
+      "variant": null,
+      "figmaId": "6585:25260"
+    },
+    {
+      "slug": "loopring-lrc",
+      "name": "Loopring (LRC)",
+      "base": "Loopring (LRC)",
+      "variant": null,
+      "figmaId": "6585:12268"
+    },
+    {
+      "slug": "lto-network-lto",
+      "name": "LTO Network (LTO)",
+      "base": "LTO Network (LTO)",
+      "variant": null,
+      "figmaId": "6585:25556"
+    },
+    {
+      "slug": "lunyr-lun",
+      "name": "Lunyr (Lun)",
+      "base": "Lunyr (Lun)",
+      "variant": null,
+      "figmaId": "6585:28565"
+    },
+    {
+      "slug": "lykke-lkk",
+      "name": "Lykke (Lkk)",
+      "base": "Lykke (Lkk)",
+      "variant": null,
+      "figmaId": "6585:28573"
+    },
+    {
+      "slug": "lympo-lym",
+      "name": "Lympo (Lym)",
+      "base": "Lympo (Lym)",
+      "variant": null,
+      "figmaId": "6585:28580"
+    },
+    {
+      "slug": "maidsafecoin-maid",
+      "name": "MaidSafeCoin (MAID)",
+      "base": "MaidSafeCoin (MAID)",
+      "variant": null,
+      "figmaId": "6585:12316"
+    },
+    {
+      "slug": "maker-mkr",
+      "name": "Maker (MKR)",
+      "base": "Maker (MKR)",
+      "variant": null,
+      "figmaId": "6585:9751"
+    },
+    {
+      "slug": "mantra-dao-om",
+      "name": "MANTRA DAO (OM)",
+      "base": "MANTRA DAO (OM)",
+      "variant": null,
+      "figmaId": "6585:26066"
+    },
+    {
+      "slug": "marlin-pond",
+      "name": "Marlin (POND)",
+      "base": "Marlin (POND)",
+      "variant": null,
+      "figmaId": "6585:25784"
+    },
+    {
+      "slug": "masari-msr",
+      "name": "Masari (Msr)",
+      "base": "Masari (Msr)",
+      "variant": null,
+      "figmaId": "6585:28591"
+    },
+    {
+      "slug": "mask-network-mask",
+      "name": "Mask Network (MASK)",
+      "base": "Mask Network (MASK)",
+      "variant": null,
+      "figmaId": "6585:25449"
+    },
+    {
+      "slug": "massnet-mass",
+      "name": "Massnet (MASS)",
+      "base": "Massnet (MASS)",
+      "variant": null,
+      "figmaId": "6585:25849"
+    },
+    {
+      "slug": "math-math",
+      "name": "MATH (MATH)",
+      "base": "MATH (MATH)",
+      "variant": null,
+      "figmaId": "6585:24212"
+    },
+    {
+      "slug": "mco-mco",
+      "name": "MCO (MCO)",
+      "base": "MCO (MCO)",
+      "variant": null,
+      "figmaId": "6585:12662"
+    },
+    {
+      "slug": "mdex-mdx",
+      "name": "Mdex (MDX)",
+      "base": "Mdex (MDX)",
+      "variant": null,
+      "figmaId": "6585:10235"
+    },
+    {
+      "slug": "medibloc-med",
+      "name": "MediBloc (MED)",
+      "base": "MediBloc (MED)",
+      "variant": null,
+      "figmaId": "6585:23576"
+    },
+    {
+      "slug": "medishares-mds",
+      "name": "Medishares (Mds)",
+      "base": "Medishares (Mds)",
+      "variant": null,
+      "figmaId": "6585:28616"
+    },
+    {
+      "slug": "meetone-meetone",
+      "name": "Meetone (Meetone)",
+      "base": "Meetone (Meetone)",
+      "variant": null,
+      "figmaId": "6585:28625"
+    },
+    {
+      "slug": "metadium-meta",
+      "name": "Metadium (META)",
+      "base": "Metadium (META)",
+      "variant": null,
+      "figmaId": "6585:23400"
+    },
+    {
+      "slug": "metal-mtl",
+      "name": "Metal (MTL)",
+      "base": "Metal (MTL)",
+      "variant": null,
+      "figmaId": "6585:24404"
+    },
+    {
+      "slug": "metaverse-etp",
+      "name": "Metaverse (Etp)",
+      "base": "Metaverse (Etp)",
+      "variant": null,
+      "figmaId": "6585:28649"
+    },
+    {
+      "slug": "metronome-met",
+      "name": "Metronome (MET)",
+      "base": "Metronome (MET)",
+      "variant": null,
+      "figmaId": "6585:26511"
+    },
+    {
+      "slug": "mil-k-mlk",
+      "name": "MiL.k (MLK)",
+      "base": "MiL.k (MLK)",
+      "variant": null,
+      "figmaId": "6585:24357"
+    },
+    {
+      "slug": "mimblewimblecoin-mwc",
+      "name": "MimbleWimbleCoin (MWC)",
+      "base": "MimbleWimbleCoin (MWC)",
+      "variant": null,
+      "figmaId": "6585:25976"
+    },
+    {
+      "slug": "mina-mina",
+      "name": "Mina (MINA)",
+      "base": "Mina (MINA)",
+      "variant": null,
+      "figmaId": "6585:12510"
+    },
+    {
+      "slug": "mirror-protocol-mir",
+      "name": "Mirror Protocol (MIR)",
+      "base": "Mirror Protocol (MIR)",
+      "variant": null,
+      "figmaId": "6585:24020"
+    },
+    {
+      "slug": "mirrored-apple-maapl",
+      "name": "Mirrored Apple (mAAPL)",
+      "base": "Mirrored Apple (mAAPL)",
+      "variant": null,
+      "figmaId": "6585:26345"
+    },
+    {
+      "slug": "mithril-mith",
+      "name": "Mithril (MITH)",
+      "base": "Mithril (MITH)",
+      "variant": null,
+      "figmaId": "6585:25893"
+    },
+    {
+      "slug": "mixin-xin",
+      "name": "Mixin (Xin)",
+      "base": "Mixin (Xin)",
+      "variant": null,
+      "figmaId": "6585:28657"
+    },
+    {
+      "slug": "moac-moac",
+      "name": "Moac (Moac)",
+      "base": "Moac (Moac)",
+      "variant": null,
+      "figmaId": "6585:28699"
+    },
+    {
+      "slug": "moeda-loyalty-points-mda",
+      "name": "Moeda Loyalty Points (Mda)",
+      "base": "Moeda Loyalty Points (Mda)",
+      "variant": null,
+      "figmaId": "6585:28706"
+    },
+    {
+      "slug": "molecular-future-mof",
+      "name": "Molecular Future (MOF)",
+      "base": "Molecular Future (MOF)",
+      "variant": null,
+      "figmaId": "6585:25207"
+    },
+    {
+      "slug": "monacoin-mona",
+      "name": "MonaCoin (MONA)",
+      "base": "MonaCoin (MONA)",
+      "variant": null,
+      "figmaId": "6585:24624"
+    },
+    {
+      "slug": "monero-xmr",
+      "name": "Monero (XMR)",
+      "base": "Monero (XMR)",
+      "variant": null,
+      "figmaId": "6585:9651"
+    },
+    {
+      "slug": "monetha-mth",
+      "name": "Monetha (Mth)",
+      "base": "Monetha (Mth)",
+      "variant": null,
+      "figmaId": "6585:28716"
+    },
+    {
+      "slug": "monnos-mns",
+      "name": "Monnos (Mns)",
+      "base": "Monnos (Mns)",
+      "variant": null,
+      "figmaId": "6585:28726"
+    },
+    {
+      "slug": "monolith-tkn",
+      "name": "Monolith (Tkn)",
+      "base": "Monolith (Tkn)",
+      "variant": null,
+      "figmaId": "6585:28735"
+    },
+    {
+      "slug": "moviebloc-mbl",
+      "name": "MovieBloc (MBL)",
+      "base": "MovieBloc (MBL)",
+      "variant": null,
+      "figmaId": "6585:26135"
+    },
+    {
+      "slug": "mvl-mvl",
+      "name": "MVL (MVL)",
+      "base": "MVL (MVL)",
+      "variant": null,
+      "figmaId": "6585:12861"
+    },
+    {
+      "slug": "mx-token-mx",
+      "name": "MX Token (MX)",
+      "base": "MX Token (MX)",
+      "variant": null,
+      "figmaId": "6585:25588"
+    },
+    {
+      "slug": "mxc-mxc",
+      "name": "MXC (MXC)",
+      "base": "MXC (MXC)",
+      "variant": null,
+      "figmaId": "6585:25071"
+    },
+    {
+      "slug": "myneighboralice-alice",
+      "name": "MyNeighborAlice (ALICE)",
+      "base": "MyNeighborAlice (ALICE)",
+      "variant": null,
+      "figmaId": "6585:23611"
+    },
+    {
+      "slug": "myriad-xmy",
+      "name": "Myriad (Xmy)",
+      "base": "Myriad (Xmy)",
+      "variant": null,
+      "figmaId": "6585:28771"
+    },
+    {
+      "slug": "mysterium-myst",
+      "name": "Mysterium (Myst)",
+      "base": "Mysterium (Myst)",
+      "variant": null,
+      "figmaId": "6585:28802"
+    },
+    {
+      "slug": "naga-ngc",
+      "name": "Naga (Ngc)",
+      "base": "Naga (Ngc)",
+      "variant": null,
+      "figmaId": "6585:28811"
+    },
+    {
+      "slug": "namecoin-nmc",
+      "name": "Namecoin (Nmc)",
+      "base": "Namecoin (Nmc)",
+      "variant": null,
+      "figmaId": "6585:28818"
+    },
+    {
+      "slug": "nano-nano",
+      "name": "Nano (NANO)",
+      "base": "Nano (NANO)",
+      "variant": null,
+      "figmaId": "6585:12022"
+    },
+    {
+      "slug": "nav-coin-nav",
+      "name": "Nav Coin (Nav)",
+      "base": "Nav Coin (Nav)",
+      "variant": null,
+      "figmaId": "6585:28823"
+    },
+    {
+      "slug": "near-protocol-near",
+      "name": "NEAR Protocol (NEAR)",
+      "base": "NEAR Protocol (NEAR)",
+      "variant": null,
+      "figmaId": "6585:10241"
+    },
+    {
+      "slug": "neblio-nebl",
+      "name": "Neblio (Nebl)",
+      "base": "Neblio (Nebl)",
+      "variant": null,
+      "figmaId": "6585:28838"
+    },
+    {
+      "slug": "nebulas-token-nas",
+      "name": "Nebulas Token (Nas)",
+      "base": "Nebulas Token (Nas)",
+      "variant": null,
+      "figmaId": "6585:28848"
+    },
+    {
+      "slug": "nem-xem",
+      "name": "NEM (XEM)",
+      "base": "NEM (XEM)",
+      "variant": null,
+      "figmaId": "6585:10051"
+    },
+    {
+      "slug": "neo-neo",
+      "name": "Neo (NEO)",
+      "base": "Neo (NEO)",
+      "variant": null,
+      "figmaId": "6585:9794"
+    },
+    {
+      "slug": "nervos-network-ckb",
+      "name": "Nervos Network (CKB)",
+      "base": "Nervos Network (CKB)",
+      "variant": null,
+      "figmaId": "6585:12342"
+    },
+    {
+      "slug": "nest-protocol-nest",
+      "name": "Nest Protocol (Nest)",
+      "base": "Nest Protocol (Nest)",
+      "variant": null,
+      "figmaId": "6585:28853"
+    },
+    {
+      "slug": "neumark-neu",
+      "name": "Neumark (Neu)",
+      "base": "Neumark (Neu)",
+      "variant": null,
+      "figmaId": "6585:28866"
+    },
+    {
+      "slug": "neutrino-usd-usdn",
+      "name": "Neutrino USD (USDN)",
+      "base": "Neutrino USD (USDN)",
+      "variant": null,
+      "figmaId": "6585:12100"
+    },
+    {
+      "slug": "newscrypto-nwc",
+      "name": "Newscrypto (NWC)",
+      "base": "Newscrypto (NWC)",
+      "variant": null,
+      "figmaId": "6585:24544"
+    },
+    {
+      "slug": "newton-new",
+      "name": "Newton (New)",
+      "base": "Newton (New)",
+      "variant": null,
+      "figmaId": "6585:28873"
+    },
+    {
+      "slug": "newyork-exchange-nye",
+      "name": "NewYork Exchange (NYE)",
+      "base": "NewYork Exchange (NYE)",
+      "variant": null,
+      "figmaId": "6585:29508"
+    },
+    {
+      "slug": "nexo-nexo",
+      "name": "Nexo (NEXO)",
+      "base": "Nexo (NEXO)",
+      "variant": null,
+      "figmaId": "6585:10206"
+    },
+    {
+      "slug": "nftx-nftx",
+      "name": "NFTX (NFTX)",
+      "base": "NFTX (NFTX)",
+      "variant": null,
+      "figmaId": "6585:26357"
+    },
+    {
+      "slug": "nimiq-nim",
+      "name": "Nimiq (NIM)",
+      "base": "Nimiq (NIM)",
+      "variant": null,
+      "figmaId": "6585:26294"
+    },
+    {
+      "slug": "nkn-nkn",
+      "name": "NKN (NKN)",
+      "base": "NKN (NKN)",
+      "variant": null,
+      "figmaId": "6585:12884"
+    },
+    {
+      "slug": "nolimitcoin-nlc2",
+      "name": "Nolimitcoin (Nlc2)",
+      "base": "Nolimitcoin (Nlc2)",
+      "variant": null,
+      "figmaId": "6585:28881"
+    },
+    {
+      "slug": "nucleus-vision-ncash",
+      "name": "Nucleus Vision (Ncash)",
+      "base": "Nucleus Vision (Ncash)",
+      "variant": null,
+      "figmaId": "6585:28934"
+    },
+    {
+      "slug": "nucypher-nu",
+      "name": "NuCypher (NU)",
+      "base": "NuCypher (NU)",
+      "variant": null,
+      "figmaId": "6585:12897"
+    },
+    {
+      "slug": "nuls-nuls",
+      "name": "NULS (NULS)",
+      "base": "NULS (NULS)",
+      "variant": null,
+      "figmaId": "6585:26299"
+    },
+    {
+      "slug": "numeraire-nmr",
+      "name": "Numeraire (NMR)",
+      "base": "Numeraire (NMR)",
+      "variant": null,
+      "figmaId": "6585:12797"
+    },
+    {
+      "slug": "nxm-nxm",
+      "name": "NXM (NXM)",
+      "base": "NXM (NXM)",
+      "variant": null,
+      "figmaId": "6585:23909"
+    },
+    {
+      "slug": "nxt-nxt",
+      "name": "Nxt (Nxt)",
+      "base": "Nxt (Nxt)",
+      "variant": null,
+      "figmaId": "6585:28943"
+    },
+    {
+      "slug": "oasis-network-rose",
+      "name": "Oasis Network (ROSE)",
+      "base": "Oasis Network (ROSE)",
+      "variant": null,
+      "figmaId": "6585:24467"
+    },
+    {
+      "slug": "oax-oax",
+      "name": "Oax (Oax)",
+      "base": "Oax (Oax)",
+      "variant": null,
+      "figmaId": "6585:28953"
+    },
+    {
+      "slug": "ocean-protocol-ocean",
+      "name": "Ocean Protocol (OCEAN)",
+      "base": "Ocean Protocol (OCEAN)",
+      "variant": null,
+      "figmaId": "6585:12371"
+    },
+    {
+      "slug": "odem-ode",
+      "name": "Odem (Ode)",
+      "base": "Odem (Ode)",
+      "variant": null,
+      "figmaId": "6585:28961"
+    },
+    {
+      "slug": "okb-okb",
+      "name": "OKB (OKB)",
+      "base": "OKB (OKB)",
+      "variant": null,
+      "figmaId": "6585:10343"
+    },
+    {
+      "slug": "okcash-ok",
+      "name": "Okcash (Ok)",
+      "base": "Okcash (Ok)",
+      "variant": null,
+      "figmaId": "6585:28969"
+    },
+    {
+      "slug": "omg-network-omg",
+      "name": "OMG Network (OMG)",
+      "base": "OMG Network (OMG)",
+      "variant": null,
+      "figmaId": "6585:12001"
+    },
+    {
+      "slug": "omni-omni",
+      "name": "Omni (Omni)",
+      "base": "Omni (Omni)",
+      "variant": null,
+      "figmaId": "6585:28982"
+    },
+    {
+      "slug": "ongsocial-ong",
+      "name": "Ongsocial (Ong)",
+      "base": "Ongsocial (Ong)",
+      "variant": null,
+      "figmaId": "6585:28990"
+    },
+    {
+      "slug": "ontology-gas-ong",
+      "name": "Ontology Gas (ONG)",
+      "base": "Ontology Gas (ONG)",
+      "variant": null,
+      "figmaId": "6585:12485"
+    },
+    {
+      "slug": "ontology-ont",
+      "name": "Ontology (ONT)",
+      "base": "Ontology (ONT)",
+      "variant": null,
+      "figmaId": "6585:10417"
+    },
+    {
+      "slug": "orbit-chain-orc",
+      "name": "Orbit Chain (ORC)",
+      "base": "Orbit Chain (ORC)",
+      "variant": null,
+      "figmaId": "6585:23991"
+    },
+    {
+      "slug": "orbs-orbs",
+      "name": "Orbs (ORBS)",
+      "base": "Orbs (ORBS)",
+      "variant": null,
+      "figmaId": "6585:23476"
+    },
+    {
+      "slug": "orchid-oxt",
+      "name": "Orchid (OXT)",
+      "base": "Orchid (OXT)",
+      "variant": null,
+      "figmaId": "6585:12545"
+    },
+    {
+      "slug": "origin-protocol-ogn",
+      "name": "Origin Protocol (OGN)",
+      "base": "Origin Protocol (OGN)",
+      "variant": null,
+      "figmaId": "6585:12302"
+    },
+    {
+      "slug": "origintrail-trac",
+      "name": "OriginTrail (TRAC)",
+      "base": "OriginTrail (TRAC)",
+      "variant": null,
+      "figmaId": "6585:24559"
+    },
+    {
+      "slug": "ouroboros-ouro",
+      "name": "Ouroboros (Ouro)",
+      "base": "Ouroboros (Ouro)",
+      "variant": null,
+      "figmaId": "6585:28997"
+    },
+    {
+      "slug": "oxen-oxen",
+      "name": "Oxen (OXEN)",
+      "base": "Oxen (OXEN)",
+      "variant": null,
+      "figmaId": "6585:26000"
+    },
+    {
+      "slug": "oxygen-oxy",
+      "name": "Oxygen (OXY)",
+      "base": "Oxygen (OXY)",
+      "variant": null,
+      "figmaId": "6585:24698"
+    },
+    {
+      "slug": "pac-protocol-pac",
+      "name": "PAC Protocol (PAC)",
+      "base": "PAC Protocol (PAC)",
+      "variant": null,
+      "figmaId": "6585:24442"
+    },
+    {
+      "slug": "pancakeswap-cake",
+      "name": "PancakeSwap (CAKE)",
+      "base": "PancakeSwap (CAKE)",
+      "variant": null,
+      "figmaId": "6585:9720"
+    },
+    {
+      "slug": "parsiq-prq",
+      "name": "PARSIQ (PRQ)",
+      "base": "PARSIQ (PRQ)",
+      "variant": null,
+      "figmaId": "6585:25841"
+    },
+    {
+      "slug": "particl-part",
+      "name": "Particl (Part)",
+      "base": "Particl (Part)",
+      "variant": null,
+      "figmaId": "6585:29022"
+    },
+    {
+      "slug": "pascal-pasc",
+      "name": "Pascal (Pasc)",
+      "base": "Pascal (Pasc)",
+      "variant": null,
+      "figmaId": "6585:29030"
+    },
+    {
+      "slug": "patientory-ptoy",
+      "name": "Patientory (Ptoy)",
+      "base": "Patientory (Ptoy)",
+      "variant": null,
+      "figmaId": "6585:29038"
+    },
+    {
+      "slug": "pax-gold-paxg",
+      "name": "PAX Gold (PAXG)",
+      "base": "PAX Gold (PAXG)",
+      "variant": null,
+      "figmaId": "6585:23639"
+    },
+    {
+      "slug": "paxos-standard-pax",
+      "name": "Paxos Standard (PAX)",
+      "base": "Paxos Standard (PAX)",
+      "variant": null,
+      "figmaId": "6585:10161"
+    },
+    {
+      "slug": "paypex-payx",
+      "name": "Paypex (Payx)",
+      "base": "Paypex (Payx)",
+      "variant": null,
+      "figmaId": "6585:29047"
+    },
+    {
+      "slug": "paypie-ppp",
+      "name": "Paypie (Ppp)",
+      "base": "Paypie (Ppp)",
+      "variant": null,
+      "figmaId": "6585:29054"
+    },
+    {
+      "slug": "pearl-pearl",
+      "name": "Pearl (Pearl)",
+      "base": "Pearl (Pearl)",
+      "variant": null,
+      "figmaId": "6585:29080"
+    },
+    {
+      "slug": "peercoin-ppc",
+      "name": "Peercoin (Ppc)",
+      "base": "Peercoin (Ppc)",
+      "variant": null,
+      "figmaId": "6585:29085"
+    },
+    {
+      "slug": "perl-eco-perl",
+      "name": "PERL.eco (PERL)",
+      "base": "PERL.eco (PERL)",
+      "variant": null,
+      "figmaId": "6585:26739"
+    },
+    {
+      "slug": "perlin-perl",
+      "name": "Perlin (Perl)",
+      "base": "Perlin (Perl)",
+      "variant": null,
+      "figmaId": "6585:29101"
+    },
+    {
+      "slug": "perpetual-protocol-perp",
+      "name": "Perpetual Protocol (PERP)",
+      "base": "Perpetual Protocol (PERP)",
+      "variant": null,
+      "figmaId": "6585:23955"
+    },
+    {
+      "slug": "persistence-xprt",
+      "name": "Persistence (XPRT)",
+      "base": "Persistence (XPRT)",
+      "variant": null,
+      "figmaId": "6585:24073"
+    },
+    {
+      "slug": "phala-network-pha",
+      "name": "Phala Network (PHA)",
+      "base": "Phala Network (PHA)",
+      "variant": null,
+      "figmaId": "6585:12906"
+    },
+    {
+      "slug": "phantasma-soul",
+      "name": "Phantasma (Soul)",
+      "base": "Phantasma (Soul)",
+      "variant": null,
+      "figmaId": "6585:29118"
+    },
+    {
+      "slug": "pillar-plr",
+      "name": "Pillar (Plr)",
+      "base": "Pillar (Plr)",
+      "variant": null,
+      "figmaId": "6585:29126"
+    },
+    {
+      "slug": "pinkcoin-pink",
+      "name": "Pinkcoin (Pink)",
+      "base": "Pinkcoin (Pink)",
+      "variant": null,
+      "figmaId": "6585:29137"
+    },
+    {
+      "slug": "pirate-chain-arrr",
+      "name": "Pirate Chain (ARRR)",
+      "base": "Pirate Chain (ARRR)",
+      "variant": null,
+      "figmaId": "6585:23925"
+    },
+    {
+      "slug": "pirl-pirl",
+      "name": "Pirl (Pirl)",
+      "base": "Pirl (Pirl)",
+      "variant": null,
+      "figmaId": "6585:29144"
+    },
+    {
+      "slug": "pivx-pivx",
+      "name": "PIVX (PIVX)",
+      "base": "PIVX (PIVX)",
+      "variant": null,
+      "figmaId": "6585:26387"
+    },
+    {
+      "slug": "platincoin-plc",
+      "name": "PLATINCOIN (PLC)",
+      "base": "PLATINCOIN (PLC)",
+      "variant": null,
+      "figmaId": "6585:26522"
+    },
+    {
+      "slug": "platoncoin-pltc",
+      "name": "PlatonCoin (PLTC)",
+      "base": "PlatonCoin (PLTC)",
+      "variant": null,
+      "figmaId": "6585:26096"
+    },
+    {
+      "slug": "pluton-plu",
+      "name": "Pluton (Plu)",
+      "base": "Pluton (Plu)",
+      "variant": null,
+      "figmaId": "6585:29232"
+    },
+    {
+      "slug": "pnetwork-pnt",
+      "name": "Pnetwork (Pnt)",
+      "base": "Pnetwork (Pnt)",
+      "variant": null,
+      "figmaId": "6585:29246"
+    },
+    {
+      "slug": "poet-poe",
+      "name": "Poet (Poe)",
+      "base": "Poet (Poe)",
+      "variant": null,
+      "figmaId": "6585:29277"
+    },
+    {
+      "slug": "polis-polis",
+      "name": "Polis (Polis)",
+      "base": "Polis (Polis)",
+      "variant": null,
+      "figmaId": "6585:29289"
+    },
+    {
+      "slug": "polkadot-dot",
+      "name": "Polkadot (DOT)",
+      "base": "Polkadot (DOT)",
+      "variant": null,
+      "figmaId": "6585:9479"
+    },
+    {
+      "slug": "polkastarter-pols",
+      "name": "Polkastarter (POLS)",
+      "base": "Polkastarter (POLS)",
+      "variant": null,
+      "figmaId": "6585:24957"
+    },
+    {
+      "slug": "polybius-plbt",
+      "name": "Polybius (Plbt)",
+      "base": "Polybius (Plbt)",
+      "variant": null,
+      "figmaId": "6585:29298"
+    },
+    {
+      "slug": "polygon-matic",
+      "name": "Polygon (MATIC)",
+      "base": "Polygon (MATIC)",
+      "variant": null,
+      "figmaId": "6585:9566"
+    },
+    {
+      "slug": "polymath-poly",
+      "name": "Polymath (POLY)",
+      "base": "Polymath (POLY)",
+      "variant": null,
+      "figmaId": "6585:24296"
+    },
+    {
+      "slug": "polyswarm-nct",
+      "name": "Polyswarm (Nct)",
+      "base": "Polyswarm (Nct)",
+      "variant": null,
+      "figmaId": "6585:29308"
+    },
+    {
+      "slug": "populous-ppt",
+      "name": "Populous (PPT)",
+      "base": "Populous (PPT)",
+      "variant": null,
+      "figmaId": "6585:24517"
+    },
+    {
+      "slug": "poseidon-network-qqq",
+      "name": "Poseidon Network (QQQ)",
+      "base": "Poseidon Network (QQQ)",
+      "variant": null,
+      "figmaId": "6585:25524"
+    },
+    {
+      "slug": "potcoin-pot",
+      "name": "Potcoin (Pot)",
+      "base": "Potcoin (Pot)",
+      "variant": null,
+      "figmaId": "6585:29315"
+    },
+    {
+      "slug": "power-ledger-powr",
+      "name": "Power Ledger (POWR)",
+      "base": "Power Ledger (POWR)",
+      "variant": null,
+      "figmaId": "6585:24912"
+    },
+    {
+      "slug": "presearch-pre",
+      "name": "Presearch (Pre)",
+      "base": "Presearch (Pre)",
+      "variant": null,
+      "figmaId": "6585:29328"
+    },
+    {
+      "slug": "primecoin-xpm",
+      "name": "Primecoin (Xpm)",
+      "base": "Primecoin (Xpm)",
+      "variant": null,
+      "figmaId": "6585:29333"
+    },
+    {
+      "slug": "prometeus-prom",
+      "name": "Prometeus (PROM)",
+      "base": "Prometeus (PROM)",
+      "variant": null,
+      "figmaId": "6585:12537"
+    },
+    {
+      "slug": "propy-pro",
+      "name": "Propy (Pro)",
+      "base": "Propy (Pro)",
+      "variant": null,
+      "figmaId": "6585:29342"
+    },
+    {
+      "slug": "proton-xpr",
+      "name": "Proton (Xpr)",
+      "base": "Proton (Xpr)",
+      "variant": null,
+      "figmaId": "6585:29357"
+    },
+    {
+      "slug": "ptokens-btc-pbtc",
+      "name": "Ptokens Btc (Pbtc)",
+      "base": "Ptokens Btc (Pbtc)",
+      "variant": null,
+      "figmaId": "6585:29369"
+    },
+    {
+      "slug": "pumapay-pma",
+      "name": "Pumapay (Pma)",
+      "base": "Pumapay (Pma)",
+      "variant": null,
+      "figmaId": "6585:29377"
+    },
+    {
+      "slug": "pundi-x-new-pundix",
+      "name": "Pundi X[new] (PUNDIX)",
+      "base": "Pundi X[new] (PUNDIX)",
+      "variant": null,
+      "figmaId": "6585:24012"
+    },
+    {
+      "slug": "qash-qash",
+      "name": "Qash (Qash)",
+      "base": "Qash (Qash)",
+      "variant": null,
+      "figmaId": "6585:29421"
+    },
+    {
+      "slug": "qlink-qlc",
+      "name": "Qlink (Qlc)",
+      "base": "Qlink (Qlc)",
+      "variant": null,
+      "figmaId": "6585:29432"
+    },
+    {
+      "slug": "qtum-qtum",
+      "name": "Qtum (QTUM)",
+      "base": "Qtum (QTUM)",
+      "variant": null,
+      "figmaId": "6585:10409"
+    },
+    {
+      "slug": "quant-qnt",
+      "name": "Quant (QNT)",
+      "base": "Quant (QNT)",
+      "variant": null,
+      "figmaId": "6585:10180"
+    },
+    {
+      "slug": "quantstamp-qsp",
+      "name": "Quantstamp (Qsp)",
+      "base": "Quantstamp (Qsp)",
+      "variant": null,
+      "figmaId": "6585:29439"
+    },
+    {
+      "slug": "quantum-resistant-ledger-qrl",
+      "name": "Quantum Resistant Ledger (Qrl)",
+      "base": "Quantum Resistant Ledger (Qrl)",
+      "variant": null,
+      "figmaId": "6585:29461"
+    },
+    {
+      "slug": "quarkchain-qkc",
+      "name": "QuarkChain (QKC)",
+      "base": "QuarkChain (QKC)",
+      "variant": null,
+      "figmaId": "6585:24419"
+    },
+    {
+      "slug": "qunqun-qun",
+      "name": "Qunqun (Qun)",
+      "base": "Qunqun (Qun)",
+      "variant": null,
+      "figmaId": "6585:29470"
+    },
+    {
+      "slug": "radix-exrd",
+      "name": "Radix (EXRD)",
+      "base": "Radix (EXRD)",
+      "variant": null,
+      "figmaId": "6585:24479"
+    },
+    {
+      "slug": "raiden-network-token-rdn",
+      "name": "Raiden Network Token (Rdn)",
+      "base": "Raiden Network Token (Rdn)",
+      "variant": null,
+      "figmaId": "6585:29477"
+    },
+    {
+      "slug": "rally-rly",
+      "name": "Rally (RLY)",
+      "base": "Rally (RLY)",
+      "variant": null,
+      "figmaId": "6585:24327"
+    },
+    {
+      "slug": "ramp-ramp",
+      "name": "RAMP (RAMP)",
+      "base": "RAMP (RAMP)",
+      "variant": null,
+      "figmaId": "6585:25296"
+    },
+    {
+      "slug": "rarible-rari",
+      "name": "Rarible (RARI)",
+      "base": "Rarible (RARI)",
+      "variant": null,
+      "figmaId": "6585:26103"
+    },
+    {
+      "slug": "ravencoin-rvn",
+      "name": "Ravencoin (Rvn)",
+      "base": "Ravencoin (Rvn)",
+      "variant": null,
+      "figmaId": "6585:29499"
+    },
+    {
+      "slug": "raydium-ray",
+      "name": "Raydium (RAY)",
+      "base": "Raydium (RAY)",
+      "variant": null,
+      "figmaId": "6585:24119"
+    },
+    {
+      "slug": "rchain-rev",
+      "name": "RChain (REV)",
+      "base": "RChain (REV)",
+      "variant": null,
+      "figmaId": "6585:24948"
+    },
+    {
+      "slug": "reddcoin-rdd",
+      "name": "ReddCoin (RDD)",
+      "base": "ReddCoin (RDD)",
+      "variant": null,
+      "figmaId": "6585:25773"
+    },
+    {
+      "slug": "redfox-labs-rfox",
+      "name": "RedFOX Labs (RFOX)",
+      "base": "RedFOX Labs (RFOX)",
+      "variant": null,
+      "figmaId": "6585:25041"
+    },
+    {
+      "slug": "reef-reef",
+      "name": "Reef (REEF)",
+      "base": "Reef (REEF)",
+      "variant": null,
+      "figmaId": "6585:12594"
+    },
+    {
+      "slug": "refereum-rfr",
+      "name": "Refereum (RFR)",
+      "base": "Refereum (RFR)",
+      "variant": null,
+      "figmaId": "6585:25609"
+    },
+    {
+      "slug": "ren-ren",
+      "name": "Ren (REN)",
+      "base": "Ren (REN)",
+      "variant": null,
+      "figmaId": "6585:12178"
+    },
+    {
+      "slug": "renbtc-renbtc",
+      "name": "renBTC (RENBTC)",
+      "base": "renBTC (RENBTC)",
+      "variant": null,
+      "figmaId": "6585:12136"
+    },
+    {
+      "slug": "request-req",
+      "name": "Request (REQ)",
+      "base": "Request (REQ)",
+      "variant": null,
+      "figmaId": "6585:25595"
+    },
+    {
+      "slug": "reserve-rights-rsr",
+      "name": "Reserve Rights (RSR)",
+      "base": "Reserve Rights (RSR)",
+      "variant": null,
+      "figmaId": "6585:12261"
+    },
+    {
+      "slug": "reserve-rsv",
+      "name": "Reserve (Rsv)",
+      "base": "Reserve (Rsv)",
+      "variant": null,
+      "figmaId": "6585:29515"
+    },
+    {
+      "slug": "revain-rev",
+      "name": "Revain (REV)",
+      "base": "Revain (REV)",
+      "variant": null,
+      "figmaId": "6585:10348"
+    },
+    {
+      "slug": "revv-revv",
+      "name": "REVV (REVV)",
+      "base": "REVV (REVV)",
+      "variant": null,
+      "figmaId": "6585:26179"
+    },
+    {
+      "slug": "ripio-credit-network-rcn",
+      "name": "Ripio Credit Network (Rcn)",
+      "base": "Ripio Credit Network (Rcn)",
+      "variant": null,
+      "figmaId": "6585:29522"
+    },
+    {
+      "slug": "rise-rise",
+      "name": "Rise (Rise)",
+      "base": "Rise (Rise)",
+      "variant": null,
+      "figmaId": "6585:29532"
+    },
+    {
+      "slug": "rlc-rlc",
+      "name": "Rlc (Rlc)",
+      "base": "Rlc (Rlc)",
+      "variant": null,
+      "figmaId": "6585:29540"
+    },
+    {
+      "slug": "rsk-infrastructure-framework-rif",
+      "name": "RSK Infrastructure Framework (RIF)",
+      "base": "RSK Infrastructure Framework (RIF)",
+      "variant": null,
+      "figmaId": "6585:23554"
+    },
+    {
+      "slug": "rsk-smart-bitcoin-rbtc",
+      "name": "RSK Smart Bitcoin (RBTC)",
+      "base": "RSK Smart Bitcoin (RBTC)",
+      "variant": null,
+      "figmaId": "6585:25105"
+    },
+    {
+      "slug": "ruff-ruff",
+      "name": "Ruff (Ruff)",
+      "base": "Ruff (Ruff)",
+      "variant": null,
+      "figmaId": "6585:29552"
+    },
+    {
+      "slug": "ryo-currency-ryo",
+      "name": "Ryo Currency (Ryo)",
+      "base": "Ryo Currency (Ryo)",
+      "variant": null,
+      "figmaId": "6585:29563"
+    },
+    {
+      "slug": "safemoon-safemoon",
+      "name": "SafeMoon (SAFEMOON)",
+      "base": "SafeMoon (SAFEMOON)",
+      "variant": null,
+      "figmaId": "6585:23762"
+    },
+    {
+      "slug": "safepal-sfp",
+      "name": "SafePal (SFP)",
+      "base": "SafePal (SFP)",
+      "variant": null,
+      "figmaId": "6585:24614"
+    },
+    {
+      "slug": "salt-salt",
+      "name": "Salt (Salt)",
+      "base": "Salt (Salt)",
+      "variant": null,
+      "figmaId": "6585:29570"
+    },
+    {
+      "slug": "salus-sls",
+      "name": "Salus (Sls)",
+      "base": "Salus (Sls)",
+      "variant": null,
+      "figmaId": "6585:29575"
+    },
+    {
+      "slug": "santiment-san",
+      "name": "Santiment (San)",
+      "base": "Santiment (San)",
+      "variant": null,
+      "figmaId": "6585:29585"
+    },
+    {
+      "slug": "sapphire-sapp",
+      "name": "Sapphire (SAPP)",
+      "base": "Sapphire (SAPP)",
+      "variant": null,
+      "figmaId": "6585:24163"
+    },
+    {
+      "slug": "secret-scrt",
+      "name": "Secret (SCRT)",
+      "base": "Secret (SCRT)",
+      "variant": null,
+      "figmaId": "6585:25062"
+    },
+    {
+      "slug": "seele-seele",
+      "name": "Seele (Seele)",
+      "base": "Seele (Seele)",
+      "variant": null,
+      "figmaId": "6585:29594"
+    },
+    {
+      "slug": "selfkey-key",
+      "name": "Selfkey (KEY)",
+      "base": "Selfkey (KEY)",
+      "variant": null,
+      "figmaId": "6585:26503"
+    },
+    {
+      "slug": "sentinel-dvpn",
+      "name": "Sentinel (DVPN)",
+      "base": "Sentinel (DVPN)",
+      "variant": null,
+      "figmaId": "6585:25216"
+    },
+    {
+      "slug": "serum-srm",
+      "name": "Serum (SRM)",
+      "base": "Serum (SRM)",
+      "variant": null,
+      "figmaId": "6585:23390"
+    },
+    {
+      "slug": "sharetoken-shr",
+      "name": "ShareToken (SHR)",
+      "base": "ShareToken (SHR)",
+      "variant": null,
+      "figmaId": "6585:25754"
+    },
+    {
+      "slug": "shiba-inu-shib",
+      "name": "SHIBA INU (SHIB)",
+      "base": "SHIBA INU (SHIB)",
+      "variant": null,
+      "figmaId": "6585:9708"
+    },
+    {
+      "slug": "shift-shift",
+      "name": "Shift (Shift)",
+      "base": "Shift (Shift)",
+      "variant": null,
+      "figmaId": "6585:29603"
+    },
+    {
+      "slug": "shipchain-ship",
+      "name": "Shipchain (Ship)",
+      "base": "Shipchain (Ship)",
+      "variant": null,
+      "figmaId": "6585:29611"
+    },
+    {
+      "slug": "shroom-finance-shroom",
+      "name": "Shroom Finance (Shroom)",
+      "base": "Shroom Finance (Shroom)",
+      "variant": null,
+      "figmaId": "6585:29652"
+    },
+    {
+      "slug": "shyft-network-shft",
+      "name": "Shyft Network (SHFT)",
+      "base": "Shyft Network (SHFT)",
+      "variant": null,
+      "figmaId": "6585:26314"
+    },
+    {
+      "slug": "siacoin-sc",
+      "name": "Siacoin (SC)",
+      "base": "Siacoin (SC)",
+      "variant": null,
+      "figmaId": "6585:11987"
+    },
+    {
+      "slug": "sibcoin-sib",
+      "name": "Sibcoin (Sib)",
+      "base": "Sibcoin (Sib)",
+      "variant": null,
+      "figmaId": "6585:29661"
+    },
+    {
+      "slug": "singulardtv-sngls",
+      "name": "Singulardtv (Sngls)",
+      "base": "Singulardtv (Sngls)",
+      "variant": null,
+      "figmaId": "6585:29668"
+    },
+    {
+      "slug": "singularitynet-agix",
+      "name": "SingularityNET (AGIX)",
+      "base": "SingularityNET (AGIX)",
+      "variant": null,
+      "figmaId": "6585:12642"
+    },
+    {
+      "slug": "sirin-labs-token-srn",
+      "name": "Sirin Labs Token (Srn)",
+      "base": "Sirin Labs Token (Srn)",
+      "variant": null,
+      "figmaId": "6585:29718"
+    },
+    {
+      "slug": "skale-network-skl",
+      "name": "SKALE Network (SKL)",
+      "base": "SKALE Network (SKL)",
+      "variant": null,
+      "figmaId": "6585:12309"
+    },
+    {
+      "slug": "skycoin-sky",
+      "name": "Skycoin (Sky)",
+      "base": "Skycoin (Sky)",
+      "variant": null,
+      "figmaId": "6585:29731"
+    },
+    {
+      "slug": "small-love-potion-slp",
+      "name": "Small Love Potion (SLP)",
+      "base": "Small Love Potion (SLP)",
+      "variant": null,
+      "figmaId": "6585:12852"
+    },
+    {
+      "slug": "smartcash-smart",
+      "name": "Smartcash (Smart)",
+      "base": "Smartcash (Smart)",
+      "variant": null,
+      "figmaId": "6585:29738"
+    },
+    {
+      "slug": "snowswap-snow",
+      "name": "Snowswap (Snow)",
+      "base": "Snowswap (Snow)",
+      "variant": null,
+      "figmaId": "6585:29745"
+    },
+    {
+      "slug": "solana-sol",
+      "name": "Solana (SOL)",
+      "base": "Solana (SOL)",
+      "variant": null,
+      "figmaId": "6585:9528"
+    },
+    {
+      "slug": "solarcoin-slr",
+      "name": "Solarcoin (Slr)",
+      "base": "Solarcoin (Slr)",
+      "variant": null,
+      "figmaId": "6585:29753"
+    },
+    {
+      "slug": "sologenic-solo",
+      "name": "Sologenic (SOLO)",
+      "base": "Sologenic (SOLO)",
+      "variant": null,
+      "figmaId": "6585:24046"
+    },
+    {
+      "slug": "sonm-snm",
+      "name": "Sonm (Snm)",
+      "base": "Sonm (Snm)",
+      "variant": null,
+      "figmaId": "6585:29793"
+    },
+    {
+      "slug": "sophiatx-sphtx",
+      "name": "Sophiatx (Sphtx)",
+      "base": "Sophiatx (Sphtx)",
+      "variant": null,
+      "figmaId": "6585:29808"
+    },
+    {
+      "slug": "sora-xor",
+      "name": "Sora (XOR)",
+      "base": "Sora (XOR)",
+      "variant": null,
+      "figmaId": "6585:25339"
+    },
+    {
+      "slug": "spankchain-spank",
+      "name": "Spankchain (Spank)",
+      "base": "Spankchain (Spank)",
+      "variant": null,
+      "figmaId": "6585:29818"
+    },
+    {
+      "slug": "stacks-stx",
+      "name": "Stacks (STX)",
+      "base": "Stacks (STX)",
+      "variant": null,
+      "figmaId": "6585:10020"
+    },
+    {
+      "slug": "standard-tokenization-protocol-stp",
+      "name": "Standard Tokenization Protocol (STP)",
+      "base": "Standard Tokenization Protocol (STP)",
+      "variant": null,
+      "figmaId": "6585:25660"
+    },
+    {
+      "slug": "startcoin-start",
+      "name": "Startcoin (Start)",
+      "base": "Startcoin (Start)",
+      "variant": null,
+      "figmaId": "6585:29823"
+    },
+    {
+      "slug": "stasis-euro-eurs",
+      "name": "STASIS EURO (EURS)",
+      "base": "STASIS EURO (EURS)",
+      "variant": null,
+      "figmaId": "6585:24320"
+    },
+    {
+      "slug": "status-snt",
+      "name": "Status (SNT)",
+      "base": "Status (SNT)",
+      "variant": null,
+      "figmaId": "6585:12442"
+    },
+    {
+      "slug": "steem-dollars-sbd",
+      "name": "Steem Dollars (SBD)",
+      "base": "Steem Dollars (SBD)",
+      "variant": null,
+      "figmaId": "6585:25565"
+    },
+    {
+      "slug": "steem-steem",
+      "name": "Steem (STEEM)",
+      "base": "Steem (STEEM)",
+      "variant": null,
+      "figmaId": "6585:12830"
+    },
+    {
+      "slug": "stellar-xlm",
+      "name": "Stellar (XLM)",
+      "base": "Stellar (XLM)",
+      "variant": null,
+      "figmaId": "6585:9560"
+    },
+    {
+      "slug": "steth-lido-steth",
+      "name": "stETH (Lido) (STETH)",
+      "base": "stETH (Lido) (STETH)",
+      "variant": null,
+      "figmaId": "6585:23792"
+    },
+    {
+      "slug": "storiqa-stq",
+      "name": "Storiqa (Stq)",
+      "base": "Storiqa (Stq)",
+      "variant": null,
+      "figmaId": "6585:29831"
+    },
+    {
+      "slug": "storj-storj",
+      "name": "Storj (STORJ)",
+      "base": "Storj (STORJ)",
+      "variant": null,
+      "figmaId": "6585:12386"
+    },
+    {
+      "slug": "stormx-stmx",
+      "name": "StormX (STMX)",
+      "base": "StormX (STMX)",
+      "variant": null,
+      "figmaId": "6585:12651"
+    },
+    {
+      "slug": "straks-stak",
+      "name": "Straks (Stak)",
+      "base": "Straks (Stak)",
+      "variant": null,
+      "figmaId": "6585:29838"
+    },
+    {
+      "slug": "stratis-strax",
+      "name": "Stratis (STRAX)",
+      "base": "Stratis (STRAX)",
+      "variant": null,
+      "figmaId": "6585:12505"
+    },
+    {
+      "slug": "streamr-data",
+      "name": "Streamr (DATA)",
+      "base": "Streamr (DATA)",
+      "variant": null,
+      "figmaId": "6585:24437"
+    },
+    {
+      "slug": "strike-strk",
+      "name": "Strike (STRK)",
+      "base": "Strike (STRK)",
+      "variant": null,
+      "figmaId": "6585:23617"
+    },
+    {
+      "slug": "strong-strong",
+      "name": "Strong (STRONG)",
+      "base": "Strong (STRONG)",
+      "variant": null,
+      "figmaId": "6585:26276"
+    },
+    {
+      "slug": "substratum-sub",
+      "name": "Substratum (Sub)",
+      "base": "Substratum (Sub)",
+      "variant": null,
+      "figmaId": "6585:29847"
+    },
+    {
+      "slug": "sumokoin-sumo",
+      "name": "Sumokoin (Sumo)",
+      "base": "Sumokoin (Sumo)",
+      "variant": null,
+      "figmaId": "6585:29855"
+    },
+    {
+      "slug": "superfarm-super",
+      "name": "SuperFarm (SUPER)",
+      "base": "SuperFarm (SUPER)",
+      "variant": null,
+      "figmaId": "6585:25332"
+    },
+    {
+      "slug": "susd-susd",
+      "name": "sUSD (SUSD)",
+      "base": "sUSD (SUSD)",
+      "variant": null,
+      "figmaId": "6585:24002"
+    },
+    {
+      "slug": "sushiswap-sushi",
+      "name": "SushiSwap (SUSHI)",
+      "base": "SushiSwap (SUSHI)",
+      "variant": null,
+      "figmaId": "6585:10196"
+    },
+    {
+      "slug": "suterusu-suter",
+      "name": "Suterusu (Suter)",
+      "base": "Suterusu (Suter)",
+      "variant": null,
+      "figmaId": "6585:29867"
+    },
+    {
+      "slug": "swipe-sxp",
+      "name": "Swipe (SXP)",
+      "base": "Swipe (SXP)",
+      "variant": null,
+      "figmaId": "6585:12566"
+    },
+    {
+      "slug": "swissborg-chsb",
+      "name": "SwissBorg (CHSB)",
+      "base": "SwissBorg (CHSB)",
+      "variant": null,
+      "figmaId": "6585:10434"
+    },
+    {
+      "slug": "switcheo-swth",
+      "name": "Switcheo (Swth)",
+      "base": "Switcheo (Swth)",
+      "variant": null,
+      "figmaId": "6585:29874"
+    },
+    {
+      "slug": "symbol-xym",
+      "name": "Symbol (XYM)",
+      "base": "Symbol (XYM)",
+      "variant": null,
+      "figmaId": "6585:23851"
+    },
+    {
+      "slug": "synthetix-snx",
+      "name": "Synthetix (SNX)",
+      "base": "Synthetix (SNX)",
+      "variant": null,
+      "figmaId": "6585:10082"
+    },
+    {
+      "slug": "syntropy-noia",
+      "name": "Syntropy (NOIA)",
+      "base": "Syntropy (NOIA)",
+      "variant": null,
+      "figmaId": "6585:24603"
+    },
+    {
+      "slug": "syscoin-sys",
+      "name": "Syscoin (SYS)",
+      "base": "Syscoin (SYS)",
+      "variant": null,
+      "figmaId": "6585:24782"
+    },
+    {
+      "slug": "telcoin-tel",
+      "name": "Telcoin (TEL)",
+      "base": "Telcoin (TEL)",
+      "variant": null,
+      "figmaId": "6585:10306"
+    },
+    {
+      "slug": "tellor-trb",
+      "name": "Tellor (TRB)",
+      "base": "Tellor (TRB)",
+      "variant": null,
+      "figmaId": "6585:25284"
+    },
+    {
+      "slug": "telos-tlos",
+      "name": "Telos (TLOS)",
+      "base": "Telos (TLOS)",
+      "variant": null,
+      "figmaId": "6585:26232"
+    },
+    {
+      "slug": "tenx-pay",
+      "name": "Tenx (Pay)",
+      "base": "Tenx (Pay)",
+      "variant": null,
+      "figmaId": "6585:29882"
+    },
+    {
+      "slug": "tera-tera",
+      "name": "Tera (Tera)",
+      "base": "Tera (Tera)",
+      "variant": null,
+      "figmaId": "6585:29889"
+    },
+    {
+      "slug": "ternio-tern",
+      "name": "Ternio (Tern)",
+      "base": "Ternio (Tern)",
+      "variant": null,
+      "figmaId": "6585:29899"
+    },
+    {
+      "slug": "terra-luna",
+      "name": "Terra (LUNA)",
+      "base": "Terra (LUNA)",
+      "variant": null,
+      "figmaId": "6585:9678"
+    },
+    {
+      "slug": "terra-virtua-kolect-tvk",
+      "name": "Terra Virtua Kolect (TVK)",
+      "base": "Terra Virtua Kolect (TVK)",
+      "variant": null,
+      "figmaId": "6585:25924"
+    },
+    {
+      "slug": "terrausd-ust",
+      "name": "TerraUSD (UST)",
+      "base": "TerraUSD (UST)",
+      "variant": null,
+      "figmaId": "6585:9819"
+    },
+    {
+      "slug": "tether-usdt",
+      "name": "Tether (USDT)",
+      "base": "Tether (USDT)",
+      "variant": null,
+      "figmaId": "6570:113918"
+    },
+    {
+      "slug": "tezos-xtz",
+      "name": "Tezos (XTZ)",
+      "base": "Tezos (XTZ)",
+      "variant": null,
+      "figmaId": "6585:9800"
+    },
+    {
+      "slug": "the-graph-grt",
+      "name": "The Graph (GRT)",
+      "base": "The Graph (GRT)",
+      "variant": null,
+      "figmaId": "6585:9910"
+    },
+    {
+      "slug": "the-sandbox-sand",
+      "name": "The Sandbox (SAND)",
+      "base": "The Sandbox (SAND)",
+      "variant": null,
+      "figmaId": "6585:12105"
+    },
+    {
+      "slug": "the-transfer-token-ttt",
+      "name": "The Transfer Token (TTT)",
+      "base": "The Transfer Token (TTT)",
+      "variant": null,
+      "figmaId": "6585:23809"
+    },
+    {
+      "slug": "theta-fuel-tfuel",
+      "name": "Theta Fuel (TFUEL)",
+      "base": "Theta Fuel (TFUEL)",
+      "variant": null,
+      "figmaId": "6585:9945"
+    },
+    {
+      "slug": "theta-theta",
+      "name": "THETA (THETA)",
+      "base": "THETA (THETA)",
+      "variant": null,
+      "figmaId": "6585:9600"
+    },
+    {
+      "slug": "thorchain-rune",
+      "name": "THORChain (RUNE)",
+      "base": "THORChain (RUNE)",
+      "variant": null,
+      "figmaId": "6585:10074"
+    },
+    {
+      "slug": "thorecoin-thr",
+      "name": "Thorecoin (Thr)",
+      "base": "Thorecoin (Thr)",
+      "variant": null,
+      "figmaId": "6585:29986"
+    },
+    {
+      "slug": "thunder-token-tt",
+      "name": "Thunder Token (TT)",
+      "base": "Thunder Token (TT)",
+      "variant": null,
+      "figmaId": "6585:25348"
+    },
+    {
+      "slug": "tierion-tnt",
+      "name": "Tierion (Tnt)",
+      "base": "Tierion (Tnt)",
+      "variant": null,
+      "figmaId": "6585:29995"
+    },
+    {
+      "slug": "tigercash-tch",
+      "name": "Tigercash (Tch)",
+      "base": "Tigercash (Tch)",
+      "variant": null,
+      "figmaId": "6585:30011"
+    },
+    {
+      "slug": "time-new-bank-tnb",
+      "name": "Time New Bank (Tnb)",
+      "base": "Time New Bank (Tnb)",
+      "variant": null,
+      "figmaId": "6585:30022"
+    },
+    {
+      "slug": "titanswap-titan",
+      "name": "TitanSwap (TITAN)",
+      "base": "TitanSwap (TITAN)",
+      "variant": null,
+      "figmaId": "6585:23937"
+    },
+    {
+      "slug": "tokenbox-tbx",
+      "name": "Tokenbox (Tbx)",
+      "base": "Tokenbox (Tbx)",
+      "variant": null,
+      "figmaId": "6585:30030"
+    },
+    {
+      "slug": "tokenlon-network-token-lon",
+      "name": "Tokenlon Network Token (LON)",
+      "base": "Tokenlon Network Token (LON)",
+      "variant": null,
+      "figmaId": "6585:24485"
+    },
+    {
+      "slug": "tokenomy-ten",
+      "name": "Tokenomy (Ten)",
+      "base": "Tokenomy (Ten)",
+      "variant": null,
+      "figmaId": "6585:30053"
+    },
+    {
+      "slug": "tokenpay-tpay",
+      "name": "Tokenpay (Tpay)",
+      "base": "Tokenpay (Tpay)",
+      "variant": null,
+      "figmaId": "6585:30067"
+    },
+    {
+      "slug": "tokes-tks",
+      "name": "Tokes (Tks)",
+      "base": "Tokes (Tks)",
+      "variant": null,
+      "figmaId": "6585:30082"
+    },
+    {
+      "slug": "toko-token-tko",
+      "name": "Toko Token (TKO)",
+      "base": "Toko Token (TKO)",
+      "variant": null,
+      "figmaId": "6585:24097"
+    },
+    {
+      "slug": "tomochain-tomo",
+      "name": "TomoChain (TOMO)",
+      "base": "TomoChain (TOMO)",
+      "variant": null,
+      "figmaId": "6585:12449"
+    },
+    {
+      "slug": "torex-tor",
+      "name": "Torex (Tor)",
+      "base": "Torex (Tor)",
+      "variant": null,
+      "figmaId": "6585:30090"
+    },
+    {
+      "slug": "torn-torn",
+      "name": "Torn (Torn)",
+      "base": "Torn (Torn)",
+      "variant": null,
+      "figmaId": "6585:30098"
+    },
+    {
+      "slug": "travala-com-ava",
+      "name": "Travala.com (AVA)",
+      "base": "Travala.com (AVA)",
+      "variant": null,
+      "figmaId": "6585:24371"
+    },
+    {
+      "slug": "trezarcoin-tzc",
+      "name": "Trezarcoin (Tzc)",
+      "base": "Trezarcoin (Tzc)",
+      "variant": null,
+      "figmaId": "6585:30105"
+    },
+    {
+      "slug": "tribe-tribe",
+      "name": "Tribe (TRIBE)",
+      "base": "Tribe (TRIBE)",
+      "variant": null,
+      "figmaId": "6585:24138"
+    },
+    {
+      "slug": "trinity-network-credit-tnc",
+      "name": "Trinity Network Credit (Tnc)",
+      "base": "Trinity Network Credit (Tnc)",
+      "variant": null,
+      "figmaId": "6585:30113"
+    },
+    {
+      "slug": "tron-trx",
+      "name": "TRON (TRX)",
+      "base": "TRON (TRX)",
+      "variant": null,
+      "figmaId": "6585:9634"
+    },
+    {
+      "slug": "trueusd-tusd",
+      "name": "TrueUSD (TUSD)",
+      "base": "TrueUSD (TUSD)",
+      "variant": null,
+      "figmaId": "6585:10028"
+    },
+    {
+      "slug": "trust-wallet-token-twt",
+      "name": "Trust Wallet Token (TWT)",
+      "base": "Trust Wallet Token (TWT)",
+      "variant": null,
+      "figmaId": "6585:24574"
+    },
+    {
+      "slug": "trustswap-swap",
+      "name": "TrustSwap (SWAP)",
+      "base": "TrustSwap (SWAP)",
+      "variant": null,
+      "figmaId": "6585:25079"
+    },
+    {
+      "slug": "turtlecoin-trtl",
+      "name": "Turtlecoin (Trtl)",
+      "base": "Turtlecoin (Trtl)",
+      "variant": null,
+      "figmaId": "6585:30128"
+    },
+    {
+      "slug": "ubiq-ubq",
+      "name": "Ubiq (Ubq)",
+      "base": "Ubiq (Ubq)",
+      "variant": null,
+      "figmaId": "6585:30137"
+    },
+    {
+      "slug": "ultiledger-ult",
+      "name": "Ultiledger (ULT)",
+      "base": "Ultiledger (ULT)",
+      "variant": null,
+      "figmaId": "6585:25823"
+    },
+    {
+      "slug": "ultra-uos",
+      "name": "Ultra (UOS)",
+      "base": "Ultra (UOS)",
+      "variant": null,
+      "figmaId": "6585:12891"
+    },
+    {
+      "slug": "uma-uma",
+      "name": "UMA (UMA)",
+      "base": "UMA (UMA)",
+      "variant": null,
+      "figmaId": "6585:12043"
+    },
+    {
+      "slug": "unfederalreserve-ersdl",
+      "name": "unFederalReserve (eRSDL)",
+      "base": "unFederalReserve (eRSDL)",
+      "variant": null,
+      "figmaId": "6585:25859"
+    },
+    {
+      "slug": "unibright-ubt",
+      "name": "Unibright (UBT)",
+      "base": "Unibright (UBT)",
+      "variant": null,
+      "figmaId": "6585:12559"
+    },
+    {
+      "slug": "uniswap-uni",
+      "name": "Uniswap (UNI)",
+      "base": "Uniswap (UNI)",
+      "variant": null,
+      "figmaId": "6585:9505"
+    },
+    {
+      "slug": "unus-sed-leo-leo",
+      "name": "UNUS SED LEO (LEO)",
+      "base": "UNUS SED LEO (LEO)",
+      "variant": null,
+      "figmaId": "6585:9691"
+    },
+    {
+      "slug": "uquid-coin-uqc",
+      "name": "Uquid Coin (UQC)",
+      "base": "Uquid Coin (UQC)",
+      "variant": null,
+      "figmaId": "6585:12686"
+    },
+    {
+      "slug": "usd-coin-usdc",
+      "name": "USD Coin (USDC)",
+      "base": "USD Coin (USDC)",
+      "variant": null,
+      "figmaId": "6585:9310"
+    },
+    {
+      "slug": "utrum-oot",
+      "name": "Utrum (Oot)",
+      "base": "Utrum (Oot)",
+      "variant": null,
+      "figmaId": "6585:30145"
+    },
+    {
+      "slug": "utrust-utk",
+      "name": "Utrust (UTK)",
+      "base": "Utrust (UTK)",
+      "variant": null,
+      "figmaId": "6585:24566"
+    },
+    {
+      "slug": "v-systems-vsys",
+      "name": "v.systems (VSYS)",
+      "base": "v.systems (VSYS)",
+      "variant": null,
+      "figmaId": "6585:26187"
+    },
+    {
+      "slug": "vai-vai",
+      "name": "Vai (VAI)",
+      "base": "Vai (VAI)",
+      "variant": null,
+      "figmaId": "6585:24674"
+    },
+    {
+      "slug": "vechain-vet",
+      "name": "VeChain (VET)",
+      "base": "VeChain (VET)",
+      "variant": null,
+      "figmaId": "6585:9618"
+    },
+    {
+      "slug": "veil-veil",
+      "name": "Veil (Veil)",
+      "base": "Veil (Veil)",
+      "variant": null,
+      "figmaId": "6585:30155"
+    },
+    {
+      "slug": "velas-vlx",
+      "name": "Velas (VLX)",
+      "base": "Velas (VLX)",
+      "variant": null,
+      "figmaId": "6585:24509"
+    },
+    {
+      "slug": "venus-bnb-vbnb",
+      "name": "Venus BNB (vBNB)",
+      "base": "Venus BNB (vBNB)",
+      "variant": null,
+      "figmaId": "6585:23867"
+    },
+    {
+      "slug": "venus-reward-token-vrt",
+      "name": "Venus Reward Token (VRT)",
+      "base": "Venus Reward Token (VRT)",
+      "variant": null,
+      "figmaId": "6585:26394"
+    },
+    {
+      "slug": "venus-xvs",
+      "name": "Venus (XVS)",
+      "base": "Venus (XVS)",
+      "variant": null,
+      "figmaId": "6585:12589"
+    },
+    {
+      "slug": "verasity-vra",
+      "name": "Verasity (VRA)",
+      "base": "Verasity (VRA)",
+      "variant": null,
+      "figmaId": "6585:25876"
+    },
+    {
+      "slug": "verge-xvg",
+      "name": "Verge (XVG)",
+      "base": "Verge (XVG)",
+      "variant": null,
+      "figmaId": "6585:12159"
+    },
+    {
+      "slug": "vericoin-vrc",
+      "name": "Vericoin (Vrc)",
+      "base": "Vericoin (Vrc)",
+      "variant": null,
+      "figmaId": "6585:30163"
+    },
+    {
+      "slug": "veritaseum-veri",
+      "name": "Veritaseum (VERI)",
+      "base": "Veritaseum (VERI)",
+      "variant": null,
+      "figmaId": "6585:26458"
+    },
+    {
+      "slug": "vertcoin-vtc",
+      "name": "Vertcoin (Vtc)",
+      "base": "Vertcoin (Vtc)",
+      "variant": null,
+      "figmaId": "6585:30170"
+    },
+    {
+      "slug": "veruscoin-vrsc",
+      "name": "VerusCoin (VRSC)",
+      "base": "VerusCoin (VRSC)",
+      "variant": null,
+      "figmaId": "6585:26040"
+    },
+    {
+      "slug": "vethor-token-vtho",
+      "name": "VeThor Token (VTHO)",
+      "base": "VeThor Token (VTHO)",
+      "variant": null,
+      "figmaId": "6585:12492"
+    },
+    {
+      "slug": "viacoin-via",
+      "name": "Viacoin (Via)",
+      "base": "Viacoin (Via)",
+      "variant": null,
+      "figmaId": "6585:30177"
+    },
+    {
+      "slug": "vibe-vibe",
+      "name": "Vibe (Vibe)",
+      "base": "Vibe (Vibe)",
+      "variant": null,
+      "figmaId": "6585:30186"
+    },
+    {
+      "slug": "vite-vite",
+      "name": "Vite (Vite)",
+      "base": "Vite (Vite)",
+      "variant": null,
+      "figmaId": "6585:30193"
+    },
+    {
+      "slug": "voyager-token-vgx",
+      "name": "Voyager Token (VGX)",
+      "base": "Voyager Token (VGX)",
+      "variant": null,
+      "figmaId": "6585:12082"
+    },
+    {
+      "slug": "vulcan-forged-pyr-pyr",
+      "name": "Vulcan Forged PYR (PYR)",
+      "base": "Vulcan Forged PYR (PYR)",
+      "variant": null,
+      "figmaId": "6585:26487"
+    },
+    {
+      "slug": "wagerr-wgro",
+      "name": "Wagerr (Wgro)",
+      "base": "Wagerr (Wgro)",
+      "variant": null,
+      "figmaId": "6585:30201"
+    },
+    {
+      "slug": "waltonchain-wtc",
+      "name": "Waltonchain (WTC)",
+      "base": "Waltonchain (WTC)",
+      "variant": null,
+      "figmaId": "6585:26128"
+    },
+    {
+      "slug": "wanchain-wan",
+      "name": "Wanchain (WAN)",
+      "base": "Wanchain (WAN)",
+      "variant": null,
+      "figmaId": "6585:24395"
+    },
+    {
+      "slug": "waves-waves",
+      "name": "Waves (WAVES)",
+      "base": "Waves (WAVES)",
+      "variant": null,
+      "figmaId": "6585:10033"
+    },
+    {
+      "slug": "wax-waxp",
+      "name": "WAX (WAXP)",
+      "base": "WAX (WAXP)",
+      "variant": null,
+      "figmaId": "6585:12435"
+    },
+    {
+      "slug": "waykichain-wicc",
+      "name": "WaykiChain (WICC)",
+      "base": "WaykiChain (WICC)",
+      "variant": null,
+      "figmaId": "6585:26726"
+    },
+    {
+      "slug": "wazirx-wrx",
+      "name": "WazirX (WRX)",
+      "base": "WazirX (WRX)",
+      "variant": null,
+      "figmaId": "6585:12221"
+    },
+    {
+      "slug": "wepower-wpr",
+      "name": "Wepower (Wpr)",
+      "base": "Wepower (Wpr)",
+      "variant": null,
+      "figmaId": "6585:30208"
+    },
+    {
+      "slug": "whitecoin-xwc",
+      "name": "WhiteCoin (XWC)",
+      "base": "WhiteCoin (XWC)",
+      "variant": null,
+      "figmaId": "6585:23842"
+    },
+    {
+      "slug": "wing-wing",
+      "name": "Wing (Wing)",
+      "base": "Wing (Wing)",
+      "variant": null,
+      "figmaId": "6585:30217"
+    },
+    {
+      "slug": "wings-wings",
+      "name": "Wings (Wings)",
+      "base": "Wings (Wings)",
+      "variant": null,
+      "figmaId": "6585:30225"
+    },
+    {
+      "slug": "winklink-win",
+      "name": "WINkLink (WIN)",
+      "base": "WINkLink (WIN)",
+      "variant": null,
+      "figmaId": "6585:12331"
+    },
+    {
+      "slug": "wootrade-woo",
+      "name": "Wootrade (WOO)",
+      "base": "Wootrade (WOO)",
+      "variant": null,
+      "figmaId": "6585:12403"
+    },
+    {
+      "slug": "wrapped-bitcoin-wbtc",
+      "name": "Wrapped Bitcoin (WBTC)",
+      "base": "Wrapped Bitcoin (WBTC)",
+      "variant": null,
+      "figmaId": "6585:9553"
+    },
+    {
+      "slug": "wrapped-bnb-wbnb",
+      "name": "Wrapped BNB (WBNB)",
+      "base": "Wrapped BNB (WBNB)",
+      "variant": null,
+      "figmaId": "6585:23681"
+    },
+    {
+      "slug": "wrapped-nxm-wnxm",
+      "name": "Wrapped NXM (WNXM)",
+      "base": "Wrapped NXM (WNXM)",
+      "variant": null,
+      "figmaId": "6585:24500"
+    },
+    {
+      "slug": "xdai-stake",
+      "name": "xDai (STAKE)",
+      "base": "xDai (STAKE)",
+      "variant": null,
+      "figmaId": "6585:26048"
+    },
+    {
+      "slug": "xenioscoin-xnc",
+      "name": "XeniosCoin (XNC)",
+      "base": "XeniosCoin (XNC)",
+      "variant": null,
+      "figmaId": "6585:24594"
+    },
+    {
+      "slug": "xensor-xsr",
+      "name": "Xensor (Xsr)",
+      "base": "Xensor (Xsr)",
+      "variant": null,
+      "figmaId": "6585:30233"
+    },
+    {
+      "slug": "xinfin-network-xdc",
+      "name": "XinFin Network (XDC)",
+      "base": "XinFin Network (XDC)",
+      "variant": null,
+      "figmaId": "6585:10124"
+    },
+    {
+      "slug": "xmax-xmx",
+      "name": "Xmax (Xmx)",
+      "base": "Xmax (Xmx)",
+      "variant": null,
+      "figmaId": "6585:30246"
+    },
+    {
+      "slug": "xpa-xpa",
+      "name": "Xpa (Xpa)",
+      "base": "Xpa (Xpa)",
+      "variant": null,
+      "figmaId": "6585:30251"
+    },
+    {
+      "slug": "xrp-xrp",
+      "name": "XRP (XRP)",
+      "base": "XRP (XRP)",
+      "variant": null,
+      "figmaId": "6585:9302"
+    },
+    {
+      "slug": "xtrabytes-xby",
+      "name": "Xtrabytes (Xby)",
+      "base": "Xtrabytes (Xby)",
+      "variant": null,
+      "figmaId": "6585:30258"
+    },
+    {
+      "slug": "xyo-xyo",
+      "name": "XYO (XYO)",
+      "base": "XYO (XYO)",
+      "variant": null,
+      "figmaId": "6585:25248"
+    },
+    {
+      "slug": "yearn-finance-yfi",
+      "name": "yearn.finance (YFI)",
+      "base": "yearn.finance (YFI)",
+      "variant": null,
+      "figmaId": "6585:10089"
+    },
+    {
+      "slug": "youcash-youc",
+      "name": "yOUcash (YOUC)",
+      "base": "yOUcash (YOUC)",
+      "variant": null,
+      "figmaId": "6585:23972"
+    },
+    {
+      "slug": "yoyow-yoyow",
+      "name": "Yoyow (Yoyow)",
+      "base": "Yoyow (Yoyow)",
+      "variant": null,
+      "figmaId": "6585:30263"
+    },
+    {
+      "slug": "zb-token-zb",
+      "name": "ZB Token (ZB)",
+      "base": "ZB Token (ZB)",
+      "variant": null,
+      "figmaId": "6585:23505"
+    },
+    {
+      "slug": "zcash-zec",
+      "name": "Zcash (ZEC)",
+      "base": "Zcash (ZEC)",
+      "variant": null,
+      "figmaId": "6585:10066"
+    },
+    {
+      "slug": "zclassic-zcl",
+      "name": "Zclassic (Zcl)",
+      "base": "Zclassic (Zcl)",
+      "variant": null,
+      "figmaId": "6585:30271"
+    },
+    {
+      "slug": "zel-zel",
+      "name": "Zel (Zel)",
+      "base": "Zel (Zel)",
+      "variant": null,
+      "figmaId": "6585:30279"
+    },
+    {
+      "slug": "zelwin-zlw",
+      "name": "Zelwin (ZLW)",
+      "base": "Zelwin (ZLW)",
+      "variant": null,
+      "figmaId": "6585:23882"
+    },
+    {
+      "slug": "zenon-znn",
+      "name": "Zenon (ZNN)",
+      "base": "Zenon (ZNN)",
+      "variant": null,
+      "figmaId": "6585:25722"
+    },
+    {
+      "slug": "zeon-zeon",
+      "name": "ZEON (ZEON)",
+      "base": "ZEON (ZEON)",
+      "variant": null,
+      "figmaId": "6585:24473"
+    },
+    {
+      "slug": "zilliqa-zil",
+      "name": "Zilliqa (ZIL)",
+      "base": "Zilliqa (ZIL)",
+      "variant": null,
+      "figmaId": "6585:10268"
+    },
+    {
+      "slug": "zkswap-zks",
+      "name": "ZKSwap (ZKS)",
+      "base": "ZKSwap (ZKS)",
+      "variant": null,
+      "figmaId": "6585:23408"
+    }
+  ],
+  "overBudget": [
+    {
+      "slug": "curve-dao-token-crv",
+      "name": "Curve DAO Token (CRV)",
+      "bytes": 89137,
+      "figmaId": "6585:11977"
+    }
+  ]
+}

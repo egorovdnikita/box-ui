@@ -1,0 +1,638 @@
+{
+  "family": "brands",
+  "figmaPage": "Brands",
+  "budget": 50000,
+  "icons": [
+    {
+      "slug": "apple--original-circle-shape-false",
+      "name": "Apple / Original, Circle Shape=False",
+      "base": "Apple",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133875"
+    },
+    {
+      "slug": "apple--original-circle-shape-true",
+      "name": "Apple / Original, Circle Shape=True",
+      "base": "Apple",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133877"
+    },
+    {
+      "slug": "discord--original-circle-shape-false",
+      "name": "Discord / Original, Circle Shape=False",
+      "base": "Discord",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133834"
+    },
+    {
+      "slug": "discord--original-circle-shape-true",
+      "name": "Discord / Original, Circle Shape=True",
+      "base": "Discord",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133836"
+    },
+    {
+      "slug": "discord--solid-circle-shape-false",
+      "name": "Discord / Solid, Circle Shape=False",
+      "base": "Discord",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133838"
+    },
+    {
+      "slug": "discord--solid-circle-shape-true",
+      "name": "Discord / Solid, Circle Shape=True",
+      "base": "Discord",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133840"
+    },
+    {
+      "slug": "dribbble--original-circle-shape-false",
+      "name": "Dribbble / Original, Circle Shape=False",
+      "base": "Dribbble",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133919"
+    },
+    {
+      "slug": "dribbble--original-circle-shape-true",
+      "name": "Dribbble / Original, Circle Shape=True",
+      "base": "Dribbble",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133923"
+    },
+    {
+      "slug": "dribbble--solid-circle-shape-false",
+      "name": "Dribbble / Solid, Circle Shape=False",
+      "base": "Dribbble",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133927"
+    },
+    {
+      "slug": "dribbble--solid-circle-shape-true",
+      "name": "Dribbble / Solid, Circle Shape=True",
+      "base": "Dribbble",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133929"
+    },
+    {
+      "slug": "facebook--original-circle-shape-false",
+      "name": "Facebook / Original, Circle Shape=False",
+      "base": "Facebook",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133745"
+    },
+    {
+      "slug": "facebook--original-circle-shape-true",
+      "name": "Facebook / Original, Circle Shape=True",
+      "base": "Facebook",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133747"
+    },
+    {
+      "slug": "facebook--solid-circle-shape-false",
+      "name": "Facebook / Solid, Circle Shape=False",
+      "base": "Facebook",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133749"
+    },
+    {
+      "slug": "facebook--solid-circle-shape-true",
+      "name": "Facebook / Solid, Circle Shape=True",
+      "base": "Facebook",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133751"
+    },
+    {
+      "slug": "facebook-messenger--original-circle-shape-false",
+      "name": "Facebook Messenger / Original, Circle Shape=False",
+      "base": "Facebook Messenger",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:134004"
+    },
+    {
+      "slug": "facebook-messenger--original-circle-shape-true",
+      "name": "Facebook Messenger / Original, Circle Shape=True",
+      "base": "Facebook Messenger",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:134008"
+    },
+    {
+      "slug": "facebook-messenger--solid-circle-shape-false",
+      "name": "Facebook Messenger / Solid, Circle Shape=False",
+      "base": "Facebook Messenger",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:134013"
+    },
+    {
+      "slug": "facebook-messenger--solid-circle-shape-true",
+      "name": "Facebook Messenger / Solid, Circle Shape=True",
+      "base": "Facebook Messenger",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:134015"
+    },
+    {
+      "slug": "figma--original-circle-shape-false",
+      "name": "Figma / Original, Circle Shape=False",
+      "base": "Figma",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133932"
+    },
+    {
+      "slug": "figma--original-circle-shape-true",
+      "name": "Figma / Original, Circle Shape=True",
+      "base": "Figma",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133939"
+    },
+    {
+      "slug": "figma--solid-circle-shape-false",
+      "name": "Figma / Solid, Circle Shape=False",
+      "base": "Figma",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133946"
+    },
+    {
+      "slug": "figma--solid-circle-shape-true",
+      "name": "Figma / Solid, Circle Shape=True",
+      "base": "Figma",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133948"
+    },
+    {
+      "slug": "github--original-circle-shape-false",
+      "name": "Github / Original, Circle Shape=False",
+      "base": "Github",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133953"
+    },
+    {
+      "slug": "github--original-circle-shape-true",
+      "name": "Github / Original, Circle Shape=True",
+      "base": "Github",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133955"
+    },
+    {
+      "slug": "google--original-circle-shape-false",
+      "name": "Google / Original, Circle Shape=False",
+      "base": "Google",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133858"
+    },
+    {
+      "slug": "google--original-circle-shape-true",
+      "name": "Google / Original, Circle Shape=True",
+      "base": "Google",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133864"
+    },
+    {
+      "slug": "google--solid-circle-shape-false",
+      "name": "Google / Solid, Circle Shape=False",
+      "base": "Google",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133870"
+    },
+    {
+      "slug": "google--solid-circle-shape-true",
+      "name": "Google / Solid, Circle Shape=True",
+      "base": "Google",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133872"
+    },
+    {
+      "slug": "imo--original-circle-shape-false",
+      "name": "imo / Original, Circle Shape=False",
+      "base": "imo",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133993"
+    },
+    {
+      "slug": "imo--original-circle-shape-true",
+      "name": "imo / Original, Circle Shape=True",
+      "base": "imo",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133996"
+    },
+    {
+      "slug": "imo--solid-circle-shape-false",
+      "name": "imo / Solid, Circle Shape=False",
+      "base": "imo",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133999"
+    },
+    {
+      "slug": "imo--solid-circle-shape-true",
+      "name": "imo / Solid, Circle Shape=True",
+      "base": "imo",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:134001"
+    },
+    {
+      "slug": "instagram--original-circle-shape-false",
+      "name": "Instagram / Original, Circle Shape=False",
+      "base": "Instagram",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133765"
+    },
+    {
+      "slug": "instagram--original-circle-shape-true",
+      "name": "Instagram / Original, Circle Shape=True",
+      "base": "Instagram",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133767"
+    },
+    {
+      "slug": "instagram--solid-circle-shape-false",
+      "name": "Instagram / Solid, Circle Shape=False",
+      "base": "Instagram",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133769"
+    },
+    {
+      "slug": "instagram--solid-circle-shape-true",
+      "name": "Instagram / Solid, Circle Shape=True",
+      "base": "Instagram",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133771"
+    },
+    {
+      "slug": "linkedin--original-circle-shape-false",
+      "name": "LinkedIn / Original, Circle Shape=False",
+      "base": "LinkedIn",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133774"
+    },
+    {
+      "slug": "linkedin--original-circle-shape-true",
+      "name": "LinkedIn / Original, Circle Shape=True",
+      "base": "LinkedIn",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133776"
+    },
+    {
+      "slug": "linkedin--solid-circle-shape-false",
+      "name": "LinkedIn / Solid, Circle Shape=False",
+      "base": "LinkedIn",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133778"
+    },
+    {
+      "slug": "linkedin--solid-circle-shape-true",
+      "name": "LinkedIn / Solid, Circle Shape=True",
+      "base": "LinkedIn",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133780"
+    },
+    {
+      "slug": "medium--original-circle-shape-false",
+      "name": "Medium / Original, Circle Shape=False",
+      "base": "Medium",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133818"
+    },
+    {
+      "slug": "medium--original-circle-shape-true",
+      "name": "Medium / Original, Circle Shape=True",
+      "base": "Medium",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133820"
+    },
+    {
+      "slug": "pinterest--original-circle-shape-false",
+      "name": "Pinterest / Original, Circle Shape=False",
+      "base": "Pinterest",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133796"
+    },
+    {
+      "slug": "pinterest--original-circle-shape-true",
+      "name": "Pinterest / Original, Circle Shape=True",
+      "base": "Pinterest",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133798"
+    },
+    {
+      "slug": "pinterest--solid-circle-shape-false",
+      "name": "Pinterest / Solid, Circle Shape=False",
+      "base": "Pinterest",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133800"
+    },
+    {
+      "slug": "pinterest--solid-circle-shape-true",
+      "name": "Pinterest / Solid, Circle Shape=True",
+      "base": "Pinterest",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133802"
+    },
+    {
+      "slug": "reddit--original-circle-shape-false",
+      "name": "Reddit / Original, Circle Shape=False",
+      "base": "Reddit",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133823"
+    },
+    {
+      "slug": "reddit--original-circle-shape-true",
+      "name": "Reddit / Original, Circle Shape=True",
+      "base": "Reddit",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133825"
+    },
+    {
+      "slug": "reddit--solid-circle-shape-false",
+      "name": "Reddit / Solid, Circle Shape=False",
+      "base": "Reddit",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133829"
+    },
+    {
+      "slug": "reddit--solid-circle-shape-true",
+      "name": "Reddit / Solid, Circle Shape=True",
+      "base": "Reddit",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133831"
+    },
+    {
+      "slug": "signal--original-circle-shape-false",
+      "name": "Signal / Original, Circle Shape=False",
+      "base": "Signal",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133975"
+    },
+    {
+      "slug": "signal--original-circle-shape-true",
+      "name": "Signal / Original, Circle Shape=True",
+      "base": "Signal",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133977"
+    },
+    {
+      "slug": "signal--solid-circle-shape-false",
+      "name": "Signal / Solid, Circle Shape=False",
+      "base": "Signal",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133979"
+    },
+    {
+      "slug": "signal--solid-circle-shape-true",
+      "name": "Signal / Solid, Circle Shape=True",
+      "base": "Signal",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133981"
+    },
+    {
+      "slug": "skype--original-circle-shape-false",
+      "name": "Skype / Original, Circle Shape=False",
+      "base": "Skype",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133910"
+    },
+    {
+      "slug": "skype--original-circle-shape-true",
+      "name": "Skype / Original, Circle Shape=True",
+      "base": "Skype",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133912"
+    },
+    {
+      "slug": "skype--solid-circle-shape-false",
+      "name": "Skype / Solid, Circle Shape=False",
+      "base": "Skype",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133914"
+    },
+    {
+      "slug": "skype--solid-circle-shape-true",
+      "name": "Skype / Solid, Circle Shape=True",
+      "base": "Skype",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133916"
+    },
+    {
+      "slug": "snapchat--original-circle-shape-false",
+      "name": "Snapchat / Original, Circle Shape=False",
+      "base": "Snapchat",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133783"
+    },
+    {
+      "slug": "snapchat--original-circle-shape-true",
+      "name": "Snapchat / Original, Circle Shape=True",
+      "base": "Snapchat",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133787"
+    },
+    {
+      "slug": "snapchat--solid-circle-shape-false",
+      "name": "Snapchat / Solid, Circle Shape=False",
+      "base": "Snapchat",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133791"
+    },
+    {
+      "slug": "snapchat--solid-circle-shape-true",
+      "name": "Snapchat / Solid, Circle Shape=True",
+      "base": "Snapchat",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133793"
+    },
+    {
+      "slug": "spotify--original-circle-shape-false",
+      "name": "Spotify / Original, Circle Shape=False",
+      "base": "Spotify",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133880"
+    },
+    {
+      "slug": "spotify--original-circle-shape-true",
+      "name": "Spotify / Original, Circle Shape=True",
+      "base": "Spotify",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133882"
+    },
+    {
+      "slug": "spotify--solid-circle-shape-false",
+      "name": "Spotify / Solid, Circle Shape=False",
+      "base": "Spotify",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133884"
+    },
+    {
+      "slug": "spotify--solid-circle-shape-true",
+      "name": "Spotify / Solid, Circle Shape=True",
+      "base": "Spotify",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133886"
+    },
+    {
+      "slug": "telegram--original-circle-shape-false",
+      "name": "Telegram / Original, Circle Shape=False",
+      "base": "Telegram",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133984"
+    },
+    {
+      "slug": "telegram--original-circle-shape-true",
+      "name": "Telegram / Original, Circle Shape=True",
+      "base": "Telegram",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133986"
+    },
+    {
+      "slug": "telegram--solid-circle-shape-false",
+      "name": "Telegram / Solid, Circle Shape=False",
+      "base": "Telegram",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133988"
+    },
+    {
+      "slug": "telegram--solid-circle-shape-true",
+      "name": "Telegram / Solid, Circle Shape=True",
+      "base": "Telegram",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133990"
+    },
+    {
+      "slug": "tiktok--original-circle-shape-false",
+      "name": "TikTok / Original, Circle Shape=False",
+      "base": "TikTok",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133843"
+    },
+    {
+      "slug": "tiktok--original-circle-shape-true",
+      "name": "TikTok / Original, Circle Shape=True",
+      "base": "TikTok",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133848"
+    },
+    {
+      "slug": "tiktok--solid-circle-shape-false",
+      "name": "TikTok / Solid, Circle Shape=False",
+      "base": "TikTok",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133853"
+    },
+    {
+      "slug": "tiktok--solid-circle-shape-true",
+      "name": "TikTok / Solid, Circle Shape=True",
+      "base": "TikTok",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133855"
+    },
+    {
+      "slug": "twitch--original-circle-shape-false",
+      "name": "Twitch / Original, Circle Shape=False",
+      "base": "Twitch",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133889"
+    },
+    {
+      "slug": "twitch--original-circle-shape-true",
+      "name": "Twitch / Original, Circle Shape=True",
+      "base": "Twitch",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133897"
+    },
+    {
+      "slug": "twitch--solid-circle-shape-false",
+      "name": "Twitch / Solid, Circle Shape=False",
+      "base": "Twitch",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133905"
+    },
+    {
+      "slug": "twitch--solid-circle-shape-true",
+      "name": "Twitch / Solid, Circle Shape=True",
+      "base": "Twitch",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133907"
+    },
+    {
+      "slug": "twitter--original-circle-shape-false",
+      "name": "Twitter / Original, Circle Shape=False",
+      "base": "Twitter",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133754"
+    },
+    {
+      "slug": "twitter--original-circle-shape-true",
+      "name": "Twitter / Original, Circle Shape=True",
+      "base": "Twitter",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133756"
+    },
+    {
+      "slug": "twitter--solid-circle-shape-false",
+      "name": "Twitter / Solid, Circle Shape=False",
+      "base": "Twitter",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133760"
+    },
+    {
+      "slug": "twitter--solid-circle-shape-true",
+      "name": "Twitter / Solid, Circle Shape=True",
+      "base": "Twitter",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133762"
+    },
+    {
+      "slug": "whatsapp--original-circle-shape-false",
+      "name": "WhatsApp / Original, Circle Shape=False",
+      "base": "WhatsApp",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133958"
+    },
+    {
+      "slug": "whatsapp--original-circle-shape-true",
+      "name": "WhatsApp / Original, Circle Shape=True",
+      "base": "WhatsApp",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133964"
+    },
+    {
+      "slug": "whatsapp--solid-circle-shape-false",
+      "name": "WhatsApp / Solid, Circle Shape=False",
+      "base": "WhatsApp",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133970"
+    },
+    {
+      "slug": "whatsapp--solid-circle-shape-true",
+      "name": "WhatsApp / Solid, Circle Shape=True",
+      "base": "WhatsApp",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133972"
+    },
+    {
+      "slug": "youtube--original-circle-shape-false",
+      "name": "YouTube / Original, Circle Shape=False",
+      "base": "YouTube",
+      "variant": "Original, Circle Shape=False",
+      "figmaId": "6570:133805"
+    },
+    {
+      "slug": "youtube--original-circle-shape-true",
+      "name": "YouTube / Original, Circle Shape=True",
+      "base": "YouTube",
+      "variant": "Original, Circle Shape=True",
+      "figmaId": "6570:133809"
+    },
+    {
+      "slug": "youtube--solid-circle-shape-false",
+      "name": "YouTube / Solid, Circle Shape=False",
+      "base": "YouTube",
+      "variant": "Solid, Circle Shape=False",
+      "figmaId": "6570:133813"
+    },
+    {
+      "slug": "youtube--solid-circle-shape-true",
+      "name": "YouTube / Solid, Circle Shape=True",
+      "base": "YouTube",
+      "variant": "Solid, Circle Shape=True",
+      "figmaId": "6570:133815"
+    }
+  ],
+  "overBudget": []
+}

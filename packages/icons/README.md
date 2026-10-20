@@ -58,13 +58,18 @@ const { set, pending } = useIconSet('bold-duotone');
 ## Флаги, платежи, бренды
 
 В `src/figma-families.json` лежит состав трёх остальных семейств, считанный прямо из файла
-Figma; `scripts/build-families.mjs` подбирает каждой записи графику:
+Figma, а в `figma/<family>/` — их графика, выгруженная оттуда же и пропущенная через SVGO.
+`scripts/build-families.mjs` берёт каждую запись из Figma со всеми её вариантами; если
+вариант тяжелее 50 КБ и экспорт его отбросил, подставляется открытая поставка того же знака:
 
-| Семейство | Страница Figma | Записей | С графикой | Варианты                                                  |
-| --------- | -------------- | ------- | ---------- | --------------------------------------------------------- |
-| Flags     | Flags          | 197     | 197        | `Style` = Circle · Rounded · Shape                        |
-| Payments  | Payments       | 678     | 542        | нет                                                       |
-| Brands    | Brands         | 24      | 21         | `Style` = Original · Solid, `Circle Shape` = True · False |
+| Семейство | Страница Figma | Записей | Из Figma | Запасная графика  | Варианты                                                  |
+| --------- | -------------- | ------- | -------- | ----------------- | --------------------------------------------------------- |
+| Flags     | Flags          | 197     | 179      | `flag-icons` (18) | `Style` = Circle · Rounded · Shape                        |
+| Payments  | Payments       | 678     | 677      | `@web3icons` (1)  | нет                                                       |
+| Brands    | Brands         | 24      | 24       | —                 | `Style` = Original · Solid, `Circle Shape` = True · False |
+
+Монохромные знаки брендов в Figma залиты `surface/base/content/strong`; сборка возвращает им
+`currentColor`, и `FamilyIcon` красит их этим токеном, так что они следуют теме.
 
 ```tsx
 import { FamilyIcon, familyIndex, useFamily } from '@box-ui/icons';
@@ -76,19 +81,19 @@ function Flag({ country }: { country: string }) {
 }
 ```
 
-Каждое семейство — отдельный динамический `import()`: один только набор флагов весит больше
-мегабайта, поэтому ничего не грузится, пока это не понадобится для отрисовки. Записи без
-соответствия в источнике сохраняют своё имя из Figma и `body: null`; `FamilyIcon` рисует их
-монограммой.
+Каждое семейство — отдельный динамический `import()`: один только набор флагов весит около
+трёх мегабайт, поэтому ничего не грузится, пока это не понадобится для отрисовки. Запись,
+для которой графики нет нигде, сохраняет своё имя из Figma и рисуется монограммой.
 
-Источники: `flag-icons` (MIT), `@web3icons/core` (MIT) и `cryptocurrency-icons` (CC0),
-`simple-icons` (CC0). Чтобы подставить вместо них дословные экспорты из Figma:
+После правок в Figma:
 
 ```bash
-FIGMA_TOKEN=figd_xxx npm run icons:figma -- --family flags
+FIGMA_TOKEN=figd_xxx npm run icons:figma   # → figma/<family>/<slug>.svg и manifest.json
+npm run build:icons
 ```
 
-Файлы окажутся в `src/data/<family>/<slug>.svg` рядом с `manifest.json`.
+Запасные источники: `flag-icons` (MIT), `@web3icons/core` (MIT) и `cryptocurrency-icons`
+(CC0), `simple-icons` (CC0).
 
 ## Лицензии
 

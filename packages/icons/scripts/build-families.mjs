@@ -2,20 +2,22 @@
  * Builds the non-Solar icon families of Foundation – Core — Flags, Payments and
  * Brands.
  *
- * The Figma file is the source of truth for *what* belongs to each family: the
- * names and variant properties in `src/figma-families.json` were read straight
- * off the canvas. The geometry comes from the canonical open distributions of
- * the same artwork, exactly the way the UI Icons set takes Solar from
- * `@iconify-json/solar`:
+ * The Figma file is the source of truth for *what* belongs to each family (the
+ * names and variant properties in `src/figma-families.json`) and for how each
+ * entry looks: `figma/<family>/` holds every variant as exported by
+ * `npm run icons:figma`, optimised. An entry is drawn from there whenever all
+ * of its variants made it under the export's size budget; otherwise the build
+ * falls back to the open distribution of the same artwork:
  *
  *   flags     flag-icons (MIT)              — 4x3 country flags by ISO 3166-1
  *   payments  @web3icons/core (MIT) +       — token logos by ticker
  *             cryptocurrency-icons (CC0)
  *   brands    simple-icons (CC0)            — brand marks by slug, with brand colour
  *
- * Emits src/data/families/<family>.json. Items with no upstream match keep
- * their Figma name and get `body: null`, which the UI renders as a monogram —
- * run `npm run icons:figma` to replace the whole set with verbatim Figma SVGs.
+ * Emits src/data/families/<family>.json. Figma entries carry `variants`, keyed
+ * the way `FamilyIcon` asks for them; fallbacks carry one `body` that the
+ * component masks into the requested shape. Items found nowhere keep their
+ * Figma name and get `body: null`, which the UI renders as a monogram.
  */
 
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
@@ -27,6 +29,26 @@ const require = createRequire(import.meta.url);
 const pkg = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = join(pkg, 'src', 'data', 'families');
 const figma = JSON.parse(readFileSync(join(pkg, 'src', 'figma-families.json'), 'utf8'));
+
+/** Optimised Figma exports of one family, by file slug. */
+function figmaArt(family) {
+  const dir = join(pkg, 'figma', family);
+  const manifest = JSON.parse(readFileSync(join(dir, 'manifest.json'), 'utf8'));
+  const art = new Map();
+  for (const { slug } of manifest.icons) art.set(slug, unwrap(readFileSync(join(dir, `${slug}.svg`), 'utf8')));
+  return art;
+}
+
+/** Every variant of one entry, or `null` if any of them is missing. */
+function variantsOf(art, base, keys) {
+  const variants = {};
+  for (const [key, file] of Object.entries(keys)) {
+    const found = art.get(`${base}--${file}`);
+    if (!found) return null;
+    variants[key] = found;
+  }
+  return variants;
+}
 
 const nodeModules = (...parts) => join(pkg, '..', '..', 'node_modules', ...parts);
 const normalise = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -73,7 +95,11 @@ const FLAG_ALIASES = {
   vatican: 'va',
 };
 
+/** `FamilyShape` -> the flag's `Style` variant in Figma. */
+const FLAG_VARIANTS = { natural: 'shape', rounded: 'rounded', circle: 'circle' };
+
 function buildFlags() {
+  const art = figmaArt('flags');
   const dir = nodeModules('flag-icons', 'flags', '4x3');
   const codes = readdirSync(dir)
     .filter((f) => f.endsWith('.svg'))
@@ -94,16 +120,20 @@ function buildFlags() {
   for (const [name, code] of Object.entries(FLAG_ALIASES)) byName[normalise(name)] = code;
 
   return figma.families.flags.items.map((name) => {
+    const slug = slugify(name);
     const code = byName[normalise(name)] ?? null;
-    if (!code) return { slug: slugify(name), name, code: null, viewBox: null, body: null };
+    const variants = variantsOf(art, slug, FLAG_VARIANTS);
+    if (variants) return { slug, name, code, source: 'figma', variants, viewBox: null, body: null };
+    if (!code) return { slug, name, code: null, source: null, viewBox: null, body: null };
     const { viewBox, body } = unwrap(readFileSync(join(dir, `${code}.svg`), 'utf8'));
-    return { slug: slugify(name), name, code, viewBox, body };
+    return { slug, name, code, source: 'flag-icons', viewBox, body };
   });
 }
 
 // --- Payments ----------------------------------------------------------------
 
 function buildPayments() {
+  const art = figmaArt('payments');
   const web3Dir = nodeModules('@web3icons', 'core', 'dist', 'svgs', 'tokens', 'branded');
   const web3 = new Map();
   for (const file of readdirSync(web3Dir)) {
@@ -126,6 +156,12 @@ function buildPayments() {
     const slug = slugify(label);
     if (seen.has(slug)) continue;
     seen.add(slug);
+
+    const drawn = art.get(slug);
+    if (drawn) {
+      items.push({ slug, name, ticker, ...drawn, source: 'figma' });
+      continue;
+    }
 
     const key = ticker?.toLowerCase();
     let svg = null;
@@ -167,7 +203,33 @@ const BRAND_ALIASES = {
   'Facebook Messenger': 'messenger',
 };
 
+/** `${tone}` or `${tone}-circle` -> the brand's `Style, Circle Shape` variant in Figma. */
+const BRAND_VARIANTS = {
+  original: 'original-circle-shape-false',
+  'original-circle': 'original-circle-shape-true',
+  solid: 'solid-circle-shape-false',
+  'solid-circle': 'solid-circle-shape-true',
+};
+
+/**
+ * Monochrome marks are filled with `surface/base/content/strong` in Figma; the
+ * export bakes that to #FAFAFA. `currentColor` hands it back to the theme.
+ */
+const themed = ({ viewBox, body }) => ({ viewBox, body: body.replace(/#fafafa\b/gi, 'currentColor') });
+
+function brandVariants(art, slug) {
+  // Apple, GitHub and Medium are monochrome and have no separate Solid variant.
+  const keys = { ...BRAND_VARIANTS };
+  if (!art.has(`${slug}--${keys.solid}`)) {
+    keys.solid = keys.original;
+    keys['solid-circle'] = keys['original-circle'];
+  }
+  const variants = variantsOf(art, slug, keys);
+  return variants && Object.fromEntries(Object.entries(variants).map(([key, v]) => [key, themed(v)]));
+}
+
 function buildBrands() {
+  const art = figmaArt('brands');
   const si = require('simple-icons');
   const bySlug = new Map();
   for (const icon of Object.values(si)) {
@@ -176,11 +238,13 @@ function buildBrands() {
 
   return figma.families.brands.items.map((name) => {
     const slug = slugify(name);
+    const variants = brandVariants(art, slug);
+    if (variants) return { slug, name, source: 'figma', variants, viewBox: null, body: null, color: null };
     const target = name in BRAND_ALIASES ? BRAND_ALIASES[name] : slug;
     const icon = target ? bySlug.get(target) : null;
-    if (!icon) return { slug, name, viewBox: null, body: null, color: null };
+    if (!icon) return { slug, name, source: null, viewBox: null, body: null, color: null };
     const { viewBox, body } = unwrap(icon.svg);
-    return { slug, name, viewBox, body, color: `#${icon.hex}` };
+    return { slug, name, source: 'simple-icons', viewBox, body, color: `#${icon.hex}` };
   });
 }
 
@@ -194,7 +258,8 @@ const index = {};
 for (const [family, build] of Object.entries(builders)) {
   const items = build();
   const meta = figma.families[family];
-  const resolved = items.filter((i) => i.body).length;
+  const resolved = items.filter((i) => i.body || i.variants).length;
+  const fromFigma = items.filter((i) => i.source === 'figma').length;
 
   writeFileSync(
     join(out, `${family}.json`),
@@ -210,9 +275,10 @@ for (const [family, build] of Object.entries(builders)) {
     note: meta.note ?? null,
     total: items.length,
     resolved,
+    fromFigma,
   };
 
-  console.log(`${family.padEnd(9)} ${resolved}/${items.length} with geometry`);
+  console.log(`${family.padEnd(9)} ${resolved}/${items.length} with geometry, ${fromFigma} from Figma`);
 }
 
 writeFileSync(join(pkg, 'src', 'families.json'), `${JSON.stringify(index, null, 2)}\n`);

@@ -23,6 +23,12 @@ export const FAMILY_SHAPE_LABELS: Record<FamilyShape, string> = {
 /** Brands carry a second variant property: the mark's colour treatment. */
 export type BrandTone = 'original' | 'solid';
 
+/** One drawn variant: an `<svg>`'s viewBox and inner markup. */
+export interface FamilyArtwork {
+  viewBox: string | null;
+  body: string;
+}
+
 export interface FamilyIconEntry {
   slug: string;
   name: string;
@@ -32,11 +38,24 @@ export interface FamilyIconEntry {
   ticker?: string | null;
   /** Brand colour, brands only. */
   color?: string | null;
+  /**
+   * Every Figma variant, when the entry is drawn from the Figma export: flags
+   * by `FamilyShape`, brands by `${tone}` / `${tone}-circle`.
+   */
+  variants?: Record<string, FamilyArtwork> | null;
   viewBox: string | null;
-  /** `null` when the family has no upstream artwork for this entry. */
+  /**
+   * The one artwork of an entry without variants: a Payments mark from Figma,
+   * or a fallback from an open distribution that is masked into the requested
+   * shape. `null` (with no `variants`) when the entry is drawn nowhere.
+   */
   body: string | null;
+  /** `figma`, or the open distribution the fallback came from. */
   source?: string | null;
 }
+
+/** Whether an entry has any artwork, or renders as a monogram. */
+export const hasArtwork = (entry: FamilyIconEntry): boolean => Boolean(entry.variants ?? entry.body);
 
 export interface FamilyData {
   family: IconFamily;
@@ -55,6 +74,8 @@ export interface FamilyMeta {
   total: number;
   /** Entries that ship with geometry; the rest render as monograms. */
   resolved: number;
+  /** Entries drawn from the Figma export rather than a fallback. */
+  fromFigma: number;
 }
 
 /** Per-family counts and variant properties, read off the Figma file. */
