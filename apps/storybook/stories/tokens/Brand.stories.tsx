@@ -1,5 +1,4 @@
 import type { Meta } from '@storybook/react-vite';
-import { Callout, Code } from '../_ui';
 import { tokenStory } from './_story';
 
 // `id` is pinned so translating the title does not change the story URLs.
@@ -12,11 +11,6 @@ export const Typography = tokenStory(
   'brand-type',
   'Typography',
   'Токены типографии, не применять напрямую в компонентах — только через семантические токены.',
-  <Callout title="Запасные шрифты">
-    Из Figma приходит только имя семейства. Сгенерированный CSS дописывает <Code>var(--font-fallback)</Code>, чтобы
-    недоступная гарнитура падала в системный стек, а не в шрифт с засечками:{' '}
-    <Code>--brand-font-family-heading: "Inter Display", var(--font-fallback);</Code>
-  </Callout>,
 );
 export const Rounding = tokenStory(
   'brand-rounding',

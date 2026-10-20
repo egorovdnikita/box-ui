@@ -448,23 +448,6 @@ export function Counts({ children }: { children: ReactNode }) {
   );
 }
 
-/** An aside about the data itself — a Figma quirk, a caveat, a heads-up. */
-export function Callout({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <aside className="sb-callout">
-      <span className="sb-callout__icon">
-        <ChromeIcon name="info-circle" size={16} />
-      </span>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-        <strong style={{ fontSize: 13 }}>{title}</strong>
-        <div className="sb-lead" style={{ margin: 0 }}>
-          {children}
-        </div>
-      </div>
-    </aside>
-  );
-}
-
 export function Empty({ query, onClear }: { query: string; onClear: () => void }) {
   return (
     <div className="sb-empty">
