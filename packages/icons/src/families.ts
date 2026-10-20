@@ -1,6 +1,6 @@
 import familiesIndex from './families.json';
 
-/** The three non-Solar families of `Box UI | Icons`. */
+/** The three non-Solar families of Foundation – Core. */
 export type IconFamily = 'flags' | 'payments' | 'brands';
 
 export const ICON_FAMILIES: IconFamily[] = ['flags', 'payments', 'brands'];

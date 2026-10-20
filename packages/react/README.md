@@ -11,7 +11,9 @@ import { Badge, BoxUIProvider, Button, Card, Input, Stack, Text } from '@box-ui/
 <BoxUIProvider theme="dark" accent="bright" radius="high" device="mobile" iconStyle="bold">
   <Card>
     <Text variant="h4">Оплата</Text>
-    <Badge sentiment="positive">Активна</Badge>
+    <Badge family="status" status="positive">
+      Активна
+    </Badge>
     <Button>Обновить</Button>
   </Card>
 </BoxUIProvider>;
@@ -21,11 +23,14 @@ import { Badge, BoxUIProvider, Button, Card, Input, Stack, Text } from '@box-ui/
 кладёт их на обёрточный `<div>`, поэтому на одной странице могут сосуществовать несколько
 тем; `target="root"` пишет их на `<html>` и восстанавливает прежние значения при размонтировании.
 
-| Компонент | На какие токены опирается                                            |
-| --------- | -------------------------------------------------------------------- |
-| `Text`    | текстовая шкала `typography/*` из Grid                               |
-| `Stack`   | `spacing/base/*`                                                     |
-| `Card`    | `background/base/*`, `border/base/*`, `rounding/base/l`              |
-| `Button`  | `control/*`, `size/base/*`, `rounding/base/s`, `border/focus/base`   |
-| `Badge`   | `background/sentiment/*`, `content/sentiment/*`                      |
-| `Input`   | `border/base/*`, `border/sentiment/negative`, `interactive/disabled` |
+Все пути — из коллекций System · Theme, System · Responsive и Controls · State;
+CSS-имя каждой переменной — её Web code syntax (`spacing/base/m` → `--spacing-m`).
+
+| Компонент | На какие токены опирается                                                                                                                                                                                                                                                                                           |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Text`    | `typography/*` из System · Responsive; цвет — `surface/base/content/*`, `accent/content/on-soft/default`, `status/content/on-surface/default`, `interaction/disabled/content`                                                                                                                                       |
+| `Stack`   | `spacing/base/*` (проп `gap`)                                                                                                                                                                                                                                                                                       |
+| `Card`    | `surface/base/fill/raised`, `surface/base/fill/layer-subtle`, `surface/base/border/default`, `surface/base/content/strong`, `rounding/base/l`, `spacing/base/m`                                                                                                                                                     |
+| `Button`  | `control/*` из Controls · State, `size/base/*`, `spacing/base/*`, `rounding/base/s`, `typography/body/*`, `typography/caption/l`; фокус — `accent/border/default`                                                                                                                                                   |
+| `Badge`   | `control/*` (пропы `family` / `appearance` / `status`), `size/base/2xs`, `spacing/base/4xs`, `rounding/base/min`, `typography/caption/l`                                                                                                                                                                            |
+| `Input`   | `surface/base/border/default`, `surface/base/border/strong`, `surface/base/fill/raised`, `surface/base/content/*`, `size/base/xl`, `rounding/base/s`; фокус — `accent/border/default`, `accent/fill/solid`; ошибка — `status/fill/solid`, `status/content/on-surface/default`; выключено — `interaction/disabled/*` |

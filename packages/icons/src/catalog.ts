@@ -23,7 +23,7 @@ export interface IconCatalog {
   icons: IconCatalogEntry[];
 }
 
-/** Every Solar icon in `Box UI | Icons`, with its category and available styles. */
+/** Every Solar icon in Foundation – Core, with its category and available styles. */
 export const catalog = catalogJson as unknown as IconCatalog;
 
 /**

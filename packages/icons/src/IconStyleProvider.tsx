@@ -5,7 +5,7 @@ const IconStyleContext = createContext<IconStyle>('linear');
 
 /**
  * Mirrors the `icon-style` variable of the `Icon` collection in
- * `Box UI | Icons`: set it once and every `<Icon>` underneath follows.
+ * Foundation – Core: set it once and every `<Icon>` underneath follows.
  */
 export function IconStyleProvider({ style, children }: { style: IconStyle; children: ReactNode }) {
   const value = useMemo(() => style, [style]);

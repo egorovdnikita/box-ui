@@ -1,6 +1,6 @@
 # @box-ui/icons
 
-Набор иконок из `Box UI | Icons`; шесть мод `Style` из Figma переключаются на лету.
+Набор иконок из Foundation – Core; шесть мод `Style` из Figma переключаются на лету.
 
 ```tsx
 import { Icon, IconStyleProvider } from '@box-ui/icons';
@@ -63,7 +63,7 @@ Figma; `scripts/build-families.mjs` подбирает каждой записи
 | Семейство | Страница Figma | Записей | С графикой | Варианты                                                  |
 | --------- | -------------- | ------- | ---------- | --------------------------------------------------------- |
 | Flags     | Flags          | 197     | 197        | `Style` = Circle · Rounded · Shape                        |
-| Payments  | Payments       | 675     | 541        | нет                                                       |
+| Payments  | Payments       | 676     | 541        | нет                                                       |
 | Brands    | Brands         | 24      | 21         | `Style` = Original · Solid, `Circle Shape` = True · False |
 
 ```tsx

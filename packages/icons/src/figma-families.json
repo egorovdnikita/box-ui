@@ -1,6 +1,6 @@
 {
-  "$note": "Catalogue of the non-Solar icon families in `Box UI | Icons`, read straight from the Figma file. Names and variant properties are verbatim. Geometry is not bundled: run `npm run icons:figma` with a Figma token to export the SVGs into packages/icons/src/data/<family>/.",
-  "source": "https://www.figma.com/design/9pupgeWag4Ssc7jdAYvXMt/Box-UI--Icons",
+  "$note": "Catalogue of the non-Solar icon families in Foundation – Core, read straight from the Figma file. Names and variant properties are verbatim. Geometry is not bundled: run `npm run icons:figma` with a Figma token to export the SVGs into packages/icons/src/data/<family>/.",
+  "source": "https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Foundation---Core",
   "families": {
     "flags": {
       "figmaPage": "Flags",
@@ -349,7 +349,6 @@
         "OMG Network (OMG)",
         "Fantom (FTM)",
         "Nano (NANO)",
-        "Fantom (FTM)",
         "UMA (UMA)",
         "HUSD (HUSD)",
         "ICON (ICX)",
@@ -790,7 +789,7 @@
         "Iqeon (Iqn)",
         "Kambria (Kat)",
         "Kanadecoin (Kndc)",
-        "Kanadecoin (Kndc)",
+        "KaratGold Coin (KBC)",
         "Karbo (Krb)",
         "Lamden (Tau)",
         "Largo Coin (Lrg)",

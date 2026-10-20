@@ -85,7 +85,7 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 ### Остальные семейства
 
 - `flags` — записей: 197 со страницы Figma «Flags», из них с графикой: 197
-- `payments` — записей: 675 со страницы Figma «Payments», из них с графикой: 541
+- `payments` — записей: 676 со страницы Figma «Payments», из них с графикой: 541
 - `brands` — записей: 24 со страницы Figma «Brands», из них с графикой: 21
 
 ## Страницы

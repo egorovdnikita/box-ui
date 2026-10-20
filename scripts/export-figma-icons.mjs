@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Exports the non-Solar icon families of `Box UI | Icons` (Flags, Payments,
+ * Exports the non-Solar icon families of Foundation – Core (Flags, Payments,
  * Brands — and optionally the full UI Icons set) straight from Figma as SVG.
  *
  *   FIGMA_TOKEN=figd_xxx node scripts/export-figma-icons.mjs
@@ -21,7 +21,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const FILE_KEY = '9pupgeWag4Ssc7jdAYvXMt';
+const FILE_KEY = 'gbgGmuUBQ7sIfL256KaDXX';
 const API = 'https://api.figma.com/v1';
 const BATCH = 80;
 
@@ -29,7 +29,7 @@ const FAMILIES = {
   flags: { page: 'Flags', strip: /^Flags\// },
   payments: { page: 'Payments' },
   brands: { page: 'Brands' },
-  'ui-icons': { page: 'Icon', strip: /^UI icons \// },
+  'ui-icons': { page: 'System', strip: /^UI icons \// },
 };
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -87,7 +87,7 @@ const file = await figma(`/files/${FILE_KEY}?geometry=paths`);
 
 for (const familyName of selected) {
   const family = FAMILIES[familyName];
-  const page = file.document.children.find((p) => p.name === family.page);
+  const page = file.document.children.find((p) => p.name.trim() === family.page);
   if (!page) {
     console.warn(`  page "${family.page}" not found, skipping ${familyName}`);
     continue;

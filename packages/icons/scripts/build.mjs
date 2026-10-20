@@ -1,7 +1,7 @@
 /**
  * Builds @box-ui/icons.
  *
- * The Figma file `Box UI | Icons` carries the UI Icons set as 1253 component
+ * The Figma file Foundation – Core carries the UI Icons set as 1253 component
  * sets × 6 `Style` variants (Bold, Bold Duotone, Broken, Line Duotone, Linear,
  * Outline) — that set is Solar by 480 Design. This script takes the geometry
  * from the canonical Solar distribution (`@iconify-json/solar`, CC BY 4.0),
@@ -99,7 +99,7 @@ export function build() {
       authorUrl: info.author.url,
       license: info.license.title,
       licenseUrl: info.license.url,
-      figma: 'https://www.figma.com/design/9pupgeWag4Ssc7jdAYvXMt/Box-UI--Icons',
+      figma: 'https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Foundation---Core',
     },
     viewBox: `0 0 ${iconSet.width ?? 24} ${iconSet.height ?? 24}`,
     styles: STYLES.map(({ slug, figma }) => ({ slug, figma })),

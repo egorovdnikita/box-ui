@@ -1,4 +1,4 @@
-/** The six `Style` variants of the `Icon` collection in `Box UI | Icons`. */
+/** The six `Style` variants of the `Icon` collection in Foundation – Core. */
 export type IconStyle = 'bold' | 'bold-duotone' | 'broken' | 'line-duotone' | 'linear' | 'outline';
 
 export const ICON_STYLES: IconStyle[] = ['bold', 'bold-duotone', 'broken', 'line-duotone', 'linear', 'outline'];

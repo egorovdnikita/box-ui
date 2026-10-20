@@ -81,8 +81,9 @@ describe('family data', () => {
   it('reports counts that match the Figma roster', () => {
     expect(families.flags.total).toBe(197);
     expect(families.brands.total).toBe(24);
-    // 679 components on the page, four of them repeats.
-    expect(families.payments.total).toBe(675);
+    // 678 icons on the page; "Atari Token (ATRI)" is there twice and
+    // "Augur (REP)" / "Augur (Rep)" share a slug.
+    expect(families.payments.total).toBe(676);
   });
 
   it('never claims more artwork than it holds', () => {

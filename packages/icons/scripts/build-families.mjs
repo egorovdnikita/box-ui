@@ -1,5 +1,5 @@
 /**
- * Builds the non-Solar icon families of `Box UI | Icons` — Flags, Payments and
+ * Builds the non-Solar icon families of Foundation – Core — Flags, Payments and
  * Brands.
  *
  * The Figma file is the source of truth for *what* belongs to each family: the
