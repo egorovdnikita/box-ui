@@ -210,6 +210,26 @@ function Preview({ variable, kind, mode }: { variable: TokenVariable; kind: Kind
 
 // --- cells -------------------------------------------------------------------
 
+/** A path that may wrap after each `/` (or `-` in a code) instead of being cut. */
+function Breakable({ text, at = '/' }: { text: string; at?: string }) {
+  const parts = text.split(at);
+  return (
+    <>
+      {parts.map((part, i) => (
+        <Fragment key={i}>
+          {part}
+          {i < parts.length - 1 && (
+            <>
+              {at}
+              <wbr />
+            </>
+          )}
+        </Fragment>
+      ))}
+    </>
+  );
+}
+
 /** One mode of one variable, the way Figma's value column reads. */
 function ValueCell({
   variable,
@@ -247,9 +267,7 @@ function ValueCell({
           onClick={() => goToToken(alias)}
         >
           {swatch ?? <Icon name={KIND_ICON[kind]} size={14} iconStyle="linear" />}
-          <span className="sb-doc__chip-label">
-            <bdi>{target}</bdi>
-          </span>
+          <span className="sb-doc__chip-label">{target}</span>
           {value.opacity !== undefined && <span className="sb-doc__opacity">{value.opacity} %</span>}
         </button>
         {after}
@@ -294,7 +312,7 @@ function CodeCell({ variable }: { variable: TokenVariable }) {
       }
     >
       <span className="sb-doc__code-label">
-        <bdi>{actual}</bdi>
+        <Breakable text={actual} at="-" />
       </span>
       {differs && <span className="sb-doc__flag">≠ Figma</span>}
     </button>
@@ -322,16 +340,19 @@ function GroupHeading({
       onClick={onToggle}
       title={collapsed ? 'Развернуть группу' : 'Свернуть группу'}
     >
-      <span className="sb-doc__chevron" data-collapsed={collapsed}>
-        <Icon name="alt-arrow-down" size={14} iconStyle="linear" />
+      {/* Pinned to the left edge, so the heading stays in view in a table scrolled sideways. */}
+      <span className="sb-doc__heading-inner">
+        <span className="sb-doc__chevron" data-collapsed={collapsed}>
+          <Icon name="alt-arrow-down" size={14} iconStyle="linear" />
+        </span>
+        {path.map((part, i) => (
+          <Fragment key={i}>
+            {i > 0 && <span className="sb-doc__sep">/</span>}
+            <span className={i === path.length - 1 ? 'sb-doc__strong' : undefined}>{part}</span>
+          </Fragment>
+        ))}
+        <span className="sb-doc__heading-count">{count}</span>
       </span>
-      {path.map((part, i) => (
-        <Fragment key={i}>
-          {i > 0 && <span className="sb-doc__sep">/</span>}
-          <span className={i === path.length - 1 ? 'sb-doc__strong' : undefined}>{part}</span>
-        </Fragment>
-      ))}
-      <span className="sb-doc__heading-count">{count}</span>
     </button>
   );
 }
@@ -440,6 +461,44 @@ const nameIn = (group: DocGroup, v: TokenVariable) => {
   return v.path === head ? v.path.split('/').pop()! : v.path.slice(head.length + 1);
 };
 
+/**
+ * Lets a table scroll sideways only when it is wider than its canvas, so the
+ * header keeps sticking to the page whenever it fits. Marks the scroller with
+ * `data-overflow`, plus `data-scrolled` / `data-end` for the pinned name
+ * column's shadow and the fade at the far edge.
+ */
+function useSideScroll(layout: string) {
+  const [node, setNode] = useState<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (!node) return;
+    const table = node.firstElementChild as HTMLElement | null;
+    const edges = () => {
+      const wide = node.hasAttribute('data-overflow');
+      node.toggleAttribute('data-scrolled', wide && node.scrollLeft > 0);
+      node.toggleAttribute('data-end', !wide || node.scrollLeft + node.clientWidth >= node.scrollWidth - 1);
+    };
+    const measure = () => {
+      // Measured in the normal layout: the scrolling one is wider by design and
+      // would never let go. An overflowing grid still reports its full width.
+      node.removeAttribute('data-overflow');
+      node.toggleAttribute('data-overflow', (table?.scrollWidth ?? 0) > node.clientWidth + 1);
+      edges();
+    };
+    measure();
+    // The header cells change width whenever a column does, even when the
+    // table as a whole keeps its width.
+    const observer = new ResizeObserver(measure);
+    observer.observe(node);
+    for (const head of table?.querySelectorAll('.sb-doc__head') ?? []) observer.observe(head);
+    node.addEventListener('scroll', edges, { passive: true });
+    return () => {
+      observer.disconnect();
+      node.removeEventListener('scroll', edges);
+    };
+  }, [node, layout]);
+  return setNode;
+}
+
 export function DocTable({
   collectionId,
   groups,
@@ -463,14 +522,17 @@ export function DocTable({
   const multi = collection.modes.length > 1;
   const scopeProp = SCOPE_PROP[collectionId];
 
-  // Minimums small enough that four mode columns still fit a laptop canvas;
-  // anything longer is cut with an ellipsis and spelled out in the tooltip.
+  // Nothing is cut: values keep their full width, a long name wraps after a
+  // `/` and a long code after a `-` only when the code column is short of room,
+  // and a table still wider than its canvas scrolls sideways instead.
   const columns = [
-    'minmax(100px, 1fr)',
-    `repeat(${modes.length}, minmax(${multi ? 110 : 160}px, 1fr))`,
-    'minmax(160px, 1.3fr)',
-    'minmax(120px, 1fr)',
+    'max-content',
+    `repeat(${modes.length}, max-content)`,
+    'minmax(240px, max-content)',
+    // Fixed while the table scrolls (preview.css), or one line of prose would set its width.
+    'var(--sb-doc-description, minmax(180px, 1fr))',
   ].join(' ');
+  const scroller = useSideScroll(modes.map((m) => m.slug).join());
 
   const scopedIn = (mode: string) => (node: ReactNode) =>
     multi && scopeProp ? (
@@ -482,7 +544,7 @@ export function DocTable({
     );
 
   return (
-    <div className="sb-doc__scroller">
+    <div className="sb-doc__scroller" ref={scroller}>
       <div className="sb-doc" style={{ gridTemplateColumns: columns }} role="table">
         <div className="sb-doc__head">Name</div>
         {modes.map((m) => (
@@ -501,21 +563,20 @@ export function DocTable({
           const shared = group.description !== null;
           const variant = textVariant(group.path);
           const rows = (variant ? 1 : 0) + group.variables.length;
-          // A shared description spans the group and may wrap as far as its rows
-          // allow; a row's own stays on one line. Neither makes a row taller.
+          // A shared description spans the group; either kind wraps in full and,
+          // if it needs more room than its rows, makes them taller.
           const description = (row: number, text: string) =>
             shared && rows > 1 ? (
               row === 0 && (
                 <div
                   className="sb-doc__cell sb-doc__description sb-doc__description--group"
-                  style={{ gridRow: `span ${rows}`, WebkitLineClamp: rows * 2 - 1 } as CSSProperties}
-                  title={group.description ?? ''}
+                  style={{ gridRow: `span ${rows}` }}
                 >
                   <span>{group.description}</span>
                 </div>
               )
             ) : (
-              <div className="sb-doc__cell sb-doc__description" title={text}>
+              <div className="sb-doc__cell sb-doc__description">
                 <span>{text}</span>
               </div>
             );
@@ -558,7 +619,9 @@ export function DocTable({
                           title={`${v.path} · ${KIND_LABEL[kind]}`}
                         >
                           <Icon name={KIND_ICON[kind]} size={16} iconStyle="linear" />
-                          <span className="sb-doc__name-label">{nameIn(group, v)}</span>
+                          <span className="sb-doc__name-label">
+                            <Breakable text={nameIn(group, v)} />
+                          </span>
                         </div>
                         {modes.map((m) => (
                           <div key={m.slug} className={`sb-doc__cell${flash}`}>

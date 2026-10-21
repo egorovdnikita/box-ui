@@ -437,19 +437,44 @@ button.sb-select svg {
   min-width: 0;
 }
 
-@media (max-width: 899px) {
-  .sb-doc__scroller {
-    overflow-x: auto;
-  }
+/* Only a table wider than its canvas scrolls sideways (see useSideScroll). */
+.sb-doc__scroller[data-overflow] {
+  overflow-x: auto;
+  /* Fades the far edge while there is more to the right. */
+  mask-image: linear-gradient(to left, transparent, #000 32px);
+}
 
-  .sb-doc {
-    min-width: 860px;
-  }
+.sb-doc__scroller[data-overflow][data-end] {
+  mask-image: none;
+}
 
-  /* Inside a horizontal scroller a sticky header has nothing to stick to. */
-  .sb-doc__head {
-    position: static;
-  }
+/* As wide as its columns, so the pinned name column has room to stick in. */
+.sb-doc__scroller[data-overflow] .sb-doc {
+  --sb-doc-description: 220px;
+  width: max-content;
+  min-width: 100%;
+}
+
+/* Inside a horizontal scroller a sticky header has nothing to stick to. */
+.sb-doc__scroller[data-overflow] .sb-doc__head {
+  position: static;
+}
+
+/* The name column stays put while the rest scrolls under it. */
+.sb-doc__scroller[data-overflow] .sb-doc__name,
+.sb-doc__scroller[data-overflow] .sb-doc__head:first-child {
+  position: sticky;
+  top: auto;
+  left: 0;
+  /* Above the header cells: grid items honour z-index even when static. */
+  z-index: 3;
+}
+
+.sb-doc__scroller[data-overflow][data-scrolled] .sb-doc__name,
+.sb-doc__scroller[data-overflow][data-scrolled] .sb-doc__head:first-child {
+  box-shadow:
+    1px 0 0 var(--sb-border),
+    6px 0 8px -6px rgb(0 0 0 / 0.35);
 }
 
 .sb-doc {
@@ -498,6 +523,14 @@ button.sb-select svg {
   text-align: left;
   cursor: pointer;
   scroll-margin-top: calc(var(--sb-sticky-top, 0px) + 40px);
+}
+
+.sb-doc__heading-inner {
+  position: sticky;
+  left: 6px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
 }
 
 .sb-doc__heading:hover {
@@ -557,46 +590,31 @@ button.sb-select svg {
   color: var(--sb-text-muted);
 }
 
-.sb-doc__name-label,
-.sb-doc__code-label,
+/* Nothing is cut: values keep one line and their columns grow to fit them; a
+ * long name wraps after a `/`, a long code after a `-` (see Breakable). */
+.sb-doc__name-label {
+  max-width: 200px;
+}
+
 .sb-doc__chip-label {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* Codes and alias paths are cut from the start: their tail is what differs. */
-.sb-doc__code-label,
-.sb-doc__chip-label {
-  direction: rtl;
-  text-align: left;
+/* A table that scrolls anyway has no reason to break its codes. */
+.sb-doc__scroller[data-overflow] .sb-doc__code-label {
+  white-space: nowrap;
 }
 
 .sb-doc__description {
   align-items: flex-start;
   padding-block: 8px;
-  overflow: hidden;
   color: var(--sb-text-muted);
   font-size: 12px;
 }
 
-/* A row's own description stays on one line; a group's spans its rows. */
+/* A row's own description sits on its row; a group's spans the group's rows. */
 .sb-doc__description:not(.sb-doc__description--group) {
   align-items: center;
-}
-
-.sb-doc__description:not(.sb-doc__description--group) > span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.sb-doc__description--group > span {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: inherit;
 }
 
 .sb-doc__specimen {
@@ -1348,6 +1366,42 @@ button.sb-select svg {
 .sb-toast[data-visible='false'] {
   opacity: 0;
   transform: translateX(-50%) translateY(-8px);
+}
+
+/* Touch: on a phone every control is at least 44px tall, and in a table a code
+ * fills its cell, so the whole cell is what you tap. */
+@media (max-width: 768px) {
+  .sb-control,
+  .sb-segmented,
+  .sb-menu__item,
+  .sb-inspector__style {
+    height: 44px;
+  }
+
+  .sb-button--icon {
+    width: 44px;
+  }
+
+  .sb-codeblock__copy {
+    min-width: 44px;
+    height: 44px;
+  }
+
+  .sb-doc__heading {
+    height: 44px;
+  }
+
+  .sb-doc__cell {
+    min-height: 44px;
+  }
+
+  .sb-doc__code {
+    align-self: stretch;
+  }
+
+  .sb-doc__chip {
+    height: 32px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useRef, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from 'react';
 import { Icon } from '@box-ui/icons';
 import { useCopy } from '../_ui';
 
@@ -9,8 +9,72 @@ import { useCopy } from '../_ui';
  * than a click that silently copies.
  */
 
+const tilesIn = (grid: HTMLElement | null) => [...(grid?.querySelectorAll<HTMLElement>('.sb-icon-tile') ?? [])];
+
+/** The tile the inspector belongs to, so closing it hands focus back there. */
+const pickedTile = () => document.querySelector<HTMLElement>('.sb-icon-tile[aria-pressed="true"]');
+
+/**
+ * One Tab stop for the whole grid — arrows, Home and End move inside it — so
+ * the inspector after it is a single Tab away rather than a thousand.
+ */
 export function IconGrid({ children }: { children: ReactNode }) {
-  return <div className="sb-icons">{children}</div>;
+  const grid = useRef<HTMLDivElement>(null);
+  const current = useRef<HTMLElement | null>(null);
+
+  // Re-runs on every render: filtering swaps the tiles under the grid.
+  useEffect(() => {
+    const tiles = tilesIn(grid.current);
+    const active =
+      tiles.find((tile) => tile === current.current) ??
+      tiles.find((tile) => tile.getAttribute('aria-pressed') === 'true') ??
+      tiles[0];
+    for (const tile of tiles) tile.tabIndex = tile === active ? 0 : -1;
+    current.current = active ?? null;
+  });
+
+  const moveTo = (tile: HTMLElement | undefined) => {
+    if (!tile) return;
+    if (current.current) current.current.tabIndex = -1;
+    tile.tabIndex = 0;
+    tile.focus();
+    current.current = tile;
+  };
+
+  const onKeyDown = (event: ReactKeyboardEvent) => {
+    const tiles = tilesIn(grid.current);
+    const at = tiles.indexOf(event.target as HTMLElement);
+    if (at < 0) return;
+    // Columns of the grid as laid out right now: tiles sharing the first row's top.
+    const columns = tiles.filter((tile) => tile.offsetTop === tiles[0].offsetTop).length || 1;
+    const step: Record<string, number> = {
+      ArrowRight: 1,
+      ArrowLeft: -1,
+      ArrowDown: columns,
+      ArrowUp: -columns,
+      Home: -at,
+      End: tiles.length - 1 - at,
+    };
+    if (!(event.key in step)) return;
+    event.preventDefault();
+    moveTo(tiles[Math.min(tiles.length - 1, Math.max(0, at + step[event.key]))]);
+  };
+
+  return (
+    <div
+      ref={grid}
+      className="sb-icons"
+      role="group"
+      aria-label="Иконки: стрелки — выбор, Enter — открыть"
+      onKeyDown={onKeyDown}
+      onFocus={(event) => {
+        if ((event.target as HTMLElement).classList.contains('sb-icon-tile'))
+          current.current = event.target as HTMLElement;
+      }}
+    >
+      {children}
+    </div>
+  );
 }
 
 export function IconTile({
@@ -68,8 +132,20 @@ export function Inspector({
 }) {
   const copy = useCopy();
 
+  // Closing hands focus back to the tile it was opened from.
+  const close = () => {
+    const tile = pickedTile();
+    onClose();
+    tile?.focus();
+  };
+
   useEffect(() => {
-    const onKey = (event: KeyboardEvent) => event.key === 'Escape' && onClose();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      const tile = pickedTile();
+      onClose();
+      tile?.focus();
+    };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, [onClose]);
@@ -98,7 +174,7 @@ export function Inspector({
         <button
           type="button"
           className="sb-control sb-button sb-button--icon"
-          onClick={onClose}
+          onClick={close}
           title="Закрыть (Esc)"
           aria-label="Закрыть"
         >
