@@ -478,24 +478,71 @@ function useSideScroll(layout: string) {
   return setNode;
 }
 
-/** How many of the longest values the Sizer lays out per column: characters only approximate width. */
+/** How many of the widest entries the Sizer lays out per column. */
 const SIZER_PICKS = 6;
 
-/** The `count` items whose `text` is longest. */
+/**
+ * Width of a line of text in the docs font. The font is proportional —
+ * "emerald" outruns "neutral" — so counting characters picks the wrong ones.
+ */
+const textWidth = (() => {
+  let context: CanvasRenderingContext2D | null = null;
+  const cache = new Map<string, number>();
+  return (text: string) => {
+    let width = cache.get(text);
+    if (width === undefined) {
+      context ??= document.createElement('canvas').getContext('2d');
+      if (context) context.font = `12px ${getComputedStyle(document.body).fontFamily}`;
+      width = context ? context.measureText(text).width : text.length;
+      cache.set(text, width);
+    }
+    return width;
+  };
+})();
+
+/** The `count` items whose `text` runs widest. */
 const longest = <T,>(items: T[], text: (item: T) => string, count = SIZER_PICKS) =>
-  [...items].sort((a, b) => text(b).length - text(a).length).slice(0, count);
+  [...items].sort((a, b) => textWidth(text(b)) - textWidth(text(a))).slice(0, count);
+
+/**
+ * How a value is drawn — alias chip or literal, of which kind, with an
+ * opacity or not (its own, an 8-digit hex, a step of an alpha scale) — since
+ * that sets its width as much as its length does.
+ */
+const shapeOf = ({ v, value }: { v: TokenVariable; value?: Value }) =>
+  [
+    value?.alias ? 'alias' : 'literal',
+    kindOf(v),
+    value?.opacity !== undefined || /^#?[0-9a-f]{8}$/i.test(String(value?.value ?? '')) || /\/alpha\//.test(v.path),
+  ].join(':');
+
+/** Values grouped by shapeOf. */
+function byShape<T extends { v: TokenVariable; value?: Value }>(items: T[]): T[][] {
+  const groups = new Map<string, T[]>();
+  for (const item of items) {
+    const key = shapeOf(item);
+    groups.set(key, [...(groups.get(key) ?? []), item]);
+  }
+  return [...groups.values()];
+}
+
+/** The section a collection belongs to — Primitives, Brand or System — by its id's prefix. */
+const sectionOf = (collectionId: string) => collectionId.split('-')[0];
 
 /**
  * An invisible first row holding the longest names, values, codes and
- * descriptions of every collection — so the `max-content` columns come out
- * the same on every page and keep their width while the reader filters.
+ * descriptions of every collection in the section (Primitives, Brand or
+ * System) — so the `max-content` columns come out the same on every page of
+ * the section and keep their width while the reader filters.
  * Every mode column gets the longest values of any mode, so they are equal.
- * Besides the longest overall, each collection's own longest values are in,
- * since a short value with a preview can be wider than a long plain one.
+ * Besides the longest overall, each collection gives its longest value of
+ * every shape: a short value with a preview or an opacity can be wider than
+ * a long plain one.
  */
-function Sizer({ modes }: { modes: TokenCollection['modes'] }) {
+function Sizer({ collectionId, modes }: { collectionId: string; modes: TokenCollection['modes'] }) {
+  const section = sectionOf(collectionId);
   const { names, values, codes, descriptions } = useMemo(() => {
-    const ids = Object.keys(collections);
+    const ids = Object.keys(collections).filter((id) => sectionOf(id) === section);
     const groupsOf = ids.map((id) => groupVariables(id, collections[id].variables));
     const named = groupsOf.flat().flatMap((g) => g.variables.map((v) => ({ v, name: nameIn(g, v) })));
     const shownIn = (id: string) =>
@@ -513,13 +560,19 @@ function Sizer({ modes }: { modes: TokenCollection['modes'] }) {
     const all = ids.flatMap((id) => collections[id].variables);
     return {
       names: longest(named, (n) => n.name),
+      // Width depends on what a value is drawn as as much as on its length,
+      // so each collection gives its longest of every shape (see shapeOf).
       values: [
-        ...new Set([...longest(shown.flat(), (x) => x.text), ...shown.flatMap((x) => longest(x, (y) => y.text, 2))]),
+        ...new Set([
+          ...longest(shown.flat(), (x) => x.text),
+          ...shown.flatMap((x) => byShape(x).flatMap((same) => longest(same, (y) => y.text, 2))),
+        ]),
       ],
-      codes: longest(all, (v) => v.cssVar),
+      // Codes are monospace: their length is their width.
+      codes: [...all].sort((a, b) => b.cssVar.length - a.cssVar.length).slice(0, SIZER_PICKS),
       descriptions: longest(described, (d) => d),
     };
-  }, []);
+  }, [section]);
 
   return (
     <>
@@ -589,9 +642,10 @@ export function DocTable({
   const mixed = useMemo(() => new Set(collection.variables.map(kindOf)).size > 1, [collection]);
 
   // Nothing is cut or wrapped, so every row is one height: each column is as
-  // wide as the longest entry of any collection (see Sizer), so the grid is
-  // the same on every page and holds while filtering. A table wider than its
-  // canvas scrolls sideways as a whole.
+  // wide as the longest entry of any collection in the section (see Sizer),
+  // so the grid is the same on every page of Primitives, of Brand and of
+  // System, and holds while filtering. A table wider than its canvas scrolls
+  // sideways as a whole.
   const columns = [
     'max-content',
     `repeat(${modes.length}, max-content)`,
@@ -612,7 +666,7 @@ export function DocTable({
   return (
     <div className="sb-doc__scroller" ref={scroller}>
       <div className="sb-doc" style={{ gridTemplateColumns: columns }} role="table">
-        <Sizer modes={modes} />
+        <Sizer collectionId={collectionId} modes={modes} />
         <div className="sb-doc__head sb-doc__head--name">Name</div>
         {modes.map((m) => (
           <div key={m.slug} className="sb-doc__head">
