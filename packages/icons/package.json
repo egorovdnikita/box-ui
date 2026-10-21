@@ -1,6 +1,6 @@
 {
   "name": "@box-ui/icons",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Иконки Box UI — набор UI Icons из Foundation – Core, переключаемый по всем шести модам Style из Figma и размеряемый токенами Box UI.",
   "keywords": [
     "icons",

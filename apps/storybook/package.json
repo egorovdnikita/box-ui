@@ -1,6 +1,6 @@
 {
   "name": "@box-ui/storybook",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,9 +8,9 @@
     "build": "storybook build -o storybook-static"
   },
   "dependencies": {
-    "@box-ui/icons": "0.1.0",
-    "@box-ui/react": "0.1.0",
-    "@box-ui/tokens": "0.1.0",
+    "@box-ui/icons": "0.2.0",
+    "@box-ui/react": "0.2.0",
+    "@box-ui/tokens": "0.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

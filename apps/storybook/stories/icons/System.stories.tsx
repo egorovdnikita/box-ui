@@ -52,7 +52,8 @@ export const System: StoryObj<GalleryArgs> = {
       () =>
         catalog.icons.filter(
           (icon) =>
-            (category === ALL_CATEGORIES || icon.category === category) && matches(query, icon.name, icon.category),
+            (category === ALL_CATEGORIES || icon.category === category) &&
+            matches(query, icon.name, icon.title, icon.category),
         ),
       [query, category],
     );
@@ -108,7 +109,7 @@ export const System: StoryObj<GalleryArgs> = {
               return (
                 <IconTile
                   key={icon.name}
-                  label={icon.name}
+                  label={icon.title}
                   title={
                     drawn
                       ? `${icon.name} · ${icon.category}`
@@ -127,7 +128,7 @@ export const System: StoryObj<GalleryArgs> = {
 
         {selected && (
           <Inspector
-            title={selected.name}
+            title={selected.title}
             meta={`${selected.category} · ${selected.styles.length} из 6 стилей`}
             preview={
               <Icon

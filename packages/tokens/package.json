@@ -1,6 +1,6 @@
 {
   "name": "@box-ui/tokens",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Дизайн-токены, сгенерированные из переменных Figma «Box UI» (примитивы, цветовые моды, светлая и тёмная темы, плотность скруглений, гарнитуры, desktop и mobile).",
   "keywords": [
     "design-tokens",

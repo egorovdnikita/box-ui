@@ -3,7 +3,10 @@ import familiesJson from './figma-families.json';
 import type { IconStyle } from './types';
 
 export interface IconCatalogEntry {
+  /** The `name` prop: the Figma name in kebab case. */
   name: string;
+  /** The name as the Figma page spells it. */
+  title: string;
   category: string;
   styles: IconStyle[];
 }

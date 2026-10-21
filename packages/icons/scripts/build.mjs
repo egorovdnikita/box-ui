@@ -124,7 +124,7 @@ export function build() {
         styles.push(style.slug);
       }
       if (!styles.length) throw new Error(`${category.name} / ${figmaName}: no geometry in Figma export or Solar`);
-      icons.push({ name, category: category.name, styles });
+      icons.push({ name, title: figmaName, category: category.name, styles });
     }
   }
 
