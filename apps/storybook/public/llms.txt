@@ -72,7 +72,7 @@ import { model, attributes, defaults } from '@box-ui/tokens';
 
 ## Иконки
 
-Иконок: 1301 в 38 категориях. Стилей: 6
+Иконок: 1253 в 37 категориях. Стилей: 6
 (Bold, Bold Duotone, Broken, Line Duotone, Linear, Outline). Все 24×24, красятся `currentColor`,
 размеры берутся из токенов `size/base/*`.
 

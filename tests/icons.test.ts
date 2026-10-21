@@ -13,6 +13,7 @@ import brandData from '../packages/icons/src/data/families/brands.json';
 import flagData from '../packages/icons/src/data/families/flags.json';
 import paymentData from '../packages/icons/src/data/families/payments.json';
 import flagExport from '../packages/icons/figma/flags/manifest.json';
+import uiRoster from '../packages/icons/src/figma-ui-icons.json';
 
 const sets: Record<string, Record<string, string>> = {
   bold,
@@ -78,6 +79,41 @@ describe('icon data', () => {
       .filter(([, body]) => /fill="#|stroke="#/.test(body))
       .map(([name]) => name);
     expect(baked).toEqual([]);
+  });
+});
+
+describe('UI icons follow the Figma page', () => {
+  const slug = (name: string) =>
+    name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+  const roster = uiRoster.categories.flatMap((c) =>
+    c.icons.map((item) => (typeof item === 'string' ? { name: item, solar: undefined } : item)),
+  );
+
+  it('ships exactly the icons of the Figma page, under their Figma names', () => {
+    expect(catalog.icons.length).toBe(1253);
+    expect(catalog.icons.map((i) => i.name).sort()).toEqual(roster.map((i) => slug(i.name)).sort());
+  });
+
+  it('keeps the Figma categories, in page order', () => {
+    expect(catalog.categories).toEqual(uiRoster.categories.map((c) => c.name));
+  });
+
+  it('gives every icon a name of its own', () => {
+    const names = roster.map((i) => slug(i.name));
+    expect(names.filter((n, i) => names.indexOf(n) !== i)).toEqual([]);
+  });
+
+  it('draws every icon in all six styles', () => {
+    expect(catalog.icons.filter((icon) => icon.styles.length !== 6).map((i) => i.name)).toEqual([]);
+  });
+
+  it('takes the icons drawn only in Figma from the Figma export', () => {
+    const own = roster.filter((i) => i.solar === null).map((i) => slug(i.name));
+    expect(own.length).toBeGreaterThan(0);
+    for (const name of own) expect(sets.linear[name], name).toMatch(/currentColor/);
   });
 });
 

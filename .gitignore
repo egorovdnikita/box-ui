@@ -10,5 +10,3 @@ npm-debug.log*
 packages/tokens/dist/
 apps/storybook/storybook-static/
 
-# `npm run icons:figma -- --family ui-icons` — 7.5k files; Solar is the source of the set
-packages/icons/figma/ui-icons/

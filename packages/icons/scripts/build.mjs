@@ -1,11 +1,14 @@
 /**
  * Builds @box-ui/icons.
  *
- * The Figma file Foundation – Core carries the UI Icons set as 1253 component
- * sets × 6 `Style` variants (Bold, Bold Duotone, Broken, Line Duotone, Linear,
- * Outline) — that set is Solar by 480 Design. This script takes the geometry
- * from the canonical Solar distribution (`@iconify-json/solar`, CC BY 4.0),
- * splits it per style and emits:
+ * The roster of the UI Icons set — categories and names, in page order — is
+ * `src/figma-ui-icons.json`, read from the `System` page of Foundation – Core.
+ * Each icon has six `Style` variants (Bold, Bold Duotone, Broken, Line Duotone,
+ * Linear, Outline). Geometry comes from the Figma export in
+ * `figma/ui-icons/` where there is one, and otherwise from the canonical Solar
+ * distribution (`@iconify-json/solar`, CC BY 4.0) the set is drawn from: the
+ * Solar icon of the same name, or the one the roster names in `solar` where
+ * the file calls it something else. Emits:
  *
  *   src/data/<style>.json   { "<icon>": "<svg body>" }   — one file per Figma Style mode
  *   src/catalog.json        { styles, categories, icons } — the gallery index
@@ -14,7 +17,7 @@
  * `--surface-base-content-*` like any other Box UI surface.
  */
 
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -37,7 +40,6 @@ export const STYLES = [
 const MATCHERS = [...STYLES].sort((a, b) => b.suffix.length - a.suffix.length);
 
 const iconSet = require('@iconify-json/solar/icons.json');
-const metadata = require('@iconify-json/solar/metadata.json');
 const info = require('@iconify-json/solar/info.json');
 
 /** Resolve iconify aliases down to a concrete body. */
@@ -49,6 +51,23 @@ function bodyOf(name, seen = new Set()) {
   return bodyOf(alias.parent, seen);
 }
 
+/**
+ * Solar renamed some icons and keeps the old name as an alias — but only for
+ * the styles that existed then. Old base name -> new base name, so every style
+ * resolves.
+ */
+const renamed = {};
+for (const [name, alias] of Object.entries(iconSet.aliases ?? {})) {
+  const from = split(name);
+  const to = split(alias.parent);
+  if (from && to && from.base !== to.base) renamed[from.base] = to.base;
+}
+
+/** Solar geometry for an icon in one style, following a rename if needed. */
+function solarBody(base, style) {
+  return bodyOf(`${base}${style.suffix}`) ?? (renamed[base] ? bodyOf(`${renamed[base]}${style.suffix}`) : null);
+}
+
 export function split(name) {
   for (const style of MATCHERS) {
     if (name.endsWith(style.suffix)) return { base: name.slice(0, -style.suffix.length), style: style.slug };
@@ -56,40 +75,57 @@ export function split(name) {
   return null;
 }
 
+const slugify = (name) =>
+  name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+
+/** An exported Figma SVG as an inline body: no wrapper, painted with currentColor. */
+function figmaBody(file) {
+  return readFileSync(file, 'utf8')
+    .replace(/^[\s\S]*?<svg[^>]*>|<\/svg>\s*$/g, '')
+    .replace(/#fafafa/gi, 'currentColor')
+    .trim();
+}
+
 /**
- * Reads the Solar distribution and writes the per-style payloads.
+ * Reads the Figma roster and writes the per-style payloads.
  *
  * Guarded so the module can be imported for `STYLES` and `split()` without
  * rebuilding anything as a side effect — a test that regenerates the fixtures
  * it is checking proves nothing.
  */
 export function build() {
-  /** Suffixed Solar name -> Solar category, from the set metadata. */
-  const categoryOf = {};
-  for (const [category, names] of Object.entries(metadata.categories ?? {})) {
-    for (const name of names) {
-      const parsed = split(name);
-      if (parsed) categoryOf[parsed.base] ??= category;
-    }
-  }
+  const roster = JSON.parse(readFileSync(join(pkg, 'src', 'figma-ui-icons.json'), 'utf8'));
+  const exported = join(pkg, 'figma', 'ui-icons');
 
   const data = Object.fromEntries(STYLES.map((s) => [s.slug, {}]));
-  const icons = new Map();
+  const icons = [];
+  const fromFigma = new Set();
 
-  for (const name of [...Object.keys(iconSet.icons), ...Object.keys(iconSet.aliases ?? {})]) {
-    const parsed = split(name);
-    if (!parsed) continue;
-    const body = bodyOf(name);
-    if (!body) continue;
-
-    data[parsed.style][parsed.base] = body;
-    const entry = icons.get(parsed.base) ?? {
-      name: parsed.base,
-      category: categoryOf[parsed.base] ?? 'Other',
-      styles: [],
-    };
-    entry.styles.push(parsed.style);
-    icons.set(parsed.base, entry);
+  for (const category of roster.categories) {
+    for (const item of category.icons) {
+      const { name: figmaName, solar } = typeof item === 'string' ? { name: item, solar: undefined } : item;
+      const name = slugify(figmaName);
+      const file = slugify(`${category.name} / ${figmaName}`);
+      const styles = [];
+      for (const style of STYLES) {
+        const svg = join(exported, `${file}--${style.slug}.svg`);
+        let body = null;
+        if (existsSync(svg)) {
+          body = figmaBody(svg);
+          fromFigma.add(name);
+        } else if (solar !== null) {
+          body = solarBody(solar ?? name, style);
+        }
+        if (!body) continue;
+        data[style.slug][name] = body;
+        styles.push(style.slug);
+      }
+      if (!styles.length) throw new Error(`${category.name} / ${figmaName}: no geometry in Figma export or Solar`);
+      icons.push({ name, category: category.name, styles });
+    }
   }
 
   const catalog = {
@@ -99,14 +135,12 @@ export function build() {
       authorUrl: info.author.url,
       license: info.license.title,
       licenseUrl: info.license.url,
-      figma: 'https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Foundation---Core',
+      figma: roster.source,
     },
     viewBox: `0 0 ${iconSet.width ?? 24} ${iconSet.height ?? 24}`,
     styles: STYLES.map(({ slug, figma }) => ({ slug, figma })),
-    categories: [...new Set([...icons.values()].map((i) => i.category))].sort(),
-    icons: [...icons.values()]
-      .map((i) => ({ ...i, styles: STYLES.filter((s) => i.styles.includes(s.slug)).map((s) => s.slug) }))
-      .sort((a, b) => a.name.localeCompare(b.name)),
+    categories: roster.categories.map((c) => c.name),
+    icons: icons.sort((a, b) => a.name.localeCompare(b.name)),
   };
 
   mkdirSync(join(pkg, 'src', 'data'), { recursive: true });
@@ -124,11 +158,10 @@ export function build() {
 
   const perStyle = STYLES.map((s) => `${s.figma}: ${Object.keys(data[s.slug]).length}`).join(', ');
   console.log(
-    `@box-ui/icons built\n  ${catalog.icons.length} icons in ${catalog.categories.length} categories\n  ${perStyle}`,
+    `@box-ui/icons built\n  ${catalog.icons.length} icons in ${catalog.categories.length} categories, ${fromFigma.size} drawn from the Figma export\n  ${perStyle}`,
   );
 
-  // Figma family catalogues (Flags / Payments / Brands) travel with the package
-  // but have no geometry until `npm run icons:figma` is run — see README.
+  // Flags / Payments / Brands are built by build-families.mjs from their own roster.
   const families = JSON.parse(readFileSync(join(pkg, 'src', 'figma-families.json'), 'utf8'));
   console.log(
     `  families: ${Object.entries(families.families)

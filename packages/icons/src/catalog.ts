@@ -23,7 +23,7 @@ export interface IconCatalog {
   icons: IconCatalogEntry[];
 }
 
-/** Every Solar icon in Foundation – Core, with its category and available styles. */
+/** Every UI icon of Foundation – Core (page “System”), with its Figma category and styles. */
 export const catalog = catalogJson as unknown as IconCatalog;
 
 /**

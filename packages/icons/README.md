@@ -10,12 +10,12 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 </IconStyleProvider>;
 ```
 
-| Свойство    | Тип                                                              | По умолчанию                        |
-| ----------- | ---------------------------------------------------------------- | ----------------------------------- |
-| `name`      | имя иконки Solar — `arrow-up`, `home-smile`, `card-transfer`, …  | обязательно                         |
-| `iconStyle` | `bold` `bold-duotone` `broken` `line-duotone` `linear` `outline` | ближайший провайдер, иначе `linear` |
-| `size`      | `min` `2xs` `xs` `s` `m` `l` `xl` `2xl` `max` или число          | `xs`                                |
-| `title`     | доступное имя; без него иконка получает `aria-hidden`            | —                                   |
+| Свойство    | Тип                                                                | По умолчанию                        |
+| ----------- | ------------------------------------------------------------------ | ----------------------------------- |
+| `name`      | имя иконки из Figma — `arrow-up`, `home-smile`, `card-transfer`, … | обязательно                         |
+| `iconStyle` | `bold` `bold-duotone` `broken` `line-duotone` `linear` `outline`   | ближайший провайдер, иначе `linear` |
+| `size`      | `min` `2xs` `xs` `s` `m` `l` `xl` `2xl` `max` или число            | `xs`                                |
+| `title`     | доступное имя; без него иконка получает `aria-hidden`              | —                                   |
 
 Размеры — токены `size/base/*` из коллекции Grid, поэтому иконки слушаются `data-device`
 наравне со всем остальным. Геометрия красится `currentColor`, так что цвет приходит из
@@ -23,25 +23,29 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 
 ## UI Icons
 
-1253 компонент-сета UI Icons в файле Figma — это набор
-[Solar](https://www.figma.com/community/file/1166831539721848736) авторства 480 Design.
-`scripts/build.mjs` берёт геометрию из канонической поставки Solar
-(`@iconify-json/solar`), разрезает её по стилям и пишет:
+Состав набора — 1253 иконки страницы `System` файла Figma: категории и имена дословно, в
+порядке страницы, лежат в `src/figma-ui-icons.json`. Имя иконки в коде — имя из Figma через
+дефис: «Home Smile» → `home-smile`. Набор нарисован на основе
+[Solar](https://www.figma.com/community/file/1166831539721848736) авторства 480 Design, поэтому
+`scripts/build.mjs` берёт геометрию из канонической поставки Solar (`@iconify-json/solar`): иконку
+с тем же именем, а там, где файл называет её иначе, — ту, что указана в поле `solar` (сверено с
+геометрией в Figma). Иконки, которых в Solar нет (`add`, `close`, `check`, `minus`, вертикальные
+`menu-dots-*-2`), берутся из экспорта Figma в `figma/ui-icons/`; если выгрузить весь набор
+(`npm run icons:figma -- --family ui-icons`), экспорт заменит Solar для всех иконок. Сборка пишет:
 
 ```
-src/data/bold.json          1280 иконок
-src/data/bold-duotone.json  1247
-src/data/broken.json        1288
-src/data/line-duotone.json  1277
-src/data/linear.json        1288
-src/data/outline.json       1292
-src/catalog.json            1301 иконка в 38 категориях
+src/data/bold.json          1253 иконки
+src/data/bold-duotone.json  1253
+src/data/broken.json        1253
+src/data/line-duotone.json  1253
+src/data/linear.json        1253
+src/data/outline.json       1253
+src/catalog.json            1253 иконки в 37 категориях Figma
 src/names.ts                объединение IconName
 ```
 
 Каждый стиль — отдельный динамический `import()`, поэтому приложение везёт только те
-стили, которые рисует. Не каждая иконка существует во всех стилях: доступные перечислены
-в `catalog.icons[].styles`, все шесть есть у 1247 из 1301.
+стили, которые рисует. Все 1253 иконки есть во всех шести стилях.
 
 Переключение стиля тянет около мегабайта, и всё это время у нового стиля нет геометрии
 вообще. Вместо того чтобы на этот момент погасить все иконки на экране, хранилище

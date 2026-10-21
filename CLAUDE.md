@@ -81,7 +81,7 @@
 Источник — Foundation – Core: страницы `Flags`, `Payments`, `Brands`, UI-иконки на `System`; `Master` и `Tech` в пакет не входят, служебный `Wrapper` не выгружается. Имена Payments — `<Имя> (<TICKER>)`, без повторов и коллизий slug.
 
 - **Состав** — `packages/icons/src/figma-families.json`, сверять с Figma по FNV имён страницы.
-- **Графика** — `npm run icons:figma` (нужен `FIGMA_TOKEN` со scope `file_content:read` в окружении, не в чате) пишет в `packages/icons/figma/<family>/` через SVGO с префиксами id. Иконку тяжелее 50 КБ экспорт не берёт и пишет в `overBudget` манифеста; сборка берёт для неё открытую поставку того же знака. UI-иконки собираются из Solar (`@iconify-json/solar`), не из экспорта.
+- **Графика** — `npm run icons:figma` (нужен `FIGMA_TOKEN` со scope `file_content:read` в окружении, не в чате) пишет в `packages/icons/figma/<family>/` через SVGO с префиксами id. Иконку тяжелее 50 КБ экспорт не берёт и пишет в `overBudget` манифеста; сборка берёт для неё открытую поставку того же знака. UI-иконки: состав и имена — `packages/icons/src/figma-ui-icons.json` со страницы `System`; геометрия — из Solar (`@iconify-json/solar`) по имени или по полю `solar`, а иконки без пары в Solar — из `packages/icons/figma/ui-icons/`. Новая или переименованная UI-иконка = правка `figma-ui-icons.json` (имя уникально, пара в Solar сверена по геометрии), `npm run build:icons`.
 - Переименование, удаление или перерисовка иконки в Figma = правка `figma-families.json`, перевыгрузка, `npm run build:icons`.
 
 ## Не делать

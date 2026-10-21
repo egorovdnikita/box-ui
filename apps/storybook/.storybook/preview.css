@@ -238,22 +238,6 @@ body {
   padding: 0;
 }
 
-/* A checkbox dressed as a 28px control, so it lines up with the selects. */
-.sb-check {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--sb-text);
-  font-size: 12px;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.sb-check input {
-  margin: 0;
-  accent-color: var(--sb-accent);
-}
-
 .sb-warning {
   color: var(--sb-warning);
 }

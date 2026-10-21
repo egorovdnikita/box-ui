@@ -144,7 +144,7 @@ N%». В CSS это выводится через `color-mix(in srgb, … N%, tr
 | Пакет                               | Содержимое                                                                                                      |
 | ----------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | [`@box-ui/tokens`](packages/tokens) | CSS-переменные и типизированный JS-API токенов, сгенерированные из дампов Figma                                 |
-| [`@box-ui/icons`](packages/icons)   | 1301 иконка Solar × 6 стилей, плюс семейства «Флаги / Платежи / Бренды»                                         |
+| [`@box-ui/icons`](packages/icons)   | 1253 UI-иконки × 6 стилей, плюс семейства «Флаги / Платежи / Бренды»                                            |
 | [`@box-ui/react`](packages/react)   | Button, Badge, Card, Input, Text, Stack — примитивы, доказывающие граф токенов: ни одного литерального значения |
 | [`tokens/figma`](tokens/figma)      | Дословные дампы переменных Figma и [инструкция по перевыгрузке](tokens/figma/README.md)                         |
 | [`apps/storybook`](apps/storybook)  | Сайт документации — см. ниже                                                                                    |
@@ -191,10 +191,11 @@ import { Icon } from '@box-ui/icons';
 ## Иконки
 
 В коллекции `Icon` в Figma одна переменная, `icon-style`, с шестью модами — это шесть
-вариантов `Style` у всех 1253 компонент-сетов UI Icons. Набор
+вариантов `Style` у всех 1253 иконок страницы `System`. Состав и имена берутся из Figma
+(`packages/icons/src/figma-ui-icons.json`), а геометрия — из набора
 [Solar](https://www.figma.com/community/file/1166831539721848736) авторства 480 Design
-(CC BY 4.0), поэтому геометрия берётся из канонической поставки Solar
-(`@iconify-json/solar`) и на сборке разрезается по стилям:
+(CC BY 4.0), на котором он нарисован: из канонической поставки `@iconify-json/solar`. Иконки,
+которых в Solar нет, берутся из экспорта Figma. На сборке всё разрезается по стилям:
 
 ```
 packages/icons/src/data/{bold,bold-duotone,broken,line-duotone,linear,outline}.json
@@ -249,7 +250,7 @@ npm run build:icons
 
 ```bash
 npm run build:tokens   # tokens/figma/*.txt -> packages/tokens/dist/
-npm run build:icons    # Solar + три семейства -> packages/icons/src/data/
+npm run build:icons    # UI Icons + три семейства -> packages/icons/src/data/
 npm run build:storybook
 ```
 

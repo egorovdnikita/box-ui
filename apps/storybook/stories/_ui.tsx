@@ -22,9 +22,7 @@ export { matches, counted, plural } from './_lib';
 /**
  * An icon belonging to the documentation UI rather than to the documentation.
  *
- * Pinned to Linear: chrome must not follow the reader's Icon style choice, and
- * Solar does not draw every icon in every style — `magnifer` has no Bold Duotone
- * or Line Duotone, so the search field lost its magnifier on those two.
+ * Pinned to Linear: chrome must not follow the reader's Icon style choice.
  */
 function ChromeIcon(props: IconProps) {
   return <Icon iconStyle="linear" {...props} />;
@@ -332,7 +330,7 @@ export function Search({
             pointerEvents: 'none',
           }}
         >
-          <ChromeIcon name="magnifer" size={14} />
+          <ChromeIcon name="magnifier" size={14} />
         </span>
         <input
           ref={input}
@@ -462,7 +460,7 @@ export function Counts({ children }: { children: ReactNode }) {
 export function Empty({ query, onClear }: { query: string; onClear: () => void }) {
   return (
     <div className="sb-empty">
-      <ChromeIcon name="magnifer" size={28} />
+      <ChromeIcon name="magnifier" size={28} />
       <div>{query ? `Ничего не найдено по запросу «${query}»` : 'Ничего не найдено с этими фильтрами'}</div>
       <button type="button" onClick={onClear} className="sb-control sb-button">
         <ChromeIcon name="restart" size={14} />

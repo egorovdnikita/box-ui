@@ -19,8 +19,9 @@
  * left out and listed under `overBudget` in the manifest; the build then falls
  * back to open-source artwork for it.
  *
- * The UI Icons set does not need this script — `npm run build:icons` generates
- * it from the canonical Solar distribution.
+ * The UI Icons set does not need a full export — `npm run build:icons` takes
+ * its geometry from the canonical Solar distribution and only the icons Solar
+ * lacks from `figma/ui-icons/`. Exporting it replaces Solar for every icon.
  */
 
 import { mkdir, rm, writeFile } from 'node:fs/promises';

@@ -21,19 +21,18 @@ const meta: Meta = {
 };
 export default meta;
 
-/** The catalogue's own category names stay as Solar spells them. */
+/** Category names stay as the Figma page spells them. */
 const ALL_CATEGORIES = 'All';
 
 interface GalleryArgs {
   query: string;
   category: string;
   size: IconSizeToken;
-  onlyAvailable: boolean;
   /** The icon open in the inspector — in the URL, so a link can point at one icon. */
   icon: string;
 }
 
-const DEFAULTS: GalleryArgs = { query: '', category: ALL_CATEGORIES, size: 'xs', onlyAvailable: false, icon: '' };
+const DEFAULTS: GalleryArgs = { query: '', category: ALL_CATEGORIES, size: 'xs', icon: '' };
 
 export const System: StoryObj<GalleryArgs> = {
   name: 'System',
@@ -42,7 +41,7 @@ export const System: StoryObj<GalleryArgs> = {
     const [, updateArgs] = useArgs<GalleryArgs>();
     // The style is the "Иконки" mode, so choosing it here switches it everywhere.
     const [globals, updateGlobals] = useGlobals();
-    const { query, category, size, onlyAvailable, icon: picked } = args;
+    const { query, category, size, icon: picked } = args;
     const set = (patch: Partial<GalleryArgs>) => updateArgs(patch);
     const style = (globals.iconStyle as IconStyle) ?? 'bold';
     const dirty = (Object.keys(DEFAULTS) as (keyof GalleryArgs)[]).some(
@@ -53,14 +52,11 @@ export const System: StoryObj<GalleryArgs> = {
       () =>
         catalog.icons.filter(
           (icon) =>
-            (category === ALL_CATEGORIES || icon.category === category) &&
-            matches(query, icon.name, icon.category) &&
-            (!onlyAvailable || icon.styles.includes(style)),
+            (category === ALL_CATEGORIES || icon.category === category) && matches(query, icon.name, icon.category),
         ),
-      [query, category, onlyAvailable, style],
+      [query, category],
     );
-    // Solar does not draw every icon in every style; the gaps are shown dimmed
-    // in a style that exists rather than silently dropped.
+    // An icon missing a style is shown dimmed in a style it has rather than dropped.
     const missing = filtered.filter((icon) => !icon.styles.includes(style)).length;
     const selected = catalog.icons.find((icon) => icon.name === picked);
 
@@ -92,14 +88,6 @@ export const System: StoryObj<GalleryArgs> = {
               onChange={(value) => set({ size: value })}
               options={ICON_SIZES.map((s) => ({ value: s, label: `${s} · ${ICON_SIZE_PX[s]}px` }))}
             />
-            <label className="sb-control sb-check">
-              <input
-                type="checkbox"
-                checked={onlyAvailable}
-                onChange={(e) => set({ onlyAvailable: e.target.checked })}
-              />
-              Только в этом стиле
-            </label>
             <Counts>
               <span className="sb-caption">
                 {counted(filtered.length, ['иконка', 'иконки', 'иконок'])}
@@ -165,7 +153,7 @@ export const System: StoryObj<GalleryArgs> = {
                     aria-checked={s === style}
                     disabled={!has}
                     className="sb-inspector__style"
-                    title={has ? ICON_STYLE_LABELS[s] : `${ICON_STYLE_LABELS[s]} · не нарисована в Solar`}
+                    title={has ? ICON_STYLE_LABELS[s] : `${ICON_STYLE_LABELS[s]} · не нарисована`}
                     onClick={() => updateGlobals({ iconStyle: s })}
                   >
                     {has ? <Icon name={selected.name} iconStyle={s} size={20} /> : '—'}
