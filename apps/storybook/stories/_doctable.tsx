@@ -486,49 +486,48 @@ const longest = <T,>(items: T[], text: (item: T) => string, count = SIZER_PICKS)
   [...items].sort((a, b) => text(b).length - text(a).length).slice(0, count);
 
 /**
- * An invisible first row holding the longest names, values and codes of the
- * whole collection — filtered out or not — so the `max-content` columns take
- * the collection's widths and keep them while the reader filters. Every mode
- * column gets the longest values of any mode, so they all come out equal.
+ * An invisible first row holding the longest names, values, codes and
+ * descriptions of every collection — so the `max-content` columns come out
+ * the same on every page and keep their width while the reader filters.
+ * Every mode column gets the longest values of any mode, so they are equal.
+ * Besides the longest overall, each collection's own longest values are in,
+ * since a short value with a preview can be wider than a long plain one.
  */
-function Sizer({
-  collectionId,
-  modes,
-  mixed,
-}: {
-  collectionId: string;
-  modes: TokenCollection['modes'];
-  mixed: boolean;
-}) {
-  const collection = collections[collectionId];
+function Sizer({ modes }: { modes: TokenCollection['modes'] }) {
   const { names, values, codes, descriptions } = useMemo(() => {
-    const named = groupVariables(collectionId, collection.variables).flatMap((g) =>
-      g.variables.map((v) => ({ v, name: nameIn(g, v) })),
-    );
-    const shown = collection.variables.flatMap((v) =>
-      collection.modes.map((m) => {
-        const value = v.values[m.slug];
-        const text = `${value?.alias ? aliasPath(value.alias) : (value?.value ?? '')} ${value?.opacity ?? ''}`;
-        return { v, mode: m.slug, value, text };
-      }),
-    );
-    const described = groupVariables(collectionId, collection.variables).flatMap((g) =>
-      g.description !== null ? [g.description] : g.variables.map((v) => v.description),
-    );
+    const ids = Object.keys(collections);
+    const groupsOf = ids.map((id) => groupVariables(id, collections[id].variables));
+    const named = groupsOf.flat().flatMap((g) => g.variables.map((v) => ({ v, name: nameIn(g, v) })));
+    const shownIn = (id: string) =>
+      collections[id].variables.flatMap((v) =>
+        collections[id].modes.map((m) => {
+          const value = v.values[m.slug];
+          const text = `${value?.alias ? aliasPath(value.alias) : (value?.value ?? '')} ${value?.opacity ?? ''}`;
+          return { v, mode: m.slug, value, text };
+        }),
+      );
+    const shown = ids.map(shownIn);
+    const described = groupsOf
+      .flat()
+      .flatMap((g) => (g.description !== null ? [g.description] : g.variables.map((v) => v.description)));
+    const all = ids.flatMap((id) => collections[id].variables);
     return {
       names: longest(named, (n) => n.name),
-      values: longest(shown, (x) => x.text),
-      codes: longest(collection.variables, (v) => v.cssVar),
+      values: [
+        ...new Set([...longest(shown.flat(), (x) => x.text), ...shown.flatMap((x) => longest(x, (y) => y.text, 2))]),
+      ],
+      codes: longest(all, (v) => v.cssVar),
       descriptions: longest(described, (d) => d),
     };
-  }, [collection, collectionId]);
+  }, []);
 
   return (
     <>
       <div className="sb-doc__sizer" aria-hidden="true">
         {names.map(({ v, name }) => (
           <div key={v.cssVar} className="sb-doc__cell sb-doc__name">
-            {mixed && <Icon name={KIND_ICON[kindOf(v)]} size={16} iconStyle="linear" />}
+            {/* Room for the kind icon, which a table shows when it mixes kinds. */}
+            <Icon name={KIND_ICON[kindOf(v)]} size={16} iconStyle="linear" />
             <span className="sb-doc__name-label">{name}</span>
           </div>
         ))}
@@ -590,10 +589,9 @@ export function DocTable({
   const mixed = useMemo(() => new Set(collection.variables.map(kindOf)).size > 1, [collection]);
 
   // Nothing is cut or wrapped, so every row is one height: each column is as
-  // wide as the longest entry in the whole collection (see Sizer), keeps that
-  // width while filtering, and every mode column is equally wide. A table
-  // wider than its canvas scrolls sideways as a whole; a narrower one gives
-  // the rest to the description.
+  // wide as the longest entry of any collection (see Sizer), so the grid is
+  // the same on every page and holds while filtering. A table wider than its
+  // canvas scrolls sideways as a whole.
   const columns = [
     'max-content',
     `repeat(${modes.length}, max-content)`,
@@ -614,7 +612,7 @@ export function DocTable({
   return (
     <div className="sb-doc__scroller" ref={scroller}>
       <div className="sb-doc" style={{ gridTemplateColumns: columns }} role="table">
-        <Sizer collectionId={collectionId} modes={modes} mixed={mixed} />
+        <Sizer modes={modes} />
         <div className="sb-doc__head sb-doc__head--name">Name</div>
         {modes.map((m) => (
           <div key={m.slug} className="sb-doc__head">
