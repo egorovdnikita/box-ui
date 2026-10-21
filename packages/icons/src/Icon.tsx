@@ -37,8 +37,10 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(function Icon(
       ref={ref}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      width={box}
-      height={box}
+      // A size token is a CSS variable, which SVG attributes do not accept: the
+      // size lives in `style`; a pixel size is mirrored into the attributes.
+      width={typeof size === 'number' ? size : undefined}
+      height={typeof size === 'number' ? size : undefined}
       role={title ? 'img' : undefined}
       aria-label={title}
       aria-hidden={title ? undefined : true}
@@ -47,7 +49,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(function Icon(
       data-icon-style={variant}
       // Marks geometry still standing in for a style that is loading.
       data-icon-pending={pending || undefined}
-      style={{ display: 'block', flex: 'none', color: 'inherit', ...style }}
+      style={{ display: 'block', flex: 'none', width: box, height: box, color: 'inherit', ...style }}
       // The bodies come from the generated data files, not from user input.
       dangerouslySetInnerHTML={{ __html: body ?? '' }}
       {...rest}

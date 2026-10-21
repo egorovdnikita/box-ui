@@ -481,7 +481,11 @@ button.sb-select svg {
 }
 
 .sb-doc {
+  /* Every row is one height, whatever it holds; what does not fit scrolls
+   * inside its cell instead of making the row taller. */
+  --sb-doc-row: 32px;
   display: grid;
+  grid-auto-rows: var(--sb-doc-row);
   gap: 1px;
   padding: 1px;
   border-radius: var(--sb-radius);
@@ -497,7 +501,6 @@ button.sb-select svg {
   display: flex;
   align-items: center;
   min-width: 0;
-  height: 32px;
   padding: 0 12px;
   background: var(--sb-bar-bg);
   color: var(--sb-text-muted);
@@ -515,7 +518,6 @@ button.sb-select svg {
   display: flex;
   gap: 4px;
   align-items: center;
-  height: 32px;
   margin: 0;
   padding: 0 12px 0 8px;
   border: 0;
@@ -570,8 +572,9 @@ button.sb-select svg {
   align-items: center;
   gap: 8px;
   min-width: 0;
-  min-height: 32px;
-  padding: 4px 12px;
+  padding: 0 12px;
+  overflow: auto hidden;
+  scrollbar-width: thin;
   box-sizing: border-box;
   background: var(--sb-raised-bg);
   color: var(--sb-text);
@@ -593,20 +596,51 @@ button.sb-select svg {
   color: var(--sb-text-muted);
 }
 
-/* Columns are fixed, so nothing is cut: a long name or alias path wraps after
- * a `/`, a long code after a `-` (see Breakable). */
+/* Columns and rows are fixed: a value that does not fit stays on one line
+ * and its cell scrolls sideways. */
 .sb-doc__name-label,
 .sb-doc__chip-label,
 .sb-doc__code-label {
-  min-width: 0;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
+}
+
+/* A cell's own scrollbar: thin, and only on hover so a table of long values
+ * does not turn into a table of scrollbars. The right edge fades instead, so
+ * a value that runs on reads as running on. */
+.sb-doc__cell {
+  scrollbar-color: transparent transparent;
+  mask-image: linear-gradient(to left, transparent, #000 12px);
+}
+
+.sb-doc__cell:hover {
+  scrollbar-color: var(--sb-scrollbar) transparent;
+}
+
+/* Names fit their column, and a mask would cut the pinned column's shadow. */
+.sb-doc__name {
+  mask-image: none;
+}
+
+/* Prose fades at the bottom instead, where it runs on. */
+.sb-doc__description--group {
+  mask-image: linear-gradient(to top, transparent, #000 12px);
 }
 
 .sb-doc__description {
   align-items: flex-start;
-  padding-block: 8px;
   color: var(--sb-text-muted);
   font-size: 12px;
+}
+
+/* A group's description spans its rows and scrolls down inside them. */
+.sb-doc__description--group {
+  padding-block: 8px;
+  overflow: hidden auto;
+}
+
+/* A row's own description stays on one line and scrolls along. */
+.sb-doc__description:not(.sb-doc__description--group) > span {
+  white-space: nowrap;
 }
 
 /* A row's own description sits on its row; a group's spans the group's rows. */
@@ -676,11 +710,10 @@ button.sb-select svg {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-width: 0;
-  max-width: 100%;
-  min-height: 24px;
-  padding: 4px 8px 4px 4px;
-  text-align: left;
+  /* Full width: when it does not fit, the cell scrolls. */
+  flex: none;
+  height: 24px;
+  padding: 0 8px 0 4px;
   border: 1px solid var(--sb-border);
   border-radius: var(--sb-radius);
   background: none;
@@ -743,8 +776,8 @@ button.sb-select svg {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-width: 0;
-  max-width: 100%;
+  /* Full width: when it does not fit, the cell scrolls. */
+  flex: none;
   padding: 0;
   border: 0;
   background: none;
@@ -923,6 +956,34 @@ button.sb-select svg {
 /* --- icon pages ------------------------------------------------------------ */
 
 /* One tile size on every icon page; the art box fits the largest size token. */
+/* Stand-in tiles while a family loads: the grid's shape, nothing to read. */
+.sb-icon-tile--skeleton {
+  cursor: default;
+}
+
+.sb-icon-tile--skeleton .sb-icon-tile__art,
+.sb-icon-tile--skeleton .sb-icon-tile__label {
+  border-radius: var(--sb-radius-inner);
+  background: var(--sb-hover);
+  animation: sb-pulse 1.2s ease-in-out infinite alternate;
+}
+
+.sb-icon-tile--skeleton .sb-icon-tile__art {
+  width: 24px;
+  height: 24px;
+}
+
+.sb-icon-tile--skeleton .sb-icon-tile__label {
+  width: 56%;
+  height: 12px;
+}
+
+@keyframes sb-pulse {
+  to {
+    opacity: 0.4;
+  }
+}
+
 .sb-icons {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
@@ -1064,11 +1125,6 @@ button.sb-select svg {
   justify-content: flex-end;
 }
 
-/* The open inspector never sits on the last row of icons. */
-body:has(.sb-inspector) #storybook-root {
-  padding-bottom: 160px;
-}
-
 /* A phone gets a sheet along the bottom edge: preview and name, then the
  * styles, then the actions across the full width. */
 @media (max-width: 640px) {
@@ -1111,7 +1167,8 @@ body:has(.sb-inspector) #storybook-root {
     justify-content: center;
   }
 
-  body:has(.sb-inspector) #storybook-root {
+  /* Room under the grid for the taller sheet. */
+  .sb-icons {
     padding-bottom: 260px;
   }
 }
@@ -1138,6 +1195,9 @@ body:has(.sb-inspector) #storybook-root {
   position: relative;
   display: flex;
   flex-direction: column;
+  /* A long line scrolls inside the block (pre) instead of running off the page. */
+  min-width: 0;
+  max-width: 100%;
   border: 1px solid var(--sb-border);
   border-radius: var(--sb-radius);
   background: var(--sb-raised-bg);
@@ -1271,6 +1331,35 @@ body:has(.sb-inspector) #storybook-root {
 .sb-modes__value.is-default {
   border-color: var(--sb-accent);
   color: var(--sb-accent);
+}
+
+/* A phone: links and notes stack (name, then text, arrow aside); the mode
+ * table keeps its columns and scrolls sideways. */
+@media (max-width: 640px) {
+  .sb-modes {
+    overflow-x: auto;
+  }
+
+  .sb-modes__row:not(.sb-modes__link, .sb-modes__note) {
+    min-width: 560px;
+  }
+
+  .sb-modes__link,
+  .sb-modes__note {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 12px;
+    padding-block: 8px;
+  }
+
+  .sb-modes__link > .sb-caption,
+  .sb-modes__note > .sb-caption {
+    grid-column: 1;
+  }
+
+  .sb-modes__arrow {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+  }
 }
 
 /* --- token index and cross-collection search ------------------------------ */
@@ -1433,12 +1522,8 @@ body:has(.sb-inspector) #storybook-root {
     height: 44px;
   }
 
-  .sb-doc__heading {
-    height: 44px;
-  }
-
-  .sb-doc__cell {
-    min-height: 44px;
+  .sb-doc {
+    --sb-doc-row: 44px;
   }
 
   .sb-doc__code {
@@ -1446,7 +1531,7 @@ body:has(.sb-inspector) #storybook-root {
   }
 
   .sb-doc__chip {
-    min-height: 32px;
+    height: 32px;
   }
 }
 
@@ -1526,6 +1611,11 @@ body:has(.sb-inspector) #storybook-root {
   .sb-doc__cell,
   .sb-doc__chevron {
     transition: none;
+  }
+
+  .sb-icon-tile--skeleton .sb-icon-tile__art,
+  .sb-icon-tile--skeleton .sb-icon-tile__label {
+    animation: none;
   }
 
   .sb-icon-tile:hover {

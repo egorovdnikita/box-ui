@@ -27,17 +27,17 @@ export const Docs: StoryObj = {
           items={[
             {
               story: 'tokens-primitives--color',
-              title: 'Токены · Primitives',
+              title: 'Токены ・ Primitives',
               text: 'Сырые значения: палитра и шкалы. Напрямую в компонентах не применяются.',
             },
             {
               story: 'tokens-brand--color',
-              title: 'Токены · Brand',
+              title: 'Токены ・ Brand',
               text: 'Характер бренда: акцентный цвет, скругление, гарнитура, стиль иконок.',
             },
             {
               story: 'tokens-system--themes',
-              title: 'Токены · System',
+              title: 'Токены ・ System',
               text: 'Семантика для компонентов: темы, адаптив, статусы, состояния контролов.',
             },
             {
@@ -51,20 +51,20 @@ export const Docs: StoryObj = {
 
       <Section title="Начало работы">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <CodeBlock
-            code={`npm i @box-ui/tokens @box-ui/icons @box-ui/react
-
-import '@box-ui/tokens/css';`}
-          />
+          <CodeBlock label="Терминал" code="npm i @box-ui/tokens @box-ui/icons @box-ui/react" />
+          <CodeBlock label="JS" code="import '@box-ui/tokens/css';" />
           <P>
             Моды выбираются атрибутами на <C>{'<html>'}</C> или любом элементе — тогда на нём нужны все атрибуты сразу.
             Выделено значение по умолчанию.
           </P>
           <ModeTable />
           <CodeBlock
-            code={`<html data-theme="dark" data-accent="bright" data-radius="high" data-device="mobile">
-
-.card {
+            label="HTML"
+            code={`<html data-theme="dark" data-accent="bright" data-radius="high" data-device="mobile">`}
+          />
+          <CodeBlock
+            label="CSS"
+            code={`.card {
   background: var(--surface-base-fill-raised);
   border-radius: var(--rounding-m);
 }`}

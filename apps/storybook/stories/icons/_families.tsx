@@ -16,7 +16,7 @@ import {
   type IconSizeToken,
 } from '@box-ui/icons';
 import { Counts, Empty, Page, ResetFilters, Search, Select, ShareLink, counted, matches } from '../_ui';
-import { IconGrid, IconTile, Inspector } from './_browser';
+import { IconGrid, IconGridSkeleton, IconTile, Inspector } from './_browser';
 
 interface FamilyArgs {
   query: string;
@@ -123,7 +123,7 @@ function Family({
       }
     >
       {!data ? (
-        <p className="sb-lead">Загружаем {TITLE[id].toLowerCase()}…</p>
+        <IconGridSkeleton label={`Загружаем ${TITLE[id].toLowerCase()}…`} />
       ) : items.length === 0 ? (
         <Empty query={query} onClear={() => set(defaults)} />
       ) : (

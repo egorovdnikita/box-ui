@@ -28,6 +28,11 @@ addons.setConfig({
   sidebar: {
     showRoots: true,
   },
+  // Zoom and remount are for building stories; a reader has the browser's own.
+  toolbar: {
+    zoom: { hidden: true },
+    remount: { hidden: true },
+  },
 });
 
 /*

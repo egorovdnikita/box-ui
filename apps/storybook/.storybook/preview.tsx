@@ -93,7 +93,6 @@ const preview: Preview = {
   decorators: [withBoxUiModes],
   parameters: {
     layout: 'fullscreen',
-    backgrounds: { disable: true },
     // Every story here is a documentation page, not a component with args —
     // the addon panel only ever said "this story has no controls".
     options: {

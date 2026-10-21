@@ -5,6 +5,12 @@ const config: StorybookConfig = {
   // llms.txt is served from the site root, the way vkui.io publishes theirs.
   staticDirs: ['../public'],
   addons: ['@storybook/addon-docs'],
+  // Tools for building stories, not for reading docs: they cluttered the toolbar.
+  features: {
+    backgrounds: false,
+    measure: false,
+    outline: false,
+  },
   framework: {
     name: '@storybook/react-vite',
     options: {},

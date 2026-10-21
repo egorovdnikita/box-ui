@@ -210,26 +210,6 @@ function Preview({ variable, kind, mode }: { variable: TokenVariable; kind: Kind
 
 // --- cells -------------------------------------------------------------------
 
-/** A path that may wrap after each `/` (or `-` in a code) instead of being cut. */
-function Breakable({ text, at = '/' }: { text: string; at?: string }) {
-  const parts = text.split(at);
-  return (
-    <>
-      {parts.map((part, i) => (
-        <Fragment key={i}>
-          {part}
-          {i < parts.length - 1 && (
-            <>
-              {at}
-              <wbr />
-            </>
-          )}
-        </Fragment>
-      ))}
-    </>
-  );
-}
-
 /** One mode of one variable, the way Figma's value column reads. */
 function ValueCell({
   variable,
@@ -267,9 +247,7 @@ function ValueCell({
           onClick={() => goToToken(alias)}
         >
           {swatch ?? <Icon name={KIND_ICON[kind]} size={14} iconStyle="linear" />}
-          <span className="sb-doc__chip-label">
-            <Breakable text={target} />
-          </span>
+          <span className="sb-doc__chip-label">{target}</span>
           {value.opacity !== undefined && <span className="sb-doc__opacity">{value.opacity} %</span>}
         </button>
         {after}
@@ -314,9 +292,7 @@ function CodeCell({ variable }: { variable: TokenVariable }) {
           : `Скопировать ${actual}`
       }
     >
-      <span className="sb-doc__code-label">
-        <Breakable text={actual} at="-" />
-      </span>
+      <span className="sb-doc__code-label">{actual}</span>
       {differs && <span className="sb-doc__flag">≠ Figma</span>}
     </button>
   );
@@ -538,9 +514,9 @@ export function DocTable({
   const mixed = useMemo(() => new Set(collection.variables.map(kindOf)).size > 1, [collection]);
 
   // One fixed grid on every page, whatever the rows hold, so columns neither
-  // differ between tables nor jump while filtering. Long names and alias
-  // paths wrap after a `/`, long codes after a `-`; the description takes
-  // what is left; a table wider than its canvas scrolls sideways.
+  // differ between tables nor jump while filtering, and rows keep one height.
+  // What does not fit scrolls inside its own cell; the description takes what
+  // is left; a table wider than its canvas scrolls sideways.
   const columns = [
     `${COLUMN.name}px`,
     `repeat(${modes.length}, ${COLUMN.mode}px)`,
@@ -580,8 +556,8 @@ export function DocTable({
           const shared = group.description !== null;
           const variant = textVariant(group.path);
           const rows = (variant ? 1 : 0) + group.variables.length;
-          // A shared description spans the group; either kind wraps in full and,
-          // if it needs more room than its rows, makes them taller.
+          // A shared description spans the group's rows and scrolls down inside
+          // them if it is longer; a row's own stays on one line and scrolls along.
           const description = (row: number, text: string) =>
             shared && rows > 1 ? (
               row === 0 && (
@@ -636,9 +612,7 @@ export function DocTable({
                           title={`${v.path} · ${KIND_LABEL[kind]}`}
                         >
                           {mixed && <Icon name={KIND_ICON[kind]} size={16} iconStyle="linear" />}
-                          <span className="sb-doc__name-label">
-                            <Breakable text={nameIn(group, v)} />
-                          </span>
+                          <span className="sb-doc__name-label">{nameIn(group, v)}</span>
                         </div>
                         {modes.map((m) => (
                           <div key={m.slug} className={`sb-doc__cell${flash}`}>

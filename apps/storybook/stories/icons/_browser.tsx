@@ -108,6 +108,20 @@ export function IconTile({
   );
 }
 
+/** The grid's shape while a family loads, with the loading said for screen readers. */
+export function IconGridSkeleton({ label }: { label: string }) {
+  return (
+    <div className="sb-icons" role="status" aria-label={label}>
+      {Array.from({ length: 24 }, (_, i) => (
+        <div key={i} className="sb-icon-tile sb-icon-tile--skeleton" aria-hidden="true">
+          <span className="sb-icon-tile__art" />
+          <span className="sb-icon-tile__label" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export interface CopyAction {
   label: string;
   value: string;
