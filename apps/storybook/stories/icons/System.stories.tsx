@@ -17,7 +17,7 @@ import { IconGrid, IconTile, Inspector } from './_browser';
 const meta: Meta = {
   // `id` is pinned so translating the title does not change the story URLs.
   id: 'icons-system',
-  title: 'Иконки/Системные',
+  title: 'Иконки/System',
 };
 export default meta;
 
@@ -36,7 +36,7 @@ interface GalleryArgs {
 const DEFAULTS: GalleryArgs = { query: '', category: ALL_CATEGORIES, size: 'xs', onlyAvailable: false, icon: '' };
 
 export const System: StoryObj<GalleryArgs> = {
-  name: 'Системные',
+  name: 'System',
   args: DEFAULTS,
   render: function Render(args) {
     const [, updateArgs] = useArgs<GalleryArgs>();
@@ -66,7 +66,7 @@ export const System: StoryObj<GalleryArgs> = {
 
     return (
       <Page
-        title="Системные иконки"
+        title="★ Icons ・ System"
         lead="Solar — это большая библиотека иконок, состоящая из пиктограмм, выполненных в современном стиле"
         toolbar={
           <>

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Storybook
+    url: https://egorovdnikita.github.io/box-ui/
+    about: Живая документация токенов и иконок

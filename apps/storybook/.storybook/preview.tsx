@@ -103,7 +103,7 @@ const preview: Preview = {
           'Токены',
           ['Primitives', 'Brand', 'System'],
           'Иконки',
-          ['Системные', 'Флаги', 'Платежи', 'Бренды'],
+          ['System', 'Flags', 'Payments', 'Brands'],
         ],
       },
     },

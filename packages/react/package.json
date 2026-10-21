@@ -2,6 +2,21 @@
   "name": "@box-ui/react",
   "version": "0.1.0",
   "description": "A small set of React primitives built entirely on Box UI tokens — used to show every Figma mode switching live.",
+  "keywords": [
+    "react",
+    "components",
+    "design-system",
+    "css-variables"
+  ],
+  "homepage": "https://egorovdnikita.github.io/box-ui/",
+  "bugs": {
+    "url": "https://github.com/egorovdnikita/box-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egorovdnikita/box-ui.git",
+    "directory": "packages/react"
+  },
   "license": "MIT",
   "type": "module",
   "main": "./src/index.ts",

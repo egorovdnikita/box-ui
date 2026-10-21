@@ -15,8 +15,13 @@
 CSS-переменные с теми же именами, что Code syntax в Figma (`var(--surface-base-fill-page)`). Алиас Figma превращается в переход `var()`,
 поэтому ничего не дублируется под каждую тему.
 
+Пакеты пока не опубликованы в npm: клонируйте репозиторий, `npm install` в нём собирает
+токены и иконки, а в свой проект пакет подключается по пути.
+
 ```
-npm i @box-ui/tokens
+git clone https://github.com/egorovdnikita/box-ui.git
+cd box-ui && npm install
+npm i ../box-ui/packages/tokens   # в своём проекте
 ```
 
 ```js
@@ -93,4 +98,4 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 - [Обзор](https://egorovdnikita.github.io/box-ui/?path=/story/introduction--docs): что такое Box UI, что в этом Storybook и как начать
 - [Токены](https://egorovdnikita.github.io/box-ui/?path=/story/tokens-primitives--color): все 15 коллекций Figma таблицами, как на страницах документации в Figma — значения по модам, code syntax, описания групп
 - [Иконки](https://egorovdnikita.github.io/box-ui/?path=/story/icons-system--system): системные иконки с поиском, стилями и размерами
-- [Флаги](https://egorovdnikita.github.io/box-ui/?path=/story/icons-flags--flags), [Платежи](https://egorovdnikita.github.io/box-ui/?path=/story/icons-payments--payments), [Бренды](https://egorovdnikita.github.io/box-ui/?path=/story/icons-brands--brands): семейства из Figma
+- [Flags](https://egorovdnikita.github.io/box-ui/?path=/story/icons-flags--flags), [Payments](https://egorovdnikita.github.io/box-ui/?path=/story/icons-payments--payments), [Brands](https://egorovdnikita.github.io/box-ui/?path=/story/icons-brands--brands): семейства из Figma

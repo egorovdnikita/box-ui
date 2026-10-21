@@ -66,8 +66,13 @@ export function render(model, catalog, families) {
 CSS-переменные с теми же именами, что Code syntax в Figma (\`var(--surface-base-fill-page)\`). Алиас Figma превращается в переход \`var()\`,
 поэтому ничего не дублируется под каждую тему.
 
+Пакеты пока не опубликованы в npm: клонируйте репозиторий, \`npm install\` в нём собирает
+токены и иконки, а в свой проект пакет подключается по пути.
+
 \`\`\`
-npm i @box-ui/tokens
+git clone https://github.com/egorovdnikita/box-ui.git
+cd box-ui && npm install
+npm i ../box-ui/packages/tokens   # в своём проекте
 \`\`\`
 
 \`\`\`js
@@ -120,7 +125,7 @@ ${rosters}
 - [Обзор](${SITE}/?path=/story/introduction--docs): что такое Box UI, что в этом Storybook и как начать
 - [Токены](${SITE}/?path=/story/tokens-primitives--color): все 15 коллекций Figma таблицами, как на страницах документации в Figma — значения по модам, code syntax, описания групп
 - [Иконки](${SITE}/?path=/story/icons-system--system): системные иконки с поиском, стилями и размерами
-- [Флаги](${SITE}/?path=/story/icons-flags--flags), [Платежи](${SITE}/?path=/story/icons-payments--payments), [Бренды](${SITE}/?path=/story/icons-brands--brands): семейства из Figma
+- [Flags](${SITE}/?path=/story/icons-flags--flags), [Payments](${SITE}/?path=/story/icons-payments--payments), [Brands](${SITE}/?path=/story/icons-brands--brands): семейства из Figma
 `;
 }
 

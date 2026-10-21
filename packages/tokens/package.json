@@ -2,6 +2,21 @@
   "name": "@box-ui/tokens",
   "version": "0.1.0",
   "description": "Дизайн-токены, сгенерированные из переменных Figma «Box UI» (примитивы, цветовые моды, светлая и тёмная темы, плотность скруглений, гарнитуры, desktop и mobile).",
+  "keywords": [
+    "design-tokens",
+    "css-variables",
+    "figma-variables",
+    "design-system"
+  ],
+  "homepage": "https://egorovdnikita.github.io/box-ui/",
+  "bugs": {
+    "url": "https://github.com/egorovdnikita/box-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egorovdnikita/box-ui.git",
+    "directory": "packages/tokens"
+  },
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",

@@ -51,7 +51,16 @@ export const Docs: StoryObj = {
 
       <Section title="Начало работы">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <CodeBlock label="Терминал" code="npm i @box-ui/tokens @box-ui/icons @box-ui/react" />
+          <CodeBlock
+            label="Терминал"
+            code={`git clone https://github.com/egorovdnikita/box-ui.git
+cd box-ui
+npm install`}
+          />
+          <P>
+            Пакеты пока не опубликованы в npm. <C>npm install</C> в клоне собирает токены и иконки; в свой проект пакет
+            подключается по пути: <C>npm i ../box-ui/packages/tokens</C>.
+          </P>
           <CodeBlock label="JS" code="import '@box-ui/tokens/css';" />
           <P>
             Моды выбираются атрибутами на <C>{'<html>'}</C> или любом элементе — тогда на нём нужны все атрибуты сразу.

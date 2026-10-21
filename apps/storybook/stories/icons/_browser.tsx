@@ -3,7 +3,7 @@ import { Icon } from '@box-ui/icons';
 import { useCopy } from '../_ui';
 
 /*
- * The parts every icon page shares, so Системные, Флаги, Платежи and Бренды
+ * The parts every icon page shares, so System, Flags, Payments and Brands
  * look and behave alike: one tile size, one grid, and an inspector that opens
  * on the icon you pick — a large preview and the things worth copying — rather
  * than a click that silently copies.

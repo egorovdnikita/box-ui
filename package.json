@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "description": "Box UI — дизайн-токены и иконки, сгенерированные из библиотек Figma Box UI, со Storybook, где каждую моду Figma можно переключить вживую.",
+  "homepage": "https://egorovdnikita.github.io/box-ui/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egorovdnikita/box-ui.git"
+  },
   "license": "MIT",
   "type": "module",
   "engines": {

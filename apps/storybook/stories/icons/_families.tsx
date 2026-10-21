@@ -34,8 +34,15 @@ const LEAD: Record<IconFamily, string> = {
   brands: 'Набор иконок популярных брендов и продуктов для использования в интерфейсе.',
 };
 
-/** Page titles, as in the sidebar. */
-const TITLE: Record<IconFamily, string> = { flags: 'Флаги', payments: 'Платежи', brands: 'Бренды' };
+/** Page titles: the Figma page under ★ ICONS, the way token pages carry their collection's name. */
+const TITLE: Record<IconFamily, string> = {
+  flags: '★ Icons ・ Flags',
+  payments: '★ Icons ・ Payments',
+  brands: '★ Icons ・ Brands',
+};
+
+/** What is loading, in the sentence that says so. */
+const LOADING: Record<IconFamily, string> = { flags: 'флаги', payments: 'платёжные знаки', brands: 'бренды' };
 
 const NOUN: Record<IconFamily, [string, string, string]> = {
   flags: ['флаг', 'флага', 'флагов'],
@@ -123,7 +130,7 @@ function Family({
       }
     >
       {!data ? (
-        <IconGridSkeleton label={`Загружаем ${TITLE[id].toLowerCase()}…`} />
+        <IconGridSkeleton label={`Загружаем ${LOADING[id]}…`} />
       ) : items.length === 0 ? (
         <Empty query={query} onClear={() => set(defaults)} />
       ) : (
