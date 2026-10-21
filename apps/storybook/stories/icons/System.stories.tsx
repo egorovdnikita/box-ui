@@ -129,7 +129,7 @@ export const System: StoryObj<GalleryArgs> = {
         {selected && (
           <Inspector
             title={selected.title}
-            meta={`${selected.category} · ${selected.styles.length} из 6 стилей`}
+            meta={selected.category}
             preview={
               <Icon
                 name={selected.name}
