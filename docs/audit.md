@@ -13,19 +13,20 @@
 
 ## Принятые решения
 
-| Решение                                                                                                                                                     | Дата  |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
-| Коллизия `--rounding-full` → примитив `--rounding-9999`, Responsive `--rounding-full`                                                                       | 19.10 |
-| Brand · Color без `control-*`: `on-solid-alpha/*`, группа `static/{fill\|content}/{default\|hover\|active}`                                                 | 20.10 |
-| `Hide from publishing` снят везде — файл не публикуется                                                                                                     | 20.10 |
-| Состояния только `default · hover · active · disabled` (`enabled` → `default`, 15 переменных)                                                               | 20.10 |
-| `heading/H1…H5` → `heading/h1…h5`                                                                                                                           | 20.10 |
-| Единый шаблон Android/iOS, выводится из Web                                                                                                                 | 20.10 |
-| System · Color `color/<тон>/500`: Web `-base` → `-500`                                                                                                      | 21.10 |
-| `interaction/disabled/*` получили скоупы (их использует код)                                                                                                | 21.10 |
-| Источник иконок — Foundation – Core; дубли Payments устранены (Fantom удалён; KaratGold Coin (KBC), Standard Tokenization Protocol (STP), Augur v2 (REPv2)) | 21.10 |
-| Графика Flags / Payments / Brands — экспорт Figma через SVGO; иконка тяжелее 50 КБ уходит на открытую поставку того же знака                                | 21.10 |
-| System · Color — фундамент под Brand, без переименования                                                                                                    | 19.10 |
+| Решение                                                                                                                                                                                                        | Дата  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Коллизия `--rounding-full` → примитив `--rounding-9999`, Responsive `--rounding-full`                                                                                                                          | 19.10 |
+| Brand · Color без `control-*`: `on-solid-alpha/*`, группа `static/{fill\|content}/{default\|hover\|active}`                                                                                                    | 20.10 |
+| `Hide from publishing` снят везде — файл не публикуется                                                                                                                                                        | 20.10 |
+| Состояния только `default · hover · active · disabled` (`enabled` → `default`, 15 переменных)                                                                                                                  | 20.10 |
+| `heading/H1…H5` → `heading/h1…h5`                                                                                                                                                                              | 20.10 |
+| Единый шаблон Android/iOS, выводится из Web                                                                                                                                                                    | 20.10 |
+| System · Color `color/<тон>/500`: Web `-base` → `-500`                                                                                                                                                         | 21.10 |
+| `interaction/disabled/*` получили скоупы (их использует код)                                                                                                                                                   | 21.10 |
+| Источник иконок — Foundation – Core; дубли Payments устранены (Fantom удалён; KaratGold Coin (KBC), Standard Tokenization Protocol (STP), Augur v2 (REPv2))                                                    | 21.10 |
+| Графика Flags / Payments / Brands — экспорт Figma через SVGO; иконка тяжелее 50 КБ уходит на открытую поставку того же знака                                                                                   | 21.10 |
+| Имена иконок: Flags `Cote d'Ivoire`, `Djibouti`; у Mali и Solomon Islands свойство `Style`, как у остальных; Payments — формат `<Имя> (<ТИКЕР>)`, тикеры в верхнем регистре (247 имён), у всех знаков описания | 22.10 |
+| System · Color — фундамент под Brand, без переименования                                                                                                                                                       | 19.10 |
 
 ## Отклонено или оставлено владельцем
 

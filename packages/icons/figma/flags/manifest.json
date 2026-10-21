@@ -781,23 +781,23 @@
       "figmaId": "6570:44354"
     },
     {
-      "slug": "cote-d-lvoire--circle",
-      "name": "Cote d'lvoire / Circle",
-      "base": "Cote d'lvoire",
+      "slug": "cote-d-ivoire--circle",
+      "name": "Cote d'Ivoire / Circle",
+      "base": "Cote d'Ivoire",
       "variant": "Circle",
       "figmaId": "6570:44361"
     },
     {
-      "slug": "cote-d-lvoire--rounded",
-      "name": "Cote d'lvoire / Rounded",
-      "base": "Cote d'lvoire",
+      "slug": "cote-d-ivoire--rounded",
+      "name": "Cote d'Ivoire / Rounded",
+      "base": "Cote d'Ivoire",
       "variant": "Rounded",
       "figmaId": "6570:44367"
     },
     {
-      "slug": "cote-d-lvoire--shape",
-      "name": "Cote d'lvoire / Shape",
-      "base": "Cote d'lvoire",
+      "slug": "cote-d-ivoire--shape",
+      "name": "Cote d'Ivoire / Shape",
+      "base": "Cote d'Ivoire",
       "variant": "Shape",
       "figmaId": "6570:44373"
     },
@@ -907,23 +907,23 @@
       "figmaId": "6570:44636"
     },
     {
-      "slug": "dijbouti--circle",
-      "name": "Dijbouti / Circle",
-      "base": "Dijbouti",
+      "slug": "djibouti--circle",
+      "name": "Djibouti / Circle",
+      "base": "Djibouti",
       "variant": "Circle",
       "figmaId": "6570:44643"
     },
     {
-      "slug": "dijbouti--rounded",
-      "name": "Dijbouti / Rounded",
-      "base": "Dijbouti",
+      "slug": "djibouti--rounded",
+      "name": "Djibouti / Rounded",
+      "base": "Djibouti",
       "variant": "Rounded",
       "figmaId": "6570:44650"
     },
     {
-      "slug": "dijbouti--shape",
-      "name": "Dijbouti / Shape",
-      "base": "Dijbouti",
+      "slug": "djibouti--shape",
+      "name": "Djibouti / Shape",
+      "base": "Djibouti",
       "variant": "Shape",
       "figmaId": "6570:44658"
     },

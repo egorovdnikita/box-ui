@@ -47,6 +47,9 @@ function applyChrome(mode: string) {
   document.documentElement.style.colorScheme = theme.base;
 }
 
+// The docs are in Russian; without this screen readers read them as English.
+document.documentElement.lang = 'ru';
+
 // Painted once at boot, before the first story decides the mode.
 applyChrome(INITIAL_MODES.theme);
 

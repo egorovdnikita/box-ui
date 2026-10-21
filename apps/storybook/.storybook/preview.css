@@ -11,6 +11,9 @@ body,
 }
 
 html {
+  /* Warnings: the light amber reads on a dark page only (2.3:1 on white), so
+   * the light theme gets a darker one — 5.9:1 vs 6.9:1 in the dark. */
+  --sb-warning: light-dark(#8a5a00, #e69d00);
   background: var(--sb-content-bg);
   scroll-behavior: smooth;
   /* Room for the scrollbar even on a short page, so filtering never shifts the columns. */
@@ -252,7 +255,7 @@ body {
 }
 
 .sb-warning {
-  color: #e69d00;
+  color: var(--sb-warning);
 }
 
 /* Short exclusive (or toggled) options in one 28px control. */
@@ -801,8 +804,8 @@ button.sb-select svg {
   flex: none;
   padding: 1px 8px;
   border-radius: var(--sb-radius-inner);
-  background: color-mix(in srgb, #e69d00 20%, transparent);
-  color: #e69d00;
+  background: color-mix(in srgb, var(--sb-warning) 16%, transparent);
+  color: var(--sb-warning);
   font-family: var(--sb-font);
   font-size: 11px;
   white-space: nowrap;
@@ -1530,7 +1533,15 @@ button.sb-select svg {
   }
 
   .sb-doc__chip {
+    position: relative;
     height: 32px;
+  }
+
+  /* A 44px tap target around the chip, without drawing it any taller. */
+  .sb-doc__chip::after {
+    content: '';
+    position: absolute;
+    inset: -6px -4px;
   }
 }
 
