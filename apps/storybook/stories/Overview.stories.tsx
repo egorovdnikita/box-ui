@@ -50,7 +50,7 @@ export const Docs: StoryObj = {
       </Section>
 
       <Section title="Начало работы">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <CodeBlock
             code={`npm i @box-ui/tokens @box-ui/icons @box-ui/react
 

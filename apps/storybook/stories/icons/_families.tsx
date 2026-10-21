@@ -116,7 +116,7 @@ function Family({
                 </span>
               )}
             </span>
-            {dirty && <ResetFilters onReset={() => set({ ...defaults, icon: picked })} />}
+            {dirty && items.length > 0 && <ResetFilters onReset={() => set({ ...defaults, icon: picked })} />}
             <ShareLink />
           </Counts>
         </>

@@ -105,7 +105,7 @@ export const System: StoryObj<GalleryArgs> = {
                 {counted(filtered.length, ['иконка', 'иконки', 'иконок'])}
                 {missing > 0 && <span className="sb-warning"> · {missing} не нарисованы в этом стиле</span>}
               </span>
-              {dirty && <ResetFilters onReset={() => set({ ...DEFAULTS, icon: picked })} />}
+              {dirty && filtered.length > 0 && <ResetFilters onReset={() => set({ ...DEFAULTS, icon: picked })} />}
               <ShareLink />
             </Counts>
           </>

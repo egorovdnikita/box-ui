@@ -91,6 +91,9 @@ export function Page({
 
   useEffect(() => () => (timer.current ? clearTimeout(timer.current) : undefined), []);
 
+  // On a phone the filters fold behind one button; search and counts stay out.
+  const [filtersOpen, setFiltersOpen] = useState(false);
+
   // Sticky things below the toolbar (table headers, the outline) start where it ends.
   const bar = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -117,7 +120,7 @@ export function Page({
           style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: 6,
+            gap: 8,
             paddingBottom: toolbar ? 16 : 28,
           }}
         >
@@ -126,8 +129,17 @@ export function Page({
         </header>
 
         {toolbar && (
-          <div className="sb-toolbar" ref={bar}>
+          <div className="sb-toolbar" ref={bar} data-open={filtersOpen || undefined}>
             {toolbar}
+            <button
+              type="button"
+              className="sb-control sb-button sb-toolbar__toggle"
+              aria-expanded={filtersOpen}
+              onClick={() => setFiltersOpen(!filtersOpen)}
+            >
+              <ChromeIcon name="tuning-2" size={14} />
+              Фильтры
+            </button>
           </div>
         )}
 
@@ -153,7 +165,7 @@ export function Section({
   children: ReactNode;
 }) {
   return (
-    <section id={id} style={{ display: 'flex', flexDirection: 'column', gap: 10, scrollMarginTop: 72 }}>
+    <section id={id} style={{ display: 'flex', flexDirection: 'column', gap: 12, scrollMarginTop: 72 }}>
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
         <h2 className="sb-heading">{title}</h2>
         {aside}
@@ -309,8 +321,8 @@ export function Search({
   }, [onChange]);
 
   return (
-    <label aria-label={label} style={{ display: 'flex' }}>
-      <div style={{ position: 'relative', display: 'flex', alignItems: 'center', width: 220 }}>
+    <label aria-label={label} className="sb-search" style={{ display: 'flex' }}>
+      <div className="sb-search__box">
         <span
           style={{
             position: 'absolute',
@@ -329,7 +341,7 @@ export function Search({
           value={value}
           placeholder={placeholder}
           onChange={(e) => onChange(e.target.value)}
-          style={{ width: '100%', paddingLeft: 28, paddingRight: value ? 8 : 26 }}
+          style={{ width: '100%', paddingLeft: 28, paddingRight: value ? 8 : 28 }}
         />
         {!value && (
           <kbd
@@ -337,10 +349,10 @@ export function Search({
             style={{
               position: 'absolute',
               right: 6,
-              padding: '1px 5px',
+              padding: '1px 4px',
               border: '1px solid var(--sb-border)',
               borderRadius: 'var(--sb-radius-inner)',
-              fontSize: 10,
+              fontSize: 11,
               pointerEvents: 'none',
             }}
           >
@@ -443,17 +455,17 @@ export function Segmented<T extends string>({
 
 /** Right-aligned group of counts inside a toolbar. */
 export function Counts({ children }: { children: ReactNode }) {
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8, height: 28, marginLeft: 'auto' }}>{children}</div>
-  );
+  return <div className="sb-counts">{children}</div>;
 }
 
+/** Nothing matched: what was asked for, and the one way back. */
 export function Empty({ query, onClear }: { query: string; onClear: () => void }) {
   return (
     <div className="sb-empty">
       <ChromeIcon name="magnifer" size={28} />
       <div>{query ? `Ничего не найдено по запросу «${query}»` : 'Ничего не найдено с этими фильтрами'}</div>
-      <button type="button" onClick={onClear} className="sb-link">
+      <button type="button" onClick={onClear} className="sb-control sb-button">
+        <ChromeIcon name="restart" size={14} />
         Сбросить фильтры
       </button>
     </div>

@@ -280,7 +280,8 @@ function ValueCell({
   // Literal colour: swatch, hex, and the opacity when there is one.
   if (kind === 'color') {
     const { hex, opacity } = splitHex(String(value.value));
-    const shown = value.opacity ?? opacity;
+    // The last step of an alpha scale is stored opaque; it still reads as a step.
+    const shown = value.opacity ?? opacity ?? (/\/alpha\//.test(variable.path) ? 100 : null);
     return (
       <span className="sb-doc__literal">
         {swatch}
@@ -532,6 +533,9 @@ export function DocTable({
   const collection = collections[collectionId];
   const multi = collection.modes.length > 1;
   const scopeProp = SCOPE_PROP[collectionId];
+  // A kind icon on every row says nothing when every row is the same kind.
+  // Decided by the whole collection, so filtering never makes it come and go.
+  const mixed = useMemo(() => new Set(collection.variables.map(kindOf)).size > 1, [collection]);
 
   // One fixed grid on every page, whatever the rows hold, so columns neither
   // differ between tables nor jump while filtering. Long names and alias
@@ -631,7 +635,7 @@ export function DocTable({
                           className={`sb-doc__cell sb-doc__name${flash}`}
                           title={`${v.path} · ${KIND_LABEL[kind]}`}
                         >
-                          <Icon name={KIND_ICON[kind]} size={16} iconStyle="linear" />
+                          {mixed && <Icon name={KIND_ICON[kind]} size={16} iconStyle="linear" />}
                           <span className="sb-doc__name-label">
                             <Breakable text={nameIn(group, v)} />
                           </span>
@@ -945,11 +949,7 @@ export function TokenPage({
       lead={lead}
       toolbar={
         <>
-          <Search
-            value={query}
-            onChange={(value) => onFilters({ query: value })}
-            placeholder="Имя, var(--…) или описание"
-          />
+          <Search value={query} onChange={(value) => onFilters({ query: value })} placeholder="Имя или var(--…)" />
           {sections.length > 1 && (
             <Select
               label="Раздел"
@@ -982,14 +982,14 @@ export function TokenPage({
           )}
           {navigable && !outline && (
             <Select
-              label="Группа"
+              label="Перейти"
               value=""
               onChange={(value) => {
                 const group = groups.find((g) => groupId(g.path) === value);
                 if (group) reveal(group);
               }}
               options={[
-                { value: '', label: 'перейти…' },
+                { value: '', label: 'к группе…' },
                 ...groups.map((g) => ({ value: groupId(g.path), label: g.path.join(' / ') })),
               ]}
             />
@@ -1006,7 +1006,8 @@ export function TokenPage({
                 title={allCollapsed ? 'Развернуть все группы' : 'Свернуть все группы'}
               />
             )}
-            {filtered && (
+            {/* With nothing found, the empty state carries the one reset. */}
+            {filtered && total > 0 && (
               <ResetFilters
                 onReset={() => {
                   onFilters({ query: '', section: '', kind: '' });
