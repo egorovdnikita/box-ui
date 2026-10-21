@@ -267,7 +267,9 @@ function ValueCell({
           onClick={() => goToToken(alias)}
         >
           {swatch ?? <Icon name={KIND_ICON[kind]} size={14} iconStyle="linear" />}
-          <span className="sb-doc__chip-label">{target}</span>
+          <span className="sb-doc__chip-label">
+            <Breakable text={target} />
+          </span>
           {value.opacity !== undefined && <span className="sb-doc__opacity">{value.opacity} %</span>}
         </button>
         {after}
@@ -499,6 +501,15 @@ function useSideScroll(layout: string) {
   return setNode;
 }
 
+/**
+ * Column widths shared by every token table, in px — sized so a two-mode table
+ * (Theme) still fits a laptop canvas beside the sidebar.
+ */
+const COLUMN = { name: 160, mode: 200, code: 300, description: 200 };
+
+/** The narrowest canvas a table with this many mode columns fits without scrolling. */
+const tableWidth = (modes: number) => COLUMN.name + modes * COLUMN.mode + COLUMN.code + COLUMN.description;
+
 export function DocTable({
   collectionId,
   groups,
@@ -522,15 +533,17 @@ export function DocTable({
   const multi = collection.modes.length > 1;
   const scopeProp = SCOPE_PROP[collectionId];
 
-  // Nothing is cut: values keep their full width, a long name wraps after a
-  // `/` and a long code after a `-` only when the code column is short of room,
-  // and a table still wider than its canvas scrolls sideways instead.
+  // One fixed grid on every page, whatever the rows hold, so columns neither
+  // differ between tables nor jump while filtering. Long names and alias
+  // paths wrap after a `/`, long codes after a `-`; the description takes
+  // what is left; a table wider than its canvas scrolls sideways.
   const columns = [
-    'max-content',
-    `repeat(${modes.length}, max-content)`,
-    'minmax(240px, max-content)',
-    // Fixed while the table scrolls (preview.css), or one line of prose would set its width.
-    'var(--sb-doc-description, minmax(180px, 1fr))',
+    `${COLUMN.name}px`,
+    `repeat(${modes.length}, ${COLUMN.mode}px)`,
+    `${COLUMN.code}px`,
+    // Pinned to its minimum while the table scrolls (preview.css), or one line
+    // of prose would set its width.
+    `var(--sb-doc-description, minmax(${COLUMN.description}px, 1fr))`,
   ].join(' ');
   const scroller = useSideScroll(modes.map((m) => m.slug).join());
 
@@ -922,7 +935,7 @@ export function TokenPage({
     return () => observer.disconnect();
   }, []);
   // Widths at which nothing in the table needs cutting, not its minimums.
-  const tableComfort = 160 + modes.length * 230 + 300 + 220;
+  const tableComfort = tableWidth(modes.length);
   const navigable = groups.length > 3;
   const outline = navigable && width >= tableComfort + OUTLINE_WIDTH + 24;
 

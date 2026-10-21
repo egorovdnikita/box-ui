@@ -13,6 +13,8 @@ body,
 html {
   background: var(--sb-content-bg);
   scroll-behavior: smooth;
+  /* Room for the scrollbar even on a short page, so filtering never shifts the columns. */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -450,7 +452,8 @@ button.sb-select svg {
 
 /* As wide as its columns, so the pinned name column has room to stick in. */
 .sb-doc__scroller[data-overflow] .sb-doc {
-  --sb-doc-description: 220px;
+  /* COLUMN.description in _doctable.tsx. */
+  --sb-doc-description: 200px;
   width: max-content;
   min-width: 100%;
 }
@@ -590,19 +593,13 @@ button.sb-select svg {
   color: var(--sb-text-muted);
 }
 
-/* Nothing is cut: values keep one line and their columns grow to fit them; a
- * long name wraps after a `/`, a long code after a `-` (see Breakable). */
-.sb-doc__name-label {
-  max-width: 200px;
-}
-
-.sb-doc__chip-label {
-  white-space: nowrap;
-}
-
-/* A table that scrolls anyway has no reason to break its codes. */
-.sb-doc__scroller[data-overflow] .sb-doc__code-label {
-  white-space: nowrap;
+/* Columns are fixed, so nothing is cut: a long name or alias path wraps after
+ * a `/`, a long code after a `-` (see Breakable). */
+.sb-doc__name-label,
+.sb-doc__chip-label,
+.sb-doc__code-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .sb-doc__description {
@@ -679,8 +676,9 @@ button.sb-select svg {
   gap: 6px;
   min-width: 0;
   max-width: 100%;
-  height: 24px;
-  padding: 0 6px 0 4px;
+  min-height: 24px;
+  padding: 3px 6px 3px 4px;
+  text-align: left;
   border: 1px solid var(--sb-border);
   border-radius: var(--sb-radius);
   background: none;
@@ -1400,7 +1398,7 @@ button.sb-select svg {
   }
 
   .sb-doc__chip {
-    height: 32px;
+    min-height: 32px;
   }
 }
 
