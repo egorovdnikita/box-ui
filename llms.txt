@@ -1,0 +1,101 @@
+# Box UI
+
+Дизайн-токены и иконки, сгенерированные из файла Figma «Foundation – Core». Каждая
+мода переменных Figma — тема, акцент, плотность скруглений, гарнитура, устройство,
+статус, вид контрола и его состояние — это переключатель на HTML-атрибуте, под которым
+заново разрешается вся цепочка алиасов.
+
+- Документация: https://egorovdnikita.github.io/box-ui
+- Исходники: https://github.com/egorovdnikita/box-ui
+- Лицензии: MIT (код), CC BY 4.0 (иконки Solar, © 480 Design)
+
+## Токены
+
+Примитивных значений: 749. Семантических токенов: 369. Выводятся как
+CSS-переменные с теми же именами, что Code syntax в Figma (`var(--surface-base-fill-page)`). Алиас Figma превращается в переход `var()`,
+поэтому ничего не дублируется под каждую тему.
+
+Пакеты пока не опубликованы в npm: клонируйте репозиторий, `npm install` в нём собирает
+токены и иконки, а в свой проект пакет подключается по пути.
+
+```
+git clone https://github.com/egorovdnikita/box-ui.git
+cd box-ui && npm install
+npm i ../box-ui/packages/tokens   # в своём проекте
+```
+
+```js
+import '@box-ui/tokens/css'; // примитивы + блоки всех мод
+import { model, attributes, defaults } from '@box-ui/tokens';
+```
+
+### Переключатели
+
+- `data-accent`: deep | bright | monochrome (по умолчанию `deep`) — коллекция Figma «☯︎ Brand ・ Color»
+- `data-radius`: low | medium | high (по умолчанию `low`) — коллекция Figma «☯︎ Brand ・ Rounding»
+- `data-font`: inter | inter-display | inter-tight | inter-variable (по умолчанию `inter`) — коллекция Figma «☯︎ Brand ・ Typography»
+- `data-icon-style`: bold | bold-duotone | broken | line-duotone | linear | outline (по умолчанию `bold`) — коллекция Figma «☯︎ Brand ・ Icon»
+- `data-status`: positive | warning | negative | information (по умолчанию `positive`) — коллекция Figma «◑ System ・ Status»
+- `data-theme`: light | dark (по умолчанию `light`) — коллекция Figma «◑ System ・ Theme»
+- `data-device`: desktop | mobile (по умолчанию `desktop`) — коллекция Figma «◑ System ・ Responsive»
+- `data-appearance`: solid | soft | outline (по умолчанию `solid`) — коллекция Figma «◑ System ・ Controls ・ Appearance»
+- `data-state`: default | hover | active | disabled (по умолчанию `default`) — коллекция Figma «◑ System ・ Controls ・ State»
+
+Поставьте все 9 на один элемент, чтобы разрешить тему локально: кастомное
+свойство подставляется там, где объявлено, поэтому переопределение одного атрибута
+глубже по дереву не дотянется до токена, который предок уже разрешил.
+
+Состояния контролов не нужно переключать вручную: `@box-ui/tokens/css/controls.css`
+отображает моды коллекции «Controls · State» на `:hover`, `:active` и `:disabled`
+для любого элемента с атрибутом `data-box-control`.
+
+Прозрачные ступени Figma хранит как «эта шкала на N%»; в CSS они выводятся через
+`color-mix(in srgb, … N%, transparent)`.
+
+### Коллекции
+
+- `prim-color` — переменных: 585, мод: 1, из «◉ Primitives ・ Color»
+- `prim-spacing` — переменных: 29, мод: 1, из «◉ Primitives ・ Spacing»
+- `prim-rounding` — переменных: 31, мод: 1, из «◉ Primitives ・ Rounding»
+- `prim-size` — переменных: 29, мод: 1, из «◉ Primitives ・ Size»
+- `prim-type` — переменных: 75, мод: 1, из «◉ Primitives ・ Typography»
+- `sys-color` — переменных: 76, мод: 1, из «◑ System ・ Color»
+- `brand-color` — переменных: 47, мод: 3, из «☯︎ Brand ・ Color»
+- `brand-rounding` — переменных: 11, мод: 3, из «☯︎ Brand ・ Rounding»
+- `brand-type` — переменных: 2, мод: 4, из «☯︎ Brand ・ Typography»
+- `brand-icon` — переменных: 1, мод: 6, из «☯︎ Brand ・ Icon»
+- `sys-status` — переменных: 11, мод: 4, из «◑ System ・ Status»
+- `sys-theme` — переменных: 96, мод: 2, из «◑ System ・ Theme»
+- `sys-responsive` — переменных: 73, мод: 2, из «◑ System ・ Responsive»
+- `sys-appearance` — переменных: 36, мод: 3, из «◑ System ・ Controls ・ Appearance»
+- `sys-state` — переменных: 16, мод: 4, из «◑ System ・ Controls ・ State»
+
+## Иконки
+
+Иконок: 1253 в 37 категориях. Стилей: 6
+(Bold, Bold Duotone, Broken, Line Duotone, Linear, Outline). Все 24×24, красятся `currentColor`,
+размеры берутся из токенов `size/base/*`.
+
+```jsx
+import { Icon, IconStyleProvider } from '@box-ui/icons';
+
+<IconStyleProvider style="bold-duotone">
+  <Icon name="home-smile" size="l" title="Home" />
+</IconStyleProvider>
+```
+
+Не каждая иконка нарисована во всех стилях — доступные перечислены в
+`catalog.icons[].styles`.
+
+### Остальные семейства
+
+- `flags` — записей: 197 со страницы Figma «Flags», из них с графикой: 197, из Figma: 179
+- `payments` — записей: 676 со страницы Figma «Payments», из них с графикой: 676, из Figma: 675
+- `brands` — записей: 24 со страницы Figma «Brands», из них с графикой: 24, из Figma: 24
+
+## Страницы
+
+- [Обзор](https://egorovdnikita.github.io/box-ui/?path=/story/introduction--docs): что такое Box UI, что в этом Storybook и как начать
+- [Токены](https://egorovdnikita.github.io/box-ui/?path=/story/tokens-primitives--color): все 15 коллекций Figma таблицами, как на страницах документации в Figma — значения по модам, code syntax, описания групп
+- [Иконки](https://egorovdnikita.github.io/box-ui/?path=/story/icons-system--system): системные иконки с поиском, стилями и размерами
+- [Flags](https://egorovdnikita.github.io/box-ui/?path=/story/icons-flags--flags), [Payments](https://egorovdnikita.github.io/box-ui/?path=/story/icons-payments--payments), [Brands](https://egorovdnikita.github.io/box-ui/?path=/story/icons-brands--brands): семейства из Figma
