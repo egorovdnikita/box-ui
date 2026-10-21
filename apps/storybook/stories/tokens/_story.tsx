@@ -1,4 +1,3 @@
-import type { ReactNode } from 'react';
 import type { StoryObj } from '@storybook/react-vite';
 import { useArgs } from 'storybook/preview-api';
 import { TokenPage, collections, type TokenFilters } from '../_doctable';
@@ -11,7 +10,7 @@ type Story = StoryObj<TokenFilters>;
  * page's side panel in Figma, so the two read the same. Filters are args, so
  * they land in the URL and "Ссылка" shares the exact view.
  */
-export function tokenStory(collectionId: string, name: string, lead: string, extra?: ReactNode): Story {
+export function tokenStory(collectionId: string, name: string, lead: string): Story {
   const collection = collections[collectionId];
   return {
     name,
@@ -31,9 +30,7 @@ export function tokenStory(collectionId: string, name: string, lead: string, ext
           globals={globals as unknown as ModeGlobals}
           filters={args}
           onFilters={(next) => updateArgs(next)}
-        >
-          {extra}
-        </TokenPage>
+        />
       );
     },
   };

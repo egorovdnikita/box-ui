@@ -1,5 +1,4 @@
 import type { Meta } from '@storybook/react-vite';
-import { Notes } from '../_docs';
 import { tokenStory } from './_story';
 
 // `id` is pinned so translating the title does not change the story URLs.
@@ -36,20 +35,6 @@ export const State = tokenStory(
 export const Responsive = tokenStory(
   'sys-responsive',
   'Responsive',
-  // No page card in Figma — its four section cards instead, verbatim.
+  // No page card in Figma, so no lead.
   '',
-  <Notes
-    rows={[
-      [
-        'typography',
-        'Метрики шрифта (размер, высота строки, межбуквенный интервал) для всех уровней текста, адаптирующиеся между Desktop и Mobile.',
-      ],
-      [
-        'spacing',
-        'Отступы и интервалы для построения сеток и компоновки элементов, масштабируемые под Desktop и Mobile.',
-      ],
-      ['size', 'Размеры элементов интерфейса (иконки, контролы, контейнеры), адаптирующиеся между Desktop и Mobile.'],
-      ['rounding', 'Радиусы скругления углов для всех компонентов, адаптирующиеся между Desktop и Mobile.'],
-    ]}
-  />,
 );

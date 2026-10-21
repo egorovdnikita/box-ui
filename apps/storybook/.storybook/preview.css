@@ -1314,10 +1314,6 @@ button.sb-select svg {
   color: var(--sb-text-muted);
 }
 
-.sb-modes__note {
-  grid-template-columns: minmax(130px, 0.3fr) minmax(0, 1.7fr);
-}
-
 .sb-modes__values {
   display: flex;
   flex-wrap: wrap;
@@ -1338,26 +1334,24 @@ button.sb-select svg {
   color: var(--sb-accent);
 }
 
-/* A phone: links and notes stack (name, then text, arrow aside); the mode
+/* A phone: links stack (name, then text, arrow aside); the mode
  * table keeps its columns and scrolls sideways. */
 @media (max-width: 640px) {
   .sb-modes {
     overflow-x: auto;
   }
 
-  .sb-modes__row:not(.sb-modes__link, .sb-modes__note) {
+  .sb-modes__row:not(.sb-modes__link) {
     min-width: 560px;
   }
 
-  .sb-modes__link,
-  .sb-modes__note {
+  .sb-modes__link {
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 4px 12px;
     padding-block: 8px;
   }
 
-  .sb-modes__link > .sb-caption,
-  .sb-modes__note > .sb-caption {
+  .sb-modes__link > .sb-caption {
     grid-column: 1;
   }
 

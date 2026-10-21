@@ -654,8 +654,8 @@ function fitColumns(natural: number[], room: number): number[] {
 /**
  * Measures each column's natural width off the Sizer row and lays the
  * columns out to fit the table's canvas (see fitColumns). When everything
- * fits, the description takes the room left over. Re-runs when the canvas
- * resizes or the set of mode columns changes.
+ * fits, the room left over is shared evenly. Re-runs when the canvas resizes
+ * or the set of mode columns changes.
  */
 function useFittedColumns(layout: string) {
   const [node, setNode] = useState<HTMLDivElement | null>(null);
@@ -668,16 +668,17 @@ function useFittedColumns(layout: string) {
       const natural = sizers.map((sizer) =>
         Math.ceil(Math.max(0, ...[...sizer.children].map((cell) => cell.getBoundingClientRect().width))),
       );
+      // One line of prose would outrun every other column: the description
+      // wants at most half as much again as the widest of the rest.
+      const last = natural.length - 1;
+      natural[last] = Math.min(natural[last], Math.round(Math.max(...natural.slice(0, last)) * 1.5));
       // 1px between columns and 1px each side of the table.
       const room = canvas.clientWidth - (sizers.length + 1);
-      const total = natural.reduce((sum, width) => sum + width, 0);
-      setTemplate(
-        total <= room
-          ? [...natural.slice(0, -1).map((width) => `${width}px`), 'minmax(0, 1fr)'].join(' ')
-          : fitColumns(natural, room)
-              .map((width) => `${width}px`)
-              .join(' '),
-      );
+      const widths = fitColumns(natural, room);
+      // Room left over is shared by every column, not handed to one.
+      const spare = Math.max(0, room - widths.reduce((sum, width) => sum + width, 0));
+      const each = Math.floor(spare / widths.length);
+      setTemplate(widths.map((width) => `${width + each}px`).join(' '));
     };
     update();
     const observer = new ResizeObserver(update);
@@ -995,7 +996,6 @@ export function TokenPage({
   globals,
   filters,
   onFilters,
-  children,
 }: {
   collectionId: string;
   title: string;
@@ -1003,8 +1003,6 @@ export function TokenPage({
   globals: ModeGlobals;
   filters: TokenFilters;
   onFilters: (next: Partial<TokenFilters>) => void;
-  /** Anything worth saying above the table. */
-  children?: ReactNode;
 }) {
   const collection = collections[collectionId];
   const { query, section, kind } = filters;
@@ -1191,7 +1189,6 @@ export function TokenPage({
         </>
       }
     >
-      {children}
       {total === 0 ? (
         <Empty query={query} onClear={() => onFilters({ query: '', section: '', kind: '' })} />
       ) : (
