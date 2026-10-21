@@ -61,7 +61,7 @@
   - WEB уникален во всём файле.
 - **Скоупы:** никогда `ALL_SCOPES`. Проводка — пустые скоупы: Primitives, System · Color, Brand, Status, Appearance, `interaction/*` в Theme. Токен, который код использует напрямую, обязан иметь скоуп (сейчас это `interaction/disabled/*`).
 - **Описания:** одна фраза по-русски, без значений; обязательны везде, повтор у шагов одной шкалы допустим.
-- **Значения:** литералы только в Primitives, выше — алиасы; полупрозрачность поверх алиаса — штатная форма Figma (`alpha(…)` в дампе).
+- **Значения:** литералы только в Primitives, выше — алиасы (исключение — строки Brand · Typography и Brand · Icon: значение задаёт мода); полупрозрачность поверх алиаса — штатная форма Figma (`alpha(…)` в дампе).
 - **Brand · Color:** `solid/*`, `alpha/*`, `on-solid`, `on-solid-muted`, `on-solid-alpha/*`, `contrast`, `static/{fill|content}/{default|hover|active}`; всё зеркально в `inverse/`. Слово `control` в бренде не использовать.
 - **Публикация:** файл не публикуется как библиотека, `Hide from publishing` не используется.
 

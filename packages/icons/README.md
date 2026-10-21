@@ -65,8 +65,8 @@ Figma, а в `figma/<family>/` — их графика, выгруженная �
 | Семейство | Страница Figma | Записей | Из Figma | Запасная графика  | Варианты                                                  |
 | --------- | -------------- | ------- | -------- | ----------------- | --------------------------------------------------------- |
 | Flags     | Flags          | 197     | 179      | `flag-icons` (18) | `Style` = Circle · Rounded · Shape                        |
-| Payments  | Payments       | 678     | 677      | `@web3icons` (1)  | нет                                                       |
-| Brands    | Brands         | 24      | 24       | —                 | `Style` = Original · Solid, `Circle Shape` = True · False |
+| Payments  | Payments       | 676     | 675      | `@web3icons` (1)  | нет                                                       |
+| Brands    | Brands         | 24      | 24       | —                 | `Style` = Original · Solid, `Circle Shape` = False · True |
 
 Монохромные знаки брендов в Figma залиты `surface/base/content/strong`; сборка возвращает им
 `currentColor`, и `FamilyIcon` красит их этим токеном, так что они следуют теме.

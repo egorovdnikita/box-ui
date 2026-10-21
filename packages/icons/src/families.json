@@ -21,9 +21,9 @@
     "variants": [],
     "variantProperties": null,
     "note": "Standalone 24×24 components, no variant property.",
-    "total": 678,
-    "resolved": 678,
-    "fromFigma": 677
+    "total": 676,
+    "resolved": 676,
+    "fromFigma": 675
   },
   "brands": {
     "figmaPage": "Brands",
@@ -36,8 +36,8 @@
         "Solid"
       ],
       "Circle Shape": [
-        "True",
-        "False"
+        "False",
+        "True"
       ]
     },
     "note": null,

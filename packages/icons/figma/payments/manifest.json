@@ -138,8 +138,8 @@
     },
     {
       "slug": "airswap-ast",
-      "name": "Airswap (AST)",
-      "base": "Airswap (AST)",
+      "name": "AirSwap (AST)",
+      "base": "AirSwap (AST)",
       "variant": null,
       "figmaId": "6585:26860"
     },
@@ -257,8 +257,8 @@
     },
     {
       "slug": "appcoins-appc",
-      "name": "Appcoins (APPC)",
-      "base": "Appcoins (APPC)",
+      "name": "AppCoins (APPC)",
+      "base": "AppCoins (APPC)",
       "variant": null,
       "figmaId": "6585:27412"
     },
@@ -271,8 +271,8 @@
     },
     {
       "slug": "arcblock-abt",
-      "name": "Arcblock (ABT)",
-      "base": "Arcblock (ABT)",
+      "name": "ArcBlock (ABT)",
+      "base": "ArcBlock (ABT)",
       "variant": null,
       "figmaId": "6585:26898"
     },
@@ -565,8 +565,8 @@
     },
     {
       "slug": "bitcoinz-btcz",
-      "name": "Bitcoinz (BTCZ)",
-      "base": "Bitcoinz (BTCZ)",
+      "name": "BitcoinZ (BTCZ)",
+      "base": "BitcoinZ (BTCZ)",
       "variant": null,
       "figmaId": "6585:27080"
     },
@@ -579,8 +579,8 @@
     },
     {
       "slug": "bitforex-token-bf",
-      "name": "Bitforex Token (BF)",
-      "base": "Bitforex Token (BF)",
+      "name": "BitForex Token (BF)",
+      "base": "BitForex Token (BF)",
       "variant": null,
       "figmaId": "6585:27103"
     },
@@ -600,8 +600,8 @@
     },
     {
       "slug": "bitsend-bsd",
-      "name": "Bitsend (BSD)",
-      "base": "Bitsend (BSD)",
+      "name": "BitSend (BSD)",
+      "base": "BitSend (BSD)",
       "variant": null,
       "figmaId": "6585:27110"
     },
@@ -838,8 +838,8 @@
     },
     {
       "slug": "chainx-pcx",
-      "name": "Chainx (PCX)",
-      "base": "Chainx (PCX)",
+      "name": "ChainX (PCX)",
+      "base": "ChainX (PCX)",
       "variant": null,
       "figmaId": "6585:27454"
     },
@@ -894,8 +894,8 @@
     },
     {
       "slug": "cloakcoin-cloak",
-      "name": "Cloakcoin (CLOAK)",
-      "base": "Cloakcoin (CLOAK)",
+      "name": "CloakCoin (CLOAK)",
+      "base": "CloakCoin (CLOAK)",
       "variant": null,
       "figmaId": "6585:27501"
     },
@@ -922,15 +922,15 @@
     },
     {
       "slug": "coinmetro-token-xcm",
-      "name": "Coinmetro Token (XCM)",
-      "base": "Coinmetro Token (XCM)",
+      "name": "CoinMetro Token (XCM)",
+      "base": "CoinMetro Token (XCM)",
       "variant": null,
       "figmaId": "6585:27558"
     },
     {
       "slug": "colossusxt-colx",
-      "name": "Colossusxt (COLX)",
-      "base": "Colossusxt (COLX)",
+      "name": "ColossusXT (COLX)",
+      "base": "ColossusXT (COLX)",
       "variant": null,
       "figmaId": "6585:27566"
     },
@@ -964,15 +964,15 @@
     },
     {
       "slug": "compound-usd-coin-cusdc",
-      "name": "Compound Usd Coin (CUSDC)",
-      "base": "Compound Usd Coin (CUSDC)",
+      "name": "Compound USD Coin (CUSDC)",
+      "base": "Compound USD Coin (CUSDC)",
       "variant": null,
       "figmaId": "6585:27611"
     },
     {
       "slug": "compound-usdt-cusdt",
-      "name": "Compound Usdt (CUSDT)",
-      "base": "Compound Usdt (CUSDT)",
+      "name": "Compound USDT (CUSDT)",
+      "base": "Compound USDT (CUSDT)",
       "variant": null,
       "figmaId": "6585:27622"
     },
@@ -1090,15 +1090,15 @@
     },
     {
       "slug": "cybermiles-cmt",
-      "name": "Cybermiles (CMT)",
-      "base": "Cybermiles (CMT)",
+      "name": "CyberMiles (CMT)",
+      "base": "CyberMiles (CMT)",
       "variant": null,
       "figmaId": "6585:27682"
     },
     {
       "slug": "cybervein-cvt",
-      "name": "Cybervein (CVT)",
-      "base": "Cybervein (CVT)",
+      "name": "CyberVein (CVT)",
+      "base": "CyberVein (CVT)",
       "variant": null,
       "figmaId": "6585:27698"
     },
@@ -1153,8 +1153,8 @@
     },
     {
       "slug": "deepbrain-chain-dbc",
-      "name": "Deepbrain Chain (DBC)",
-      "base": "Deepbrain Chain (DBC)",
+      "name": "DeepBrain Chain (DBC)",
+      "base": "DeepBrain Chain (DBC)",
       "variant": null,
       "figmaId": "6585:27723"
     },
@@ -1230,8 +1230,8 @@
     },
     {
       "slug": "digitalnote-xdn",
-      "name": "Digitalnote (XDN)",
-      "base": "Digitalnote (XDN)",
+      "name": "DigitalNote (XDN)",
+      "base": "DigitalNote (XDN)",
       "variant": null,
       "figmaId": "6585:27761"
     },
@@ -1258,8 +1258,8 @@
     },
     {
       "slug": "dmarket-dmt",
-      "name": "Dmarket (DMT)",
-      "base": "Dmarket (DMT)",
+      "name": "DMarket (DMT)",
+      "base": "DMarket (DMT)",
       "variant": null,
       "figmaId": "6585:27770"
     },
@@ -1468,8 +1468,8 @@
     },
     {
       "slug": "esbc-esbc",
-      "name": "Esbc (ESBC)",
-      "base": "Esbc (ESBC)",
+      "name": "ESBC (ESBC)",
+      "base": "ESBC (ESBC)",
       "variant": null,
       "figmaId": "6585:27908"
     },
@@ -1685,8 +1685,8 @@
     },
     {
       "slug": "gamecredits-game",
-      "name": "Gamecredits (GAME)",
-      "base": "Gamecredits (GAME)",
+      "name": "GameCredits (GAME)",
+      "base": "GameCredits (GAME)",
       "variant": null,
       "figmaId": "6585:28034"
     },
@@ -1748,8 +1748,8 @@
     },
     {
       "slug": "gobyte-gbx",
-      "name": "Gobyte (GBX)",
-      "base": "Gobyte (GBX)",
+      "name": "GoByte (GBX)",
+      "base": "GoByte (GBX)",
       "variant": null,
       "figmaId": "6585:28139"
     },
@@ -1797,8 +1797,8 @@
     },
     {
       "slug": "gxchain-gxc",
-      "name": "Gxchain (GXC)",
-      "base": "Gxchain (GXC)",
+      "name": "GXChain (GXC)",
+      "base": "GXChain (GXC)",
       "variant": null,
       "figmaId": "6585:28179"
     },
@@ -1808,6 +1808,13 @@
       "base": "Hacken Token (HAI)",
       "variant": null,
       "figmaId": "6585:26328"
+    },
+    {
+      "slug": "hakka-finance-hakka",
+      "name": "Hakka Finance (HAKKA)",
+      "base": "Hakka Finance (HAKKA)",
+      "variant": null,
+      "figmaId": "6585:28188"
     },
     {
       "slug": "handshake-hns",
@@ -1887,13 +1894,6 @@
       "figmaId": "6585:23495"
     },
     {
-      "slug": "hkka-finance-hakka",
-      "name": "Hkka Finance (HAKKA)",
-      "base": "Hkka Finance (HAKKA)",
-      "variant": null,
-      "figmaId": "6585:28188"
-    },
-    {
       "slug": "hoge-finance-hoge",
       "name": "Hoge Finance (HOGE)",
       "base": "Hoge Finance (HOGE)",
@@ -1916,8 +1916,8 @@
     },
     {
       "slug": "html-coin-html",
-      "name": "Html Coin (HTML)",
-      "base": "Html Coin (HTML)",
+      "name": "HTML Coin (HTML)",
+      "base": "HTML Coin (HTML)",
       "variant": null,
       "figmaId": "6585:28211"
     },
@@ -1972,8 +1972,8 @@
     },
     {
       "slug": "hypercash-hc",
-      "name": "Hypercash (HC)",
-      "base": "Hypercash (HC)",
+      "name": "HyperCash (HC)",
+      "base": "HyperCash (HC)",
       "variant": null,
       "figmaId": "6585:28245"
     },
@@ -1986,8 +1986,8 @@
     },
     {
       "slug": "idex-idex",
-      "name": "Idex (IDEX)",
-      "base": "Idex (IDEX)",
+      "name": "IDEX (IDEX)",
+      "base": "IDEX (IDEX)",
       "variant": null,
       "figmaId": "6585:28295"
     },
@@ -2070,8 +2070,8 @@
     },
     {
       "slug": "iot-chain-itc",
-      "name": "Iot Chain (ITC)",
-      "base": "Iot Chain (ITC)",
+      "name": "IoT Chain (ITC)",
+      "base": "IoT Chain (ITC)",
       "variant": null,
       "figmaId": "6585:28351"
     },
@@ -2252,8 +2252,8 @@
     },
     {
       "slug": "latoken-la",
-      "name": "Latoken (LA)",
-      "base": "Latoken (LA)",
+      "name": "LATOKEN (LA)",
+      "base": "LATOKEN (LA)",
       "variant": null,
       "figmaId": "6585:28507"
     },
@@ -2280,8 +2280,8 @@
     },
     {
       "slug": "likecoin-like",
-      "name": "Likecoin (LIKE)",
-      "base": "Likecoin (LIKE)",
+      "name": "LikeCoin (LIKE)",
+      "base": "LikeCoin (LIKE)",
       "variant": null,
       "figmaId": "6585:28557"
     },
@@ -2448,8 +2448,8 @@
     },
     {
       "slug": "medishares-mds",
-      "name": "Medishares (MDS)",
-      "base": "Medishares (MDS)",
+      "name": "MediShares (MDS)",
+      "base": "MediShares (MDS)",
       "variant": null,
       "figmaId": "6585:28616"
     },
@@ -2539,8 +2539,8 @@
     },
     {
       "slug": "moac-moac",
-      "name": "Moac (MOAC)",
-      "base": "Moac (MOAC)",
+      "name": "MOAC (MOAC)",
+      "base": "MOAC (MOAC)",
       "variant": null,
       "figmaId": "6585:28699"
     },
@@ -2840,8 +2840,8 @@
     },
     {
       "slug": "oax-oax",
-      "name": "Oax (OAX)",
-      "base": "Oax (OAX)",
+      "name": "OAX (OAX)",
+      "base": "OAX (OAX)",
       "variant": null,
       "figmaId": "6585:28953"
     },
@@ -2854,8 +2854,8 @@
     },
     {
       "slug": "odem-ode",
-      "name": "Odem (ODE)",
-      "base": "Odem (ODE)",
+      "name": "ODEM (ODE)",
+      "base": "ODEM (ODE)",
       "variant": null,
       "figmaId": "6585:28961"
     },
@@ -2868,8 +2868,8 @@
     },
     {
       "slug": "okcash-ok",
-      "name": "Okcash (OK)",
-      "base": "Okcash (OK)",
+      "name": "OKCash (OK)",
+      "base": "OKCash (OK)",
       "variant": null,
       "figmaId": "6585:28969"
     },
@@ -3029,8 +3029,8 @@
     },
     {
       "slug": "paypie-ppp",
-      "name": "Paypie (PPP)",
-      "base": "Paypie (PPP)",
+      "name": "PayPie (PPP)",
+      "base": "PayPie (PPP)",
       "variant": null,
       "figmaId": "6585:29054"
     },
@@ -3054,13 +3054,6 @@
       "base": "PERL.eco (PERL)",
       "variant": null,
       "figmaId": "6585:26739"
-    },
-    {
-      "slug": "perlin-perl",
-      "name": "Perlin (PERL)",
-      "base": "Perlin (PERL)",
-      "variant": null,
-      "figmaId": "6585:29101"
     },
     {
       "slug": "perpetual-protocol-perp",
@@ -3148,8 +3141,8 @@
     },
     {
       "slug": "pnetwork-pnt",
-      "name": "Pnetwork (PNT)",
-      "base": "Pnetwork (PNT)",
+      "name": "pNetwork (PNT)",
+      "base": "pNetwork (PNT)",
       "variant": null,
       "figmaId": "6585:29246"
     },
@@ -3204,8 +3197,8 @@
     },
     {
       "slug": "polyswarm-nct",
-      "name": "Polyswarm (NCT)",
-      "base": "Polyswarm (NCT)",
+      "name": "PolySwarm (NCT)",
+      "base": "PolySwarm (NCT)",
       "variant": null,
       "figmaId": "6585:29308"
     },
@@ -3274,15 +3267,15 @@
     },
     {
       "slug": "ptokens-btc-pbtc",
-      "name": "Ptokens Btc (PBTC)",
-      "base": "Ptokens Btc (PBTC)",
+      "name": "pTokens BTC (PBTC)",
+      "base": "pTokens BTC (PBTC)",
       "variant": null,
       "figmaId": "6585:29369"
     },
     {
       "slug": "pumapay-pma",
-      "name": "Pumapay (PMA)",
-      "base": "Pumapay (PMA)",
+      "name": "PumaPay (PMA)",
+      "base": "PumaPay (PMA)",
       "variant": null,
       "figmaId": "6585:29377"
     },
@@ -3295,8 +3288,8 @@
     },
     {
       "slug": "qash-qash",
-      "name": "Qash (QASH)",
-      "base": "Qash (QASH)",
+      "name": "QASH (QASH)",
+      "base": "QASH (QASH)",
       "variant": null,
       "figmaId": "6585:29421"
     },
@@ -3497,13 +3490,6 @@
       "figmaId": "6585:29532"
     },
     {
-      "slug": "rlc-rlc",
-      "name": "Rlc (RLC)",
-      "base": "Rlc (RLC)",
-      "variant": null,
-      "figmaId": "6585:29540"
-    },
-    {
       "slug": "rsk-infrastructure-framework-rif",
       "name": "RSK Infrastructure Framework (RIF)",
       "base": "RSK Infrastructure Framework (RIF)",
@@ -3547,8 +3533,8 @@
     },
     {
       "slug": "salt-salt",
-      "name": "Salt (SALT)",
-      "base": "Salt (SALT)",
+      "name": "SALT (SALT)",
+      "base": "SALT (SALT)",
       "variant": null,
       "figmaId": "6585:29570"
     },
@@ -3582,8 +3568,8 @@
     },
     {
       "slug": "seele-seele",
-      "name": "Seele (SEELE)",
-      "base": "Seele (SEELE)",
+      "name": "SEELE (SEELE)",
+      "base": "SEELE (SEELE)",
       "variant": null,
       "figmaId": "6585:29594"
     },
@@ -3631,8 +3617,8 @@
     },
     {
       "slug": "shipchain-ship",
-      "name": "Shipchain (SHIP)",
-      "base": "Shipchain (SHIP)",
+      "name": "ShipChain (SHIP)",
+      "base": "ShipChain (SHIP)",
       "variant": null,
       "figmaId": "6585:29611"
     },
@@ -3666,8 +3652,8 @@
     },
     {
       "slug": "singulardtv-sngls",
-      "name": "Singulardtv (SNGLS)",
-      "base": "Singulardtv (SNGLS)",
+      "name": "SingularDTV (SNGLS)",
+      "base": "SingularDTV (SNGLS)",
       "variant": null,
       "figmaId": "6585:29668"
     },
@@ -3680,8 +3666,8 @@
     },
     {
       "slug": "sirin-labs-token-srn",
-      "name": "Sirin Labs Token (SRN)",
-      "base": "Sirin Labs Token (SRN)",
+      "name": "SIRIN LABS Token (SRN)",
+      "base": "SIRIN LABS Token (SRN)",
       "variant": null,
       "figmaId": "6585:29718"
     },
@@ -3708,15 +3694,15 @@
     },
     {
       "slug": "smartcash-smart",
-      "name": "Smartcash (SMART)",
-      "base": "Smartcash (SMART)",
+      "name": "SmartCash (SMART)",
+      "base": "SmartCash (SMART)",
       "variant": null,
       "figmaId": "6585:29738"
     },
     {
       "slug": "snowswap-snow",
-      "name": "Snowswap (SNOW)",
-      "base": "Snowswap (SNOW)",
+      "name": "SnowSwap (SNOW)",
+      "base": "SnowSwap (SNOW)",
       "variant": null,
       "figmaId": "6585:29745"
     },
@@ -3729,8 +3715,8 @@
     },
     {
       "slug": "solarcoin-slr",
-      "name": "Solarcoin (SLR)",
-      "base": "Solarcoin (SLR)",
+      "name": "SolarCoin (SLR)",
+      "base": "SolarCoin (SLR)",
       "variant": null,
       "figmaId": "6585:29753"
     },
@@ -3743,15 +3729,15 @@
     },
     {
       "slug": "sonm-snm",
-      "name": "Sonm (SNM)",
-      "base": "Sonm (SNM)",
+      "name": "SONM (SNM)",
+      "base": "SONM (SNM)",
       "variant": null,
       "figmaId": "6585:29793"
     },
     {
       "slug": "sophiatx-sphtx",
-      "name": "Sophiatx (SPHTX)",
-      "base": "Sophiatx (SPHTX)",
+      "name": "SophiaTX (SPHTX)",
+      "base": "SophiaTX (SPHTX)",
       "variant": null,
       "figmaId": "6585:29808"
     },
@@ -3764,8 +3750,8 @@
     },
     {
       "slug": "spankchain-spank",
-      "name": "Spankchain (SPANK)",
-      "base": "Spankchain (SPANK)",
+      "name": "SpankChain (SPANK)",
+      "base": "SpankChain (SPANK)",
       "variant": null,
       "figmaId": "6585:29818"
     },
@@ -3995,8 +3981,8 @@
     },
     {
       "slug": "tenx-pay",
-      "name": "Tenx (PAY)",
-      "base": "Tenx (PAY)",
+      "name": "TenX (PAY)",
+      "base": "TenX (PAY)",
       "variant": null,
       "figmaId": "6585:29882"
     },
@@ -4156,8 +4142,8 @@
     },
     {
       "slug": "tokenpay-tpay",
-      "name": "Tokenpay (TPAY)",
-      "base": "Tokenpay (TPAY)",
+      "name": "TokenPay (TPAY)",
+      "base": "TokenPay (TPAY)",
       "variant": null,
       "figmaId": "6585:30067"
     },
@@ -4254,8 +4240,8 @@
     },
     {
       "slug": "turtlecoin-trtl",
-      "name": "Turtlecoin (TRTL)",
-      "base": "Turtlecoin (TRTL)",
+      "name": "TurtleCoin (TRTL)",
+      "base": "TurtleCoin (TRTL)",
       "variant": null,
       "figmaId": "6585:30128"
     },
@@ -4415,8 +4401,8 @@
     },
     {
       "slug": "vericoin-vrc",
-      "name": "Vericoin (VRC)",
-      "base": "Vericoin (VRC)",
+      "name": "VeriCoin (VRC)",
+      "base": "VeriCoin (VRC)",
       "variant": null,
       "figmaId": "6585:30163"
     },
@@ -4534,8 +4520,8 @@
     },
     {
       "slug": "wepower-wpr",
-      "name": "Wepower (WPR)",
-      "base": "Wepower (WPR)",
+      "name": "WePower (WPR)",
+      "base": "WePower (WPR)",
       "variant": null,
       "figmaId": "6585:30208"
     },
@@ -4625,15 +4611,15 @@
     },
     {
       "slug": "xmax-xmx",
-      "name": "Xmax (XMX)",
-      "base": "Xmax (XMX)",
+      "name": "XMax (XMX)",
+      "base": "XMax (XMX)",
       "variant": null,
       "figmaId": "6585:30246"
     },
     {
       "slug": "xpa-xpa",
-      "name": "Xpa (XPA)",
-      "base": "Xpa (XPA)",
+      "name": "XPA (XPA)",
+      "base": "XPA (XPA)",
       "variant": null,
       "figmaId": "6585:30251"
     },
@@ -4646,8 +4632,8 @@
     },
     {
       "slug": "xtrabytes-xby",
-      "name": "Xtrabytes (XBY)",
-      "base": "Xtrabytes (XBY)",
+      "name": "XTRABYTES (XBY)",
+      "base": "XTRABYTES (XBY)",
       "variant": null,
       "figmaId": "6585:30258"
     },
@@ -4674,8 +4660,8 @@
     },
     {
       "slug": "yoyow-yoyow",
-      "name": "Yoyow (YOYOW)",
-      "base": "Yoyow (YOYOW)",
+      "name": "YOYOW (YOYOW)",
+      "base": "YOYOW (YOYOW)",
       "variant": null,
       "figmaId": "6585:30263"
     },
@@ -4695,8 +4681,8 @@
     },
     {
       "slug": "zclassic-zcl",
-      "name": "Zclassic (ZCL)",
-      "base": "Zclassic (ZCL)",
+      "name": "ZClassic (ZCL)",
+      "base": "ZClassic (ZCL)",
       "variant": null,
       "figmaId": "6585:30271"
     },
