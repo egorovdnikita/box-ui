@@ -452,8 +452,6 @@ button.sb-select svg {
 
 /* As wide as its columns, so the pinned name column has room to stick in. */
 .sb-doc__scroller[data-overflow] .sb-doc {
-  /* COLUMN.description in _doctable.tsx. */
-  --sb-doc-description: 200px;
   width: max-content;
   min-width: 100%;
 }
@@ -465,7 +463,7 @@ button.sb-select svg {
 
 /* The name column stays put while the rest scrolls under it. */
 .sb-doc__scroller[data-overflow] .sb-doc__name,
-.sb-doc__scroller[data-overflow] .sb-doc__head:first-child {
+.sb-doc__scroller[data-overflow] .sb-doc__head--name {
   position: sticky;
   top: auto;
   left: 0;
@@ -474,20 +472,23 @@ button.sb-select svg {
 }
 
 .sb-doc__scroller[data-overflow][data-scrolled] .sb-doc__name,
-.sb-doc__scroller[data-overflow][data-scrolled] .sb-doc__head:first-child {
+.sb-doc__scroller[data-overflow][data-scrolled] .sb-doc__head--name {
   box-shadow:
     1px 0 0 var(--sb-border),
     6px 0 8px -6px rgb(0 0 0 / 0.35);
 }
 
 .sb-doc {
-  /* Every row is one height, whatever it holds; what does not fit scrolls
-   * inside its cell instead of making the row taller. */
+  /* Everything stays on one line and the columns fit it, so a row is one
+   * height; a table wider than its canvas scrolls sideways as a whole. */
   --sb-doc-row: 32px;
   display: grid;
+  /* Row 1 is the invisible Sizer (see _doctable.tsx); the gap under it draws
+   * the table's top edge. */
+  grid-template-rows: 0;
   grid-auto-rows: var(--sb-doc-row);
   gap: 1px;
-  padding: 1px;
+  padding: 0 1px 1px;
   border-radius: var(--sb-radius);
   background: var(--sb-border);
   font-size: 12px;
@@ -509,7 +510,7 @@ button.sb-select svg {
   white-space: nowrap;
 }
 
-.sb-doc__head:first-child {
+.sb-doc__head--name {
   border-top-left-radius: calc(var(--sb-radius) - 1px);
 }
 
@@ -573,8 +574,6 @@ button.sb-select svg {
   gap: 8px;
   min-width: 0;
   padding: 0 12px;
-  overflow: auto hidden;
-  scrollbar-width: thin;
   box-sizing: border-box;
   background: var(--sb-raised-bg);
   color: var(--sb-text);
@@ -596,34 +595,11 @@ button.sb-select svg {
   color: var(--sb-text-muted);
 }
 
-/* Columns and rows are fixed: a value that does not fit stays on one line
- * and its cell scrolls sideways. */
+/* Values stay on one line; their columns fit them (see Sizer). */
 .sb-doc__name-label,
 .sb-doc__chip-label,
 .sb-doc__code-label {
   white-space: nowrap;
-}
-
-/* A cell's own scrollbar: thin, and only on hover so a table of long values
- * does not turn into a table of scrollbars. The right edge fades instead, so
- * a value that runs on reads as running on. */
-.sb-doc__cell {
-  scrollbar-color: transparent transparent;
-  mask-image: linear-gradient(to left, transparent, #000 12px);
-}
-
-.sb-doc__cell:hover {
-  scrollbar-color: var(--sb-scrollbar) transparent;
-}
-
-/* Names fit their column, and a mask would cut the pinned column's shadow. */
-.sb-doc__name {
-  mask-image: none;
-}
-
-/* Prose fades at the bottom instead, where it runs on. */
-.sb-doc__description--group {
-  mask-image: linear-gradient(to top, transparent, #000 12px);
 }
 
 .sb-doc__description {
@@ -632,15 +608,26 @@ button.sb-select svg {
   font-size: 12px;
 }
 
-/* A group's description spans its rows and scrolls down inside them. */
-.sb-doc__description--group {
-  padding-block: 8px;
-  overflow: hidden auto;
+/* A description stays on one line too; its column fits the longest. */
+.sb-doc__description {
+  white-space: nowrap;
 }
 
-/* A row's own description stays on one line and scrolls along. */
-.sb-doc__description:not(.sb-doc__description--group) > span {
-  white-space: nowrap;
+/* A group's description sits on the group's first row. */
+.sb-doc__description--group {
+  padding-top: 8px;
+}
+
+/* The Sizer's row: no height, nothing to see or reach — only widths. */
+.sb-doc__sizer {
+  display: grid;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.sb-doc__sizer > * {
+  height: 0;
+  overflow: hidden;
 }
 
 /* A row's own description sits on its row; a group's spans the group's rows. */

@@ -478,14 +478,90 @@ function useSideScroll(layout: string) {
   return setNode;
 }
 
-/**
- * Column widths shared by every token table, in px — sized so a two-mode table
- * (Theme) still fits a laptop canvas beside the sidebar.
- */
-const COLUMN = { name: 160, mode: 200, code: 300, description: 200 };
+/** How many of the longest values the Sizer lays out per column: characters only approximate width. */
+const SIZER_PICKS = 6;
 
-/** The narrowest canvas a table with this many mode columns fits without scrolling. */
-const tableWidth = (modes: number) => COLUMN.name + modes * COLUMN.mode + COLUMN.code + COLUMN.description;
+/** The `count` items whose `text` is longest. */
+const longest = <T,>(items: T[], text: (item: T) => string, count = SIZER_PICKS) =>
+  [...items].sort((a, b) => text(b).length - text(a).length).slice(0, count);
+
+/**
+ * An invisible first row holding the longest names, values and codes of the
+ * whole collection — filtered out or not — so the `max-content` columns take
+ * the collection's widths and keep them while the reader filters. Every mode
+ * column gets the longest values of any mode, so they all come out equal.
+ */
+function Sizer({
+  collectionId,
+  modes,
+  mixed,
+}: {
+  collectionId: string;
+  modes: TokenCollection['modes'];
+  mixed: boolean;
+}) {
+  const collection = collections[collectionId];
+  const { names, values, codes, descriptions } = useMemo(() => {
+    const named = groupVariables(collectionId, collection.variables).flatMap((g) =>
+      g.variables.map((v) => ({ v, name: nameIn(g, v) })),
+    );
+    const shown = collection.variables.flatMap((v) =>
+      collection.modes.map((m) => {
+        const value = v.values[m.slug];
+        const text = `${value?.alias ? aliasPath(value.alias) : (value?.value ?? '')} ${value?.opacity ?? ''}`;
+        return { v, mode: m.slug, value, text };
+      }),
+    );
+    const described = groupVariables(collectionId, collection.variables).flatMap((g) =>
+      g.description !== null ? [g.description] : g.variables.map((v) => v.description),
+    );
+    return {
+      names: longest(named, (n) => n.name),
+      values: longest(shown, (x) => x.text),
+      codes: longest(collection.variables, (v) => v.cssVar),
+      descriptions: longest(described, (d) => d),
+    };
+  }, [collection, collectionId]);
+
+  return (
+    <>
+      <div className="sb-doc__sizer" aria-hidden="true">
+        {names.map(({ v, name }) => (
+          <div key={v.cssVar} className="sb-doc__cell sb-doc__name">
+            {mixed && <Icon name={KIND_ICON[kindOf(v)]} size={16} iconStyle="linear" />}
+            <span className="sb-doc__name-label">{name}</span>
+          </div>
+        ))}
+      </div>
+      {modes.map((m) => (
+        <div key={m.slug} className="sb-doc__sizer" aria-hidden="true">
+          {values.map((x) => (
+            <div key={`${x.v.cssVar}-${x.mode}`} className="sb-doc__cell">
+              <ValueCell variable={x.v} value={x.value} kind={kindOf(x.v)} mode={x.mode} scoped={(node) => node} />
+            </div>
+          ))}
+        </div>
+      ))}
+      <div className="sb-doc__sizer" aria-hidden="true">
+        {codes.map((v) => (
+          <div key={v.cssVar} className="sb-doc__cell">
+            <CodeCell variable={v} />
+          </div>
+        ))}
+      </div>
+      <div className="sb-doc__sizer" aria-hidden="true">
+        {descriptions.map((text, i) => (
+          <div key={i} className="sb-doc__cell sb-doc__description">
+            <span>{text}</span>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+/** Roughly the narrowest canvas a table fits without scrolling — only decides where the outline goes. */
+const tableWidth = (modes: number) => 120 + modes * 220 + 340 + 480;
 
 export function DocTable({
   collectionId,
@@ -513,17 +589,16 @@ export function DocTable({
   // Decided by the whole collection, so filtering never makes it come and go.
   const mixed = useMemo(() => new Set(collection.variables.map(kindOf)).size > 1, [collection]);
 
-  // One fixed grid on every page, whatever the rows hold, so columns neither
-  // differ between tables nor jump while filtering, and rows keep one height.
-  // What does not fit scrolls inside its own cell; the description takes what
-  // is left; a table wider than its canvas scrolls sideways.
+  // Nothing is cut or wrapped, so every row is one height: each column is as
+  // wide as the longest entry in the whole collection (see Sizer), keeps that
+  // width while filtering, and every mode column is equally wide. A table
+  // wider than its canvas scrolls sideways as a whole; a narrower one gives
+  // the rest to the description.
   const columns = [
-    `${COLUMN.name}px`,
-    `repeat(${modes.length}, ${COLUMN.mode}px)`,
-    `${COLUMN.code}px`,
-    // Pinned to its minimum while the table scrolls (preview.css), or one line
-    // of prose would set its width.
-    `var(--sb-doc-description, minmax(${COLUMN.description}px, 1fr))`,
+    'max-content',
+    `repeat(${modes.length}, max-content)`,
+    'max-content',
+    `minmax(max-content, 1fr)`,
   ].join(' ');
   const scroller = useSideScroll(modes.map((m) => m.slug).join());
 
@@ -539,7 +614,8 @@ export function DocTable({
   return (
     <div className="sb-doc__scroller" ref={scroller}>
       <div className="sb-doc" style={{ gridTemplateColumns: columns }} role="table">
-        <div className="sb-doc__head">Name</div>
+        <Sizer collectionId={collectionId} modes={modes} mixed={mixed} />
+        <div className="sb-doc__head sb-doc__head--name">Name</div>
         {modes.map((m) => (
           <div key={m.slug} className="sb-doc__head">
             {multi ? m.name : 'Value'}
@@ -556,8 +632,8 @@ export function DocTable({
           const shared = group.description !== null;
           const variant = textVariant(group.path);
           const rows = (variant ? 1 : 0) + group.variables.length;
-          // A shared description spans the group's rows and scrolls down inside
-          // them if it is longer; a row's own stays on one line and scrolls along.
+          // A shared description spans the group's rows, a row's own sits on
+          // its row; both stay on one line.
           const description = (row: number, text: string) =>
             shared && rows > 1 ? (
               row === 0 && (
