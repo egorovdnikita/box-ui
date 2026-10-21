@@ -1,4 +1,13 @@
-import { Fragment, useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import {
+  Fragment,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from 'react';
 import { createPortal } from 'react-dom';
 import { addons } from 'storybook/preview-api';
 import { SELECT_STORY } from 'storybook/internal/core-events';
@@ -615,6 +624,70 @@ function Sizer({ collectionId, modes }: { collectionId: string; modes: TokenColl
 /** Roughly the narrowest canvas a table fits without scrolling — only decides where the outline goes. */
 const tableWidth = (modes: number) => 120 + modes * 220 + 340 + 480;
 
+/**
+ * Least width of a column, in px. On a phone no table of several modes fits
+ * whatever is cut, so there columns stay readable and the table scrolls.
+ */
+const columnFloor = (room: number) => (room < 640 ? 140 : 72);
+
+/**
+ * Widths that fit `room`: every column keeps its natural width if it can,
+ * and when they do not all fit only the widest give way, down to one shared
+ * cap — so no column is starved while another sprawls.
+ */
+function fitColumns(natural: number[], room: number): number[] {
+  let rest = room;
+  let left = natural.length;
+  let cap = Infinity;
+  for (const width of [...natural].sort((a, b) => a - b)) {
+    const share = rest / left;
+    if (width > share) {
+      cap = share;
+      break;
+    }
+    rest -= width;
+    left -= 1;
+  }
+  return natural.map((width) => Math.max(Math.min(width, columnFloor(room)), Math.floor(Math.min(width, cap))));
+}
+
+/**
+ * Measures each column's natural width off the Sizer row and lays the
+ * columns out to fit the table's canvas (see fitColumns). When everything
+ * fits, the description takes the room left over. Re-runs when the canvas
+ * resizes or the set of mode columns changes.
+ */
+function useFittedColumns(layout: string) {
+  const [node, setNode] = useState<HTMLDivElement | null>(null);
+  const [template, setTemplate] = useState<string | null>(null);
+  useLayoutEffect(() => {
+    const canvas = node?.parentElement;
+    if (!node || !canvas) return;
+    const update = () => {
+      const sizers = [...node.querySelectorAll<HTMLElement>(':scope > .sb-doc__sizer')];
+      const natural = sizers.map((sizer) =>
+        Math.ceil(Math.max(0, ...[...sizer.children].map((cell) => cell.getBoundingClientRect().width))),
+      );
+      // 1px between columns and 1px each side of the table.
+      const room = canvas.clientWidth - (sizers.length + 1);
+      const total = natural.reduce((sum, width) => sum + width, 0);
+      setTemplate(
+        total <= room
+          ? [...natural.slice(0, -1).map((width) => `${width}px`), 'minmax(0, 1fr)'].join(' ')
+          : fitColumns(natural, room)
+              .map((width) => `${width}px`)
+              .join(' '),
+      );
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(canvas);
+    void document.fonts?.ready.then(update);
+    return () => observer.disconnect();
+  }, [node, layout]);
+  return [setNode, template] as const;
+}
+
 export function DocTable({
   collectionId,
   groups,
@@ -641,18 +714,13 @@ export function DocTable({
   // Decided by the whole collection, so filtering never makes it come and go.
   const mixed = useMemo(() => new Set(collection.variables.map(kindOf)).size > 1, [collection]);
 
-  // Nothing is cut or wrapped, so every row is one height: each column is as
-  // wide as the longest entry of any collection in the section (see Sizer),
-  // so the grid is the same on every page of Primitives, of Brand and of
-  // System, and holds while filtering. A table wider than its canvas scrolls
-  // sideways as a whole.
-  const columns = [
-    'max-content',
-    `repeat(${modes.length}, max-content)`,
-    'max-content',
-    `minmax(max-content, 1fr)`,
-  ].join(' ');
-  const scroller = useSideScroll(modes.map((m) => m.slug).join());
+  // The table fits its canvas: each column wants its section's natural width
+  // (see Sizer) and only the widest give way when they do not all fit (see
+  // fitColumns); what still does not fit is cut at the column's edge.
+  const layoutKey = modes.map((m) => m.slug).join();
+  const [table, fitted] = useFittedColumns(layoutKey);
+  const columns = fitted ?? `repeat(${modes.length + 3}, minmax(0, 1fr))`;
+  const scroller = useSideScroll(layoutKey);
 
   const scopedIn = (mode: string) => (node: ReactNode) =>
     multi && scopeProp ? (
@@ -665,7 +733,7 @@ export function DocTable({
 
   return (
     <div className="sb-doc__scroller" ref={scroller}>
-      <div className="sb-doc" style={{ gridTemplateColumns: columns }} role="table">
+      <div className="sb-doc" ref={table} style={{ gridTemplateColumns: columns }} role="table">
         <Sizer collectionId={collectionId} modes={modes} />
         <div className="sb-doc__head sb-doc__head--name">Name</div>
         {modes.map((m) => (
@@ -691,7 +759,8 @@ export function DocTable({
               row === 0 && (
                 <div
                   className="sb-doc__cell sb-doc__description sb-doc__description--group"
-                  style={{ gridRow: `span ${rows}` }}
+                  // As many lines as the group's rows hold; the rest is cut.
+                  style={{ gridRow: `span ${rows}`, WebkitLineClamp: Math.max(1, Math.floor((rows * 33 - 17) / 17)) }}
                 >
                   <span>{group.description}</span>
                 </div>
