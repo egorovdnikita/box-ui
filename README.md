@@ -4,8 +4,6 @@
 
 **→ [Открыть Storybook](https://egorovdnikita.github.io/box-ui/)** · [Файл Figma](https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Foundation---Core)
 
-![Обложка](docs/assets/cover.png)
-
 ## Что умеет
 
 - **Токены из Figma.** 1118 переменных в 15 коллекциях — CSS-переменные и типизированный JS-API, собранные из дословных дампов Figma.
@@ -63,6 +61,7 @@ import { Icon } from '@box-ui/icons';
 - [Storybook и его публикация](docs/storybook.md)
 - [Пересборка из Figma, проверки и работа с Claude](docs/development.md)
 - [Перевыгрузка дампов Figma](tokens/figma/README.md)
+- [Журнал аудитов](docs/AUDIT_LOG.md)
 - [Аудит: состояние, решения и открытые пункты](docs/audits/2026-10-21-foundation-core.md)
 - [Как вносить изменения](CONTRIBUTING.md)
 
