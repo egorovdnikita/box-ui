@@ -51,7 +51,7 @@ render: (_args, { globals }) => <Family id="flags" globals={globals as ModeGloba
 ```
 
 To resolve two modes side by side on one page, use `<Scope>` — and set _all five_
-attributes, for the reason spelled out in the root README.
+attributes, for the reason spelled out in `docs/variable-graph.md`.
 
 ## Фильтры живут в args, а не в `useState`
 

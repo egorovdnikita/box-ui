@@ -1,153 +1,47 @@
 # Box UI
 
-Дизайн-токены и иконки, сгенерированные из файла Figma **Box UI**. В Storybook каждую
-**моду переменных** Figma — тему, акцент, плотность скруглений, гарнитуру, устройство,
-статус, вид контрола и его состояние — можно переключить вживую.
+Дизайн-токены, иконки и React-примитивы, собранные из файла Figma Foundation – Core: в Storybook каждую моду переменных Figma — тему, акцент, скругления, гарнитуру, устройство, статус, вид и состояние контрола — можно переключить вживую.
 
-| Файл Figma                                                                                 | Что даёт                                                                                       |
-| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
-| [Foundation – Core](https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Foundation---Core) | 1118 переменных в 15 коллекциях, 1253 UI-иконки в 6 стилях, «Флаги / Платежи / Бренды», Button |
+**→ [Открыть Storybook](https://egorovdnikita.github.io/box-ui/)** · [Файл Figma](https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Foundation---Core)
 
-Коллекции разложены на три слоя: `◉ Primitives` — сырые литералы, `☯︎ Brand` — то, что
-меняет бренд, `◑ System` — то, из чего собираются компоненты.
+![Обложка](docs/assets/cover.png)
 
-**→ [Живой Storybook](https://egorovdnikita.github.io/box-ui/)**
+## Что умеет
+
+- **Токены из Figma.** 1118 переменных в 15 коллекциях — CSS-переменные и типизированный JS-API, собранные из дословных дампов Figma.
+- **Граф как в Figma.** Алиас Figma становится переходом `var()`, поэтому смена моды заново разрешает всё, что ниже. Ни одна тема не продублирована в коде компонентов.
+- **Моды — атрибуты.** `data-theme` · `data-accent` · `data-radius` · `data-font` · `data-device` · `data-status` · `data-appearance` · `data-state` · `data-icon-style` свободно сочетаются, в том числе для части страницы.
+- **Иконки.** 1253 UI-иконки в 6 стилях под именами и категориями Figma, плюс 197 флагов, 676 платёжных знаков и 24 бренда.
+- **React-примитивы.** Button · Badge · Card · Input · Text · Stack — ни одного литерального значения.
+- **Storybook.** Страницы токенов повторяют документацию Figma: значение в каждой моде, Code syntax, переход по алиасам, поиск и фильтры в адресе, `var(--…)` копируется по клику.
+- **llms.txt.** Вся система одной машиночитаемой страницей; генерируется из модели токенов и поэтому не устаревает.
+
+## Запуск
+
+Нужен Node 20+.
 
 ```bash
 npm install      # заодно собирает токены и иконки
 npm run storybook
 ```
 
----
+Storybook откроется на <http://localhost:6006>. Все проверки — `npm run check`: typecheck, lint, format, 46 тестов и сборка Storybook; тот же набор запускает CI.
 
-## Граф переменных
+## Стек
 
-Файлы Figma — не плоские списки токенов, а цепочка коллекций, где каждый слой ссылается на
-нижний. Эта цепочка сохранена в CSS один в один: алиас Figma становится переходом `var()`,
-поэтому переключение моды заново разрешает всё, что ниже, ровно как в Figma. Ни одна тема
-не продублирована в коде компонентов.
+TypeScript · React · CSS custom properties · Storybook · Vite · Vitest · SVGO
 
-```
-◉ Primitives · Color       585 ─┐
-◉ Primitives · Spacing      29  │
-◉ Primitives · Rounding     31  ├─ сырые литералы, одна мода «Value»
-◉ Primitives · Size         29  │
-◉ Primitives · Typography   75 ─┘
-    │
-    ├─ ◑ System · Color       76   именованные роли над палитрой
-    │      │
-    │      └─ ◑ System · Status    11  [data-status]  Positive · Warning · Negative · Information
-    │               │
-    ├─ ☯︎ Brand · Color        47   [data-accent]  Deep · Bright · Monochrome
-    │      │        │
-    │      └────────┴─ ◑ System · Theme   96  [data-theme]  Light · Dark
-    │                        │
-    │                        └─ ◑ Controls · Appearance  36  [data-appearance]  Solid · Soft · Outline
-    │                                   │
-    │                                   └─ ◑ Controls · State  16  [data-state]
-    │                                            Default · Hover · Active · Disabled
-    ├─ ☯︎ Brand · Rounding     11   [data-radius]      Low · Medium · High
-    ├─ ☯︎ Brand · Typography    2   [data-font]        Inter · Display · Tight · Variable
-    ├─ ☯︎ Brand · Icon          1   [data-icon-style]  Bold … Outline
-    │
-    └─ ◑ System · Responsive  73   [data-device]      Desktop · Mobile
-```
+## Устройство
 
-Один цвет от начала до конца:
+Коллекции разложены на три слоя: `◉ Primitives` — сырые литералы, `☯︎ Brand` — то, что меняет бренд, `◑ System` — то, из чего собираются компоненты.
 
-```
---accent-fill-solid                   [data-theme]   System · Theme
-  └─ var(--brand-color-solid-500)           [data-accent]  Brand · Color
-       └─ var(--color-indigo-500)            Primitives · Color (фиксировано)
-            └─ #6366f1
-```
-
-Кнопка добавляет к этой цепочке ещё два переключаемых слоя — и ни один из них не описан
-в CSS компонента повторно:
-
-```
---control-accent-fill                             [data-state]       Controls · State
-  └─ var(--control-appearance-accent-fill-default)          [data-appearance]  Controls · Appearance
-       └─ var(--interaction-accent-solid-fill-default)  [data-theme]  System · Theme
-            └─ var(--accent-fill-solid)
-                 └─ var(--brand-color-solid-500)       [data-accent]      Brand · Color
-                      └─ var(--color-indigo-500)            → #6366f1
-```
-
-Радиус проходит через два переключаемых слоя:
-
-```
---rounding-xl           [data-device]  System · Responsive  Desktop → xl · Mobile → l
-  └─ var(--brand-rounding-xl)        [data-radius]  Brand · Rounding     Low 20 · Medium 24 · High 32
-       └─ var(--rounding-20)                Primitives · Rounding
-            └─ 20px
-```
-
-### Переключатели
-
-| Атрибут           | Коллекция Figma       | Значения                                                         | По умолчанию |
-| ----------------- | --------------------- | ---------------------------------------------------------------- | ------------ |
-| `data-theme`      | System · Theme        | `light` `dark`                                                   | `light`      |
-| `data-accent`     | Brand · Color         | `deep` `bright` `monochrome`                                     | `deep`       |
-| `data-radius`     | Brand · Rounding      | `low` `medium` `high`                                            | `low`        |
-| `data-font`       | Brand · Typography    | `inter` `inter-display` `inter-tight` `inter-variable`           | `inter`      |
-| `data-device`     | System · Responsive   | `desktop` `mobile`                                               | `desktop`    |
-| `data-status`     | System · Status       | `positive` `warning` `negative` `information`                    | `positive`   |
-| `data-appearance` | Controls · Appearance | `solid` `soft` `outline`                                         | `solid`      |
-| `data-state`      | Controls · State      | `default` `hover` `active` `disabled`                            | `default`    |
-| `data-icon-style` | Brand · Icon          | `bold` `bold-duotone` `broken` `line-duotone` `linear` `outline` | `bold`       |
-
-`data-state` руками обычно не выставляют: `@box-ui/tokens/css/controls.css` отображает моды
-этой коллекции на `:hover`, `:active` и `:disabled` для любого элемента с атрибутом
-`data-box-control`. Выставить его вручную полезно, чтобы показать все состояния разом.
-
-Они свободно сочетаются:
-
-<!-- prettier-ignore -->
-```html
-<html data-theme="dark" data-accent="bright" data-radius="high" data-device="mobile">
-```
-
-### Переключение для части страницы
-
-Кастомное свойство подставляется **там, где объявлено**, а не там, где прочитано:
-`--accent-fill-solid: var(--brand-color-solid-500)` разрешается на том
-элементе, который его объявил. Поэтому переопределение одного лишь `data-accent` у потомка
-не дотянется до токена Mode, который `<html>` уже разрешил.
-
-Значит, переключая моды для поддерева, ставьте **все атрибуты на один элемент**.
-Тогда каждый слой переобъявляется здесь же и вся цепочка разрешается локально — именно так
-две темы уживаются на одной странице.
-
-<!-- prettier-ignore -->
-```html
-<!-- работает: вся цепочка переобъявляется здесь -->
-<div data-theme="dark" data-accent="bright" data-radius="high" data-font="inter" data-device="desktop"
-     data-status="positive" data-appearance="solid" data-state="default">
-
-<!-- не работает: токены System · Theme уже разрешены выше -->
-<div data-accent="bright">
-```
-
-`@box-ui/tokens/css/adaptive.css` необязателен: он берёт тёмную тему из
-`prefers-color-scheme`, а Mobile — ниже 768px, но только когда документ сам не выставил эти
-атрибуты.
-
-Прозрачные ступени палитры Figma хранит не как отдельный цвет, а как «вот эта ступень, на
-N%». В CSS это выводится через `color-mix(in srgb, … N%, transparent)`, поэтому правка
-базовой шкалы двигает за собой и все её полупрозрачные производные.
-
----
-
-## Пакеты
-
-| Пакет                               | Содержимое                                                                                                      |
-| ----------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [`@box-ui/tokens`](packages/tokens) | CSS-переменные и типизированный JS-API токенов, сгенерированные из дампов Figma                                 |
-| [`@box-ui/icons`](packages/icons)   | 1253 UI-иконки × 6 стилей, плюс семейства «Флаги / Платежи / Бренды»                                            |
-| [`@box-ui/react`](packages/react)   | Button, Badge, Card, Input, Text, Stack — примитивы, доказывающие граф токенов: ни одного литерального значения |
-| [`tokens/figma`](tokens/figma)      | Дословные дампы переменных Figma и [инструкция по перевыгрузке](tokens/figma/README.md)                         |
-| [`apps/storybook`](apps/storybook)  | Сайт документации — см. ниже                                                                                    |
+| Пакет                               | Содержимое                                                                      |
+| ----------------------------------- | ------------------------------------------------------------------------------- |
+| [`@box-ui/tokens`](packages/tokens) | CSS-переменные и типизированный JS-API токенов, сгенерированные из дампов Figma |
+| [`@box-ui/icons`](packages/icons)   | UI-иконки × 6 стилей и семейства «Флаги / Платежи / Бренды»                     |
+| [`@box-ui/react`](packages/react)   | Примитивы, доказывающие граф токенов                                            |
+| [`tokens/figma`](tokens/figma)      | Дословные дампы переменных Figma — источник сборки                              |
+| [`apps/storybook`](apps/storybook)  | Сайт документации                                                               |
 
 ```tsx
 import '@box-ui/tokens/css';
@@ -160,172 +54,18 @@ import { Icon } from '@box-ui/icons';
 </Card>;
 ```
 
----
+## Документация
 
-## Storybook
+- [Паспорт проекта и правила для агентов](CLAUDE.md)
+- [Граф переменных и переключатели мод](docs/variable-graph.md)
+- [Пакеты](docs/packages.md)
+- [Иконки](docs/icons.md)
+- [Storybook и его публикация](docs/storybook.md)
+- [Пересборка из Figma, проверки и работа с Claude](docs/development.md)
+- [Перевыгрузка дампов Figma](tokens/figma/README.md)
+- [Аудит: состояние, решения и открытые пункты](docs/audits/2026-10-21-foundation-core.md)
+- [Как вносить изменения](CONTRIBUTING.md)
 
-<https://egorovdnikita.github.io/box-ui/>
+## Лицензия
 
-Страницы токенов повторяют страницы документации в Figma: те же группы и их описания,
-значение в каждой моде, Code syntax. Что они дают сверх файла:
-
-- **Моды.** Кнопка «Моды» на панели переключает все коллекции сразу, тема перекрашивает и
-  саму документацию. В таблицах каждая колонка показывает свою моду независимо от выбранной.
-- **Навигация.** Клик по алиасу ведёт к переменной, на которую он ссылается; оглавление
-  групп, фильтры по разделу, типу и колонкам, поиск по имени, `var(--…)` и описанию. Фильтры
-  живут в адресе, поэтому отфильтрованный вид можно переслать.
-- **Клик копирует** `var(--…)` — то же имя, что Code syntax в Figma; у иконок — имя или
-  готовый `<Icon …/>`.
-- **[Обзор](https://egorovdnikita.github.io/box-ui/?path=/story/introduction--docs)** —
-  что такое Box UI, что в этом Storybook, установка и подключение мод-атрибутов.
-- **[llms.txt](https://egorovdnikita.github.io/box-ui/llms.txt)** — вся система одной
-  машиночитаемой страницей, генерируется из модели токенов и поэтому не устаревает.
-
-Оформление документации намеренно взято у самого Storybook — его палитра, шрифт и рамки
-читаются из `storybook/theming`, чтобы канвас не разъезжался с окружающим интерфейсом.
-Токены Box UI красят только то, что документируется, и каждая демонстрационная поверхность
-несёт собственные фон и цвет текста, поэтому светлое демо читается на тёмном канвасе.
-
----
-
-## Иконки
-
-В коллекции `Icon` в Figma одна переменная, `icon-style`, с шестью модами — это шесть
-вариантов `Style` у всех 1253 иконок страницы `System`. Состав и имена берутся из Figma
-(`packages/icons/src/figma-ui-icons.json`), а геометрия — из набора
-[Solar](https://www.figma.com/community/file/1166831539721848736) авторства 480 Design
-(CC BY 4.0), на котором он нарисован: из канонической поставки `@iconify-json/solar`. Иконки,
-которых в Solar нет, берутся из экспорта Figma. На сборке всё разрезается по стилям:
-
-```
-packages/icons/src/data/{bold,bold-duotone,broken,line-duotone,linear,outline}.json
-```
-
-Каждый стиль грузится по требованию, все иконки 24×24 и красятся `currentColor`, а размеры
-— токены `size/base/*`, поэтому иконка слушается и моды устройства.
-
-```tsx
-<IconStyleProvider style="bold-duotone">
-  <Icon name="home-smile" size="l" title="Home" />
-</IconStyleProvider>
-```
-
-### Флаги, платежи и бренды
-
-Три остальных семейства файла Figma тоже поставляются — 197 флагов, 676 платёжных знаков и
-24 бренда, со свойствами вариантов, которые задаёт файл:
-
-```tsx
-import { FamilyIcon, useFamily } from '@box-ui/icons';
-
-const flags = useFamily('flags');
-<FamilyIcon entry={flags.items[0]} shape="circle" size="max" />;
-```
-
-И состав, и графику задаёт файл Figma: экспорт лежит в `packages/icons/figma/<семейство>/`,
-пропущенный через SVGO, каждый вариант — как в Figma. Иконку тяжелее 50 КБ экспорт не
-берёт, и для неё сборка подставляет открытую поставку того же знака: сейчас это 18 флагов с
-детальными гербами (`flag-icons`, MIT) и Curve DAO Token (`@web3icons/core`, MIT). Список
-лежит в `overBudget` манифеста; когда герб в Figma упростят, флаг перейдёт на Figma при
-следующей выгрузке.
-
-Обновить экспорт после правок в Figma:
-
-```bash
-FIGMA_TOKEN=figd_xxx npm run icons:figma                      # флаги + платежи + бренды
-FIGMA_TOKEN=figd_xxx npm run icons:figma -- --family flags     # одно семейство
-npm run build:icons
-```
-
-Токен со скоупом `file_content:read` создаётся на
-[figma.com/developers/api](https://www.figma.com/developers/api#access-tokens).
-
----
-
-## Пересборка из Figma
-
-`tokens/figma/*.txt` — дословные дампы переменных Figma: коллекция, моды и по строке на
-переменную, `@` помечает алиас. В этом репозитории они и есть источник истины, сборка их
-только преобразует.
-
-```bash
-npm run build:tokens   # tokens/figma/*.txt -> packages/tokens/dist/
-npm run build:icons    # UI Icons + три семейства -> packages/icons/src/data/
-npm run build:storybook
-```
-
----
-
-## Проверки
-
-```bash
-npm run check   # typecheck + lint + format:check + тесты + сборка Storybook
-```
-
-Части запускаются и по отдельности: `typecheck`, `lint` (`lint:fix`), `format`
-(`format:check`), `test` (`test:watch`). Тот же `npm run check` запускает CI
-([`.github/workflows/check.yml`](.github/workflows/check.yml)) на каждый пуш в `main` и на
-каждый pull request.
-
-46 тестов — про то, что может тихо испортиться:
-
-- **Конвейер токенов.** Каждый `var()` в сгенерированном CSS обязан попасть в существующую
-  переменную: переход, ведущий в никуда, — это прозрачный цвет или схлопнутая длина, и до
-  открытия страницы этого никто не заметит. Тот же набор проверяет, что каждый алиас Figma
-  разрешается и что ни одна переменная не осталась без моды.
-- **Данные иконок.** Каталог и шесть постилевых наборов обязаны сходиться в обе стороны:
-  у каждого заявленного стиля должна быть геометрия, а каждая геометрия должна быть заявлена.
-  Зашитый `fill="#…"` запрещён — он игнорировал бы токен `--surface-base-content-*` вокруг.
-- **Состав UI-иконок.** Пакет повторяет страницу `System` в Figma: те же 1253 иконки под
-  именами Figma, те же категории в том же порядке, без повторов имён, у каждой все шесть
-  стилей; иконки, которых нет в Solar, берутся из экспорта Figma.
-- **Графика семейств из Figma.** Каждый вариант флага, знака и бренда получает свои id, чтобы
-  иконки не обрезали друг друга на одной странице; монохромные знаки брендов следуют теме;
-  флаги тяжелее бюджета остаются на запасной графике.
-- **`llms.txt`** сравнивается со свежим рендером, поэтому не может устареть незаметно.
-
-Плюс матчер поиска и вывод цвета — чистые функции с неочевидными правилами.
-
----
-
-## Публикация Storybook
-
-Опубликованный сайт лежит в ветке `gh-pages` и отдаётся по адресу
-<https://egorovdnikita.github.io/box-ui/>.
-
-```bash
-npm run deploy:storybook   # собрать и запушить снапшот в gh-pages
-```
-
-Чтобы вместо этого деплоить автоматически на каждый пуш в `main`, положите готовый воркфлоу
-на место — после того как у git-доступа появится скоуп `workflow`:
-
-```bash
-gh auth refresh -s workflow
-mkdir -p .github/workflows && cp docs/storybook-pages-workflow.yml .github/workflows/storybook.yml
-```
-
-Затем переключите источник Pages на _GitHub Actions_ в настройках репозитория.
-
-Когда библиотеки Figma меняются, обновите дампы (тот же формат печатают MCP-сервер Figma и
-REST API) и пересоберите. Больше ничего трогать не нужно.
-
----
-
-## Работа с Claude
-
-Figma и этот репозиторий ведёт один агент в Claude Code: правит переменные и документацию в
-Figma через Figma MCP и в той же сессии синхронизирует код, проверяет и публикует Storybook.
-
-- [`CLAUDE.md`](CLAUDE.md) — правила: источники, карта коллекций, конвенции переменных,
-  протокол любой правки и что считается breaking.
-- [`docs/audit.md`](docs/audit.md) — текущее состояние, принятые решения и открытые пункты.
-- [`.claude/skills/sync-variable-documentation`](.claude/skills/sync-variable-documentation/SKILL.md)
-  — скилл синхронизации таблиц документации в Figma с Variables.
-
----
-
-## Лицензии
-
-Код в этом репозитории — MIT. Набор иконок Solar — © 480 Design,
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+MIT. Набор иконок Solar — © 480 Design, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

@@ -6,9 +6,9 @@ Box UI собирается из файла Figma [Foundation – Core](https://
 
 - **Правила и протокол правки** — [`CLAUDE.md`](CLAUDE.md): карта коллекций, конвенции имён,
   что считается breaking.
-- **Перевыгрузка из Figma** — [`tokens/figma/README.md`](tokens/figma/README.md) и раздел
-  «Иконки» в [`README.md`](README.md).
-- **Открытые пункты** — [`docs/audit.md`](docs/audit.md).
+- **Перевыгрузка из Figma** — [`tokens/figma/README.md`](tokens/figma/README.md) и
+  [`docs/icons.md`](docs/icons.md).
+- **Открытые пункты** — [`docs/audits/2026-10-21-foundation-core.md`](docs/audits/2026-10-21-foundation-core.md).
 
 ```bash
 npm install

@@ -10,3 +10,12 @@ npm-debug.log*
 packages/tokens/dist/
 apps/storybook/storybook-static/
 
+
+# общий стандарт репозиториев
+.env*
+!.env.example
+dist/
+build/
+.playwright-mcp/
+.vercel/
+.wrangler/

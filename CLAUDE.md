@@ -9,7 +9,7 @@
 | Figma                                     | Foundation – Core, fileKey `gbgGmuUBQ7sIfL256KaDXX` — источник правды для токенов, иконок и документации |
 | Код                                       | этот репозиторий                                                                                         |
 | Storybook                                 | https://egorovdnikita.github.io/box-ui/                                                                  |
-| Аудит и открытые пункты                   | `docs/audit.md`                                                                                          |
+| Аудит и открытые пункты                   | `docs/audits/2026-10-21-foundation-core.md`                                                              |
 | Синхронизация таблиц документации в Figma | скилл `.claude/skills/sync-variable-documentation`                                                       |
 
 Для работы с Figma нужен подключённый Figma MCP (`use_figma`). Перед первым вызовом `use_figma` загрузить скилл figma-use: через плагин Figma или ресурс `skill://figma/figma-use/SKILL.md`.
@@ -74,7 +74,7 @@
 5. **Документация в Figma** — по скиллу `sync-variable-documentation`: обновить затронутые таблицы и сверить **данные ячеек** с Variables (в ячейке моды — прямая цель алиаса полным именем, Code syntax = `codeSyntax.WEB`), найти старые имена в текстах на всех страницах; скриншот изменённой таблицы.
 6. **Репо:** перевыгрузить затронутые дампы и `meta.json` через `use_figma` по `tokens/figma/README.md`, сверить FNV-суммы с Figma, поправить код при переименованиях, `npm run check`.
 7. **Коммит и публикация:** понятное сообщение коммита с перечнем breaking-изменений; `npm run deploy:storybook`, если менялись токены, иконки или Storybook.
-8. **Аудит:** обновить статус пункта в `docs/audit.md`.
+8. **Аудит:** обновить статус пункта в `docs/audits/2026-10-21-foundation-core.md`.
 
 ## Иконки
 
