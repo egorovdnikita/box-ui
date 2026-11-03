@@ -1,6 +1,6 @@
 # Box UI
 
-Дизайн-токены, иконки и React-примитивы, собранные из файла Figma Foundation – Core: в Storybook каждую моду переменных Figma — тему, акцент, скругления, гарнитуру, устройство, статус, вид и состояние контрола — можно переключить вживую.
+Дизайн-токены, иконки и React-примитивы, собранные из файла Figma Foundation – Core.
 
 **→ [Открыть Storybook](https://egorovdnikita.github.io/box-ui/)** · [Файл Figma](https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Foundation---Core)
 
@@ -11,7 +11,7 @@
 - **Моды — атрибуты.** `data-theme` · `data-accent` · `data-radius` · `data-font` · `data-device` · `data-status` · `data-appearance` · `data-state` · `data-icon-style` свободно сочетаются, в том числе для части страницы.
 - **Иконки.** 1253 UI-иконки в 6 стилях под именами и категориями Figma, плюс 197 флагов, 676 платёжных знаков и 24 бренда.
 - **React-примитивы.** Button · Badge · Card · Input · Text · Stack — ни одного литерального значения.
-- **Storybook.** Страницы токенов повторяют документацию Figma: значение в каждой моде, Code syntax, переход по алиасам, поиск и фильтры в адресе, `var(--…)` копируется по клику.
+- **Storybook.** Каждую моду переменных Figma — тему, акцент, скругления, гарнитуру, устройство, статус, вид и состояние контрола — можно переключить вживую. Страницы токенов повторяют документацию Figma: значение в каждой моде, Code syntax, переход по алиасам, поиск и фильтры в адресе, `var(--…)` копируется по клику.
 - **llms.txt.** Вся система одной машиночитаемой страницей; генерируется из модели токенов и поэтому не устаревает.
 
 ## Запуск
@@ -23,11 +23,11 @@ npm install      # заодно собирает токены и иконки
 npm run storybook
 ```
 
-Storybook откроется на <http://localhost:6006>. Все проверки — `npm run check`: typecheck, lint, format, 46 тестов и сборка Storybook; тот же набор запускает CI.
+Storybook откроется на `http://localhost:6006`. Все проверки — `npm run check`: typecheck, lint, format, 46 тестов и сборка Storybook; тот же набор запускает CI.
 
 ## Стек
 
-TypeScript · React · CSS custom properties · Storybook · Vite · Vitest · SVGO
+TypeScript · React · CSS Variables · Figma Variables · SVGO · Vitest
 
 ## Устройство
 
@@ -67,4 +67,4 @@ import { Icon } from '@box-ui/icons';
 
 ## Лицензия
 
-MIT. Набор иконок Solar — © 480 Design, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+[MIT](LICENSE). Набор иконок Solar — © 480 Design, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
