@@ -12,14 +12,13 @@ npm run deploy:storybook   # собрать и опубликовать в ве�
 
 ```
 .storybook/main.ts          какие истории собирать, аддон docs, staticDirs
-.storybook/manager.ts       брендирование сайдбара: имя, версия, ссылка на репозиторий
+.storybook/manager.tsx      брендирование сайдбара: имя, версия, ссылка на репозиторий
 .storybook/preview.tsx      переключатели, атрибуты мод, переменные оформления Storybook
 .storybook/preview.css      все стили документации, написаны на --sb-*
 stories/_lib.ts             чистые хелперы, покрыты тестами в tests/
 stories/_ui.tsx             набор для документации: Page, Toolbar, Search, Swatch, Row, Callout…
-stories/Introduction.mdx    граф переменных
-stories/GettingStarted.mdx  установка и применение
-stories/foundations/        Цвета, Шкалы, Типографика
+stories/Overview.stories.tsx обзор системы
+stories/tokens/             коллекции переменных Figma
 stories/icons/              UI Icons, семейства Figma
 public/llms.txt             генерируется, отдаётся из корня сайта
 ```
@@ -35,7 +34,7 @@ out of `storybook/theming` at preview boot and published as `--sb-*` custom prop
 It follows `prefers-color-scheme` exactly as the manager does, so the canvas can never
 drift from the toolbar above it. Write documentation UI against `--sb-*`.
 
-**Box UI tokens paint only what is being documented.** Any demo that uses them must carry
+**box-ui tokens paint only what is being documented.** Any demo that uses them must carry
 its own background _and_ foreground — `demoSurface` in `_ui.tsx` does this — otherwise a
 Light-theme demo disappears against a dark canvas. That is a real bug this repo has
 already shipped twice.

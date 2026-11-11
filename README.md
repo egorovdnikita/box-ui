@@ -1,8 +1,8 @@
-# Box UI
+# box-ui
 
 Дизайн-токены, иконки и React-примитивы, собранные из файла Figma Foundation – Core.
 
-<a href="https://egorovdnikita.github.io/box-ui/"><img src="docs/assets/box-ui-demo.webp" width="100%" alt="Запись Storybook Box UI: на странице System · Theme открывается панель «Моды», тема переключается с Dark на Light, стиль иконок — с Bold на Linear; клик по алиасу color/neutral/100 ведёт в System · Color, следующий — в Primitives · Color к значению F5F5F5, клик по Code syntax копирует var(--color-neutral-100); в Иконки · System поиск «heart» оставляет 17 иконок, инспектор Heart переключает стили Broken, Line Duotone, Bold Duotone и Outline; затем фильтры и моды сбрасываются, и ролик возвращается к началу"></a>
+<a href="https://egorovdnikita.github.io/box-ui/"><img src="docs/assets/box-ui-demo.webp" width="100%" alt="Запись Storybook box-ui: на странице System · Theme открывается панель «Моды», тема переключается с Dark на Light, стиль иконок — с Bold на Linear; клик по алиасу color/neutral/100 ведёт в System · Color, следующий — в Primitives · Color к значению F5F5F5, клик по Code syntax копирует var(--color-neutral-100); в Иконки · System поиск «heart» оставляет 17 иконок, инспектор Heart переключает стили Broken, Line Duotone, Bold Duotone и Outline; затем фильтры и моды сбрасываются, и ролик возвращается к началу"></a>
 
 **→ [Открыть Storybook](https://egorovdnikita.github.io/box-ui/)** · [Файл Figma](https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Foundation---Core)
 
@@ -21,6 +21,8 @@
 Нужен Node 20+.
 
 ```bash
+git clone https://github.com/egorovdnikita/box-ui.git
+cd box-ui
 npm install      # заодно собирает токены и иконки
 npm run storybook
 ```

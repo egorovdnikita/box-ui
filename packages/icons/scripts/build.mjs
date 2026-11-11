@@ -14,7 +14,7 @@
  *   src/catalog.json        { styles, categories, icons } — the gallery index
  *
  * Every icon is 24×24 and paints with `currentColor`, so it inherits
- * `--surface-base-content-*` like any other Box UI surface.
+ * `--surface-base-content-*` like any other box-ui surface.
  */
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';

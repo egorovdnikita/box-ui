@@ -1,7 +1,7 @@
 {
   "name": "@box-ui/icons",
   "version": "0.2.0",
-  "description": "Иконки Box UI — набор UI Icons из Foundation – Core, переключаемый по всем шести модам Style из Figma и размеряемый токенами Box UI.",
+  "description": "Иконки box-ui — набор UI Icons из Foundation – Core, переключаемый по всем шести модам Style из Figma и размеряемый токенами box-ui.",
   "keywords": [
     "icons",
     "solar-icons",

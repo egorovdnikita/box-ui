@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Промо-ролик Box UI для README: настоящий Storybook, камера и клики.
+"""Промо-ролик box-ui для README: настоящий Storybook, камера и клики.
 
     python3 scripts/promo/promo.py ПАПКА [--storybook apps/storybook/storybook-static]
                                          [--only-compose] [--keys-only]

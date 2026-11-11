@@ -193,7 +193,7 @@ const header = (title) =>
 
 // --- primitives.css: every collection with a single "Value" mode ------------
 
-const primitiveCss = [header('Box UI — примитивы и именованные шкалы')];
+const primitiveCss = [header('box-ui — примитивы и именованные шкалы')];
 const primitiveLines = [`  ${FONT_FALLBACK}: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;`];
 
 for (const id of ORDER) {
@@ -206,7 +206,7 @@ primitiveCss.push(block([':root'], primitiveLines));
 
 // --- theme.css: one block per Figma mode ------------------------------------
 
-const themeCss = [header('Box UI — переключаемые коллекции, по блоку на моду Figma')];
+const themeCss = [header('box-ui — переключаемые коллекции, по блоку на моду Figma')];
 
 for (const id of ORDER) {
   const c = byId[id];
@@ -228,7 +228,7 @@ for (const id of ORDER) {
 // --- controls.css: the State collection, driven by CSS instead of attributes -
 
 const stateCss = [
-  header('Box UI — состояния контролов через псевдоклассы'),
+  header('box-ui — состояния контролов через псевдоклассы'),
   `/* The Figma "State" collection is a mode, so [data-state] switches it. CSS cannot
  * set an attribute on hover, so this file maps the same modes onto the matching
  * pseudo-classes for any element carrying [data-box-control]. Opt in with:
@@ -300,7 +300,7 @@ const stateCss = [
 
 // --- adaptive.css: let the platform pick a mode when the author has not ------
 
-const adaptive = [header('Box UI — автоматический выбор моды (подключается отдельно)')];
+const adaptive = [header('box-ui — автоматический выбор моды (подключается отдельно)')];
 {
   const dark = Object.entries(byId['sys-theme'].variables).map(([p, v]) => declaration('sys-theme', p, v.values.Dark));
   adaptive.push(
@@ -321,7 +321,7 @@ const adaptive = [header('Box UI — автоматический выбор м�
   );
 }
 
-const indexCss = `${header('Box UI — все токены')}@import "./primitives.css";\n@import "./theme.css";\n`;
+const indexCss = `${header('box-ui — все токены')}@import "./primitives.css";\n@import "./theme.css";\n`;
 
 // --- JS / TS ----------------------------------------------------------------
 
@@ -400,7 +400,7 @@ const TREES = {
   typeface: 'brand-type',
 };
 
-const js = `${header('Box UI — API токенов')}export const modes = ${JSON.stringify(modeLists, null, 2)};
+const js = `${header('box-ui — API токенов')}export const modes = ${JSON.stringify(modeLists, null, 2)};
 
 export const attributes = ${JSON.stringify(Object.fromEntries(switchable.map(([id, c]) => [id, c.attribute])), null, 2)};
 
@@ -415,7 +415,7 @@ ${Object.entries(TREES)
 export { default as model } from './model.js';
 `;
 
-const dts = `${header('Box UI — API токенов')}export declare const modes: {
+const dts = `${header('box-ui — API токенов')}export declare const modes: {
 ${Object.entries(modeLists)
   .map(([k, v]) => `  "${k}": ${v.map((m) => `"${m}"`).join(' | ')}[];`)
   .join('\n')}
@@ -466,7 +466,7 @@ writeFileSync(join(dist, 'css', 'index.css'), indexCss);
 writeFileSync(join(dist, 'tokens.json'), `${JSON.stringify(model, null, 2)}\n`);
 writeFileSync(
   join(dist, 'model.js'),
-  `${header('Box UI — граф переменных Figma')}export default ${JSON.stringify(model, null, 2)};\n`,
+  `${header('box-ui — граф переменных Figma')}export default ${JSON.stringify(model, null, 2)};\n`,
 );
 writeFileSync(join(dist, 'index.js'), js);
 writeFileSync(join(dist, 'index.d.ts'), dts);

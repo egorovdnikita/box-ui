@@ -64,7 +64,7 @@ function attributesFor(settings: BoxUISettings): Record<string, string> {
 }
 
 /**
- * Applies Box UI modes. Every mode maps to one Figma variable collection:
+ * Applies box-ui modes. Every mode maps to one Figma variable collection:
  * theme -> System · Theme, accent -> Brand · Color, radius -> Brand · Rounding,
  * font -> Brand · Typography, device -> System · Responsive,
  * status -> System · Status, appearance -> Controls · Appearance,

@@ -1,7 +1,7 @@
 /*
  * Docs chrome. Everything here paints with Storybook's own theme (the `--sb-*`
  * variables set in preview.tsx) so the canvas is indistinguishable from the
- * toolbar and sidebar around it. Box UI tokens are reserved for the demos.
+ * toolbar and sidebar around it. box-ui tokens are reserved for the demos.
  */
 
 html,
@@ -409,7 +409,7 @@ button.sb-select svg {
  * that sit on the table itself, and one description per group spanning its
  * rows. One row is one line: long names, codes and descriptions are cut with
  * an ellipsis and spelled out in the tooltip. Storybook's palette throughout;
- * only swatches, previews and specimens are Box UI.
+ * only swatches, previews and specimens are box-ui.
  *
  * Columns shrink rather than scroll — a horizontal scroller would also become
  * the vertical scroll container and unstick the header.

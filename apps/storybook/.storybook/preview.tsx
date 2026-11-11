@@ -8,9 +8,9 @@ import './preview.css';
 
 /**
  * The page chrome uses Storybook's own palette — its light or dark theme, read
- * from `storybook/theming` rather than copied — and follows the Box UI "Тема"
+ * from `storybook/theming` rather than copied — and follows the box-ui "Тема"
  * mode: switch Light / Dark and the page background and text switch with it,
- * not only the swatches. Box UI tokens still drive everything inside a demo.
+ * not only the swatches. box-ui tokens still drive everything inside a demo.
  */
 function chromeVars(theme: ThemeVars): Record<string, string> {
   const dark = theme.base === 'dark';

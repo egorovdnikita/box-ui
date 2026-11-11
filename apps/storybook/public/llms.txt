@@ -1,4 +1,4 @@
-# Box UI
+# box-ui
 
 Дизайн-токены и иконки, сгенерированные из файла Figma «Foundation – Core». Каждая
 мода переменных Figma — тема, акцент, плотность скруглений, гарнитура, устройство,
@@ -95,7 +95,7 @@ import { Icon, IconStyleProvider } from '@box-ui/icons';
 
 ## Страницы
 
-- [Обзор](https://egorovdnikita.github.io/box-ui/?path=/story/introduction--docs): что такое Box UI, что в этом Storybook и как начать
+- [Обзор](https://egorovdnikita.github.io/box-ui/?path=/story/introduction--docs): что такое box-ui, что в этом Storybook и как начать
 - [Токены](https://egorovdnikita.github.io/box-ui/?path=/story/tokens-primitives--color): все 15 коллекций Figma таблицами, как на страницах документации в Figma — значения по модам, code syntax, описания групп
 - [Иконки](https://egorovdnikita.github.io/box-ui/?path=/story/icons-system--system): системные иконки с поиском, стилями и размерами
 - [Flags](https://egorovdnikita.github.io/box-ui/?path=/story/icons-flags--flags), [Payments](https://egorovdnikita.github.io/box-ui/?path=/story/icons-payments--payments), [Brands](https://egorovdnikita.github.io/box-ui/?path=/story/icons-brands--brands): семейства из Figma

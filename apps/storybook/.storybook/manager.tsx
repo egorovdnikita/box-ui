@@ -21,7 +21,7 @@ const dark = window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? fals
 addons.setConfig({
   theme: {
     ...(dark ? themes.dark : themes.light),
-    brandTitle: `Box UI ${pkg.version}`,
+    brandTitle: `box-ui ${pkg.version}`,
     brandUrl: 'https://github.com/egorovdnikita/box-ui',
     brandTarget: '_blank',
   },
@@ -167,7 +167,7 @@ function ModesPanel({
         </Group>
       ))}
       <Footer>
-        <span>Тема перекрашивает и страницы, остальные моды — только Box UI</span>
+        <span>Тема перекрашивает и страницы, остальные моды — только box-ui</span>
         <Reset type="button" disabled={!changed} onClick={() => update({ ...INITIAL_MODES })}>
           Сбросить
         </Reset>
@@ -185,12 +185,12 @@ function ModesTool() {
 
   return (
     <PopoverProvider
-      ariaLabel="Моды Box UI"
+      ariaLabel="Моды box-ui"
       placement="bottom-start"
       padding={0}
       popover={<ModesPanel globals={values} update={updateGlobals} />}
     >
-      <Button variant="ghost" padding="small" ariaLabel={false} tooltip="Моды Box UI: тема, акцент, скругление…">
+      <Button variant="ghost" padding="small" ariaLabel={false} tooltip="Моды box-ui: тема, акцент, скругление…">
         <Summary>
           <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
             <circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor" strokeWidth="1.3" />

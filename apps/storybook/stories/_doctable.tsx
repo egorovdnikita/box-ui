@@ -38,7 +38,7 @@ import type { ModeGlobals } from './_ui';
  * per variable group with the path dimmed and its last segment bright, a name
  * column with the variable's type, one value column per mode, the Web code
  * syntax, and one description for the whole group. It is drawn in Storybook's
- * own chrome; only the swatches and previews are Box UI.
+ * own chrome; only the swatches and previews are box-ui.
  */
 
 type Value = TokenVariable['values'][string];

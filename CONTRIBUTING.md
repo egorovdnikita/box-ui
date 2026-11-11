@@ -1,6 +1,6 @@
 # Как вносить изменения
 
-Box UI собирается из файла Figma [Foundation – Core](https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Foundation---Core):
+box-ui собирается из файла Figma [Foundation – Core](https://www.figma.com/design/gbgGmuUBQ7sIfL256KaDXX/Foundation---Core):
 токены — из дампов переменных в `tokens/figma/`, иконки — из экспорта в `packages/icons/figma/`.
 Поэтому правка токена или иконки начинается в Figma, а не в коде.
 

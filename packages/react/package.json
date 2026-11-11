@@ -1,7 +1,7 @@
 {
   "name": "@box-ui/react",
   "version": "0.2.0",
-  "description": "A small set of React primitives built entirely on Box UI tokens — used to show every Figma mode switching live.",
+  "description": "React-примитивы на токенах box-ui с переключением мод Figma.",
   "keywords": [
     "react",
     "components",

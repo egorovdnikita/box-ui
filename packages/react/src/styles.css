@@ -1,4 +1,4 @@
-/* Box UI React primitives.
+/* box-ui React primitives.
  * Every declaration below resolves through a Figma variable — there are no
  * literal colours, radii, sizes or font sizes in this file. Change a mode on
  * the element (or on <html>) and everything re-resolves.

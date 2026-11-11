@@ -15,7 +15,7 @@ export { matches, counted, plural } from './_lib';
 /*
  * The docs chrome is Storybook's own look — its palette, its type, its 4px
  * radius, exposed as the `--sb-*` variables that preview.tsx reads out of
- * `storybook/theming`. Box UI tokens appear only inside demos, which always
+ * `storybook/theming`. box-ui tokens appear only inside demos, which always
  * carry both a background and a foreground so they read on any chrome.
  */
 
@@ -484,7 +484,7 @@ export type ModeGlobals = {
 };
 
 /**
- * Scopes Box UI modes to a subtree.
+ * Scopes box-ui modes to a subtree.
  *
  * A custom property is substituted where it is *declared*, not where it is
  * read: `--accent-fill-solid: var(--brand-color-solid-500)` is resolved on

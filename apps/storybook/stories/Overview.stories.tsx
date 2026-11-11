@@ -16,7 +16,7 @@ export const Docs: StoryObj = {
   name: 'Обзор',
   render: () => (
     <Page
-      title="Box UI"
+      title="box-ui"
       lead="Дизайн-система из файла Figma «Foundation – Core»: токены и иконки, собранные прямо из переменных и компонентов Figma. Каждая переменная — CSS-переменная с именем из её Code syntax, каждая мода — атрибут на <html>."
     >
       <Section

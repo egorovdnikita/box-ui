@@ -49,7 +49,7 @@ export function render(model, catalog, families) {
     )
     .join('\n');
 
-  return `# Box UI
+  return `# box-ui
 
 Дизайн-токены и иконки, сгенерированные из файла Figma «Foundation – Core». Каждая
 мода переменных Figma — тема, акцент, плотность скруглений, гарнитура, устройство,
@@ -122,7 +122,7 @@ ${rosters}
 
 ## Страницы
 
-- [Обзор](${SITE}/?path=/story/introduction--docs): что такое Box UI, что в этом Storybook и как начать
+- [Обзор](${SITE}/?path=/story/introduction--docs): что такое box-ui, что в этом Storybook и как начать
 - [Токены](${SITE}/?path=/story/tokens-primitives--color): все 15 коллекций Figma таблицами, как на страницах документации в Figma — значения по модам, code syntax, описания групп
 - [Иконки](${SITE}/?path=/story/icons-system--system): системные иконки с поиском, стилями и размерами
 - [Flags](${SITE}/?path=/story/icons-flags--flags), [Payments](${SITE}/?path=/story/icons-payments--payments), [Brands](${SITE}/?path=/story/icons-brands--brands): семейства из Figma
